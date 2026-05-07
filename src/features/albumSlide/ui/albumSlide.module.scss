@@ -73,7 +73,7 @@
         overflow: hidden;
         position: relative;
 
-        &:hover {
+        &:hover, &.always_animate {
             .album_link_text {
                 animation: marquee 4s linear -2s infinite;
             }
