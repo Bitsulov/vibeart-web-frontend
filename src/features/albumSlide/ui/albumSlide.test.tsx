@@ -42,4 +42,46 @@ describe("albumSlide - кнопка для выбора текущего выб�
         expect(setSelectedAlbum).toHaveBeenCalledWith("2");
         expect(setSelectedAlbum).toHaveBeenCalledTimes(1);
     });
+    it("При ULID === 'all' рендерит текст вместо ссылки", () => {
+        renderWithProviders(
+            <AlbumSlide
+                imageUrl=""
+                name="Все работы"
+                selectedAlbum="all"
+                setSelectedAlbum={vi.fn()}
+                ULID="all"
+            />
+        );
+
+        expect(screen.getByText("Все работы")).toBeInTheDocument();
+        expect(screen.queryByRole("link")).not.toBeInTheDocument();
+    });
+    it("Активное состояние применяется когда selectedAlbum совпадает с ULID", () => {
+        renderWithProviders(
+            <AlbumSlide
+                imageUrl=""
+                name=""
+                selectedAlbum="42"
+                setSelectedAlbum={vi.fn()}
+                ariaLabel="button"
+                ULID="42"
+            />
+        );
+
+        expect(screen.getByRole("button", {name: "button"})).toHaveClass("active");
+    });
+    it("animateName добавляет класс always_animate на ссылку", () => {
+        renderWithProviders(
+            <AlbumSlide
+                imageUrl=""
+                name="Альбом"
+                selectedAlbum=""
+                setSelectedAlbum={vi.fn()}
+                ULID="1"
+                animateName
+            />
+        );
+
+        expect(screen.getByRole("link")).toHaveClass("always_animate");
+    });
 });
