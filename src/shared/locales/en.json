@@ -106,6 +106,7 @@
     "loadImg": "Upload image",
     "deleteImg": "Delete uploaded image",
     "createPost": "Create post",
+    "createAlbum": "Create album",
     "chooseTag": "Choose tag {{name}}"
   },
 
@@ -221,7 +222,8 @@
     "chat": "Private conversation with a user. Chat in real time, share your works, and discuss creativity together.",
     "communities": "Find communities by interest, join creative groups, and start your own. Share your works, discuss ideas, and grow together with creators who share your spirit.",
     "community": "Creative community page: member posts, description, and group members. Join, share your works, and connect with creators who share your spirit.",
-    "postCreate": "Create and publish your artwork on VibeArt. Upload an image, add a title, description, and tags to share your creative work with the community."
+    "postCreate": "Create and publish your artwork on VibeArt. Upload an image, add a title, description, and tags to share your creative work with the community.",
+    "albumCreate": "Create and organize your artwork collection on VibeArt. Upload a cover image, add a title and description to share your creative album with the community."
   },
 
   "home": {
@@ -320,6 +322,21 @@
     "albums": "Albums",
     "altAlbum": "Album {{name}}",
     "albumAll": "All works"
+  },
+
+  "createAlbum": {
+    "title": "Create album",
+    "imgTitle": "Image",
+    "imgDescription": "The main cover image of the album.",
+    "nameTitle": "Title",
+    "nameDescription": "A short text title for the album",
+    "namePlaceholder": "Enter title",
+    "textTitle": "Description",
+    "textDescriptionMobile": "Write a few words about the album",
+    "textDescriptionDesktop": "Describe the concept of the collection in more detail. If the works inside share a common theme or story — be sure to mention it.",
+    "textPlaceholder": "Enter description",
+    "submitTextMobile": "Create",
+    "submitTextDesktop": "Create album"
   },
 
   "createPost": {

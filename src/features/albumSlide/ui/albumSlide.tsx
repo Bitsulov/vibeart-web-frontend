@@ -11,14 +11,22 @@ interface AlbumSlideProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
     ariaLabel?: string;
     ULID: string;
     selectedAlbum: string;
-    setSelectedAlbum: React.Dispatch<React.SetStateAction<string>>
+    setSelectedAlbum: React.Dispatch<React.SetStateAction<string>>;
+    className?: string;
+    animateName?: boolean;
 }
 
 /**
  * Слайд альбома в слайдере выбора.
  *
+ * @param imageUrl - URL изображения обложки альбома.
+ * @param name - Название альбома.
+ * @param ariaLabel - ARIA-метка для кнопки слайда.
+ * @param ULID - Уникальный идентификатор альбома; значение "all" рендерит текст вместо ссылки.
  * @param selectedAlbum - ULID текущего выбранного альбома для подсветки активного.
  * @param setSelectedAlbum - Сеттер выбранного альбома.
+ * @param className - Дополнительный CSS-класс.
+ * @param animateName - Если true, анимация названия всегда активна без hover.
  */
 export const AlbumSlide = ({
     imageUrl,
@@ -27,6 +35,8 @@ export const AlbumSlide = ({
     ariaLabel = "",
     selectedAlbum,
     setSelectedAlbum,
+    className = "",
+    animateName = false,
     ...props
 }: AlbumSlideProps) => {
     const { t } = useTranslation();
@@ -34,7 +44,7 @@ export const AlbumSlide = ({
 	return (
         <button
             aria-label={ariaLabel}
-            className={clsx(c.slide, selectedAlbum === ULID && c.active)}
+            className={clsx(c.slide, className, selectedAlbum === ULID && c.active)}
             onClick={() => albumClickHandler(setSelectedAlbum, ULID)}
             {...props}
         >
@@ -60,7 +70,7 @@ export const AlbumSlide = ({
                 </p>
             :
                 <Link
-                    className={c.album_link}
+                    className={clsx(c.album_link, animateName && c.always_animate)}
                     aria-label={t("ariaLabel.goToAlbum", {name: name})}
                     to={`/album/${ULID}`}
                 >
