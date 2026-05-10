@@ -107,7 +107,8 @@
     "deleteImg": "Delete uploaded image",
     "createPost": "Create post",
     "createAlbum": "Create album",
-    "chooseTag": "Choose tag {{name}}"
+    "chooseTag": "Choose tag {{name}}",
+    "confirmCreateAlbumModal": "Create album without cover"
   },
 
   "hint": {
@@ -139,7 +140,8 @@
     "deletePost": "Are you sure you want to delete this post? (irreversible)",
     "deleteAlbum": "Are you sure you want to delete this album? (irreversible, posts will remain)",
     "deleteChat": "Are you sure you want to delete all messages in this chat? (irreversible)",
-    "deleteCommunity": "Are you sure you want to delete this community? (irreversible)"
+    "deleteCommunity": "Are you sure you want to delete this community? (irreversible)",
+    "confirmCreateAlbumEmptyImg": "Do you want to create an album without a cover?"
   },
 
   "pages": {
@@ -285,7 +287,8 @@
   },
 
   "chats": {
-    "title": "Chats"
+    "title": "Chats",
+    "emptyTitle": "There are no chats here yet"
   },
 
   "chat": {
@@ -307,7 +310,8 @@
 
   "community": {
     "owner": "Owner:",
-    "admins": "Administrators:"
+    "admins": "Administrators:",
+    "emptyDescription": "No description yet"
   },
 
   "gallery": {
@@ -321,7 +325,8 @@
     "createdAt": "Created at:",
     "albums": "Albums",
     "altAlbum": "Album {{name}}",
-    "albumAll": "All works"
+    "albumAll": "All works",
+    "emptyDescription": "No description yet"
   },
 
   "createAlbum": {
