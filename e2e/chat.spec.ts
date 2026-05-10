@@ -70,4 +70,52 @@ test.describe("Chat - страница чата", () => {
 
         await expect(page.getByText("Are you sure you want to delete all messages in this chat? (irreversible)")).toBeVisible();
     });
+
+    test("В заголовке отображается имя собеседника", async ({page}) => {
+        await page.goto(CHAT_URL);
+
+        await expect(page.getByRole("heading", {level: 1, name: "testUser"})).toBeVisible();
+    });
+
+    test("Ссылка назад ведёт на список чатов", async ({page}) => {
+        await page.goto(CHAT_URL);
+
+        await page.locator("section").getByRole("link", {name: "Go to chats"}).click();
+
+        expect(new URL(page.url()).pathname).toBe("/chats");
+    });
+
+    test("Настройки чата закрываются при повторном нажатии", async ({page}) => {
+        await page.goto(CHAT_URL);
+
+        const settingsButton = page.getByRole("button", {name: "Open chat settings"});
+        await settingsButton.click();
+        await expect(page.getByRole("button", {name: "Close chat settings"})).toBeVisible();
+
+        await page.getByRole("button", {name: "Close chat settings"}).click();
+        await expect(page.getByRole("button", {name: "Open chat settings"})).toBeVisible();
+    });
+
+    test("Подтверждение удаления чата перенаправляет на /chats", async ({page}) => {
+        await page.goto(CHAT_URL);
+
+        await page.getByRole("button", {name: "Open chat settings"}).click();
+        await page.getByRole("button", {name: "Delete chat"}).click();
+        await page.getByRole("button", {name: "Delete messages"}).click();
+
+        await page.waitForURL(/\/chats(\?|$)/);
+        expect(new URL(page.url()).pathname).toBe("/chats");
+    });
+
+    test("Отмена удаления чата закрывает модальное окно", async ({page}) => {
+        await page.goto(CHAT_URL);
+
+        await page.getByRole("button", {name: "Open chat settings"}).click();
+        await page.getByRole("button", {name: "Delete chat"}).click();
+        await expect(page.getByText("Are you sure you want to delete all messages in this chat? (irreversible)")).toBeVisible();
+
+        await page.getByRole("button", {name: "Close modal window"}).click();
+
+        await expect(page.getByText("Are you sure you want to delete all messages in this chat? (irreversible)")).not.toBeVisible();
+    });
 });

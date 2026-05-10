@@ -38,4 +38,26 @@ test.describe("Chats - страница чатов", () => {
         const chats = page.getByRole("link", {name: /Go to chat/});
         await expect(chats.first()).toBeVisible();
     });
+
+    test("Отображается точное количество чатов", async ({page}) => {
+        await page.goto(CHATS_URL);
+
+        await expect(page.getByRole("link", {name: /^Go to chat \S/})).toHaveCount(5);
+    });
+
+    test("Клик на чат открывает страницу чата", async ({page}) => {
+        await page.goto(CHATS_URL);
+
+        await page.getByRole("link", {name: /^Go to chat \S/}).first().click();
+
+        expect(new URL(page.url()).pathname).toMatch(/^\/chats\/.+/);
+    });
+
+    test("Поле поиска принимает введённый текст", async ({page}) => {
+        await page.goto(CHATS_URL);
+
+        await page.getByRole("textbox").fill("testUser");
+
+        await expect(page.getByRole("textbox")).toHaveValue("testUser");
+    });
 });
