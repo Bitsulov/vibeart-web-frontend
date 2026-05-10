@@ -39,17 +39,19 @@ export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
 
     const [isOpenedWindow, setIsOpenedWindow] = useState<boolean>(false);
     const [isShowConfirmModal, setIsShowConfirmModal] = useState<boolean>(false);
-
+    
     const avatarImg = communityInfo.imageUrl || defaultAvatar;
     const avatarAlt = `${t("profile.avatarAlt")} ${communityInfo.title}`;
     const isPrincipalUser = communityInfo.owner.id === principalUserInfo.id;
+
+    const username = communityInfo.username ? communityInfo.username : communityInfo.ULID;
 
     const dispatch = useDispatch();
 
     return (
         <section className={c.info}>
             <CommunityModal
-                description={communityInfo.description}
+                description={communityInfo.description || t("community.emptyDescription")}
                 createdAt={communityInfo.createdAt}
                 owner={communityInfo.owner}
                 admins={communityAdminsMock}
@@ -130,10 +132,10 @@ export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
                     <div className={c.right}>
                         <h1 className={c.name}>{communityInfo.title}</h1>
                         <div className={c.username_wrapper}>
-                            <p className={c.username}>@{communityInfo.username}</p>
+                            <p className={c.username}>@{username}</p>
                             <CopyButton
                                 className={c.copy_button}
-                                text={communityInfo.username}
+                                text={username}
                             />
                         </div>
                         {windowWidth >= 1200 &&
@@ -153,7 +155,9 @@ export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
                                 {t("moreShort")}
                             </button>
                             <h3 className={c.description_sign}>{t("profile.description")}</h3>
-                            <p className={clsx(c.description, c.hide)}>{communityInfo.description}</p>
+                            <p className={clsx(c.description, c.hide)}>
+                                {communityInfo.description || t("community.emptyDescription")}
+                            </p>
                         </div>
                     </div>
                 </div>
