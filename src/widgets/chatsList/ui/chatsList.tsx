@@ -29,7 +29,7 @@ export const ChatsList = ({ chatsList, ...props }: ChatListProps) => {
                     onChange={e => searchChangeHandler(e, setSearchValue)}
                 />
                 <div className={c.list}>
-                    {chatsList.map(chat => (
+                    {chatsList.length > 0 ? chatsList.map(chat => (
                         <ChatItem
                             key={`chat ${chat.ULID}`}
                             title={chat.companion.name}
@@ -39,7 +39,9 @@ export const ChatsList = ({ chatsList, ...props }: ChatListProps) => {
                             lastMessage={chat.lastMessage.text}
                             date={chat.lastMessage.createdAt}
                         />
-                    ))}
+                    )):
+                        <h2 className={c.empty}>{t("chats.emptyTitle")}</h2>
+                    }
                 </div>
             </div>
 		</section>
