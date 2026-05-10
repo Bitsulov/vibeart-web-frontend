@@ -3,6 +3,7 @@ import {renderWithProviders} from "shared/tests/renderWithProviders";
 import {ChatsList} from "./chatsList";
 import {chatsMock} from "entities/chat";
 import {screen} from "@testing-library/react";
+import {userEvent} from "@testing-library/user-event";
 
 describe("ChatsList - список чатов", () => {
     it("Отображает заголовок секции", () => {
@@ -27,5 +28,29 @@ describe("ChatsList - список чатов", () => {
         renderWithProviders(<ChatsList chatsList={[]} />);
 
         expect(screen.queryAllByRole("link")).toHaveLength(0);
+    });
+
+    it("При пустом списке отображает заглушку", () => {
+        renderWithProviders(<ChatsList chatsList={[]} />);
+
+        expect(screen.getByRole("heading", {level: 2})).toBeInTheDocument();
+    });
+
+    it("Ссылки ведут на страницы чатов по ULID", () => {
+        renderWithProviders(<ChatsList chatsList={chatsMock} />);
+
+        const links = screen.getAllByRole("link");
+        chatsMock.forEach((chat, i) => {
+            expect(links[i]).toHaveAttribute("href", `/chats/${chat.ULID}`);
+        });
+    });
+
+    it("Поле поиска принимает введённый текст", async () => {
+        renderWithProviders(<ChatsList chatsList={chatsMock} />);
+
+        const input = screen.getByRole("textbox");
+        await userEvent.type(input, "Иван");
+
+        expect(input).toHaveValue("Иван");
     });
 });

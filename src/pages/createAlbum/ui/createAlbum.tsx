@@ -8,10 +8,16 @@ import type {AlbumType} from "entities/album";
 import {CreateAlbumWidget} from "widgets/createAlbumWidget";
 import {onSubmitForm} from "../model/onSubmitForm";
 import clsx from "clsx";
+import {ConfirmModal} from "widgets/confirmModal";
+import {openModalHandler} from "../model/openModalHandler";
+import {confirmModalHandler} from "../model/confirmModalHandler";
+import {useNavigate} from "react-router-dom";
 
 /** Страница создания альбома с live-preview обложки и формой заполнения данных. */
 export const CreateAlbum = () => {
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
     const [albumInfo, setAlbumInfo] = useState<Partial<AlbumType>>({});
 
     const [selectedAlbum, setSelectedAlbum] = useState<string>("all");
@@ -25,11 +31,23 @@ export const CreateAlbum = () => {
         }
     }, [loadedFile]);
 
+    const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
+    const submitFn = loadedFile
+        ? (navigation: () => void) => onSubmitForm(navigation, loadedFile, setIsErrorImg)
+        : (_navigation: () => void) => openModalHandler(setIsShowConfirm);
+
 	return (
 		<Layout>
             <title>{t("titles.albumCreate")}</title>
             <meta name="description" content={t("description.albumCreate")} />
             <section className={c.content}>
+                <ConfirmModal
+                    text={t("modal.confirmCreateAlbumEmptyImg")}
+                    ariaLabelConfirm={t("ariaLabel.confirmCreateAlbumModal")}
+                    confirmFn={() => confirmModalHandler(navigate)}
+                    isShowModal={isShowConfirm}
+                    setIsShowModal={setIsShowConfirm}
+                />
                 <div className="container">
                     <div className={c.content_inner}>
                         <BackLink className={c.back} />
@@ -46,7 +64,8 @@ export const CreateAlbum = () => {
                             setAlbumInfo={setAlbumInfo}
                             setLoadedFile={setLoadedFile}
                             loadedFile={loadedFile}
-                            onSubmit={() => onSubmitForm(loadedFile, setIsErrorImg)}
+                            onSubmit={submitFn}
+                            setIsErrorImg={setIsErrorImg}
                         />
                     </div>
                 </div>

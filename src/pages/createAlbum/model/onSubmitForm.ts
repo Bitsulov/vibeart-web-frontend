@@ -1,15 +1,22 @@
 import type {Dispatch, SetStateAction} from "react";
 
 /**
- * Проверяет наличие загруженного файла и устанавливает флаг ошибки изображения.
+ * Обрабатывает отправку формы: если файл загружен — сбрасывает ошибку и перенаправляет на другую страницу,
+ * иначе устанавливает флаг ошибки изображения.
  *
+ * @param navigation - Функция навигации, вызывается при наличии файла.
  * @param file - Загруженный файл обложки альбома.
  * @param setIsErrorImg - Сеттер флага ошибки изображения.
  */
-export function onSubmitForm(file: File | undefined, setIsErrorImg: Dispatch<SetStateAction<boolean>>) {
+export function onSubmitForm(
+    navigation: () => void,
+    file: File | undefined,
+    setIsErrorImg: Dispatch<SetStateAction<boolean>>
+) {
     if(!file) {
         setIsErrorImg(true);
     } else {
         setIsErrorImg(false);
+        navigation();
     }
 }

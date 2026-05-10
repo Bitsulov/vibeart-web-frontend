@@ -12,12 +12,13 @@ import {StylizedButton} from "features/stylizedButton";
 import type {ICreateAlbumForm} from "../lib/types";
 import type {AlbumType} from "entities/album";
 
-interface CreateAlbumWidgetProps extends ComponentPropsWithoutRef<"form"> {
+interface CreateAlbumWidgetProps extends Omit<ComponentPropsWithoutRef<"form">, "onSubmit"> {
     className?: string;
     setAlbumInfo: Dispatch<SetStateAction<Partial<AlbumType>>>;
     loadedFile: File | undefined;
     setLoadedFile: Dispatch<SetStateAction<File | undefined>>;
-    onSubmit: () => void;
+    onSubmit: (navigation: () => void) => void;
+    setIsErrorImg: Dispatch<SetStateAction<boolean>>;
 }
 
 /**
@@ -35,6 +36,7 @@ export const CreateAlbumWidget = ({
     loadedFile,
     setLoadedFile,
     onSubmit,
+    setIsErrorImg,
     ...props
 }: CreateAlbumWidgetProps) => {
     const { t } = useTranslation();
@@ -65,7 +67,7 @@ export const CreateAlbumWidget = ({
     return (
         <form
             onSubmit={handleSubmit(
-                () => submitValidHandler(navigate, dispatch, loadedFile, onSubmit),
+                () => submitValidHandler(navigate, dispatch, loadedFile, setIsErrorImg, onSubmit),
                 (errors) => submitInvalidHandler(errors, dispatch)
             )}
             className={`${c.settings} ${className}`}

@@ -41,6 +41,7 @@ $description-collapsed-height: 5rem;
                 padding: clamp(1rem, 3vw, 2rem) 0;
                 display: flex;
                 flex-direction: column;
+                flex: 1;
 
                 .works {
                     margin-left: auto;
