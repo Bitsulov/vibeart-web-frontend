@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { renderWithProviders } from "shared/tests/renderWithProviders";
 import { ProfileInfo } from "./profileInfo";
 import { screen } from "@testing-library/react";
@@ -97,6 +97,11 @@ describe("ProfileInfo - блок информации о профиле", () => 
     describe("Адаптация — мобильная версия (< 1200px)", () => {
         beforeEach(() => {
             Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 375 });
+            Object.defineProperty(HTMLElement.prototype, "scrollHeight", { configurable: true, get: () => 300 });
+        });
+
+        afterEach(() => {
+            Object.defineProperty(HTMLElement.prototype, "scrollHeight", { configurable: true, get: () => 0 });
         });
 
         it("Показывает кнопку раскрытия описания", () => {

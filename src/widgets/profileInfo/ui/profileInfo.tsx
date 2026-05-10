@@ -8,7 +8,7 @@ import clsx from "clsx";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
 import {getLocalTimeString} from "shared/lib/getLocalTimeString";
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 import {openDescriptionHandler} from "../model/openDescriptionHandler";
 import {ProfileLink} from "features/profileLink";
 import {useWindowWidth} from "shared/hooks/useWindowWidth";
@@ -33,6 +33,17 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
     const windowWidth = useWindowWidth();
 
     const [isOpened, setIsOpened] = useState<boolean>(false);
+    
+    const [isExpandable, setIsExpandable] = useState<boolean>(false);
+    const descriptionRef = useRef<HTMLParagraphElement>(null);
+
+    useEffect(() => {
+        if (!descriptionRef.current || !userInfo.description || windowWidth >= 1200) {
+            setIsExpandable(false);
+            return;
+        }
+        setIsExpandable(descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight);
+    }, [userInfo.description, windowWidth]);
 
     const avatarImg = userInfo.avatarUrl || defaultAvatar;
     const avatarAlt = `${t("profile.avatarAlt")} ${userInfo.name}`;
@@ -108,13 +119,22 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
                             />
                         }
                         <div className={c.description_wrapper}>
-                            {!isOpened && windowWidth < 1200 &&
+                            {!isOpened && windowWidth < 1200 && isExpandable &&
                                 <button aria-label={t("ariaLabel.openDescription")} onClick={() => openDescriptionHandler(setIsOpened)} className={c.description_button}>
                                     <ChevronDown width="24" height="24" className={c.description_arrow} />
                                 </button>
                             }
                             <h3 className={c.description_sign}>{t("profile.description")}</h3>
-                            <p className={clsx(c.description, !isOpened && windowWidth < 1200 && c.hide)}>{userInfo.description}</p>
+                            <p
+                                ref={descriptionRef}
+                                className={clsx(
+                                    c.description,
+                                    !isOpened && windowWidth < 1200 && c.hide,
+                                    !isOpened && windowWidth < 1200 && isExpandable && c.expandable,
+                                )}
+                            >
+                                {userInfo.description || t("community.emptyDescription")}
+                            </p>
                         </div>
                         <div className={c.date_wrapper}>
                             <h3 className={c.date_sign}>{t("profile.createdAt")}</h3>

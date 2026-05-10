@@ -16,6 +16,7 @@ $description-max-height: 8rem;
             border-bottom: .1rem solid global.$active-color;
             max-width: 40rem;
             margin: 0 auto;
+            width: 100%;
 
             .bad_icons {
                 display: flex;
@@ -105,6 +106,7 @@ $description-max-height: 8rem;
                 }
 
                 .description {
+                    position: relative;
                     margin-top: .4rem;
                     border-radius: 2rem;
                     background-color: global.$bright-background;
@@ -118,16 +120,16 @@ $description-max-height: 8rem;
                         max-height: $description-max-height;
                     }
 
-                    &.hide:before {
+                    &.expandable:before {
                         content: '';
                         display: block;
                         position: absolute;
                         width: 100%;
-                        height: $description-max-height;
+                        height: 4rem;
                         border-radius: 2rem;
                         left: 0;
-                        right: 0;
-                        background: linear-gradient(180deg, transparent 0%, global.$bright-background 70%);
+                        bottom: 0;
+                        background: linear-gradient(180deg, transparent 0%, global.$bright-background 100%);
                     }
                 }
 
@@ -148,6 +150,11 @@ $description-max-height: 8rem;
                         height: 100%;
                     }
                 }
+            }
+
+            .right {
+                flex: 1;
+                min-width: 0;
             }
 
             .date_wrapper {
