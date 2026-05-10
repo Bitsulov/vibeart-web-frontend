@@ -1,28 +1,30 @@
 import type {NavigateFunction} from "react-router-dom";
 import type {Dispatch} from "@reduxjs/toolkit";
+import type {Dispatch as ReactDispatch, SetStateAction} from "react";
 // import {showToast} from "features/toast";
 
 /**
  * Обрабатывает валидную отправку формы создания альбома.
- * Переходит в галерею после успешной отправки.
+ * Передаёт в onSubmit функцию навигации в галерею.
  *
  * @param navigate - Функция навигации React Router.
  * @param _dispatch - Redux dispatch (зарезервирован для будущей логики).
  * @param _loadedFile - Загруженный файл обложки (зарезервирован для будущей логики).
- * @param onSubmit - Callback, вызываемый после попытки отправки.
+ * @param _setIsErrorImg - Сеттер флага ошибки изображения (зарезервирован).
+ * @param onSubmit - Callback, получающий функцию навигации и решающий когда её вызвать.
  */
 export function submitValidHandler(
-    // data: ICreatePostForm,
     navigate: NavigateFunction,
     _dispatch: Dispatch,
     _loadedFile: File | undefined,
-    onSubmit: () => void
+    _setIsErrorImg: ReactDispatch<SetStateAction<boolean>>,
+    onSubmit: (navigation: () => void) => void
 ) {
-    navigate("/gallery", {replace: true});
     // if(_loadedFile) {
     //     navigate("/gallery", {replace: true});
     // } else {
     //     _dispatch(showToast({message: "toast.loadImg", type: "error"}));
+    //     setIsErrorImg(true);
     // }
-    onSubmit();
+    onSubmit(() => navigate("/gallery", {replace: true}));
 }
