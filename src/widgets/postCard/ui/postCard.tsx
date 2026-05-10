@@ -6,7 +6,6 @@ import defaultAvatar from "shared/icons/icon-user.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
 import {getLocalTimeNumbers} from "shared/lib/getLocalTimeNumbers";
-import {getShortNumber} from "shared/lib/getShortNumber";
 import {useState} from "react";
 import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import clsx from "clsx";
@@ -136,7 +135,7 @@ export const PostCard = ({
                                     className={clsx(c.stat, isLiked && c.active)}
                                     onClick={() => likeClickHandler(setLikes, isLiked, setIsLiked)}
                                     Icon={Heart}
-                                    number={getShortNumber(likes)}
+                                    number={likes}
                                 />
                                 <StatItem
                                     type="button"
@@ -147,7 +146,7 @@ export const PostCard = ({
                                     onMouseLeave={() => hideHint(dispatch)}
                                     onClick={() => reportClickHandler(isReported, setIsReported)}
                                     Icon={Flag}
-                                    number={getShortNumber(reportsCount)}
+                                    number={reportsCount}
                                 />
                             </div>
                             <Link
@@ -167,16 +166,18 @@ export const PostCard = ({
                                     {authorName}
                                 </p>
                             </Link>
-                            <p className={c.album}>
-                                {t("post.inAlbum")}{" "}
-                                <Link
-                                    aria-label={t("ariaLabel.goToAlbum", {name: albumName})}
-                                    to={`/album/${albumULID}`}
-                                    className={c.album_name}
-                                >
-                                    {albumName}
-                                </Link>
-                            </p>
+                            {albumName &&
+                                <p className={c.album}>
+                                    {t("post.inAlbum")}{" "}
+                                    <Link
+                                        aria-label={t("ariaLabel.goToAlbum", {name: albumName})}
+                                        to={`/album/${albumULID}`}
+                                        className={c.album_name}
+                                    >
+                                        {albumName}
+                                    </Link>
+                                </p>
+                            }
                             <h1 className={c.title}>{title}</h1>
                             <div className={c.description_wrapper}>
                                 <p className={clsx(c.description, !isDescriptionOpened && !isDesktop && c.description_collapsed)}>
