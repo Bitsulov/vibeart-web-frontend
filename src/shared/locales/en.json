@@ -31,6 +31,10 @@
   "yesterday": "Yesterday",
   "moreShort": "More",
   "information": "Information",
+  "Load": "Load",
+  "Delete": "Delete",
+  "Continue": "Continue",
+  "Send": "Send",
 
   "develop": {
     "title": "This page is under construction.",
@@ -108,7 +112,13 @@
     "createPost": "Create post",
     "createAlbum": "Create album",
     "chooseTag": "Choose tag {{name}}",
-    "confirmCreateAlbumModal": "Create album without cover"
+    "confirmCreateAlbumModal": "Create album without cover",
+    "saveUser": "Save entered data",
+    "continue": "Continue",
+    "backToChangeEmail": "Return to email change form",
+    "changeEmail": "Change email",
+    "backToChangePassword": "Return to password change form",
+    "changePassword": "Change password"
   },
 
   "hint": {
@@ -133,7 +143,19 @@
     "loadImg": "Please upload an image",
     "longTitle": "Title is too long",
     "emptyTitle": "Title is empty",
-    "longDescription": "Description is too long"
+    "emptyName": "Name is empty",
+    "shortName": "Name is too short",
+    "longName": "Name is too long",
+    "shortId": "ID is too short",
+    "longId": "ID is too long",
+    "longDescription": "Description is too long",
+    "wrongEmail": "Incorrect email format",
+    "requiredEmail": "Enter email address",
+    "sameEmails": "Email addresses match",
+    "requiredPassword": "Enter password",
+    "notSamePasswords": "Passwords do not match",
+    "wrongCodeLength": "Code must be 6 digits",
+    "samePasswords": "Old and new passwords match"
   },
 
   "modal": {
@@ -202,6 +224,7 @@
     "agreement": "User Agreement | VibeArt",
     "policy": "Privacy Policy | VibeArt",
     "albumCreate": "Create Album | VibeArt",
+    "settings": "Profile Settings | VibeArt",
     "chats": "Chats | VibeArt",
     "chat": "Chat | VibeArt",
     "communities": "Communities | VibeArt",
@@ -225,7 +248,23 @@
     "communities": "Find communities by interest, join creative groups, and start your own. Share your works, discuss ideas, and grow together with creators who share your spirit.",
     "community": "Creative community page: member posts, description, and group members. Join, share your works, and connect with creators who share your spirit.",
     "postCreate": "Create and publish your artwork on VibeArt. Upload an image, add a title, description, and tags to share your creative work with the community.",
-    "albumCreate": "Create and organize your artwork collection on VibeArt. Upload a cover image, add a title and description to share your creative album with the community."
+    "albumCreate": "Create and organize your artwork collection on VibeArt. Upload a cover image, add a title and description to share your creative album with the community.",
+    "settings": "Manage your VibeArt profile: edit your name, avatar, and bio. Customize your page so the community sees you as you truly are."
+  },
+
+  "emailChange": {
+    "title": "Change email",
+    "oldEmailPlaceholder": "Enter old email",
+    "newEmailPlaceholder": "Enter new email",
+    "sentCodeText": "A code has been sent to {{address}}"
+  },
+
+  "passwordChange": {
+    "title": "Change password",
+    "oldPasswordPlaceholder": "Old password",
+    "newPasswordPlaceholder": "New password",
+    "confirmNewPasswordPlaceholder": "Confirm password",
+    "sentCodeText": "A code has been sent to {{address}}"
   },
 
   "home": {
@@ -312,6 +351,24 @@
     "owner": "Owner:",
     "admins": "Administrators:",
     "emptyDescription": "No description yet"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "avatarTitle": "Profile photo",
+    "avatarDescription": "Recommended size 400x400px in JPG or PNG format. It will be displayed as a circle across all your activities.",
+    "namePlaceholder": "Enter name",
+    "nameTitle": "Name",
+    "nameDescription": "Your real name or creative alias",
+    "idPlaceholder": "Enter ID",
+    "idTitle": "Unique ID",
+    "idDescription": "Your unique identifier",
+    "descriptionPlaceholder": "Description",
+    "descriptionTitle": "Description",
+    "descriptionMobile": "Write a few words about yourself",
+    "descriptionDesktop": "Here you can write a few words about who you are and what you love. Share how you got to where you are, and what you enjoy most about the process. Maximum 200 characters.",
+    "editMobile": "Save",
+    "editDesktop": "Save changes"
   },
 
   "gallery": {
