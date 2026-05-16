@@ -92,6 +92,94 @@
                 height: clamp(27.5rem, 50vw, 41rem);
             }
         }
+
+        .avatar_wrapper {
+            padding: 1rem 5.6rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            @media (min-width: 1200px) {
+                padding: 1rem 1.2rem 0;
+            }
+
+            @media (min-width: 1370px) {
+                padding: 1rem 5.6rem 0;
+            }
+
+            @media (min-width: 1500px) {
+                padding: 1rem 1.2rem 0;
+            }
+
+            @media (min-width: 1670px) {
+                padding: 1rem 5.6rem 0;
+            }
+
+            .img {
+                display: inline-block;
+                width: 14rem;
+                height: 14rem;
+                border: .1rem solid global.$active-color;
+                border-radius: 50%;
+            }
+
+            .avatar_buttons {
+                margin-top: 1.6rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+
+                .load {
+                    padding: 1rem 2rem;
+                    border-radius: 1.1rem;
+                    font-size: clamp(2rem, 3vw, 2.4rem);
+
+                    @media (min-width: 1200px) {
+                        padding-left: 4rem;
+                        padding-right: 4rem;
+                    }
+                }
+
+                .delete {
+                    padding: 1rem 2rem;
+                    border-radius: 1.1rem;
+                    font-size: clamp(2rem, 3vw, 2.4rem);
+                    background-color: transparent;
+                    border: .1rem solid global.$negative-active;
+                    color: global.$negative-active;
+                    cursor: pointer;
+                    transition: global.$transition-time;
+
+                    &:hover {
+                        background-color: global.$negative-active;
+                        color: global.$active-color;
+                    }
+
+                    @media (min-width: 1200px) {
+                        padding-left: 4rem;
+                        padding-right: 4rem;
+                    }
+                }
+            }
+        }
+
+        .id_wrapper {
+            display: flex;
+            padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem) 0;
+
+            .text {
+                display: flex;
+                align-items: center;
+                font-size: clamp(2rem, 4vw, 2.8rem);
+                margin-right: .5rem;
+                font-weight: 400;
+            }
+
+            .input {
+                height: clamp(3rem, 5vw, 4.7rem);
+            }
+        }
     }
 }
 

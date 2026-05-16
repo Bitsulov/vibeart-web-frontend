@@ -10,12 +10,15 @@ import {loadButtonClickHandler} from "../model/loadButtonClickHandler";
 import {onChangeLoadHandler} from "../model/onChangeLoadHandler";
 import {deleteButtonClickHandler} from "../model/deleteButtonClickHandler";
 import type {PostType} from "entities/post";
+import {StylizedButton} from "../../stylizedButton";
+import {onChangeAvatarLoadHandler} from "../model/onChangeAvatarLoadHandler";
+import {deleteAlbumButtonClickHandler} from "../model/deleteAlbumButtonClickHandler";
 
 interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
     title: string;
     description: string;
     value?: string;
-    type: "buttons" | "input" | "textarea";
+    type: "buttons" | "input" | "textarea" | "avatar" | "id";
     isError: boolean;
     isSubmitted: boolean;
     placeholder?: string;
@@ -24,7 +27,10 @@ interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
     registerProps?: UseFormRegisterReturn;
     setEntityInfo: Dispatch<SetStateAction<Partial<PostType>>>;
     setLoadedFile?: Dispatch<SetStateAction<File | undefined>>;
+    placeholderClassName?: string;
     id: string;
+    avatarAlt?: string;
+    avatarUrl?: string;
 }
 
 /**
@@ -58,12 +64,15 @@ export const SettingsItem = ({
     registerProps,
     setEntityInfo,
     setLoadedFile,
+    placeholderClassName = "",
+    avatarAlt = "avatar",
+    avatarUrl = "",
     id,
     ...props
 }: SettingsItemProps) => {
     const { t } = useTranslation();
 
-    const isText = type === "input" || type === "textarea";
+    const isText = type === "input" || type === "textarea" || type === "id";
     const isLimitOutMore = maxLength ? value?.length > maxLength : false;
     const isLimitOutLess = minLength ?  value?.length < minLength : false;
 
@@ -117,6 +126,7 @@ export const SettingsItem = ({
                             isError={isError}
                             isSubmitted={isSubmitted}
                             placeholder={placeholder}
+                            placeholderClassName={placeholderClassName}
                             value={value}
                             id={id}
                             {...registerProps}
@@ -131,6 +141,61 @@ export const SettingsItem = ({
                             value={value}
                             isError={isError}
                             isSubmitted={isSubmitted}
+                            placeholderClassName={placeholderClassName}
+                            id={id}
+                            {...registerProps}
+                        />
+                    </div>
+                }
+                {type === "avatar" &&
+                    <div className={c.avatar_wrapper}>
+                        {avatarUrl ?
+                            <img
+                                decoding='async'
+                                width="140"
+                                height="140"
+                                src={avatarUrl}
+                                alt={avatarAlt}
+                                className={c.img}
+                            />
+                        :
+                            <span className={c.img}></span>
+                        }
+                        <div className={c.avatar_buttons}>
+                            <StylizedButton
+                                onClick={() => loadButtonClickHandler(inputLoadRef)}
+                                className={c.load}
+                                type="button"
+                            >
+                                {t("Load")}
+                            </StylizedButton>
+                            <button
+                                onClick={() => deleteAlbumButtonClickHandler(inputLoadRef, setEntityInfo, setLoadedFile)}
+                                type="button"
+                                className={c.delete}
+                            >
+                                {t("Delete")}
+                            </button>
+                        </div>
+                        <input
+                            onChange={e => onChangeAvatarLoadHandler(e, setEntityInfo, setLoadedFile)}
+                            ref={inputLoadRef}
+                            style={{display: "none"}}
+                            type="file"
+                            accept="image/*"
+                        />
+                    </div>
+                }
+                {type === "id" &&
+                    <div className={c.id_wrapper}>
+                        <span className={c.text}>@</span>
+                        <InputForm
+                            className={c.input}
+                            isError={isError}
+                            isSubmitted={isSubmitted}
+                            placeholder={placeholder}
+                            placeholderClassName={placeholderClassName}
+                            value={value}
                             id={id}
                             {...registerProps}
                         />
