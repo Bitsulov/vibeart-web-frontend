@@ -7,6 +7,7 @@ interface TextareaFormProps extends React.InputHTMLAttributes<HTMLTextAreaElemen
     isError: boolean;
     isSubmitted: boolean;
     isShowStatus?: boolean;
+    placeholderClassName?: string;
 }
 
 /**
@@ -26,6 +27,7 @@ export const TextareaForm = ({
     autoComplete = "on",
     id,
     placeholder = "",
+    placeholderClassName = "",
     ...props
 }: TextareaFormProps) => {
     return (
@@ -45,7 +47,7 @@ export const TextareaForm = ({
                 aria-label={placeholder}
                 {...props}
             />
-            <label className={clsx(c.placeholder, value && c.lift)} htmlFor={id}>{placeholder}</label>
+            <label className={clsx(c.placeholder, value && c.lift, placeholderClassName)} htmlFor={id}>{placeholder}</label>
             {isShowStatus && (
                 isError
                     ? <CircleX aria-hidden="true" className={clsx(c.status_icon, isSubmitted && c.error_icon)} width="14" height="14" />

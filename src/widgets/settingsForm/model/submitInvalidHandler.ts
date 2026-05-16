@@ -1,0 +1,21 @@
+import type {FieldErrors} from "react-hook-form";
+import type {ISettingsForm} from "../lib/types";
+import type {Dispatch} from "@reduxjs/toolkit";
+import {showToast} from "features/toast";
+
+/**
+ * Показывает уведомление с первой ошибкой валидации формы настроек пользователя.
+ *
+ * @param errors - Объект ошибок react-hook-form.
+ * @param dispatch - Redux dispatch.
+ */
+export function submitInvalidHandler(
+    errors: FieldErrors<ISettingsForm>,
+    dispatch: Dispatch
+) {
+    const error = errors.title || errors.description || errors.avatar;
+
+    if (error?.message) {
+        dispatch(showToast({message: error.message, type: "error"}));
+    }
+}
