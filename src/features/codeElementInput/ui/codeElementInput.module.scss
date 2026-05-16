@@ -1,0 +1,24 @@
+@use "@/variables.scss" as global;
+
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(3rem, 5.5vw, 4.5rem);
+    height: clamp(3rem, 5.5vw, 4.5rem);
+    border: .1rem solid global.$active-color;
+    border-radius: clamp(.8rem, 1.4vw, 1.2rem);
+    transition: global.$transition-time;
+    background-color: global.$dark-background;
+    text-align: center;
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+
+    &.error {
+        border-color: global.$negative-active;
+    }
+
+    &:focus {
+        outline: none;
+        border: .1rem solid global.$second-active-color;
+    }
+}
