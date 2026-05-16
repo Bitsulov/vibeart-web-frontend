@@ -1,0 +1,43 @@
+.form {
+    max-width: 64.6rem;
+    margin: 2rem auto 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .title {
+        font-size: 3.6rem;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .settings {
+        display: flex;
+        flex-direction: column;
+        margin-top: 3.5rem;
+        gap: 4rem;
+        
+        .small_placeholder {
+            @media (min-width: 1200px) and (max-width: 1260px) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .submit {
+        width: 100%;
+        font-size: 2.4rem;
+        padding: .8rem 0;
+        font-weight: 600;
+        margin-top: 2rem;
+        border-radius: 1.5rem;
+
+        
+        @media (min-width: 1200px) {
+            margin: 4rem auto 0;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            width: unset;
+        }
+    }
+}
