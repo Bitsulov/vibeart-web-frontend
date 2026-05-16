@@ -1,0 +1,127 @@
+@use "@/variables.scss" as global;
+
+.form {
+    animation: fadeIn global.$transition-time ease;
+    position: relative;
+    background-color: global.$bright-background;
+    border-radius: 2rem;
+    padding: clamp(.5rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    max-width: 64.6rem;
+    height: clamp(23rem, 38vw, 28.3rem);
+    margin: clamp(4rem, 6vw, 6rem) auto 0;
+
+    .title {
+        font-size: clamp(2rem, 3vw, 2.4rem);
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .inputs {
+        margin-top: clamp(2rem, 4vw, 3.2rem);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2rem, 4vw, 3.2rem);
+
+        @media (min-width: 1200px) {
+            width: clamp(40rem, 28vw, 50rem);
+        }
+
+        .input {
+            height: clamp(3rem, 6vw, 4.8rem);
+        }
+    }
+
+    .submit {
+        padding: 1rem 2rem;
+        font-size: 2rem;
+        border-radius: 1.5rem;
+        margin-top: auto;
+        align-self: center;
+
+        @media (min-width: 1200px) {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.3rem;
+            margin: 0;
+            right: 2rem;
+            bottom: 2rem;
+            border-radius: 1.5rem;
+
+            .icon {
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+        }
+    }
+
+    .back {
+        position: absolute;
+        padding: clamp(.5rem, 1vw, .8rem);
+        background-color: global.$active-color;
+        color: global.$bright-background;
+        border-radius: clamp(.6rem, 1vw, 1.2rem);
+        top: clamp(.6rem, 1vw, 1.2rem);
+        left: clamp(1.2rem, 2vw, 2.5rem);
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .icon {
+            width: clamp(1.5rem, 3vw, 2.4rem);
+            height: clamp(1.5rem, 3vw, 2.4rem);
+        }
+    }
+
+    .text {
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        margin-top: clamp(1.2rem, 3vw, 2.8rem);
+    }
+
+    .code {
+        margin-top: 1rem;
+
+        @media (min-width: 380px) {
+            align-self: center;
+        }
+
+        @media (min-width: 500px) {
+            align-self: start;
+        }
+    }
+
+    .submit_email {
+        padding: 1rem 2rem;
+        font-size: 2rem;
+        border-radius: 1.5rem;
+        margin-top: auto;
+        align-self: center;
+
+        @media (min-width: 1200px) {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 3rem;
+            margin: 0;
+            right: 2rem;
+            bottom: 2rem;
+            font-size: 2.4rem;
+            border-radius: 1.1rem;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
