@@ -11,7 +11,14 @@ import {submitValidHandler} from "../model/submitValidHandler";
 import {submitInvalidHandler} from "../model/submitInvalidHandler";
 import {Checkbox} from "features/checkbox";
 
-/** Форма регистрации с полями email, пароля, подтверждения и согласий. */
+/**
+ * Форма регистрации с полями e-mail, пароля, подтверждения пароля и чекбоксами согласий.
+ *
+ * Использует react-hook-form для валидации: e-mail проверяется на формат,
+ * пароль и подтверждение — на длину (6–64 символа) и совпадение. Оба чекбокса
+ * (пользовательское соглашение и политика конфиденциальности) обязательны для отправки.
+ * При успешной отправке вызывается {@link submitValidHandler}, при ошибке — {@link submitInvalidHandler}.
+ */
 export const RegisterForm = ({ ...props }) => {
     const { t } = useTranslation();
 

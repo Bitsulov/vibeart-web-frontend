@@ -3,27 +3,33 @@ import {closeButtonClickHandler} from "../model/closeButtonClickHandler";
 import clsx from "clsx";
 import {modalClickHandler} from "../model/modalClickButton";
 import {StylizedButton} from "features/stylizedButton";
-import React, {useState} from "react";
+import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import {useTranslation} from "react-i18next";
 import {defaultTransitionTime} from "shared/const/const";
 import {TransparentButton} from "features/transparentButton";
 import {agreeHandlerClick} from "../model/agreeHandlerClick";
 
+/** Свойства компонента {@link ConfirmModal}. */
 interface ConfirmModalProps {
+    /** Признак того, что модальное окно в данный момент открыто. */
     isShowModal: boolean;
-    setIsShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    /** Функция обновления признака видимости модального окна. */
+    setIsShowModal: Dispatch<SetStateAction<boolean>>;
+    /** Функция, вызываемая при нажатии кнопки подтверждения. По умолчанию — пустая функция. */
     confirmFn?: () => void;
+    /** Текст вопроса, отображаемый в теле модального окна. По умолчанию используется локализованная строка `questionAgreed`. */
     text?: string;
-    ariaLabelConfirm?: string
+    /** Метка доступности кнопки подтверждения для программ чтения с экрана. */
+    ariaLabelConfirm?: string;
 }
 
-/** Модальное окно подтверждения произвольного действия.
- * 
- * @param isShowModal - Флаг показа модального окна.
- * @param setIsShowModal - Сеттер флага показа окна.
- * @param confirmFn - Функция при подтверждении действия.
- * @param text - Текст модального окна.
- * @param ariaLabelConfirm - Подпись кнопки подтверждение для скринридеров.
+/**
+ * Модальное окно подтверждения произвольного действия.
+ *
+ * Отображает текст вопроса и две кнопки: «Отмена» и «Подтвердить».
+ * При нажатии «Подтвердить» вызывает {@link confirmFn} через {@link agreeHandlerClick}.
+ * Закрывается по клику на фон или кнопку «Отмена» с анимацией исчезновения.
  */
 export const ConfirmModal = ({
     text = "",

@@ -5,17 +5,21 @@ import {useTranslation} from "react-i18next";
 import {showHint} from "../model/showHint";
 import {useDispatch} from "react-redux";
 import {hideHint} from "../model/hideHint";
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 
-interface CopyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+/** Свойства компонента {@link CopyButton}. */
+interface CopyButtonProps extends ComponentPropsWithoutRef<"button"> {
+    /** Текст, который будет скопирован в буфер обмена при нажатии. */
     text: string;
 }
 
 /**
- * Кнопка копирования текста в буфер обмена с анимированной подсказкой.
+ * Кнопка копирования текста в буфер обмена.
  *
- * @param text - Текст, который будет скопирован при клике.
+ * После нажатия на короткое время отображает всплывающую метку
+ * «Скопировано». При наведении курсора показывает подсказку через Redux.
  */
 export const CopyButton = ({
     className,

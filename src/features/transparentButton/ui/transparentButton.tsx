@@ -1,11 +1,19 @@
 import c from "./transparentButton.module.scss";
-import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
-interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+/** Свойства компонента {@link TransparentButton}. */
+interface TransparentButtonProps extends ComponentPropsWithoutRef<"button"> {
+    /** Текстовое описание для программ чтения с экрана. */
     ariaLabel?: string;
 }
 
-/** Вторичная кнопка с прозрачным фоном. */
+/**
+ * Вторичная кнопка с прозрачным фоном.
+ *
+ * Используется для действий меньшей приоритетности рядом с {@link StylizedButton}.
+ * Обработчик `onClick` по умолчанию — пустая функция, что безопасно
+ * при использовании без явного обработчика.
+ */
 export const TransparentButton = ({
     className,
     children,

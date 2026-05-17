@@ -1,6 +1,19 @@
+/**
+ * Перечисление ролей пользователей платформы.
+ *
+ * Реализовано через объект с константным утверждением (`as const`),
+ * а не через `enum`, чтобы значения оставались обычными строками,
+ * совместимыми с ответами серверного API без дополнительных преобразований.
+ *
+ * @example
+ * const isAdmin = user.role === Roles.ADMIN;
+ */
 export const Roles = {
+    /** Стандартный зарегистрированный пользователь. */
     USER: "user",
+    /** Администратор сайта с доступом к инструментам модерации. */
     ADMIN: "admin",
 } as const;
 
-export type Roles = typeof Roles[keyof typeof Roles]; // enum
+/** Тип-объединение, выведенный из объекта {@link Roles}. */
+export type Roles = typeof Roles[keyof typeof Roles];

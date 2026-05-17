@@ -15,8 +15,12 @@ import {CodeInputs} from "features/codeInputs";
 import {codeSubmitValidHandler} from "../model/codeSubmitValidHandler";
 
 /**
- * Двухшаговая форма изменения email: ввод текущего и нового адреса,
- * затем ввод кода подтверждения из письма.
+ * Двухшаговая форма изменения e-mail адреса.
+ *
+ * Шаг 1: ввод текущего и нового e-mail адреса. Новый адрес должен отличаться от текущего
+ * и соответствовать формату e-mail. При успешной валидации форма переходит на второй шаг.
+ * Шаг 2: ввод шестизначного кода подтверждения, отправленного на новый адрес через {@link CodeInputs}.
+ * Кнопка «Назад» возвращает на первый шаг без сброса введённого e-mail.
  */
 export const EmailChangeForm = ({ ...props }: ComponentPropsWithoutRef<"form">) => {
     const { t } = useTranslation();

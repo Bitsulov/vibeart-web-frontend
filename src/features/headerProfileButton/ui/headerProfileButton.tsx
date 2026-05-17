@@ -4,25 +4,28 @@ import defaultAvatar from "shared/icons/icon-user.svg";
 import {useTranslation} from "react-i18next";
 import React from "react";
 
+/** Свойства компонента {@link HeaderProfileButton}. */
 interface HeaderProfileButtonProps extends Omit<LinkProps, "to"> {
+    /** URL аватара пользователя. При отсутствии используется аватар по умолчанию. */
     imageUrl: string;
+    /** Признак авторизации. Определяет URL назначения и альтернативный текст. */
     isAuthenticated: boolean;
+    /** ULID пользователя для формирования ссылки `/profile/:ulid`. */
     userULID: string;
+    /** Имя пользователя для атрибута `alt` изображения аватара. */
     name: string;
+    /** Признак открытого бургер-меню (зарезервировано для будущей логики). */
     isBurgerOpen: boolean;
+    /** Функция управления состоянием бургер-меню (зарезервировано для будущей логики). */
     setIsBurgerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 /**
- * Кнопка профиля в шапке с аватаром пользователя.
- * Для авторизованных — ведёт на профиль, для неавторизованных — на страницу входа.
- * 
- * @param imageUrl - Ссылка на изображение аватара
- * @param isAuthenticated - Флаг авторизации пользователя
- * @param userULID - Идентификатор пользователя
- * @param name - Имя пользователя
- * @param _isBurgerOpen - Флаг открытия бургер-меню
- * @param _setIsBurgerOpen - Функция переключения открытия бургер-меню
+ * Кнопка профиля в шапке сайта, отображающая аватар пользователя.
+ *
+ * Авторизованный пользователь переходит на страницу своего профиля,
+ * неавторизованный — на страницу входа. При отсутствии аватара
+ * отображается иконка-заглушка.
  */
 export const HeaderProfileButton = ({
     imageUrl,

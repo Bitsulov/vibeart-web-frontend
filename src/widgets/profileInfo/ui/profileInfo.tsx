@@ -17,14 +17,19 @@ import {StatItem} from "features/statItem";
 import {showHint} from "../model/showHint";
 import {hideHint} from "../model/hideHint";
 
+/** Свойства компонента {@link ProfileInfo}. */
 interface ProfileInfoProps {
+    /** Объект пользователя, профиль которого отображается. */
     userInfo: UserType;
 }
 
-/** Блок информации профиля: аватар, имя, username, описание, статистика и статусные иконки.
- * 
- * @param userInfo - Информация о текущем пользователе.
- * */
+/**
+ * Блок информации профиля: аватар, имя, имя пользователя, описание, статистика и статусные иконки.
+ *
+ * Определяет, является ли просматриваемый профиль собственным, и передаёт этот признак
+ * в {@link ProfileLink}. На узких экранах (< 1200 px) описание сворачивается с кнопкой
+ * раскрытия. Дата регистрации форматируется через {@link getLocalTimeString}.
+ */
 export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
     const { t } = useTranslation();
     const language = useSelector(selectCurrentLanguage);

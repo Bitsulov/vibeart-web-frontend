@@ -1,23 +1,20 @@
 import type {CommunityType} from "../lib/types";
 
 /**
- * Создаёт объект сообщества с дефолтными значениями для необязательных полей.
- * 
- * @param id - числовой идентификатор
- * @param ULID - строковый ULID сообщества
- * @param owner - объект UserType владельца сообщества
- * @param username - username владельца
- * @param title - название сообщества
- * @param description - описание сообщества
- * @param posts - количество постов
- * @param subscribers - количество подписчиков
- * @param subscribes - количество подписок сообщества
- * @param createdAt - дата создания (ISO-строка)
- * @param imageUrl - URL обложки
- * @param albumsList - список альбомов
- * @param isSubscribed - подписан ли текущий пользователь
- * 
- * @returns объект сообщества типа `CommunityType`
+ * Фабричная функция для создания нормализованного объекта сообщества.
+ *
+ * Устанавливает значения по умолчанию: `0` для счётчиков, пустые строки
+ * для текстовых полей, пустой массив для `albumsList`, `false` для
+ * булевых флагов, `"trust"` для `trustStatus`.
+ *
+ * @param community - Данные сообщества, соответствующие типу `CommunityType`.
+ * @returns Нормализованный объект сообщества.
+ *
+ * @example
+ * const community = createCommunity({ ULID: "01ARZ...", owner: principalUserMock,
+ *   username: "art-club" });
+ * community.isSubscribed // false
+ * community.posts        // 0
  */
 export function createCommunity({
     id = 0,

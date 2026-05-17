@@ -4,7 +4,12 @@ import {StoreProvider} from "./providers/storeProvider";
 import {InitProvider} from "app/providers/initProvider";
 import {BrowserRouter as Router} from "react-router-dom";
 
-/** Корневой компонент приложения: оборачивает всё дерево провайдерами. */
+/**
+ * Корневой компонент приложения.
+ *
+ * Оборачивает всё дерево провайдерами в следующем порядке:
+ * `BrowserRouter` → `StoreProvider` → `I18nProvider` → `InitProvider` → `RouterProvider`.
+ */
 function App() {
     return (
         <Router>

@@ -3,24 +3,31 @@ import {useTranslation} from "react-i18next";
 import {languageButtonClickHandler} from "../model/languageButtonClickHandler";
 import {useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 import {defaultTransitionTime} from "shared/const/const";
 
-interface HeaderLanguageButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    setIsShowChangeLanguage: React.Dispatch<React.SetStateAction<boolean>>;
+/** Свойства компонента {@link HeaderLanguageButton}. */
+interface HeaderLanguageButtonProps extends ComponentPropsWithoutRef<"button"> {
+    /** Функция переключения видимости панели выбора языка. */
+    setIsShowChangeLanguage: Dispatch<SetStateAction<boolean>>;
+    /** Признак того, что панель выбора языка открыта (управляет `aria-expanded`). */
     isShowChangeLanguage: boolean;
+    /** Признак открытого бургер-меню. При `true` кнопка скрывается с задержкой,
+     *  соответствующей длительности CSS-анимации меню. */
     isBurgerOpen: boolean;
-    languagesConfig: Record<string, string[]>
+    /** Словарь доступных языков: ключ — код языка, значение — массив
+     *  `[флаг, название, ariaLabel, alt, код]`. */
+    languagesConfig: Record<string, string[]>;
 }
 
 /**
- * Кнопка смены языка в шапке. Скрывается при открытом бургер-меню.
- * 
- * @param setIsShowChangeLanguage - функция переключения показа модального окна.
- * @param isShowChangeLanguage - флаг показа модального окна.
- * @param isBurgerOpen - флаг открытия бургера.
- * @param languagesConfig - Список языков с параметрами.
+ * Кнопка переключения языка интерфейса в шапке сайта.
+ *
+ * Отображает флаг текущего языка. При открытии бургер-меню кнопка
+ * скрывается с задержкой, равной трети длительности CSS-перехода,
+ * чтобы не пересекаться визуально с анимацией меню.
  */
 export const HeaderLanguageButton = ({
     setIsShowChangeLanguage,

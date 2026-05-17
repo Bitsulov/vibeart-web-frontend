@@ -1,5 +1,6 @@
 import c from "./communityItem.module.scss";
-import React, {useState} from "react";
+import { useState } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import {StatItem} from "../../statItem";
 import {UsersRound} from "lucide-react";
 import {TransparentLink} from "../../transparentLink";
@@ -9,24 +10,28 @@ import {useDispatch} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {hideHint} from "../model/hideHint";
 
-interface CommunitiesItemProps extends React.ComponentPropsWithoutRef<"article"> {
+/** Свойства компонента {@link CommunityItem}. */
+interface CommunitiesItemProps extends ComponentPropsWithoutRef<"article"> {
+    /** URL обложки сообщества. */
     imageUrl?: string;
+    /** ULID сообщества для формирования ссылки `/communities/:ulid`. */
     ULID: string;
+    /** Название сообщества. */
     title?: string;
+    /** Краткое описание сообщества. */
     description?: string;
+    /** Количество подписчиков. */
     subscribersCount?: number;
+    /** Признак подписки текущего пользователя на это сообщество. */
     isSubscribed?: boolean;
 }
 
 /**
- * Карточка сообщества с изображением, названием, описанием и кнопками действий.
- * @param imageUrl - URL изображения сообщества
- * @param ULID - уникальный идентификатор сообщества
- * @param title - название сообщества
- * @param description - описание сообщества
- * @param subscribersCount - количество подписчиков
- * @param isSubscribed - подписан ли текущий пользователь
- * @param props - остальные пропсы `article`
+ * Карточка сообщества в списке.
+ *
+ * Отображает обложку, счётчик подписчиков, название, описание,
+ * ссылку на страницу сообщества и кнопку подписки/отписки.
+ * Состояние подписки управляется локально.
  */
 export const CommunityItem = ({
     imageUrl,

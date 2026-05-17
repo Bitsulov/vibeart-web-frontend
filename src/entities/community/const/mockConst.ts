@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `community` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import {createCommunity} from "../model/createCommunity";
 import {principalUserMock, profileUserMock} from "entities/user";
 import img from "shared/icons/img-CTA.jpg";

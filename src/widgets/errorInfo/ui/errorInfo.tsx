@@ -3,14 +3,18 @@ import {useTranslation} from "react-i18next";
 import {errorsConfig} from "../config/errorsConfig";
 import {StylizedLink} from "features/stylizedLink";
 
+/** Свойства компонента {@link ErrorInfo}. */
 interface ErrorInfoProps {
+    /** HTTP-код ошибки. По умолчанию `404`. Текст описания ошибки определяется по коду через {@link errorsConfig}. */
     errorCode?: number;
 }
 
-/** Страница ошибки с кодом, описанием и ссылками для навигации.
- * 
- * @param errorCode - Код ошибки.
- * */
+/**
+ * Секция страницы ошибки с кодом, локализованным описанием и ссылками для навигации.
+ *
+ * Текст описания ошибки подбирается по `errorCode` из {@link errorsConfig}.
+ * Отображает ссылки «На главную» и «Сообщить об ошибке».
+ */
 export const ErrorInfo = ({ errorCode = 404, ...props }: ErrorInfoProps) => {
     const { t } = useTranslation();
 

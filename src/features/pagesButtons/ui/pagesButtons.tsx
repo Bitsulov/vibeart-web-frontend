@@ -1,26 +1,30 @@
 import c from "./pagesButtons.module.scss";
-import React from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 import {changePageHandler} from "../model/changePageHandler";
 import {useTranslation} from "react-i18next";
 import {getRangeNumbers} from "shared/lib/getRangeNumbers";
 
-interface PagesButtonsProps extends React.HTMLAttributes<HTMLDivElement> {
+/** Свойства компонента {@link PagesButtons}. */
+interface PagesButtonsProps extends ComponentPropsWithoutRef<"div"> {
+    /** Общее количество страниц. */
     pagesCount: number;
+    /** Номер текущей активной страницы. */
     currentPage: number;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    /** Функция обновления текущей страницы. */
+    setCurrentPage: Dispatch<SetStateAction<number>>;
+    /**
+     * Радиус окна отображаемых страниц вокруг текущей.
+     * Например, при `pagesDelta = 2` и текущей странице 5 отображаются кнопки 3–7.
+     */
     pagesDelta: number;
 }
 
 /**
- * Пагинация: кнопки с номерами страниц.
+ * Блок постраничной навигации.
  *
- * @param className - Дополнительный CSS-класс для корневого элемента.
- * @param pagesCount - Общее количество страниц.
- * @param currentPage - Текущая активная страница.
- * @param setCurrentPage - Сеттер текущей страницы.
- * @param pagesDelta - Количество страниц слева и справа от текущей. Управляется родительским компонентом.
- * @param props - Остальные HTML-атрибуты div.
+ * Отображает кнопки с номерами страниц в окне ±`pagesDelta` вокруг текущей.
+ * Диапазон вычисляется через {@link getRangeNumbers} и не выходит за пределы `pagesCount`.
  */
 export const PagesButtons = ({
     className = "",

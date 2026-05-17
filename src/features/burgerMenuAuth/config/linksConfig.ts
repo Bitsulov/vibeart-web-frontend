@@ -1,3 +1,10 @@
+/**
+ * Конфигурация пунктов навигационного меню для авторизованных пользователей.
+ *
+ * Каждый элемент описывает одну ссылку: URL назначения, ключ перевода
+ * для текста и метки доступности, а также признак видимости исключительно
+ * для администраторов (`isAdmin`).
+ */
 export const linksConfig = [
     {id: 1, url: "/profile/", labelKey: "ariaLabel.goToProfile", textKey: "pages.profile", isAdmin: false},
     {id: 2, url: "/gallery", labelKey: "ariaLabel.goToGallery", textKey: "pages.gallery", isAdmin: false},

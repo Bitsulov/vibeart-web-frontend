@@ -13,18 +13,23 @@ import {searchHandler} from "../model/searchHandler";
 import {TransparentButton} from "features/transparentButton";
 import {addAlbumsClickHandler} from "../model/addAlbumsClickHandler";
 
+/** Свойства компонента {@link AlbumModal}. */
 interface AlbumModalProps {
+    /** Признак того, что модальное окно в данный момент открыто. */
     isShowModal: boolean;
+    /** Функция обновления признака видимости модального окна. */
     setIsShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-    postList: PostType[]
+    /** Список публикаций, доступных для добавления в альбом. */
+    postList: PostType[];
 }
 
-/** Модальное окно для выбора и добавления постов в альбом.
- * 
- * @param isShowModal - Флаг открытия окна.
- * @param setIsShowModal - Сеттер флага открытия окна.
- * @param postList - Список постов в альбоме.
- * */
+/**
+ * Модальное окно выбора и добавления публикаций в альбом.
+ *
+ * Содержит поле поиска и список публикаций с постраничной навигацией через {@link PostListModal}.
+ * Закрывается по клику на фон или кнопку «Закрыть» с анимацией исчезновения.
+ * Выбранные публикации хранятся в локальном состоянии и передаются в {@link addAlbumsClickHandler}.
+ */
 export const AlbumModal = ({
     isShowModal,
     setIsShowModal,

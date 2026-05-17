@@ -4,7 +4,16 @@ import React from "react";
 import clsx from "clsx";
 import {optionClickHandler} from "../model/optionClickHandler";
 
+/** Свойства компонента {@link Dropdown}. */
 interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
+    /**
+     * Список пунктов меню. Каждый пункт содержит:
+     * - `icon` — иконка из библиотеки Lucide.
+     * - `text` — отображаемый текст пункта.
+     * - `color` — CSS-цвет иконки и текста.
+     * - `ariaLabel` — необязательная метка доступности кнопки пункта.
+     * - `onClick` — обработчик выбора пункта.
+     */
     options: {
         icon: LucideIcon;
         text: string;
@@ -12,17 +21,20 @@ interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
         ariaLabel?: string;
         onClick: () => void;
     }[];
+    /** Признак видимости меню. */
     isOpen: boolean;
+    /** Функция обновления видимости меню. */
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    /** Идентификатор корневого элемента `<ul>`. Используется в `aria-controls` кнопки-триггера. */
     id: string;
 }
 
 /**
- * Выпадающее меню с настраиваемым списком пунктов.
+ * Выпадающее меню с настраиваемым набором пунктов.
  *
- * @param options - Массив пунктов меню с иконкой, текстом, цветом и обработчиком.
- * @param isOpen - Видимость меню.
- * @param setIsOpen - Сеттер видимости меню.
+ * Список скрыт через атрибут `inert` при `isOpen === false`, что блокирует
+ * взаимодействие с пунктами посредством клавиатуры и вспомогательных технологий.
+ * После выбора пункта меню закрывается автоматически.
  */
 export const Dropdown = ({
     id = "",

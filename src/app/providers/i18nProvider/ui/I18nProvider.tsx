@@ -26,11 +26,18 @@ i18n
         },
     }).catch(() => console.error(`internalization initialization failed`));
 
+/** Свойства компонента {@link I18nProvider}. */
 interface I18nProviderPropsType {
+    /** Дочернее дерево, которое получает доступ к локализации через контекст i18next. */
     children: ReactNode;
 }
 
-/** Инициализирует i18next и оборачивает дерево в `I18nextProvider`. */
+/**
+ * Провайдер локализации: инициализирует i18next и оборачивает дерево в `I18nextProvider`.
+ *
+ * i18next настраивается с детектором языка (порядок: `navigator` → `htmlTag` → `localStorage` → `cookie`),
+ * резервным языком `"en"` и двумя локалями — `ru` и `en`. Инициализация происходит при импорте модуля.
+ */
 export const I18nProvider = ({ children }: I18nProviderPropsType) => {
     return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 };

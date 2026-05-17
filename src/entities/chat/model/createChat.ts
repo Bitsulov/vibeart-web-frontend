@@ -1,10 +1,19 @@
 import type {ChatType} from "../lib/types";
 
 /**
- * Фабричная функция для создания объекта чата со значениями по умолчанию.
+ * Фабричная функция для создания нормализованного объекта диалога.
  *
- * @param chat - Объект `ChatType` с данными чата.
- * @returns Нормализованный объект чата.
+ * Устанавливает значения по умолчанию: `0` для `id`, текущую дату
+ * для `createdAt`.
+ *
+ * @param chat - Данные диалога, соответствующие типу `ChatType`.
+ * @returns Нормализованный объект диалога.
+ *
+ * @example
+ * const chat = createChat({ ULID: "01ARZ...", companion: profileUserMock,
+ *   lastMessage: createMessage({ isYour: false, text: "Привет!" }),
+ *   imageUrl: "" });
+ * chat.id // 0
  */
 export function createChat({
     id = 0,

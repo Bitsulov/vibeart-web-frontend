@@ -7,7 +7,7 @@ import {showToast} from "features/toast";
  * Показывает уведомление с первой ошибкой валидации формы смены пароля.
  *
  * @param errors - Объект ошибок react-hook-form.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  */
 export function submitInvalidHandler(
     errors: FieldErrors<IPasswordChangeForm>,

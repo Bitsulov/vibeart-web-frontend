@@ -4,20 +4,47 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {getShortNumber} from "shared/lib/getShortNumber";
 
+/** Свойства компонента {@link StatItem}. */
 interface StatItemProps {
-    type?: "link" | "button" | "default",
-    href?: string,
+    /**
+     * Режим отображения:
+     * - `"default"` — статичный блок без интерактивности.
+     * - `"link"` — навигационная ссылка, принимает `href`.
+     * - `"button"` — интерактивная кнопка, принимает `onClick`.
+     */
+    type?: "link" | "button" | "default";
+    /** Путь назначения для режима `"link"`. */
+    href?: string;
+    /** Обработчик нажатия для режима `"button"`. */
     onClick?: React.MouseEventHandler;
+    /** Обработчик наведения курсора. */
     onMouseEnter?: React.MouseEventHandler;
+    /** Обработчик ухода курсора. */
     onMouseLeave?: React.MouseEventHandler;
+    /** Текстовое описание для программ чтения с экрана (режимы `"link"` и `"button"`). */
     ariaLabel?: string;
+    /** Иконка из библиотеки Lucide, отображаемая рядом с числом. */
     Icon: LucideIcon;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Дополнительный CSS-класс для иконки. */
     iconClassName?: string;
+    /** Толщина обводки иконки. По умолчанию `2`. */
     strokeWidth?: number;
+    /**
+     * Числовое значение статистики.
+     * Форматируется через {@link getShortNumber} (например, 1 500 000 → «1.5M»).
+     */
     number: number | string;
 }
 
+/**
+ * Элемент статистики: иконка и компактное числовое значение.
+ *
+ * В зависимости от `type` отрисовывается как статичный блок (`div`),
+ * навигационная ссылка (`<Link>`) или кнопка (`<button>`).
+ * Число форматируется в компактную нотацию через {@link getShortNumber}.
+ */
 export const StatItem = ({
     type = "default",
     href = "",

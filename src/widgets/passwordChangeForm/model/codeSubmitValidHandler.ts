@@ -9,7 +9,7 @@ import type {IPasswordChangeForm, ICodeForm} from "../lib/types";
  * проверяет длину кода, показывает ошибку или завершает процесс.
  *
  * @param data - Данные формы ввода кода.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  * @param setErrorCode - Переключает режим отображения ошибки в полях кода.
  * @param setIsEmailSent - Возвращает форму к шагу ввода пароля.
  * @param resetEmailForm - Сбрасывает форму изменения пароля.

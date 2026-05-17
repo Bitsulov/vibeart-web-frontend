@@ -6,18 +6,22 @@ import {useDispatch} from "react-redux";
 import {showHint} from "../model/showHint";
 import {hideHint} from "../model/hideHint";
 
+/** Свойства компонента {@link ProfileLink}. */
 interface ProfileLinkProps {
+    /** Признак того, что просматриваемый профиль принадлежит текущему пользователю. */
     isPrincipalUser: boolean;
+    /** Имя пользователя. */
     name: string;
+    /** ULID пользователя для формирования ссылки на диалог `/chats/:ulid`. */
     ULID: string;
 }
 
-/** Кнопка действия на странице профиля и сообщества.
- * Для своего профиля показывает ссылку на настройки, для чужого — на чат.
+/**
+ * Контекстная ссылка действия на странице профиля.
  *
- * @param isPrincipalUser - Признак того, что профиль принадлежит текущему пользователю.
- * @param name - Имя пользователя для aria-label ссылки на чат.
- * @param ULID - ULID пользователя для формирования ссылки на чат.
+ * Для своего профиля отображает ссылку на страницу настроек,
+ * для чужого — ссылку на личный диалог с этим пользователем.
+ * При наведении показывает подсказку через Redux.
  */
 export const ProfileLink = ({ isPrincipalUser, name, ULID, ...props }: ProfileLinkProps) => {
     const { t } = useTranslation();

@@ -11,7 +11,12 @@ import {useMemo, useState} from "react";
 import {CommunityInfo} from "widgets/communityInfo";
 import {communityMock} from "entities/community";
 
-/** Страница сообщества */
+/**
+ * Страница сообщества с информационным блоком, слайдером альбомов и списком публикаций.
+ *
+ * Выбранный в {@link AlbumSlider} альбом определяет, публикации какого альбома отображаются
+ * в {@link PostList}. Специальное значение `"all"` соответствует всем публикациям сообщества.
+ */
 export const Community = () => {
     const { t } = useTranslation();
     const windowWidth = useWindowWidth();

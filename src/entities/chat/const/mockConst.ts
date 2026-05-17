@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `chat` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import {createChat} from "../model/createChat";
 import {createMessage} from "entities/message";
 import {principalUserMock, profileUserMock} from "entities/user";

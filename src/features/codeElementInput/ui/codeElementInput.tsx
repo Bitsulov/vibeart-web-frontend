@@ -3,22 +3,26 @@ import type {ChangeEventHandler, ComponentProps, Dispatch, SetStateAction} from 
 import {onChangeHandler} from "../model/onChangeHandler";
 import clsx from "clsx";
 
+/** Свойства компонента {@link CodeElementInput}. */
 interface CodeElementInputProps extends ComponentProps<"input"> {
+    /** Дополнительный обработчик изменения значения. */
     onChange?: ChangeEventHandler<HTMLInputElement>;
+    /** Текущее значение ячейки (одна цифра). */
     value: string;
+    /** Функция обновления значения в состоянии родительского компонента. */
     setValue: Dispatch<SetStateAction<string>>;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Признак ошибки валидации. При `true` и пустом значении подсвечивает ячейку красным. */
     isError: boolean;
 }
 
 /**
- * Одна ячейка кода подтверждения: принимает только одну цифру,
- * управляется через внешний setValue.
+ * Одна ячейка поля ввода кода подтверждения.
  *
- * @param value - Текущее значение ячейки.
- * @param setValue - Обновляет значение в родительском состоянии.
- * @param onChange - Дополнительный обработчик onChange (например, для перехода к следующей ячейке).
- * @param isError - Подсвечивает ячейку красным, если она пустая при ошибке.
+ * Принимает ровно одну цифру. Внутренний обработчик передаёт значение
+ * в `setValue`, а внешний `onChange` позволяет родителю перемещать фокус
+ * между ячейками.
  */
 export const CodeElementInput = ({
     value,

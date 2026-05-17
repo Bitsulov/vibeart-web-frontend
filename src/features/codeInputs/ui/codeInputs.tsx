@@ -4,18 +4,23 @@ import {type ComponentPropsWithoutRef, useEffect, useRef, useState} from "react"
 import {changeInputHandler} from "../model/changeInputHandler";
 import {keyDownHandler} from "../model/keyDownHandler";
 
+/** Свойства компонента {@link CodeInputs}. */
 interface CodeInputsProps extends ComponentPropsWithoutRef<"div"> {
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Вызывается при каждом изменении кода. Получает строку из 6 символов (может содержать пустые позиции). */
     setCode: (value: string) => void;
+    /** Признак ошибки валидации. При `true` пустые ячейки подсвечиваются красным. */
     isError: boolean;
 }
 
 /**
- * Поле ввода 6-значного кода подтверждения: шесть отдельных ячеек
- * с автопереходом вперёд при вводе и назад при нажатии Backspace.
+ * Поле ввода шестизначного кода подтверждения.
  *
- * @param setCode - Вызывается при изменении кода, передаёт строку из 6 символов.
- * @param isError - Подсвечивает пустые ячейки при ошибке.
+ * Состоит из шести отдельных ячеек {@link CodeElementInput}. При вводе
+ * символа фокус автоматически переходит к следующей ячейке, при нажатии
+ * Backspace — к предыдущей. Итоговый код передаётся в `setCode` после
+ * каждого изменения.
  */
 export const CodeInputs = ({
     setCode,

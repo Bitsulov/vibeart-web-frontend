@@ -13,7 +13,13 @@ import {openModalHandler} from "../model/openModalHandler";
 import {confirmModalHandler} from "../model/confirmModalHandler";
 import {useNavigate} from "react-router-dom";
 
-/** Страница создания альбома с live-preview обложки и формой заполнения данных. */
+/**
+ * Страница создания альбома с живым предпросмотром обложки и формой заполнения данных.
+ *
+ * Если изображение не загружено, при отправке формы вместо создания альбома открывается
+ * {@link ConfirmModal} с предложением продолжить без обложки.
+ * Ошибка изображения (`isErrorImg`) сбрасывается автоматически при выборе файла.
+ */
 export const CreateAlbum = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();

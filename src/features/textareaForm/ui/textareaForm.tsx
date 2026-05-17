@@ -1,21 +1,27 @@
 import c from "./textareaForm.module.scss";
 import clsx from "clsx";
-import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import {Check, CircleX} from "lucide-react";
 
-interface TextareaFormProps extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+/** Свойства компонента {@link TextareaForm}. */
+interface TextareaFormProps extends ComponentPropsWithoutRef<"textarea"> {
+    /** Признак ошибки валидации. Управляет цветом рамки и иконкой статуса. */
     isError: boolean;
+    /** Признак того, что форма была отправлена. Статус валидации отображается
+     *  только после первой попытки отправки. */
     isSubmitted: boolean;
+    /** Показывать ли индикатор статуса валидации. По умолчанию `true`. */
     isShowStatus?: boolean;
+    /** Дополнительный CSS-класс для плавающего замещающего текста (`<label>`). */
     placeholderClassName?: string;
 }
 
 /**
- * Многострочное поле ввода формы с плавающим замещающим текстом и иконкой статуса валидации.
+ * Многострочное поле ввода формы с плавающим замещающим текстом и визуальной обратной связью.
  *
- * @param isError - Флаг ошибки валидации.
- * @param isSubmitted - Была ли форма отправлена (управляет отображением статуса).
- * @param isShowStatus - Показывать ли иконку статуса валидации и изменение цвета границ.
+ * Повторяет поведение {@link InputForm}, адаптированное для элемента `<textarea>`:
+ * замещающий текст поднимается при фокусе или заполнении, иконки валидации
+ * и цвет рамки меняются в зависимости от состояния.
  */
 export const TextareaForm = ({
     value,

@@ -3,7 +3,7 @@ import {setText} from "features/mouseHint";
 
 /**
  * Скрывает подсказку, сбрасывая её текст.
- * @param dispatch - Redux dispatch
+ * @param dispatch - Функция записи данных в Redux.
  */
 export function hideHint(dispatch: Dispatch) {
     dispatch(setText(""));

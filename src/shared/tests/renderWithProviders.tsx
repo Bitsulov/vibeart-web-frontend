@@ -1,3 +1,10 @@
+/**
+ * @file Вспомогательная функция для рендера компонентов в тестах.
+ *
+ * Оборачивает тестируемый компонент во все необходимые провайдеры:
+ * Redux-хранилище, i18next и React Router, — воспроизводя окружение,
+ * близкое к боевому приложению.
+ */
 import React, { type ReactElement } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -8,11 +15,35 @@ import { type RootState } from "app/store";
 import {rootReducer} from "app/store/rootReducer";
 import i18n from "../tests/i18n";
 
+/** Параметры рендера компонента в тестовом окружении. */
 interface Options extends RenderOptions {
+    /** Начальное состояние Redux-хранилища. Используется для тестирования
+     *  компонентов, зависящих от конкретных данных в хранилище. */
     preloadedState?: Partial<RootState>
+    /** Начальный маршрут для `MemoryRouter`. По умолчанию `"/"`. */
     route?: string
 }
 
+/**
+ * Рендерит компонент React в изолированном тестовом окружении
+ * с полным набором провайдеров приложения.
+ *
+ * Создаёт отдельный экземпляр Redux-хранилища для каждого теста,
+ * что предотвращает утечку состояния между тестами.
+ *
+ * @param ui - Тестируемый элемент React.
+ * @param options - Дополнительные параметры: начальное состояние
+ *   хранилища (`preloadedState`), маршрут (`route`) и опции
+ *   `@testing-library/react`.
+ * @returns Результат `render` из `@testing-library/react`, дополненный
+ *   ссылкой на созданный экземпляр хранилища (`store`).
+ *
+ * @example
+ * const { getByText } = renderWithProviders(<MyComponent />, {
+ *   preloadedState: { user: { isAuthenticated: true } },
+ *   route: "/profile/01ARZ3NDEKTSV4RRFFQ69G5FAV",
+ * });
+ */
 export function renderWithProviders(
     ui: ReactElement,
     { preloadedState, route = '/', ...options }: Options = {}

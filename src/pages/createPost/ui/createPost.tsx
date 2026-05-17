@@ -11,7 +11,14 @@ import {onSubmitForm} from "../model/onSubmitForm";
 import clsx from "clsx";
 import {useTranslation} from "react-i18next";
 
-/** Страница создания поста. */
+/**
+ * Страница создания публикации.
+ *
+ * Отображает живой предпросмотр публикации рядом с формой создания.
+ * Предпросмотр обновляется при изменении полей через общее состояние `postInfo`.
+ * При попытке создать публикацию без изображения обновляется `isErrorImg`
+ * и карточка предпросмотра подсвечивается как ошибочная.
+ */
 export const CreatePost = () => {
     const { t } = useTranslation();
     const [postInfo, setPostInfo] = useState<Partial<PostType>>({});

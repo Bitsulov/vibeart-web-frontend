@@ -8,24 +8,31 @@ import {useTranslation} from "react-i18next";
 import {AlbumSlide} from "features/albumSlide";
 import {AlbumsSliderNavigationButton} from "features/albumsSliderNavigationButton";
 import {AlbumAdd} from "features/albumAdd";
-import React, {useRef, useState} from "react";
+import { useRef, useState } from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 import {albumBreakpointsConfig} from "../config/albumBreakpointsConfig";
 import {initSliderHandler} from "../model/initSliderHandler";
 import {slideChangeHandler} from "../model/slideChangeHandler";
 
-interface AlbumSliderProps {
+/** Свойства компонента {@link AlbumSlider}. */
+interface AlbumSliderProps extends ComponentPropsWithoutRef<"section"> {
+    /** Список альбомов для отображения в слайдере. */
     albumsList: AlbumType[];
-    setSelectedAlbum: React.Dispatch<React.SetStateAction<string>>;
-    selectedAlbum: string
+    /** Функция обновления идентификатора выбранного альбома. */
+    setSelectedAlbum: Dispatch<SetStateAction<string>>;
+    /** ULID выбранного альбома. Специальное значение `"all"` означает «все публикации». */
+    selectedAlbum: string;
 }
 
-/** Горизонтальный Swiper-слайдер альбомов с кнопками навигации и кнопкой создания альбома.
- * 
- * @param albumsList - Список альбомов.
- * @param selectedAlbum - Идентификатор выбранного альбома или `all` - Все работы.
- * @param setSelectedAlbum - Сеттер выбранного альбома.
- * */
+/**
+ * Горизонтальный слайдер альбомов на основе Swiper с кнопками навигации и слайдом создания альбома.
+ *
+ * Первым слайдом всегда отображается элемент «Все работы» с ULID `"all"`.
+ * Последним — кнопка добавления нового альбома через {@link AlbumAdd}.
+ * Кнопки навигации блокируются при достижении начала или конца слайдера.
+ * Точки остановок слайдера задаются через {@link albumBreakpointsConfig}.
+ */
 export const AlbumSlider = ({
     selectedAlbum,
     setSelectedAlbum,

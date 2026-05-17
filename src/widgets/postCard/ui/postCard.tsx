@@ -24,38 +24,46 @@ import {ConfirmModal} from "widgets/confirmModal";
 import {deleteButtonClickHandler} from "../model/deleteButtonClickHandler";
 import {confirmDeletePost} from "../model/confirmDeletePost";
 
+/** Свойства компонента {@link PostCard}. */
 interface PostCardProps {
+    /** URL аватара автора публикации. */
     authorAvatarUrl: string;
+    /** Отображаемое имя автора публикации. */
     authorName: string;
+    /** ULID автора публикации — используется для формирования ссылки на его профиль. */
     authorULID: string;
+    /** URL изображения публикации. */
     imageUrl: string;
+    /** Название альбома, к которому относится публикация. */
     albumName: string;
+    /** ULID альбома — используется для формирования ссылки на альбом. */
     albumULID: string;
+    /** Заголовок публикации. */
     title: string;
+    /** Текстовое описание публикации. */
     description: string;
+    /** Список тегов публикации. */
     tagsList: TagType[];
+    /** Признак того, что просматривающий пользователь является автором публикации. При `true` отображаются кнопки редактирования и удаления. По умолчанию `false`. */
     isOwner?: boolean;
+    /** Количество лайков публикации. */
     likesCount: number;
+    /** Количество жалоб на публикацию. */
     reportsCount: number;
+    /** ULID публикации. */
     ULID: string;
+    /** Дата публикации в формате ISO 8601. По умолчанию пустая строка. */
     createdAt?: string;
 }
 
-/** Детальная карточка поста с лайками, жалобой, тегами и кнопками редактирования для автора.
- * 
- * @param authorAvatarUrl - Ссылка на изобрпжение аватара автора поста.
- * @param authorName - Имя автора поста.
- * @param authorULID - Идентификатор автора поста.
- * @param ULID - Идентификатор поста.
- * @param title - Название поста.
- * @param description - Описание поста.
- * @param imageUrl - Ссылка на изображение поста.
- * @param tagsList - Список тегов поста.
- * @param isOwner - Является ли текущий пользователь владельцем.
- * @param likesCount - Число лайков на посте.
- * @param reportsCount - Число жалоб на посте.
- * @param createdAt - Дата создания поста (ISO-строка).
- * */
+/**
+ * Детальная карточка публикации с изображением, лайками, жалобами, тегами и кнопками управления.
+ *
+ * Оптимистично обновляет счётчик лайков локально без запроса на сервер.
+ * На узких экранах (< 1200 px) описание сворачивается с кнопкой раскрытия.
+ * Для владельца публикации отображаются кнопки редактирования и удаления;
+ * удаление требует подтверждения через {@link ConfirmModal}.
+ */
 export const PostCard = ({
     authorAvatarUrl,
     authorName,

@@ -9,12 +9,21 @@ import Masonry, {type MasonryProps} from "react-masonry-css";
 import {Post} from "features/post";
 import {masonryBreakpointsConfig} from "../config/masonryBreakpointsConfig";
 
+/** Свойства компонента {@link GalleryPostList}. */
 interface GalleryPostListProps {
+    /** Список публикаций для отображения в галерее. */
     postList: PostType[];
+    /** Конфигурация количества колонок Masonry для разных ширин экрана. По умолчанию используется {@link masonryBreakpointsConfig}. */
     masonryBreakpoints?: MasonryProps["breakpointCols"];
 }
 
-/** Галерея постов в формате Masonry с поиском и кнопкой добавления. */
+/**
+ * Галерея публикаций в формате Masonry с полем поиска и кнопкой добавления.
+ *
+ * Количество колонок адаптируется к ширине экрана через конфигурацию точек остановки
+ * {@link masonryBreakpointsConfig} или переданный `masonryBreakpoints`. Каждая публикация
+ * отображается с автоматической высотой через {@link Post}.
+ */
 export const GalleryPostList = ({ postList, masonryBreakpoints, ...props }: GalleryPostListProps) => {
     const { t } = useTranslation();
 

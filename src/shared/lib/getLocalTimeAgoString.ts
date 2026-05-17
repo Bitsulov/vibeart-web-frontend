@@ -1,12 +1,21 @@
 import i18n from 'i18next';
 
 /**
- * Возвращает относительную строку времени (например, «2 часа назад»).
- * Использует `Intl.RelativeTimeFormat` для локализации.
+ * Возвращает локализованную строку относительного времени
+ * (например, «2 часа назад» или «через 3 дня»).
  *
- * @param language - Код языка (например, `"ru"`, `"en"`).
- * @param date - Дата для вычисления разницы с текущим моментом.
+ * Перебирает единицы времени от лет до секунд и возвращает строку
+ * для первой подходящей единицы. Если разница менее одной секунды,
+ * возвращает ключ перевода `"justNow"`.
+ *
+ * @param language - Код языка по стандарту BCP 47 (например, `"ru"`, `"en"`).
+ * @param date - Дата для сравнения с текущим моментом (объект `Date`
+ *   или строка ISO 8601).
  * @returns Локализованная строка относительного времени.
+ *
+ * @example
+ * getLocalTimeAgoString("ru", new Date(Date.now() - 7200000)) // "2 часа назад"
+ * getLocalTimeAgoString("en", "2026-05-14T10:00:00.000Z")    // "3 days ago"
  */
 export function getLocalTimeAgoString(language: string, date: Date | string) {
     const rtf = new Intl.RelativeTimeFormat(language, { numeric: 'auto' });

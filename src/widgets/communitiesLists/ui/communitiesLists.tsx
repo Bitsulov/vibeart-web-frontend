@@ -2,20 +2,23 @@ import c from "./communitiesLists.module.scss";
 import {useTranslation} from "react-i18next";
 import {SearchInput} from "features/searchInput";
 import {CommunitiesAddButton} from "features/communitiesAddButton";
-import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import type {CommunityType} from "entities/community";
 import {CommunitiesList} from "widgets/communitiesList";
 
-interface CommunitiesListsProps extends React.ComponentPropsWithoutRef<"section"> {
+/** Свойства компонента {@link CommunitiesLists}. */
+interface CommunitiesListsProps extends ComponentPropsWithoutRef<"section"> {
+    /** Список сообществ, на которые подписан текущий пользователь. */
     communitiesListMy: CommunityType[];
+    /** Список всех остальных доступных сообществ, не вошедших в подписки. */
     communitiesListAll: CommunityType[];
 }
 
 /**
- * Секция страницы сообществ: поиск, кнопка создания, списки «мои» и «все».
- * @param communitiesListMy - сообщества, на которые подписан пользователь
- * @param communitiesListAll - все доступные сообщества, кроме подписанных
- * @param props - остальные пропсы `section`
+ * Секция страницы сообществ: поле поиска, кнопка создания и два списка — «мои» и «все».
+ *
+ * Объединяет {@link CommunitiesList} для подписанных и всех остальных сообществ,
+ * а также кнопку перехода к созданию нового сообщества {@link CommunitiesAddButton}.
  */
 export const CommunitiesLists = ({
     communitiesListMy,

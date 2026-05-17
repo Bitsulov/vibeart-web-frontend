@@ -3,41 +3,48 @@ import type {PostType} from "entities/post";
 import {useTranslation} from "react-i18next";
 import {Post} from "features/post";
 import {PagesButtons} from "features/pagesButtons";
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import {PlusCircle} from "lucide-react";
 import clsx from "clsx";
 import {AlbumModal} from "widgets/albumModal";
 import {addPostsAlbumHandler} from "../model/addPostsAlbumHandler";
 
-interface PostListProps {
+/** Свойства компонента {@link PostList}. */
+interface PostListProps extends ComponentPropsWithoutRef<"section"> {
+    /** Список публикаций для отображения. При `undefined` или пустом массиве показывается заглушка. */
     postList: PostType[] | undefined;
+    /** Заголовок секции. Отображается только если `isUniqueTitle === true`. */
     title: string | undefined;
+    /** Общее количество страниц публикаций. */
     pagesCount: number;
+    /** Номер текущей страницы. */
     currentPage: number;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    /** Функция обновления номера текущей страницы. */
+    setCurrentPage: Dispatch<SetStateAction<number>>;
+    /** Количество кнопок страниц, отображаемых по обе стороны от текущей в {@link PagesButtons}. */
     pagesDelta: number;
-    setPagesDelta: React.Dispatch<React.SetStateAction<number>>;
+    /** Функция обновления `pagesDelta`. Значение пересчитывается внутри компонента при изменении ширины экрана. */
+    setPagesDelta: Dispatch<SetStateAction<number>>;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Если `true`, в конце последней страницы отображается кнопка добавления публикации в альбом. По умолчанию `false`. */
     isShowAddButton?: boolean;
+    /** Если `true`, список растягивается на всю доступную ширину контейнера. По умолчанию `false`. */
     flexible?: boolean;
-    isUniqueTitle?: boolean
+    /** Если `true`, в заголовке отображается `title`; иначе — локализованная строка `"Posts"`. По умолчанию `true`. */
+    isUniqueTitle?: boolean;
 }
 
-/** Список постов с пагинацией и опциональной кнопкой добавления в альбом.
- * 
- * @param title - Название альбома.
- * @param postList - Список постов.
- * @param pagesCount - Количество страниц постов.
- * @param currentPage - Номер текущей страницы.
- * @param setCurrentPage - Сеттер текущей страницы.
- * @param pagesDelta - Количество страниц перед и после текущей выбранной страницы.
- * @param setPagesDelta - Сеттер количества страниц перед и после текущей выбранной страницы.
- * @param className - Дополнительное имя класса для секции.
- * @param isShowAddButton - Показывать ли кнопку добавления в альбом в самом конце.
- * @param flexible - Растягивать ли список постов на всю ширину.
- * @param isUniqueTitle - Отображать ли название альбома или `"Posts"`.
- * */
+/**
+ * Список публикаций с постраничной навигацией и опциональной кнопкой добавления в альбом.
+ *
+ * Адаптирует значение `pagesDelta` в зависимости от ширины экрана.
+ * Кнопка добавления в альбом отображается только на последней странице при `isShowAddButton === true`
+ * и открывает {@link AlbumModal} для выбора публикаций.
+ * При пустом списке показывает заглушку или только кнопку добавления (если `isShowAddButton === true`).
+ */
 export const PostList = ({
     title,
     postList,

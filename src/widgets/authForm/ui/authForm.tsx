@@ -11,7 +11,13 @@ import {submitValidHandler} from "../model/submitValidHandler";
 import {submitInvalidHandler} from "../model/submitInvalidHandler";
 import type {IAuthForm} from "../lib/types";
 
-/** Форма авторизации с полями email и пароля. */
+/**
+ * Форма авторизации с полями e-mail и пароля.
+ *
+ * Использует react-hook-form для валидации: e-mail проверяется на формат,
+ * пароль — на минимальную (6) и максимальную (64) длину. При успешной отправке
+ * вызывается {@link submitValidHandler}, при невалидных данных — {@link submitInvalidHandler}.
+ */
 export const AuthForm = ({ ...props }) => {
     const { t } = useTranslation();
 
