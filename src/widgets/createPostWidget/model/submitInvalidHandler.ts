@@ -7,7 +7,7 @@ import type {ICreatePostForm} from "../lib/types";
  * Показывает уведомление с первой ошибкой валидации формы создания поста.
  *
  * @param errors - Объект ошибок react-hook-form.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  */
 export function submitInvalidHandler(
     errors: FieldErrors<ICreatePostForm>,

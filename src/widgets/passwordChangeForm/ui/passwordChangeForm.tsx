@@ -15,15 +15,19 @@ import {returnToEmailHandler} from "../model/returnToEmailHandler";
 import {CodeInputs} from "features/codeInputs";
 import type {ICodeForm} from "../lib/types";
 
+/** Свойства компонента {@link PasswordChangeForm}. */
 interface PasswordChangeFormProps extends ComponentPropsWithoutRef<"form"> {
+    /** E-mail пользователя, отображаемый в подсказке на шаге ввода кода подтверждения. */
     email: string;
 }
 
 /**
- * Двухшаговая форма изменения пароля: ввод старого/нового/подтверждения пароля,
- * затем ввод кода подтверждения.
+ * Двухшаговая форма изменения пароля.
  *
- * @param email - Email пользователя, отображается в тексте с адресом для отправки кода.
+ * Шаг 1: ввод старого пароля, нового пароля и его подтверждения. Новый пароль должен отличаться
+ * от старого и иметь длину 6–64 символа; подтверждение должно совпадать с новым паролем.
+ * Шаг 2: ввод шестизначного кода подтверждения, отправленного на e-mail пользователя, через {@link CodeInputs}.
+ * Кнопка «Назад» возвращает на первый шаг без сброса введённых данных.
  */
 export const PasswordChangeForm = ({ email, ...props }: PasswordChangeFormProps) => {
     const { t } = useTranslation();

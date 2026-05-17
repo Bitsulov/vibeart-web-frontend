@@ -1,24 +1,36 @@
 import c from "./inputForm.module.scss";
 import clsx from "clsx";
-import React, {useState} from "react";
+import { useState } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 import {Check, CircleX, EyeClosed, EyeIcon} from "lucide-react";
 import {toggleTypeHandler} from "../model/toggleTypeHandler";
 import {useTranslation} from "react-i18next";
 
-interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
+/** Свойства компонента {@link InputForm}. */
+interface InputFormProps extends ComponentPropsWithoutRef<"input"> {
+    /** Признак ошибки валидации. Управляет цветом рамки и иконкой статуса. */
     isError: boolean;
+    /** Признак того, что форма была отправлена. Статус валидации отображается
+     *  только после первой попытки отправки, чтобы не раздражать пользователя
+     *  ошибками до взаимодействия с полем. */
     isSubmitted: boolean;
+    /** Показывать ли индикатор статуса валидации (цвет рамки и иконка).
+     *  По умолчанию `true`. Отключается для полей, не требующих обратной связи. */
     isShowStatus?: boolean;
+    /** Тип поля. При `"password"` отображается кнопка переключения видимости. */
     type?: "text" | "email" | "password";
+    /** Дополнительный CSS-класс для плавающего замещающего текста (`<label>`). */
     placeholderClassName?: string;
 }
 
 /**
- * Поле ввода формы с плавающим плейсхолдером и переключателем видимости пароля.
+ * Поле ввода формы с плавающим замещающим текстом и визуальной обратной связью.
  *
- * @param isError - Флаг ошибки валидации.
- * @param isSubmitted - Была ли форма отправлена (управляет отображением статуса).
- * @param isShowStatus - Показывать ли иконку статуса валидации и изменение цвета границ.
+ * Особенности:
+ * - Замещающий текст анимированно поднимается при фокусе или заполнении поля.
+ * - Для поля типа `"password"` отображается кнопка показа/скрытия пароля.
+ * - Иконки валидации (галочка / крестик) и цвет рамки меняются после отправки формы.
+ * - Атрибут `aria-invalid` устанавливается автоматически на основе `isError`.
  */
 export const InputForm = ({
     type = "text",

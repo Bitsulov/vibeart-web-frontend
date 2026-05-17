@@ -14,19 +14,24 @@ import clsx from "clsx";
 import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import {HeaderProfileButton} from "features/headerProfileButton";
 
+/** Свойства компонента {@link Header}. */
 interface HeaderProps {
+    /** Функция обновления признака видимости модального окна смены языка. */
     setIsShowChangeLanguage: React.Dispatch<React.SetStateAction<boolean>>;
+    /** Признак того, что модальное окно смены языка в данный момент открыто. */
     isShowChangeLanguage: boolean;
+    /** Если `true`, заголовок страницы отображается уменьшенным шрифтом. По умолчанию `false`. */
     isSmallTitle?: boolean;
-    languagesConfig: Record<string, string[]>
+    /** Конфигурация доступных языков: ключ — код языка, значение — массив с параметрами отображения. */
+    languagesConfig: Record<string, string[]>;
 }
 
-/** Шапка сайта с логотипом, заголовком страницы, кнопками языка и профиля/бургера.
+/**
+ * Шапка сайта с логотипом, заголовком текущей страницы, кнопками смены языка и профиля.
  *
- * @param isShowChangeLanguage - Флаг показа модального окна смены языка.
- * @param setIsShowChangeLanguage - Сеттер флага показа окна смены языка.
- * @param isSmallTitle - Уменьшенный заголовок страницы.
- * @param languagesConfig - Список языков в формате: [флаг, название, ariaLabel, alt, значение].
+ * На широких экранах (≥ 1200 px) отображает ссылку на e-mail и кнопку профиля.
+ * На узких — бургер-кнопку с раскрывающимся меню навигации. Заголовок страницы
+ * определяется по текущему пути через {@link pagesTitleConfig}.
  */
 export const Header = ({
     setIsShowChangeLanguage,

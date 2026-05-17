@@ -2,14 +2,16 @@ import c from "./communitiesAddButton.module.scss";
 import {useTranslation} from "react-i18next";
 import {Link, type LinkProps} from "react-router-dom";
 
+/** Свойства компонента {@link CommunitiesAddButton}. */
 interface CommunitiesAddButtonProps extends Omit<LinkProps, "to"> {
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
 }
 
 /**
  * Ссылка-кнопка для перехода на страницу создания сообщества (`/communities/add`).
- * @param className - дополнительный CSS-класс
- * @param props - остальные пропсы `Link` (кроме `to`)
+ *
+ * Текст и метка доступности локализованы через i18next.
  */
 export const CommunitiesAddButton = ({ className = "", ...props }: CommunitiesAddButtonProps) => {
     const { t } = useTranslation();

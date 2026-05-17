@@ -19,32 +19,37 @@ import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import type {PostType} from "entities/post";
 import {useDispatch} from "react-redux";
 
+/** Свойства компонента {@link CreatePostWidget}. */
 interface CreatePostWidgetProps extends ComponentPropsWithoutRef<"form"> {
+    /** Общее количество страниц тегов для {@link AddTags}. */
     pages: number;
+    /** Номер текущей страницы тегов. */
     currentPage: number;
+    /** Функция обновления номера текущей страницы тегов. */
     setCurrentPage: Dispatch<SetStateAction<number>>;
+    /** Количество кнопок страниц, отображаемых по обе стороны от текущей. */
     pagesDelta: number;
+    /** Функция обновления `pagesDelta`. */
     setPagesDelta: Dispatch<SetStateAction<number>>;
+    /** Функция обновления частичного состояния публикации — используется для обновления предпросмотра. */
     setPostInfo: Dispatch<SetStateAction<Partial<PostType>>>;
+    /** Функция обновления загруженного файла изображения публикации. */
     setLoadedFile: Dispatch<SetStateAction<File | undefined>>;
+    /** Загруженный файл изображения публикации. */
     loadedFile?: File;
+    /** Функция, вызываемая после успешной отправки формы. По умолчанию — пустая функция. */
     onSubmit?: () => void;
+    /** Дополнительный CSS-класс для корневого элемента формы. */
     className?: string;
 }
 
 /**
- * Форма создания поста: загрузка изображения, поля названия и описания, выбор тегов.
+ * Форма создания публикации с полями загрузки изображения, названия, описания и выбором тегов.
  *
- * @param pages - Общее количество страниц тегов.
- * @param currentPage - Текущая страница тегов.
- * @param setCurrentPage - Сеттер текущей страницы тегов.
- * @param pagesDelta - Количество кнопок страниц по обе стороны от текущей.
- * @param setPagesDelta - Сеттер pagesDelta.
- * @param setPostInfo - Сеттер данных поста для обновления preview.
- * @param setLoadedFile - Сеттер загруженного файла изображения.
- * @param loadedFile - Загруженный файл изображения.
- * @param onSubmit - CallBack, вызываемый после попытки отправки формы.
- * @param className - Дополнительный CSS-класс.
+ * Использует react-hook-form для валидации: название обязательно (не более 15 символов),
+ * описание — не более 200 символов. Теги выбираются через {@link AddTags}.
+ * Подписи полей и кнопка отправки адаптируются под ширину экрана.
+ * При успешной отправке вызывается {@link submitValidHandler}, при ошибке — {@link submitInvalidHandler}.
  */
 export const CreatePostWidget = ({
     pages,

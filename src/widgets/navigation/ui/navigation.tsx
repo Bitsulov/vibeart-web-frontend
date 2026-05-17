@@ -5,15 +5,20 @@ import {useSelector} from "react-redux";
 import {selectUnreadChatsCount, selectUnreadNotificationsCount} from "entities/appConfig";
 import {NavigationItem} from "features/navigationItem";
 
+/** Свойства компонента {@link Navigation}. */
 interface NavigationProps {
+    /** ULID текущего пользователя — передаётся в каждый {@link NavigationItem} для генерации URL. */
     ULID: string;
+    /** Роль текущего пользователя. Пункты с `isAdmin: true` отображаются только при значении `"admin"`. */
     role: string;
 }
 
-/** Боковое навигационное меню с ссылками на основные разделы приложения.
- * 
- * @param ULID - Идентификатор текущего пользователя.
- * @param role - Роль текущего пользователя.
+/**
+ * Боковое навигационное меню с ссылками на основные разделы приложения.
+ *
+ * Формирует список ссылок из {@link navigationConfig}, скрывая административные
+ * пункты для обычных пользователей. Отображает бейджи непрочитанных чатов
+ * и уведомлений, считывая их количество из Redux-хранилища.
  */
 export const Navigation = ({ ULID, role, ...props }: NavigationProps) => {
     const path = useLocation().pathname;

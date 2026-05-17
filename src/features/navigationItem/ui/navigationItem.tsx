@@ -3,9 +3,20 @@ import {Link, type LinkProps} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import type {LucideIcon} from "lucide-react";
 
+/** Свойства компонента {@link NavigationItem}. */
 interface NavigationItemProps extends Omit<LinkProps, "to"> {
+    /** Компонент иконки из библиотеки Lucide. */
     Icon: LucideIcon;
+    /** ULID текущего пользователя — передаётся в генератор URL конфигурации ссылки. */
     ULID: string;
+    /**
+     * Конфигурация пункта навигации:
+     * - `href` — функция, генерирующая URL на основе ULID пользователя.
+     * - `icon` — иконка пункта.
+     * - `title` — ключ локализации для подписи.
+     * - `ariaLabel` — ключ локализации для метки доступности.
+     * - `isAdmin` — признак того, что пункт доступен только администраторам.
+     */
     link: {
         href: (ULID: string) => string;
         icon: LucideIcon;
@@ -13,18 +24,20 @@ interface NavigationItemProps extends Omit<LinkProps, "to"> {
         ariaLabel: string;
         isAdmin: boolean;
     };
+    /** Текущий путь маршрутизатора. Используется для установки `aria-current="page"`. */
     path: string;
+    /** Количество непрочитанных сообщений в чатах. Отображается как числовой бейдж. */
     chatsNotices: number;
-    notificationsNotices: number
+    /** Количество непрочитанных уведомлений. Отображается как числовой бейдж. */
+    notificationsNotices: number;
 }
 
 /**
- * Пункт боковой навигации с иконкой и счётчиком уведомлений.
+ * Один пункт боковой навигации.
  *
- * @param link - Конфиг ссылки: URL-генератор (принимает ULID пользователя), иконка, заголовок, ключи локализации, флаг isAdmin пользователя.
- * @param path - Текущий путь для определения активного пункта.
- * @param chatsNotices - Количество непрочитанных сообщений в чатах.
- * @param notificationsNotices - Количество непрочитанных уведомлений.
+ * Устанавливает `aria-current="page"` при совпадении сгенерированного URL
+ * с текущим путём. Для пунктов «Чаты» и «Уведомления» отображает
+ * числовой бейдж при наличии непрочитанных элементов.
  */
 export const NavigationItem = ({
     Icon,

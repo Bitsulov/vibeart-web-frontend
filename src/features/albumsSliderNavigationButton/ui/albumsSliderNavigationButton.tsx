@@ -5,17 +5,21 @@ import React, {type RefObject} from "react";
 import type Swiper from "swiper";
 import {slideHandler} from "../model/slideHandler";
 
+/** Свойства компонента {@link AlbumsSliderNavigationButton}. */
 interface AlbumsSliderNavigationButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** Направление прокрутки слайдера. */
     direction: "right" | "left";
+    /** Дополнительный CSS-класс для иконки стрелки. */
     imgClassName?: string;
-    swiperRef: RefObject<Swiper | null>
+    /** Ссылка на экземпляр Swiper для программного управления слайдером. */
+    swiperRef: RefObject<Swiper | null>;
 }
 
 /**
  * Кнопка навигации слайдера альбомов.
  *
- * @param swiperRef - Ref-ссылка на экземпляр Swiper для управления слайдером.
- * @param imgClassName - Дополнительный CSS-класс для иконки стрелки.
+ * При нажатии вызывает `slidePrev` или `slideNext` на экземпляре Swiper
+ * в зависимости от значения `direction`.
  */
 export const AlbumsSliderNavigationButton = ({ swiperRef, direction, className = "", imgClassName, ...props }: AlbumsSliderNavigationButtonProps) => {
     const { t } = useTranslation();

@@ -9,15 +9,20 @@ import type {UserType} from "entities/user";
 import {SendHorizontal} from "lucide-react";
 import {useTranslation} from "react-i18next";
 
+/** Свойства компонента {@link CommentsForm}. */
 interface CommentFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+    /** Функция обновления списка комментариев для оптимистичного добавления нового комментария без запроса на сервер. */
     setComments: React.Dispatch<React.SetStateAction<CommentType[]>>;
+    /** Профиль текущего пользователя — используется для формирования объекта нового комментария. */
     user: UserType;
 }
 
 /**
- * Форма добавления комментария к посту.
+ * Форма добавления комментария к публикации.
  *
- * @param setComments - Сеттер списка комментариев для моментального обновления интерфейса.
+ * Использует react-hook-form для валидации поля ввода. После успешной
+ * отправки новый комментарий добавляется в список локально через
+ * `setComments`, а поле очищается.
  */
 export const CommentsForm = ({ user, setComments, ...props }: CommentFormProps) => {
     const { register, setValue, handleSubmit, formState: {errors, isSubmitted} } = useForm<ICommentsForm>({shouldFocusError: false});

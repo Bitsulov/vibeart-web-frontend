@@ -2,13 +2,25 @@ import type {UserType} from "../lib/types";
 import type {RootState} from "app/store";
 import {createSelector} from "@reduxjs/toolkit";
 
-/** Возвращает полный объект пользователя из Redux-стора. */
+/** Возвращает полный объект текущего пользователя из хранилища Redux. */
 export const selectUser = (state: RootState): UserType => state.user;
 
-/** Возвращает флаг авторизации пользователя. */
+/**
+ * Возвращает признак авторизации текущего пользователя.
+ *
+ * Предпочтительнее {@link selectUser}, когда компонент зависит только
+ * от факта входа в систему, — сужение подписки снижает число лишних
+ * перерисовок.
+ */
 export const selectIsAuthenticated = (state: RootState): boolean => state.user.isAuthenticated;
 
-/** Возвращает мемоизированный объект с данными профиля пользователя. */
+/**
+ * Возвращает мемоизированный объект с полными данными профиля пользователя.
+ *
+ * Мемоизация через `createSelector` гарантирует, что ссылка на объект
+ * не изменится, если данные в хранилище не поменялись, предотвращая
+ * лишние перерисовки зависимых компонентов.
+ */
 export const selectUserInfo = createSelector([selectUser], user => {
     return {
         id: user.id,

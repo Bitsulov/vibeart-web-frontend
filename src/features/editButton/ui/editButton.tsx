@@ -4,21 +4,29 @@ import React from "react";
 import {Link, type LinkProps} from "react-router-dom";
 import {clickHandler} from "../model/clickHandler";
 
+/** Свойства компонента {@link EditButton}. */
 interface EditButtonProps extends Omit<LinkProps, "to"> {
+    /** Текстовое описание для программ чтения с экрана. */
     ariaLabel?: string;
+    /** Дополнительный обработчик нажатия (например, для скрытия подсказки перед переходом). */
     onClick?: () => void;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Обработчик наведения курсора (используется для всплывающих подсказок). */
     onMouseEnter?: React.MouseEventHandler;
+    /** Обработчик ухода курсора (используется для скрытия подсказок). */
     onMouseLeave?: React.MouseEventHandler;
+    /** ULID редактируемой сущности для формирования ссылки `/:type/:ulid/edit`. */
     ULID: string;
-    type: "post" | "album"
+    /** Тип редактируемой сущности. Определяет первый сегмент URL. */
+    type: "post" | "album";
 }
 
 /**
  * Кнопка-ссылка для перехода на страницу редактирования поста или альбома.
  *
- * @param ULID - Идентификатор редактируемой сущности.
- * @param type - Тип сущности: `"post"` или `"album"`.
+ * Формирует URL вида `/:type/:ulid/edit`. Перед переходом вызывает
+ * `onClick` и `onMouseLeave` для корректного скрытия всплывающих подсказок.
  */
 export const EditButton = ({
     onMouseEnter = () => {},

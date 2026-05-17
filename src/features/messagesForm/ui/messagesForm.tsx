@@ -8,14 +8,18 @@ import type {MessageType} from "entities/message";
 import React from "react";
 import {submitValidHandler} from "../model/submitValidHandler";
 
+/** Свойства компонента {@link MessagesForm}. */
 interface MessagesFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+    /** Функция обновления списка сообщений для оптимистичного добавления нового сообщения без запроса на сервер. */
     setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
 }
 
 /**
  * Форма отправки сообщения в чате.
  *
- * @param setMessages - Сеттер списка сообщений для моментального обновления интерфейса.
+ * Использует react-hook-form для валидации поля. После успешной отправки
+ * новое сообщение добавляется в список локально через `setMessages`,
+ * а поле ввода очищается.
  */
 export const MessagesForm = ({ setMessages, ...props }: MessagesFormProps) => {
     const { t } = useTranslation();

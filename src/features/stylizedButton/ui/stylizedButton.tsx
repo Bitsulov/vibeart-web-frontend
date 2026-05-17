@@ -1,11 +1,19 @@
 import c from "./stylizedButton.module.scss";
-import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
-interface StylizedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+/** Свойства компонента {@link StylizedButton}. */
+interface StylizedButtonProps extends ComponentPropsWithoutRef<"button"> {
+    /** Текстовое описание для программ чтения с экрана. */
     ariaLabel?: string;
 }
 
-/** Основная кнопка приложения с особым стилем. */
+/**
+ * Основная кнопка приложения с особым стилем.
+ *
+ * Расширяет стандартный элемент `<button>`, добавляя базовый класс стилей
+ * и поддержку произвольных дополнительных классов через `className`.
+ * Тип по умолчанию — `"button"` (предотвращает случайную отправку формы).
+ */
 export const StylizedButton = ({
     className,
     onClick,

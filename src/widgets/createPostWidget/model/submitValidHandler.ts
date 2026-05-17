@@ -7,7 +7,7 @@ import {showToast} from "features/toast";
  * При наличии изображения переходит в галерею, иначе показывает уведомление об ошибке.
  *
  * @param navigate - Функция навигации React Router.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  * @param loadedFile - Загруженный файл изображения.
  * @param onSubmit - Callback, вызываемый после попытки отправки.
  */

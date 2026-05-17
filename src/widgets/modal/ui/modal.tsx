@@ -8,17 +8,22 @@ import {closeButtonClickHandler} from "../model/closeButtonClickHandler";
 import clsx from "clsx";
 import {defaultTransitionTime} from "shared/const/const";
 
+/** Свойства компонента {@link Modal}. */
 interface ModalProps {
+    /** Признак того, что модальное окно смены языка в данный момент открыто. */
     isShowChangeLanguage: boolean;
+    /** Функция обновления признака видимости модального окна смены языка. */
     setIsShowChangeLanguage: React.Dispatch<React.SetStateAction<boolean>>;
-    languagesConfig: Record<string, string[]>
+    /** Конфигурация доступных языков: ключ — код языка, значение — массив с параметрами отображения. */
+    languagesConfig: Record<string, string[]>;
 }
 
-/** Модальное окно выбора языка интерфейса.
- * 
- * @param isShowChangeLanguage - Флаг показа модального окна смены языка.
- * @param setIsShowChangeLanguage - Сеттер флага показа окна смены языка.
- * @param languagesConfig - Список языков в формате: [флаг, название, ariaLabel, alt, значение]
+/**
+ * Модальное окно выбора языка интерфейса.
+ *
+ * Отображает список доступных языков через {@link LanguageItem}. Закрывается по клику
+ * на фон, кнопку закрытия или кнопку «Закрыть». Анимация скрытия реализована через
+ * CSS-переход длительностью, считываемой из CSS-переменной `--transition-time`.
  */
 export const Modal = ({
     languagesConfig,

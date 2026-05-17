@@ -1,11 +1,18 @@
 import c from "./footerLinksItem.module.scss";
 import {Link, type LinkProps, useLocation} from "react-router-dom";
 
+/** Свойства компонента {@link FooterLinksItem}. */
 interface FooterLinksItemProps extends LinkProps {
+    /** Текстовое описание ссылки для программ чтения с экрана. */
     ariaLabel: string;
 }
 
-/** Пункт навигации в футере. */
+/**
+ * Одна навигационная ссылка в подвале сайта.
+ *
+ * Автоматически устанавливает `aria-current="page"`, если текущий
+ * URL совпадает с адресом ссылки.
+ */
 export const FooterLinksItem = ({
     to,
     children,

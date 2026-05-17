@@ -17,22 +17,28 @@ import {toggleChatSettingsClickHandler} from "../model/toggleChatSettingsClickHa
 import {ConfirmModal} from "widgets/confirmModal";
 import {deleteChatConfirmClickHandler} from "../model/deleteChatConfirmClickHandler";
 
+/** Свойства компонента {@link ChatWindow}. */
 interface ChatWindowProps {
+    /** Отображаемое имя собеседника. */
     name: string;
+    /** ULID собеседника — используется для формирования ссылки на его профиль. */
     ULID: string;
+    /** URL аватара собеседника. При отсутствии отображается заглушка. */
     avatarUrl?: string;
+    /** Статус присутствия собеседника в сети. */
     onlineStatus: "online" | "offline";
-    messages: MessageType[]
+    /** Начальный список сообщений диалога, загруженных с сервера. */
+    messages: MessageType[];
 }
 
-/** Окно чата с лентой сообщений, формой отправки и настройками чата.
- * 
- * @param name - Имя собеседника.
- * @param ULID - Идентификатор собеседника.
- * @param avatarUrl - Ссылка на изображение аватара собеседника.
- * @param onlineStatus - Онлайн статус собеседника.
- * @param messages - Список сообщений.
- * */
+/**
+ * Окно диалога с лентой сообщений, формой отправки и меню настроек чата.
+ *
+ * Хранит сообщения в локальном состоянии, что позволяет оптимистично добавлять
+ * новые через {@link MessagesForm}. Список автоматически прокручивается вниз
+ * при появлении нового сообщения. Разграничители по дням вставляются через {@link ChatDate}.
+ * Высота секции вычисляется хуком {@link useFillHeight}, чтобы занять оставшееся пространство экрана.
+ */
 export const ChatWindow = ({
     messages,
     name,

@@ -2,18 +2,22 @@ import c from "./profileIcons.module.scss";
 import {Ban, ShieldX} from "lucide-react";
 import React from "react";
 
+/** Свойства компонента {@link ProfileIcons}. */
 interface ProfileIconsProps extends React.HTMLAttributes<HTMLDivElement> {
+    /** Дополнительный CSS-класс, применяемый к каждой отдельной иконке. */
     classNameIcons?: string;
+    /** Признак блокировки аккаунта модерацией. При `true` отображается иконка запрета. */
     isBlocked: boolean;
-    trustStatus: "trust" | "untrust"
+    /** Уровень доверия к контенту пользователя. При значении `"untrust"` отображается иконка предупреждения. */
+    trustStatus: "trust" | "untrust";
 }
 
 /**
- * Иконки статуса пользователя: блокировка и недоверенный статус.
+ * Набор иконок, отражающих административный статус пользователя.
  *
- * @param classNameIcons - Дополнительный CSS-класс для каждой иконки.
- * @param isBlocked - Заблокирован ли пользователь.
- * @param trustStatus - Статус доверия к пользователю.
+ * Иконка блокировки отображается при `isBlocked === true`,
+ * иконка недоверия — при `trustStatus === "untrust"`.
+ * Компонент не отрисовывает ничего, если оба условия ложны.
  */
 export const ProfileIcons = ({
     isBlocked,

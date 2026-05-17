@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `user` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import {createUser} from "../model/createUser";
 import avatar from "shared/icons/img-CTA.jpg";
 

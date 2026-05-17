@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `message` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import type { MessageType } from "../lib/types";
 
 export const messagesMock: MessageType[] = [

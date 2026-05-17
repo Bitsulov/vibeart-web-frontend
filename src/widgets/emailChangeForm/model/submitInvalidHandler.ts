@@ -7,7 +7,7 @@ import {showToast} from "features/toast";
  * Показывает уведомление с первой ошибкой валидации формы изменения адреса электронной почты.
  *
  * @param errors - Объект ошибок react-hook-form.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  */
 export function submitInvalidHandler(
     errors: FieldErrors<IEmailChangeForm>,

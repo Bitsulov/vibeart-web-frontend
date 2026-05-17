@@ -22,7 +22,14 @@ import {CreateAlbum} from "pages/createAlbum";
 import {CreateCommunity} from "pages/createCommunity";
 import {Community} from "pages/community";
 
-/** Декларирует все маршруты приложения. */
+/**
+ * Декларирует все маршруты приложения через React Router v7.
+ *
+ * Динамические сегменты пути используют ULID: `/profile/:ulid`, `/post/:ulid`, `/album/:ulid`,
+ * `/chats/:ulid`, `/communities/:ulid`. Маршруты создания и редактирования контента
+ * (`/post/add`, `/post/:ulid/edit`, `/album/add` и т. д.) ведут на одну и ту же страницу.
+ * Несуществующие пути перехватываются маршрутом `"*"` и отображают страницу ошибки.
+ */
 export const RouterProvider = () => {
 	return (
         <Routes>

@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `post` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import {createPost} from "../model/createPost";
 import img from "shared/icons/img-CTA.jpg";
 import img2 from "shared/icons/img-template.jpg";

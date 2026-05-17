@@ -5,28 +5,36 @@ import React from "react";
 import {albumClickHandler} from "../model/albumClickHandler";
 import clsx from "clsx";
 
+/** Свойства компонента {@link AlbumSlide}. */
 interface AlbumSlideProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** URL обложки альбома. При отсутствии отображается иконка-заглушка. */
     imageUrl: string;
+    /** Название альбома. */
     name: string;
+    /** Метка доступности кнопки слайда для программ чтения с экрана. */
     ariaLabel?: string;
+    /**
+     * ULID альбома для формирования ссылки `/album/:ulid`.
+     * Специальное значение `"all"` отрисовывает текст вместо ссылки
+     * (слайд «Все альбомы»).
+     */
     ULID: string;
+    /** ULID текущего выбранного альбома. Используется для подсветки активного слайда. */
     selectedAlbum: string;
+    /** Функция обновления выбранного альбома. */
     setSelectedAlbum: React.Dispatch<React.SetStateAction<string>>;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Признак постоянной активности анимации названия альбома без наведения курсора. */
     animateName?: boolean;
 }
 
 /**
  * Слайд альбома в слайдере выбора.
  *
- * @param imageUrl - URL изображения обложки альбома.
- * @param name - Название альбома.
- * @param ariaLabel - ARIA-метка для кнопки слайда.
- * @param ULID - Уникальный идентификатор альбома; значение "all" рендерит текст вместо ссылки.
- * @param selectedAlbum - ULID текущего выбранного альбома для подсветки активного.
- * @param setSelectedAlbum - Сеттер выбранного альбома.
- * @param className - Дополнительный CSS-класс.
- * @param animateName - Если true, анимация названия всегда активна без hover.
+ * При нажатии устанавливает данный альбом как выбранный. Ссылка на страницу
+ * альбома встроена в название и доступна независимо от выбора слайда.
+ * Специальное значение ULID `"all"` переключает слайдер в режим «все публикации».
  */
 export const AlbumSlide = ({
     imageUrl,

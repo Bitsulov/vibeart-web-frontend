@@ -7,7 +7,12 @@ import {FooterLinksList} from "features/footerLinksList";
 import {FooterEmailLink} from "features/footerEmailLink";
 import {FooterLogo} from "features/footerLogo";
 
-/** Подвал сайта с информационными ссылками, email и статусом сервера. */
+/**
+ * Подвал сайта с информационными ссылками, контактным e-mail и статусом сервера.
+ *
+ * Читает статус сервера из Redux-хранилища и отображает его локализованное представление
+ * через {@link serverStatusesConfig}. Год в строке копирайта вычисляется динамически.
+ */
 export const Footer = () => {
     const { t } = useTranslation();
 

@@ -5,22 +5,26 @@ import {useDispatch} from "react-redux";
 import {useLocation, useNavigate} from "react-router-dom";
 import React from "react";
 
+/** Свойства компонента {@link LanguageItem}. */
 interface LanguageItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /** URL изображения флага языка. */
     imageUrl: string;
+    /** Человекочитаемое название языка (например, `"Русский"`, `"English"`). */
     title: string;
+    /** Ключ локализации для атрибута `aria-label` кнопки. */
     ariaLabel: string;
+    /** Ключ локализации для атрибута `alt` изображения флага. */
     alt: string;
+    /** Код языка по стандарту BCP 47 (например, `"ru"`, `"en"`). */
     value: string;
 }
 
 /**
- * Пункт выбора языка в модальном окне.
+ * Пункт списка выбора языка интерфейса.
  *
- * @param ariaLabel - Ключ локализации для `aria-label` кнопки.
- * @param imageUrl - Ссылка на изображение флага языка.
- * @param title - Название языка.
- * @param alt - Ключ локализации для `alt` изображения.
- * @param value - Код языка (например, `"ru"`, `"en"`).
+ * При нажатии переключает язык через i18next, обновляет код языка
+ * в хранилище Redux и перенаправляет пользователя на текущий маршрут
+ * с обновлёнными параметрами.
  */
 export const LanguageItem = ({ imageUrl, title, ariaLabel, alt, value, ...props }: LanguageItemProps) => {
     const { i18n, t } = useTranslation();

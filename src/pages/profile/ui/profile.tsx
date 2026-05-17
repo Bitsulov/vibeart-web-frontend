@@ -10,7 +10,12 @@ import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import {useMemo, useState} from "react";
 import {PostList} from "widgets/postList";
 
-/** Страница профиля пользователя со слайдером альбомов и списком постов. */
+/**
+ * Страница профиля пользователя с информационным блоком, слайдером альбомов и списком публикаций.
+ *
+ * Выбранный в {@link AlbumSlider} альбом определяет, публикации какого альбома отображаются
+ * в {@link PostList}. Специальное значение `"all"` соответствует всем публикациям пользователя.
+ */
 export const Profile = () => {
     const { t } = useTranslation();
     const windowWidth = useWindowWidth();

@@ -22,13 +22,18 @@ import {ConfirmModal} from "../../confirmModal";
 import {deleteCommunityClickHandler} from "../model/deleteCommunityClickHandler";
 import {openConfirmModalHandler} from "../model/openConfirmModalHandler";
 
+/** Свойства компонента {@link CommunityInfo}. */
 interface CommunityInfoProps {
+    /** Объект сообщества, информация о котором отображается. */
     communityInfo: CommunityType;
 }
 
-/** Блок информации о сообществе: аватар, название, username, описание, статистика и кнопки управления.
+/**
+ * Блок информации о сообществе: аватар, название, имя пользователя, описание, статистика и кнопки управления.
  *
- * @param communityInfo - Объект сообщества типа `CommunityType`.
+ * Определяет, является ли текущий пользователь владельцем сообщества, и при совпадении
+ * отображает кнопки редактирования и удаления. Описание раскрывается в {@link CommunityModal}.
+ * Удаление требует подтверждения через {@link ConfirmModal}.
  */
 export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
     const { t } = useTranslation();

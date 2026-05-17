@@ -3,35 +3,41 @@ import {Post} from "features/post";
 import {PagesButtons} from "features/pagesButtons";
 import type {PostType} from "entities/post";
 import {useTranslation} from "react-i18next";
-import React, {useEffect} from "react";
+import { useEffect } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import {postChooseHandler} from "../model/postChooseHandler";
 import clsx from "clsx";
 
+/** Свойства компонента {@link PostListModal}. */
 interface PostListModalProps {
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Список публикаций для отображения. */
     postList: PostType[];
+    /** Общее количество страниц публикаций. */
     pagesCount: number;
+    /** Номер текущей страницы. */
     currentPage: number;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    /** Функция обновления номера текущей страницы. */
+    setCurrentPage: Dispatch<SetStateAction<number>>;
+    /** Количество кнопок страниц, отображаемых по обе стороны от текущей в {@link PagesButtons}. */
     pagesDelta: number;
-    setPagesDelta: React.Dispatch<React.SetStateAction<number>>;
+    /** Функция обновления `pagesDelta`. Значение пересчитывается внутри компонента при изменении ширины экрана. */
+    setPagesDelta: Dispatch<SetStateAction<number>>;
+    /** Массив ULID публикаций, выбранных пользователем для добавления в альбом. */
     selectedPosts: string[];
-    setSelectedPosts: React.Dispatch<React.SetStateAction<string[]>>
+    /** Функция обновления массива выбранных публикаций. */
+    setSelectedPosts: Dispatch<SetStateAction<string[]>>;
 }
 
-/** Список постов с пагинацией для выбора внутри модального окна.
+/**
+ * Список публикаций с постраничной навигацией для выбора внутри модального окна.
  *
- * @param title - Название альбома.
- * @param postList - Список постов.
- * @param pagesCount - Количество страниц постов.
- * @param currentPage - Номер текущей страницы.
- * @param setCurrentPage - Сеттер текущей страницы.
- * @param pagesDelta - Количество страниц перед и после текущей выбранной страницы.
- * @param setPagesDelta - Сеттер количества страниц перед и после текущей выбранной страницы.
- * @param className - Дополнительное имя класса для секции.
- * @param selectedPosts - Список выбранных постов.
- * @param setSelectedPosts - Сеттер выбранных постов.
+ * Адаптирует значение `pagesDelta` в зависимости от ширины экрана.
+ * Выбранные публикации подсвечиваются CSS-классом `c.active`. Клик по публикации
+ * переключает её выбранность через {@link postChooseHandler}.
+ * При пустом списке отображает локализованную заглушку.
  */
 export const PostListModal = ({
     className = "",

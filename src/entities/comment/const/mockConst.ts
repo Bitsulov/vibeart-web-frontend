@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `comment` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import type {CommentType} from "../lib/types";
 import {createComment} from "../model/createComment";
 import {profileUserMock} from "entities/user";

@@ -6,14 +6,18 @@ import {searchChangeHandler} from "../model/searchChangeHandler";
 import type {ChatType} from "entities/chat";
 import {ChatItem} from "features/chatItem";
 
+/** Свойства компонента {@link ChatsList}. */
 interface ChatListProps {
-    chatsList: ChatType[]
+    /** Список диалогов для отображения. */
+    chatsList: ChatType[];
 }
 
-/** Список чатов с поиском по названию.
- * 
- * @param chatsList - Список чатов.
- * */
+/**
+ * Боковая панель со списком диалогов и полем поиска по имени собеседника.
+ *
+ * Фильтрация выполняется локально через {@link searchChangeHandler}.
+ * При пустом списке отображается заглушка с локализованным сообщением.
+ */
 export const ChatsList = ({ chatsList, ...props }: ChatListProps) => {
     const { t } = useTranslation();
 

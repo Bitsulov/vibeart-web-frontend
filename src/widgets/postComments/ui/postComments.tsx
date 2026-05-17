@@ -7,17 +7,21 @@ import {useState} from "react";
 import type {UserType} from "entities/user";
 import {CommentsForm} from "features/commentsForm";
 
+/** Свойства компонента {@link PostComments}. */
 interface PostCommentsProps {
+    /** Общее количество комментариев к публикации, отображаемое в заголовке секции. */
     commentsCount: number;
+    /** Начальный список комментариев, загруженных с сервера. */
     commentsList: CommentType[];
+    /** Профиль текущего пользователя — передаётся в форму добавления комментария. */
     userInfo: UserType;
 }
 
-/** Секция комментариев поста с формой добавления и списком комментариев.
- * 
- * @param commentsList - Список комментариев.
- * @param commentsCount - Количество комментариев.
- * @param userInfo - Информация о текущем пользователе.
+/**
+ * Секция комментариев публикации с формой добавления и списком комментариев.
+ *
+ * Хранит список комментариев в локальном состоянии, что позволяет оптимистично
+ * добавлять новые через {@link CommentsForm} без повторного запроса к серверу.
  */
 export const PostComments = ({ userInfo, commentsList, commentsCount, ...props }: PostCommentsProps) => {
     const { t } = useTranslation();

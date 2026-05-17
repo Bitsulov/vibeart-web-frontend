@@ -10,7 +10,12 @@ import {useTranslation} from "react-i18next";
 import {useEffect} from "react";
 import {useLocation} from "react-router-dom";
 
-/** Страница поста с карточкой поста и секцией комментариев. */
+/**
+ * Страница публикации с карточкой поста и секцией комментариев.
+ *
+ * При наличии якоря в URL (например, `#comments`) после монтирования
+ * выполняет плавную прокрутку к соответствующему элементу страницы.
+ */
 export const Post = () => {
     const userInfo = useSelector(selectUserInfo);
     const { t } = useTranslation();

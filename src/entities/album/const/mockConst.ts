@@ -1,3 +1,10 @@
+/**
+ * @file Фикстуры сущности `album` для использования в модульных тестах
+ * и сквозных сценариях Playwright.
+ *
+ * Все моки исключены из анализа покрытия кода, так как не содержат
+ * тестируемой логики.
+ */
 import {createAlbum} from "../model/createAlbum";
 import {profileAlbum1PostsMock, profileAlbum2PostsMock} from "entities/post";
 import img from "shared/icons/img-CTA.jpg";

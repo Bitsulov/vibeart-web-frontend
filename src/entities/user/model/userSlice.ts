@@ -21,15 +21,27 @@ const initialState: UserType = {
     avatarUrl: ""
 }
 
-/** Redux-слайс для управления состоянием авторизованного пользователя. */
+/**
+ * Redux-слайс для управления состоянием авторизованного пользователя.
+ *
+ * Начальное состояние описывает неавторизованного пользователя
+ * с пустыми полями и флагом `isAuthenticated: false`.
+ */
 export const userSlice = createSlice({
     name: "user",
     initialState: initialState,
     reducers: {
         /**
-         * Обновляет только переданные поля профиля пользователя.
+         * Обновляет только явно переданные поля профиля пользователя,
+         * не затрагивая остальные.
+         *
+         * Поля проверяются на `undefined` поштучно вместо `Object.assign`,
+         * чтобы намеренная передача `null` не была воспринята как отсутствие значения.
          *
          * @param action.payload - Частичный объект `UserType` с полями для обновления.
+         *
+         * @example
+         * dispatch(setUserInfo({ isAuthenticated: true, ULID: "01ARZ..." }));
          */
         setUserInfo(state, action: PayloadAction<Partial<UserType>>) {
             if(action.payload.id !== undefined) state.id = action.payload.id;

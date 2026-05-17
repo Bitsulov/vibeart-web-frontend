@@ -22,30 +22,36 @@ import {PostList} from "widgets/postList";
 import {getLocalTimeNumbers} from "shared/lib/getLocalTimeNumbers";
 import {selectCurrentLanguage} from "entities/appConfig";
 
+/** Свойства компонента {@link AlbumCard}. */
 interface AlbumCardProps {
+    /** Признак того, что просматривающий пользователь является автором альбома. При `true` отображаются кнопки редактирования и удаления. */
     isOwner: boolean;
+    /** ULID альбома. */
     ULID: string;
+    /** ULID автора альбома — используется при удалении для перехода на его профиль. */
     authorULID: string;
+    /** Название альбома. */
     title: string;
+    /** Текстовое описание альбома. */
     description: string;
+    /** URL обложки альбома. */
     imageUrl: string;
+    /** Количество публикаций в альбоме. */
     worksCount: number;
+    /** Дата создания альбома в формате ISO 8601. */
     date: string;
+    /** Список публикаций, входящих в альбом. */
     postList: PostType[];
 }
 
-/** Карточка альбома с постами, статистикой и кнопками редактирования для владельца.
+/**
+ * Детальная карточка альбома с обложкой, описанием, статистикой и списком публикаций.
  *
- *  @param isOwner - является ли текущий пользователь владельцем альбома.
- *  @param ULID - Идентификатор альбома.
- *  @param title - Название альбома.
- *  @param description - Описание альбома
- *  @param authorULID - Идентификатор автора альбома.
- *  @param imageUrl - Ссылка на изображение альбома.
- *  @param worksCount - Количество постов в альбоме.
- *  @param date - Дата создания альбома.
- *  @param postList - Список постов в альбоме.
-*/
+ * На узких экранах (< 1200 px) описание сворачивается с кнопкой раскрытия.
+ * Для владельца альбома отображаются кнопки редактирования и удаления;
+ * удаление требует подтверждения через {@link ConfirmModal}.
+ * Список публикаций отображается через {@link PostList} с постраничной навигацией.
+ */
 export const AlbumCard = ({
     title,
     description,

@@ -6,16 +6,28 @@ import {useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
 import defaultAvatar from "shared/icons/icon-user.svg";
 
+/** Свойства компонента {@link ChatItem}. */
 interface ChatItemProps extends Omit<LinkProps, "to"> {
+    /** ULID диалога для формирования ссылки `/chats/:ulid`. */
     ULID: string;
+    /** Имя собеседника, отображаемое в заголовке карточки. */
     title: string;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** URL аватара собеседника. При отсутствии подставляется иконка-заглушка. */
     imageUrl: string;
+    /** Текст последнего сообщения в диалоге. */
     lastMessage: string;
+    /** Дата последнего сообщения в формате ISO 8601. Форматируется через {@link getChatDate}. */
     date: string;
 }
 
-/** Элемент списка чатов: аватар собеседника, имя, последнее сообщение и дата. */
+/**
+ * Карточка диалога в списке чатов.
+ *
+ * Отображает аватар собеседника, его имя, текст последнего сообщения
+ * и локализованную дату. При нажатии переходит в диалог.
+ */
 export const ChatItem = ({
     className = "",
     title,

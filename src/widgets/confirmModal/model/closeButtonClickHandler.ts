@@ -1,6 +1,12 @@
 import React from "react";
 
-/** Закрывает модальное окно подтверждения с анимацией. */
+/**
+ * Закрывает модальное окно подтверждения с анимацией.
+ *
+ * @param setIsDisappearring - Сеттер анимации закрытия модального окна.
+ * @param transitionTime - Длительность анимации закрытия в миллисекундах.
+ * @param setIsShowChangeLanguage - Сеттер видимости модального окна.
+ */
 export function closeButtonClickHandler(
     setIsDisappearring: React.Dispatch<React.SetStateAction<boolean>>,
     transitionTime: number,

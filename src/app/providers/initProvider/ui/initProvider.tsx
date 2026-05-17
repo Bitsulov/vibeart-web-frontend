@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {setLanguage} from "entities/appConfig";
@@ -6,11 +7,21 @@ import {principalUserMock, setUserInfo} from "entities/user";
 import {useLocation, useNavigate} from "react-router-dom";
 import {languagesConfig} from "widgets/layout";
 
+/** Свойства компонента {@link InitProvider}. */
 interface InitProviderProps {
-    children: React.ReactNode;
+    /** Дочернее дерево, монтируемое после завершения инициализации. */
+    children: ReactNode;
 }
 
-/** Инициализирует Redux-стейт пользователя и синхронизирует язык с URL-параметром `lang`. */
+/**
+ * Провайдер инициализации приложения: записывает данные пользователя в Redux-хранилище
+ * и синхронизирует язык интерфейса с URL-параметром `lang`.
+ *
+ * При первом монтировании записывает данные авторизованного пользователя в Redux через `setUserInfo`.
+ * При каждом изменении адреса страницы проверяет параметр `lang` в строке запроса:
+ * если отсутствует — определяет язык через i18n и добавляет его в URL;
+ * если присутствует — устанавливает язык в i18n, Redux и атрибуте `lang` тега `<html>`.
+ */
 export const InitProvider = ({ children }: InitProviderProps) => {
     const { i18n } = useTranslation();
     const dispatch = useDispatch();

@@ -4,18 +4,21 @@ import React, { type ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
 import {toggleSubscribeClickHandler} from "../model/toggleSubscribeClickHandler";
 
+/** Свойства компонента {@link CommunitiesSubscribeButton}. */
 interface CommunitiesSubscribeButtonProps extends ComponentPropsWithoutRef<"button"> {
+    /** Текущее состояние подписки. Определяет текст кнопки и визуальный стиль. */
     isSubscribed: boolean;
+    /** Функция обновления состояния подписки. */
     setIsSubscribed: React.Dispatch<React.SetStateAction<boolean>>;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
 }
 
 /**
- * Кнопка подписки/отписки на сообщество.
- * @param isSubscribed - текущее состояние подписки
- * @param setIsSubscribed - сеттер состояния подписки
- * @param className - дополнительный CSS-класс
- * @param props - остальные пропсы `button`
+ * Кнопка подписки и отписки на сообщество.
+ *
+ * Текст меняется в зависимости от `isSubscribed`. Состояние обновляется
+ * локально оптимистично — без ожидания ответа сервера.
  */
 export const CommunitiesSubscribeButton = ({
     isSubscribed,

@@ -1,22 +1,25 @@
 import c from "./communitiesList.module.scss";
 import type {CommunityType} from "entities/community";
 import {CommunityItem} from "features/communityItem";
-import React from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
-interface CommunitiesListProps extends React.ComponentPropsWithoutRef<"div"> {
+/** Свойства компонента {@link CommunitiesList}. */
+interface CommunitiesListProps extends ComponentPropsWithoutRef<"div"> {
+    /** Список сообществ для отображения. */
     communitiesList: CommunityType[];
+    /** Заголовок секции над списком. */
     title: string;
+    /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
+    /** Текст заглушки, отображаемый при пустом списке. */
     emptyTitle: string;
 }
 
 /**
- * Список сообществ с заголовком.
- * @param communitiesList - массив сообществ для отображения.
- * @param title - заголовок секции.
- * @param className - дополнительный CSS-класс.
- * @param emptyTitle - Текст если список сообществ пустой.
- * @param props - остальные пропсы `div`.
+ * Список сообществ с заголовком секции.
+ *
+ * При пустом списке отображает заглушку с текстом.
+ * Каждое сообщество отрисовывается через {@link CommunityItem}.
  */
 export const CommunitiesList = ({
     communitiesList,

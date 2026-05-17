@@ -1,6 +1,13 @@
 import React from "react";
 
-/** Закрывает модальное окно альбома с анимацией и сбрасывает список выбранных постов. */
+/**
+ * Закрывает модальное окно альбома с анимацией и сбрасывает список выбранных постов.
+ *
+ * @param setIsDisappearring - Сеттер анимации закрытия модального окна.
+ * @param transitionTime - Длительность анимации закрытия в миллисекундах.
+ * @param setIsShowChangeLanguage - Сеттер видимости модального окна.
+ * @param setSelectedPosts - Сеттер списка выбранных публикаций.
+ */
 export function closeButtonClickHandler(
     setIsDisappearring: React.Dispatch<React.SetStateAction<boolean>>,
     transitionTime: number,

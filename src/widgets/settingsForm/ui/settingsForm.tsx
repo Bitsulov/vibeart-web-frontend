@@ -11,16 +11,21 @@ import {useWindowWidth} from "shared/hooks/useWindowWidth";
 import {StylizedButton} from "features/stylizedButton";
 import {useDispatch} from "react-redux";
 
+/** Свойства компонента {@link SettingsForm}. */
 interface SettingsFormProps extends ComponentPropsWithoutRef<"form"> {
+    /** Текущие данные пользователя, используемые для предпросмотра аватара и имени в полях. */
     userInfo: Partial<UserType>;
+    /** Функция обновления данных пользователя для обновления предпросмотра при изменении полей. */
     setUserInfo: Dispatch<SetStateAction<Partial<UserType>>>;
 }
 
 /**
- * Форма настроек профиля пользователя: аватар, имя, уникальный id и описание.
+ * Форма редактирования профиля пользователя: аватар, имя, имя пользователя и описание.
  *
- * @param userInfo - Текущие данные пользователя (аватар, имя).
- * @param setUserInfo - Обновляет предпросмотр данных при изменении аватара.
+ * Использует react-hook-form для валидации: имя — обязательно (3–20 символов),
+ * имя пользователя — 2–10 символов, описание — не более 200 символов.
+ * Текст кнопки отправки адаптируется под ширину экрана.
+ * При успехе вызывается {@link submitValidHandler}, при ошибке — {@link submitInvalidHandler}.
  */
 export const SettingsForm = ({
     userInfo,

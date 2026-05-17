@@ -1,11 +1,21 @@
 import type {UserType} from "../lib/types";
 
 /**
- * Фабричная функция для создания объекта пользователя.
- * Добавляет символ `@` к имени пользователя.
+ * Фабричная функция для создания нормализованного объекта пользователя.
  *
- * @param user - Объект `UserType` с данными пользователя.
+ * Применяет следующие преобразования:
+ * - Добавляет символ `@` к полю `username` (например, `"johndoe"` → `"@johndoe"`).
+ * - Устанавливает значения по умолчанию для необязательных полей.
+ *
+ * @param user - Данные пользователя, соответствующие типу `UserType`.
  * @returns Нормализованный объект пользователя.
+ *
+ * @example
+ * const user = createUser({ ULID: "01ARZ...", email: "a@b.com",
+ *   username: "johndoe", createdAt: "2026-01-01T00:00:00.000Z",
+ *   trustStatus: "trust", isAuthenticated: true, isBlocked: false,
+ *   onlineStatus: "online" });
+ * user.username // "@johndoe"
  */
 export function createUser({
     id = 0,

@@ -9,7 +9,7 @@ import type {UseFormReset} from "react-hook-form";
  * проверяет длину кода, показывает ошибку или завершает процесс.
  *
  * @param data - Данные формы ввода кода.
- * @param dispatch - Redux dispatch.
+ * @param dispatch - Функция записи данных в Redux.
  * @param setErrorCode - Переключает режим отображения ошибки в полях кода.
  * @param setIsEmailSent - Возвращает форму к шагу ввода email.
  * @param resetEmailForm - Сбрасывает форму изменения email.

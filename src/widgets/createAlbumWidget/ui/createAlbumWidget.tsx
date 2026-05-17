@@ -12,23 +12,29 @@ import {StylizedButton} from "features/stylizedButton";
 import type {ICreateAlbumForm} from "../lib/types";
 import type {AlbumType} from "entities/album";
 
+/** Свойства компонента {@link CreateAlbumWidget}. */
 interface CreateAlbumWidgetProps extends Omit<ComponentPropsWithoutRef<"form">, "onSubmit"> {
+    /** Дополнительный CSS-класс для корневого элемента формы. */
     className?: string;
+    /** Функция обновления частичного состояния альбома — используется для обновления предпросмотра. */
     setAlbumInfo: Dispatch<SetStateAction<Partial<AlbumType>>>;
+    /** Загруженный файл обложки альбома. */
     loadedFile: File | undefined;
+    /** Функция обновления загруженного файла обложки. */
     setLoadedFile: Dispatch<SetStateAction<File | undefined>>;
+    /** Функция, вызываемая после успешной валидации формы. Получает функцию навигации как аргумент. */
     onSubmit: (navigation: () => void) => void;
+    /** Функция обновления признака ошибки загрузки изображения. */
     setIsErrorImg: Dispatch<SetStateAction<boolean>>;
 }
 
 /**
- * Форма создания альбома: загрузка обложки, поля названия и описания.
+ * Форма создания альбома с полями загрузки обложки, названия и описания.
  *
- * @param className - Дополнительный CSS-класс.
- * @param setAlbumInfo - Сеттер данных альбома для обновления preview.
- * @param loadedFile - Загруженный файл обложки альбома.
- * @param setLoadedFile - Сеттер загруженного файла обложки.
- * @param onSubmit - Callback, вызываемый после попытки отправки формы.
+ * Использует react-hook-form для валидации: название обязательно (не более 15 символов),
+ * описание — не более 200 символов. Подписи полей и кнопка отправки адаптируются
+ * под ширину экрана. При успешной отправке вызывается {@link submitValidHandler},
+ * при ошибке валидации — {@link submitInvalidHandler}.
  */
 export const CreateAlbumWidget = ({
     className = "",

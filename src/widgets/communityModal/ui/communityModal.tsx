@@ -3,7 +3,8 @@ import {closeButtonClickHandler} from "../model/closeButtonClickHandler";
 import clsx from "clsx";
 import {modalClickHandler} from "../model/modalClickHandler";
 import {StylizedButton} from "features/stylizedButton";
-import React, {type ComponentPropsWithoutRef, useState} from "react";
+import { useState } from "react";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import {useTranslation} from "react-i18next";
 import {defaultTransitionTime} from "shared/const/const";
 import type {UserType} from "entities/user";
@@ -12,23 +13,28 @@ import {getLocalTimeString} from "shared/lib/getLocalTimeString";
 import {useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
 
+/** Свойства компонента {@link CommunityModal}. */
 interface CommunityModalProps extends ComponentPropsWithoutRef<"dialog"> {
+    /** Признак того, что модальное окно в данный момент открыто. */
     isShow: boolean;
-    setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+    /** Функция обновления признака видимости модального окна. */
+    setIsShow: Dispatch<SetStateAction<boolean>>;
+    /** Описание сообщества. */
     description: string;
+    /** Дата создания сообщества в формате ISO 8601. */
     createdAt: string;
+    /** Объект владельца сообщества. */
     owner: UserType;
+    /** Список администраторов сообщества. */
     admins: UserType[];
 }
 
-/** Модальное окно с информацией о сообществе: описание, владелец, администраторы и дата создания.
+/**
+ * Модальное окно с подробной информацией о сообществе.
  *
- * @param isShow - Признак видимости модального окна.
- * @param setIsShow - Сеттер состояния видимости.
- * @param description - Описание сообщества.
- * @param createdAt - Дата создания сообщества (ISO-строка).
- * @param owner - Объект владельца сообщества.
- * @param admins - Список администраторов сообщества.
+ * Отображает описание, карточку владельца и список администраторов через {@link CommunityModalUserItem},
+ * а также дату создания сообщества, отформатированную через {@link getLocalTimeString}.
+ * Закрывается по клику на фон или кнопку «Закрыть» с анимацией исчезновения.
  */
 export const CommunityModal = ({
     isShow,
