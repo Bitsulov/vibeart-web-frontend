@@ -6,7 +6,6 @@ import {Register} from "pages/register";
 import {Agreement} from "pages/agreement";
 import {Policy} from "pages/policy";
 import {Contacts} from "pages/contacts";
-import {Rules} from "pages/rules";
 import {Profile} from "pages/profile";
 import {Gallery} from "pages/gallery";
 import {Chats} from "pages/chats";
@@ -56,7 +55,6 @@ export const RouterProvider = () => {
             <Route path="/agreement" element={<Agreement />} />
             <Route path="/policy" element={<Policy />} />
             <Route path="/contacts" element={<Contacts />} />
-            <Route path="/rules" element={<Rules />} />
             <Route path="*" element={<Error />} />
         </Routes>
 	)
