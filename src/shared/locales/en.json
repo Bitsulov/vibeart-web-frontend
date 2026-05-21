@@ -121,7 +121,8 @@
     "changePassword": "Change password",
     "saveCommunity": "Save entered data",
     "addAdmin": "Add {{name}} as administrator",
-    "deleteAdmin": "Cancel adding {{name}} as administrator"
+    "deleteAdmin": "Cancel adding {{name}} as administrator",
+    "sendReport": "Send a report to the administration"
   },
 
   "hint": {
@@ -158,7 +159,10 @@
     "requiredPassword": "Enter password",
     "notSamePasswords": "Passwords do not match",
     "wrongCodeLength": "Code must be 6 digits",
-    "samePasswords": "Old and new passwords match"
+    "samePasswords": "Old and new passwords match",
+    "emptyReport": "Enter message text",
+    "longReport": "Message is too long",
+    "reportSent": "Message sent successfully"
   },
 
   "modal": {
@@ -232,7 +236,8 @@
     "communities": "Communities | VibeArt",
     "community": "Community | VibeArt",
     "postCreate": "Create Post | VibeArt",
-    "communityCreate": "Create Community | VibeArt"
+    "communityCreate": "Create Community | VibeArt",
+    "contacts": "Contact Us | VibeArt"
   },
 
   "description": {
@@ -253,7 +258,8 @@
     "postCreate": "Create and publish your artwork on VibeArt. Upload an image, add a title, description, and tags to share your creative work with the community.",
     "albumCreate": "Create and organize your artwork collection on VibeArt. Upload a cover image, add a title and description to share your creative album with the community.",
     "settings": "Manage your VibeArt profile: edit your name, avatar, and bio. Customize your page so the community sees you as you truly are.",
-    "communityCreate": "Create your own creative community on VibeArt. Add a photo, name, description, and unique identifier to bring like-minded people together around a shared idea."
+    "communityCreate": "Create your own creative community on VibeArt. Add a photo, name, description, and unique identifier to bring like-minded people together around a shared idea.",
+    "contacts": "Use this form to send requests, report bugs, or submit suggestions. You can also write to us directly via email."
   },
 
   "emailChange": {
@@ -438,6 +444,12 @@
     "tagsTitle": "Add tags",
     "submitTextMobile": "Create",
     "submitTextDesktop": "Create post"
+  },
+
+  "contacts": {
+    "title": "Contact us",
+    "description": "Use this form to send requests, report bugs, or submit suggestions. You can also write to us at {{email}}",
+    "textPlaceholder": "Enter your message"
   },
 
   "policy": {
