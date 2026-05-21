@@ -8,7 +8,7 @@ import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import {useTranslation} from "react-i18next";
 import {defaultTransitionTime} from "shared/const/const";
 import type {UserType} from "entities/user";
-import {CommunityModalUserItem} from "features/communityModalUserItem";
+import {CommunityUserItem} from "features/communityUserItem";
 import {getLocalTimeString} from "shared/lib/getLocalTimeString";
 import {useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
@@ -32,7 +32,7 @@ interface CommunityModalProps extends ComponentPropsWithoutRef<"dialog"> {
 /**
  * Модальное окно с подробной информацией о сообществе.
  *
- * Отображает описание, карточку владельца и список администраторов через {@link CommunityModalUserItem},
+ * Отображает описание, карточку владельца и список администраторов через {@link CommunityUserItem}
  * а также дату создания сообщества, отформатированную через {@link getLocalTimeString}.
  * Закрывается по клику на фон или кнопку «Закрыть» с анимацией исчезновения.
  */
@@ -75,7 +75,7 @@ export const CommunityModal = ({
                             <p className={c.description}>{description}</p>
                             <div className={c.text}>
                                 <h3 className={c.text_title}>{t("community.owner")}</h3>
-                                <CommunityModalUserItem
+                                <CommunityUserItem
                                     ULID={owner.ULID}
                                     imageUrl={owner.avatarUrl}
                                     name={owner.name}
@@ -86,7 +86,7 @@ export const CommunityModal = ({
                                 <h3 className={c.text_title}>{t("community.admins")}</h3>
                                 <div className={c.admins}>
                                     {admins.map(admin => (
-                                        <CommunityModalUserItem
+                                        <CommunityUserItem
                                             key={`user ${admin.ULID}`}
                                             imageUrl={admin.avatarUrl}
                                             name={admin.name}
