@@ -55,6 +55,10 @@ interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
     avatarAlt?: string;
     /** URL текущего аватара для предпросмотра (режим `"avatar"`). */
     avatarUrl?: string;
+    /** Имя поля сущности, в которое записывается URL аватара. По умолчанию `"avatarUrl"`. */
+    avatarFieldName?: string;
+    /** Признак обязательности поля. Счётчик подсвечивается при пустом значении ниже минимума. */
+    required?: boolean;
 }
 
 /**
@@ -80,6 +84,8 @@ export const SettingsItem = ({
     placeholderClassName = "",
     avatarAlt = "avatar",
     avatarUrl = "",
+    avatarFieldName = "avatarUrl",
+    required = false,
     id,
     ...props
 }: SettingsItemProps) => {
@@ -87,7 +93,7 @@ export const SettingsItem = ({
 
     const isText = type === "input" || type === "textarea" || type === "id";
     const isLimitOutMore = maxLength ? value?.length > maxLength : false;
-    const isLimitOutLess = minLength ?  value?.length < minLength : false;
+    const isLimitOutLess = minLength ? value?.length < minLength && (required || value.length > 0) : false;
 
     const inputLoadRef = useRef<HTMLInputElement>(null);
 
@@ -183,7 +189,7 @@ export const SettingsItem = ({
                                 {t("Load")}
                             </StylizedButton>
                             <button
-                                onClick={() => deleteAlbumButtonClickHandler(inputLoadRef, setEntityInfo, setLoadedFile)}
+                                onClick={() => deleteAlbumButtonClickHandler(inputLoadRef, setEntityInfo, setLoadedFile, avatarFieldName)}
                                 type="button"
                                 className={c.delete}
                             >
@@ -191,7 +197,7 @@ export const SettingsItem = ({
                             </button>
                         </div>
                         <input
-                            onChange={e => onChangeAvatarLoadHandler(e, setEntityInfo, setLoadedFile)}
+                            onChange={e => onChangeAvatarLoadHandler(e, setEntityInfo, setLoadedFile, avatarFieldName)}
                             ref={inputLoadRef}
                             style={{display: "none"}}
                             type="file"

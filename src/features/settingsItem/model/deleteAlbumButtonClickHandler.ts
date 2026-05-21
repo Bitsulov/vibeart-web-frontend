@@ -7,15 +7,17 @@ import type {UserType} from "entities/user";
  * @param inputLoadRef - Ref скрытого input[type=file].
  * @param setEntityInfo - Сеттер состояния сущности для сброса avatarUrl.
  * @param setLoadedFile - Сеттер загруженного файла.
+ * @param fieldName - Имя поля сущности, которое нужно очистить. По умолчанию `"avatarUrl"`.
  */
 export function deleteAlbumButtonClickHandler(
     inputLoadRef: RefObject<HTMLInputElement | null>,
     setEntityInfo: Dispatch<SetStateAction<Partial<UserType>>>,
-    setLoadedFile?: Dispatch<SetStateAction<File | undefined>>
+    setLoadedFile?: Dispatch<SetStateAction<File | undefined>>,
+    fieldName: string = "avatarUrl"
 ) {
     if(inputLoadRef.current) {
         inputLoadRef.current.value = "";
-        setEntityInfo(entity => ({...entity, avatarUrl: ""}))
+        setEntityInfo(entity => ({...entity, [fieldName]: ""}))
         setLoadedFile?.(undefined);
     }
 }
