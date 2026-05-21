@@ -35,6 +35,7 @@
   "Delete": "Delete",
   "Continue": "Continue",
   "Send": "Send",
+  "You": "(You)",
 
   "develop": {
     "title": "This page is under construction.",
@@ -58,7 +59,6 @@
     "goToUserAgreement": "Go to user agreement",
     "goToPolicy": "Go to privacy policy",
     "goToContacts": "Go to contact us page",
-    "goToRules": "Go to rules",
     "goToSettings": "Go to profile settings",
     "goToAlbum": "Go to album page {{name}}",
     "goToCreateAlbumPage": "Go to create album page",
@@ -118,7 +118,10 @@
     "backToChangeEmail": "Return to email change form",
     "changeEmail": "Change email",
     "backToChangePassword": "Return to password change form",
-    "changePassword": "Change password"
+    "changePassword": "Change password",
+    "saveCommunity": "Save entered data",
+    "addAdmin": "Add {{name}} as administrator",
+    "deleteAdmin": "Cancel adding {{name}} as administrator"
   },
 
   "hint": {
@@ -185,7 +188,6 @@
     "policy": "Privacy Policy",
     "post": "Post",
     "album": "Album",
-    "rules": "Rules",
     "community": "Community",
     "error": "$#!%^&*"
   },
@@ -229,7 +231,8 @@
     "chat": "Chat | VibeArt",
     "communities": "Communities | VibeArt",
     "community": "Community | VibeArt",
-    "postCreate": "Create Post | VibeArt"
+    "postCreate": "Create Post | VibeArt",
+    "communityCreate": "Create Community | VibeArt"
   },
 
   "description": {
@@ -249,7 +252,8 @@
     "community": "Creative community page: member posts, description, and group members. Join, share your works, and connect with creators who share your spirit.",
     "postCreate": "Create and publish your artwork on VibeArt. Upload an image, add a title, description, and tags to share your creative work with the community.",
     "albumCreate": "Create and organize your artwork collection on VibeArt. Upload a cover image, add a title and description to share your creative album with the community.",
-    "settings": "Manage your VibeArt profile: edit your name, avatar, and bio. Customize your page so the community sees you as you truly are."
+    "settings": "Manage your VibeArt profile: edit your name, avatar, and bio. Customize your page so the community sees you as you truly are.",
+    "communityCreate": "Create your own creative community on VibeArt. Add a photo, name, description, and unique identifier to bring like-minded people together around a shared idea."
   },
 
   "emailChange": {
@@ -399,6 +403,25 @@
     "textPlaceholder": "Enter description",
     "submitTextMobile": "Create",
     "submitTextDesktop": "Create album"
+  },
+
+  "createCommunity": {
+    "title": "Create community",
+    "avatarTitle": "Community photo",
+    "avatarDescription": "Recommended size 400x400px in JPG or PNG format. It will be displayed as a circle across all community activities.",
+    "nameTitle": "Name",
+    "nameDescription": "The official name of the community",
+    "namePlaceholder": "Name",
+    "textTitle": "Description",
+    "textDescriptionMobile": "Write a few words about the community",
+    "textDescriptionDesktop": "An informational block describing the goals, rules, and topics of the community. Helps users get a complete picture of the community's activities.",
+    "textPlaceholder": "Description",
+    "idTitle": "Unique ID",
+    "idDescription": "Unique identifier",
+    "idPlaceholder": "Enter ID",
+    "editDesktop": "Create community",
+    "editMobile": "Create",
+    "adminsTitle": "Add administrators"
   },
 
   "createPost": {

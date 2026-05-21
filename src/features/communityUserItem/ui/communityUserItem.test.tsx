@@ -1,7 +1,7 @@
 import {describe, it, expect} from "vitest";
 import {screen} from "@testing-library/react";
 import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunityModalUserItem} from "./communityModalUserItem";
+import {CommunityUserItem} from "./communityUserItem";
 
 const defaultProps = {
     imageUrl: "",
@@ -9,15 +9,15 @@ const defaultProps = {
     ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
 };
 
-describe("CommunityModalUserItem - элемент списка пользователей модального окна сообщества", () => {
+describe("CommunityUserItem - элемент списка пользователей сообщества", () => {
     it("Отображает имя пользователя", () => {
-        renderWithProviders(<CommunityModalUserItem {...defaultProps} />);
+        renderWithProviders(<CommunityUserItem {...defaultProps} />);
 
         expect(screen.getByText("Alice Wonder")).toBeInTheDocument();
     });
 
     it("Ссылка ведёт на страницу профиля пользователя", () => {
-        renderWithProviders(<CommunityModalUserItem {...defaultProps} />);
+        renderWithProviders(<CommunityUserItem {...defaultProps} />);
 
         const link = screen.getByRole("link");
 
@@ -25,7 +25,7 @@ describe("CommunityModalUserItem - элемент списка пользова�
     });
 
     it("Отображает аватар с корректным alt", () => {
-        renderWithProviders(<CommunityModalUserItem {...defaultProps} imageUrl="avatar.jpg" />);
+        renderWithProviders(<CommunityUserItem {...defaultProps} imageUrl="avatar.jpg" />);
 
         expect(screen.getByAltText("Alice Wonder")).toBeInTheDocument();
     });

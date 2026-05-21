@@ -23,18 +23,19 @@ npm run preview
 
 ## Команды
 
-| Команда                  | Описание                       |
-|--------------------------|--------------------------------|
-| `npm run dev`            | Запуск dev-сервера             |
-| `npm run build`          | Сборка проекта                 |
-| `npm run lint`           | Линтинг                        |
-| `npm run test`           | Юнит-тесты в watch-режиме      |
-| `npm run test:run`       | Однократный запуск юнит-тестов |
-| `npm run test:coverage`  | Покрытие (порог 65%)           |
-| `npm run test:ui`        | UI-дашборд Vitest              |
-| `npm run test:e2e`       | E2E-тесты (Playwright)         |
-| `npm run test:e2e:ui`    | UI-дашборд Playwright          |
-| `npm run test:e2e:debug` | Отладка E2E-тестов             |
+| Команда                  | Описание                         |
+|--------------------------|----------------------------------|
+| `npm run dev`            | Запуск dev-сервера               |
+| `npm run build`          | Сборка проекта                   |
+| `npm run lint`           | Линтинг                          |
+| `npm run test`           | Юнит-тесты в watch-режиме        |
+| `npm run test:run`       | Однократный запуск юнит-тестов   |
+| `npm run test:coverage`  | Покрытие (порог 70%)             |
+| `npm run test:ui`        | UI-дашборд Vitest                |
+| `npm run test:e2e`       | E2E-тесты (Playwright)           |
+| `npm run test:e2e:ui`    | UI-дашборд Playwright            |
+| `npm run test:e2e:debug` | Отладка E2E-тестов               |
+| `npm run test:all`       | lint + tsc + vitest + playwright |
 
 ---
 
@@ -57,7 +58,7 @@ npm run preview
 **Тестирование**
 - [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) — юнит и интеграционные тесты
 - [MSW](https://mswjs.io/) — мокирование API в тестах
-- [Playwright](https://playwright.dev/) — E2E-тесты
+- [Playwright](https://playwright.dev/) — E2E-тесты и визуальное регрессионное тестирование
 
 ---
 

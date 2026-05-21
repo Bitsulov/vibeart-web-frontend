@@ -9,6 +9,7 @@ import {showHint} from "../model/showHint";
 import {useDispatch} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {hideHint} from "../model/hideHint";
+import defaultAvatar from "shared/icons/icon-user.svg";
 
 /** Свойства компонента {@link CommunityItem}. */
 interface CommunitiesItemProps extends ComponentPropsWithoutRef<"article"> {
@@ -51,7 +52,7 @@ export const CommunityItem = ({
 		<article className={c.community} {...props}>
             <div className={c.info}>
                 <div className={c.left}>
-                    <img src={imageUrl} alt={title} className={c.img} />
+                    <img src={imageUrl || defaultAvatar} alt={title} className={c.img} />
                     <StatItem
                         onMouseEnter={() => showHint(dispatch, t("hint.subscribers"))}
                         onMouseLeave={() => hideHint(dispatch)}

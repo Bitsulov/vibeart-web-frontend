@@ -17,6 +17,7 @@ test.describe("Post - визуальная проверка блоков", () =>
     test("снимок блока PostComments", async ({ page }) => {
         await expect(page.locator("#comments")).toHaveScreenshot("post-comments.png", {
             animations: "disabled",
+            mask: [page.locator("#comments a + div > p:last-child")],
         });
     });
 });

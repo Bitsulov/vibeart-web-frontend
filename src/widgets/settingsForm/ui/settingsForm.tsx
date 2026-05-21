@@ -102,6 +102,7 @@ export const SettingsForm = ({
                     })}
                     isSubmitted={isSubmitted}
                     setEntityInfo={setUserInfo}
+                    required
                     id="avatar"
                 />
                 <SettingsItem
