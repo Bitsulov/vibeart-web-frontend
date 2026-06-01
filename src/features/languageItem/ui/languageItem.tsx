@@ -2,7 +2,6 @@ import c from "./languageItem.module.scss";
 import {useTranslation} from "react-i18next";
 import {changeLanguageClickHandler} from "../model/changeLanguageClickHandler";
 import {useDispatch} from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
 import React from "react";
 
 /** Свойства компонента {@link LanguageItem}. */
@@ -22,19 +21,16 @@ interface LanguageItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement
 /**
  * Пункт списка выбора языка интерфейса.
  *
- * При нажатии переключает язык через i18next, обновляет код языка
- * в хранилище Redux и перенаправляет пользователя на текущий маршрут
- * с обновлёнными параметрами.
+ * При нажатии переключает язык через i18next и обновляет код языка
+ * в хранилище Redux.
  */
 export const LanguageItem = ({ imageUrl, title, ariaLabel, alt, value, ...props }: LanguageItemProps) => {
     const { i18n, t } = useTranslation();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const location = useLocation();
 
 	return (
 		<button
-            onClick={() => changeLanguageClickHandler(value, i18n, dispatch, navigate, location)}
+            onClick={() => changeLanguageClickHandler(value, i18n, dispatch)}
             aria-label={t(ariaLabel)}
             className={c.button}
             {...props}
