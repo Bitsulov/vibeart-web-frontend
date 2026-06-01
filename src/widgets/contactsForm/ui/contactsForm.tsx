@@ -27,6 +27,7 @@ interface ContactsFormProps extends ComponentPropsWithoutRef<"section"> {
 export const ContactsForm = ({ userInfo: _userInfo, ...props }: ContactsFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const email = import.meta.env.VITE_EMAIL;
 
     const {register, setValue, handleSubmit, control, formState: {errors, isSubmitted}, /*setError*/} = useForm<IContactsForm>(
         {shouldFocusError: false}
@@ -41,7 +42,7 @@ export const ContactsForm = ({ userInfo: _userInfo, ...props }: ContactsFormProp
             <div className="container">
                 <div className={c.contacts_inner}>
                     <h1 className={c.title}>{t("contacts.title")}</h1>
-                    <p className={c.description}>{t("contacts.description", {email: "vibeartfake@mail.ru"})}</p>
+                    <p className={c.description}>{t("contacts.description", {email})}</p>
                     <form
                         onSubmit={handleSubmit(
                             () => submitValidHandler(setValue, dispatch),

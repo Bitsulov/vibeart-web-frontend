@@ -4,6 +4,8 @@ import {useTranslation} from "react-i18next";
 /** Текст пользовательского соглашения в виде структурированного списка. */
 export const AgreementText = ({ ...props }) => {
     const { t } = useTranslation();
+    const email = import.meta.env.VITE_EMAIL;
+    const url = import.meta.env.VITE_URL;
 
 	return (
 		<section className={c.agreement_text} {...props}>
@@ -11,14 +13,14 @@ export const AgreementText = ({ ...props }) => {
                 <h1 className={c.title}>{t("agreement.title")}</h1>
                 <p className={`${c.paragraph} ${c.bold}`}>{t("agreement.number")}</p>
                 <p className={c.paragraph}>
-                    {t("agreement.subtitle")}
+                    {t("agreement.subtitle", {url})}
                 </p>
                 <ol className={c.list}>
                     <li className={c.subtitle}>{t("agreement.title1")}
                         <ol className={c.list}>
                             <li className={c.list_item}>{t("agreement.text1_1")}</li>
                             <li className={c.list_item}>{t("agreement.text1_2")}</li>
-                            <li className={c.list_item}>{t("agreement.text1_3")}</li>
+                            <li className={c.list_item}>{t("agreement.text1_3", {url})}</li>
                             <li className={c.list_item}>{t("agreement.text1_4")}</li>
                         </ol>
                     </li>
@@ -37,13 +39,13 @@ export const AgreementText = ({ ...props }) => {
                                     <li className={c.list_item}>{t("agreement.text3_2_2")}</li>
                                 </ol>
                             </li>
-                            <li className={c.list_item}>{t("agreement.title3_3")}
+                            <li className={c.list_item}>{t("agreement.text3_3")}
                                 <ol className={c.list}>
                                     <li className={c.list_item}>{t("agreement.text3_3_1")}</li>
                                     <li className={c.list_item}>{t("agreement.text3_3_2")}</li>
                                 </ol>
                             </li>
-                            <li className={c.list_item}>{t("agreement.title3_4")}
+                            <li className={c.list_item}>{t("agreement.text3_4")}
                                 <ol className={c.list}>
                                     <li className={c.list_item}>{t("agreement.text3_4_1")}</li>
                                 </ol>
@@ -89,13 +91,13 @@ export const AgreementText = ({ ...props }) => {
                     <li className={c.subtitle}>{t("agreement.title7")}
                         <ol className={c.list}>
                             <li className={c.list_item}>{t("agreement.text7_1")}</li>
-                            <li className={c.list_item}>{t("agreement.text7_2")}</li>
+                            <li className={c.list_item}>{t("agreement.text7_2", {url})}</li>
                             <li className={c.list_item}>{t("agreement.text7_3")}</li>
                         </ol>
                     </li>
                     <h2 className={c.credits}>{t("agreement.title8")}</h2>
                     <p className={c.text}>{t("agreement.text8_1")}</p>
-                    <p className={c.text}>{t("agreement.text8_2")}</p>
+                    <p className={c.text}>{t("agreement.text8_2", {email})}</p>
                 </ol>
             </div>
 		</section>
