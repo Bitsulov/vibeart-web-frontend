@@ -6,13 +6,21 @@ import {hideToast} from "../model/toastSlice";
 import {toastIconsConfig} from "../config/toasticonsConfig";
 import {showingTimeConst} from "../const/showingTimeConst";
 import {defaultTransitionTime} from "shared/const/const";
-import {t} from "i18next";
+import {useTranslation} from "react-i18next";
 
-const transitionTime = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--transition-time"))
-    || defaultTransitionTime;
+const transitionTime = parseInt(
+    globalThis.getComputedStyle?.(globalThis.document?.documentElement)
+        ?.getPropertyValue("--transition-time")
+) || defaultTransitionTime;
 
-/** Всплывающее уведомление, очередь сохраняется в redux. Показывается поочерёдно по одному, скрывается автоматически. */
+/**
+ * Всплывающее уведомление.
+ *
+ * Очередь уведомлений хранится в хранилище Redux. Уведомления показываются
+ * поочерёдно по одному и скрываются автоматически по истечении времени показа.
+ */
 export const Toast = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const currentToast = useSelector(selectCurrentToast);
     const [visible, setVisible] = useState(false);

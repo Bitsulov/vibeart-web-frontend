@@ -39,8 +39,10 @@ export const AlbumModal = ({
     const { t } = useTranslation();
 
     const [isDisappearring, setIsDisappearring] = useState(false);
-    const transitionTime = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--transition-time"))
-        || defaultTransitionTime;
+    const transitionTime = parseInt(
+        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
+            ?.getPropertyValue("--transition-time")
+    ) || defaultTransitionTime;
 
     const pages = 10;
     const [currentPage, setCurrentPage] = useState(1);

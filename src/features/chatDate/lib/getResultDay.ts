@@ -1,15 +1,16 @@
-import i18n from "i18next";
+import type {TFunction} from "i18next";
 import {getLocalTimeString} from "shared/lib/getLocalTimeString";
 
 /**
  * Возвращает человекочитаемую метку дня для разделителя в чате.
  * Сегодня и вчера возвращает локализованные строки, остальные — полную дату.
  *
+ * @param t - Функция перевода из хука `useTranslation`.
  * @param language - Код языка (например, `"ru"`, `"en"`).
  * @param date - Дата сообщения в строковом формате.
  * @returns Строка `"Сегодня"`, `"Вчера"` или полная дата.
  */
-export function getResultDay(language: string, date: string): string {
+export function getResultDay(t: TFunction, language: string, date: string): string {
     const now = new Date();
     const target = new Date(date);
 
@@ -18,7 +19,7 @@ export function getResultDay(language: string, date: string): string {
         target.getMonth() === now.getMonth() &&
         target.getFullYear() === now.getFullYear();
 
-    if (isToday) return i18n.t("today");
+    if (isToday) return t("today");
 
     const yesterday = new Date(now);
     yesterday.setDate(now.getDate() - 1);
@@ -28,7 +29,7 @@ export function getResultDay(language: string, date: string): string {
         target.getMonth() === yesterday.getMonth() &&
         target.getFullYear() === yesterday.getFullYear();
 
-    if (isYesterday) return i18n.t("yesterday");
+    if (isYesterday) return t("yesterday");
 
     return getLocalTimeString(language, date);
 }

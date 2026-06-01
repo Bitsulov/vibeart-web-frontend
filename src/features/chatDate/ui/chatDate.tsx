@@ -2,6 +2,7 @@ import c from "./chatDate.module.scss";
 import {useSelector} from "react-redux";
 import {selectCurrentLanguage} from "entities/appConfig";
 import {getResultDay} from "../lib/getResultDay";
+import {useTranslation} from "react-i18next";
 import React from "react";
 
 /** Свойства компонента {@link ChatDate}. */
@@ -17,11 +18,12 @@ interface ChatDateProps extends React.HTMLAttributes<HTMLDivElement> {
  * Формат зависит от текущего языка интерфейса и вычисляется через {@link getResultDay}.
  */
 export const ChatDate = ({ date, ...props }: ChatDateProps) => {
+    const { t } = useTranslation();
     const currentLanguage = useSelector(selectCurrentLanguage);
 
 	return (
 		<div className={c.date} {...props}>
-			<p className={c.text}>{getResultDay(currentLanguage, date)}</p>
+			<p className={c.text}>{getResultDay(t, currentLanguage, date)}</p>
 		</div>
 	)
 }

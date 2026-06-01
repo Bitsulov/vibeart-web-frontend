@@ -40,7 +40,7 @@ export const ChatItem = ({
     const { t } = useTranslation();
     const currentLanguage = useSelector(selectCurrentLanguage);
 
-    const resultDate = getChatDate(currentLanguage, date);
+    const resultDate = getChatDate(t, currentLanguage, date);
 
 	return (
 		<Link

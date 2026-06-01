@@ -49,8 +49,10 @@ export const CommunityModal = ({
     const language = useSelector(selectCurrentLanguage);
 
     const [isDisappearring, setIsDisappearring] = useState(false);
-    const transitionTime = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--transition-time"))
-        || defaultTransitionTime;
+    const transitionTime = parseInt(
+        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
+            ?.getPropertyValue("--transition-time")
+    ) || defaultTransitionTime;
 
     const resultDate = getLocalTimeString(language, createdAt);
 

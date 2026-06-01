@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
  * @returns Ширина окна в пикселях (`window.innerWidth`).
  */
 const useWindowWidth = () => {
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState(0);
 
     useEffect(() => {
+        setWidth(window.innerWidth);
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
 

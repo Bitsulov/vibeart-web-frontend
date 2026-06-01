@@ -1,4 +1,4 @@
-import {describe, it, expect} from "vitest";
+import {describe, it, expect, vi} from "vitest";
 import {screen} from "@testing-library/react";
 import {renderWithProviders} from "shared/tests/renderWithProviders";
 import {Toast} from "./toast";
@@ -32,5 +32,23 @@ describe("Toast - всплывающее уведомление", () => {
 
         expect(screen.getByText("first message")).toBeInTheDocument();
         expect(screen.queryByText("second message")).not.toBeInTheDocument();
+    });
+
+    it("Удаляет уведомление из очереди после истечения времени показа", () => {
+        vi.useFakeTimers();
+
+        const { store } = renderWithProviders(<Toast />, {
+            preloadedState: {
+                toast: {queue: [{id: "1", message: "test.message", type: "error"}]}
+            }
+        });
+
+        expect(store.getState().toast.queue).toHaveLength(1);
+
+        vi.runAllTimers();
+
+        expect(store.getState().toast.queue).toHaveLength(0);
+
+        vi.useRealTimers();
     });
 });
