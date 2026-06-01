@@ -41,6 +41,7 @@ export const Header = ({
 }: HeaderProps) => {
     const { t } = useTranslation();
     const location = useLocation();
+    const email = import.meta.env.VITE_EMAIL;
 
     const currentWindowWidth = useWindowWidth();
 
@@ -52,7 +53,7 @@ export const Header = ({
     const HeaderButton = currentWindowWidth < 1200 ? BurgerButton : HeaderProfileButton;
 
     const mainLocation = useMemo(
-        () => pagesTitleConfig[location.pathname.split("/", 2)[1]] ?? "pages.error",
+        () => pagesTitleConfig[location.pathname.split("/")[2] ?? ""] ?? "pages.error",
         [location.pathname]
     );
 
@@ -74,10 +75,10 @@ export const Header = ({
                 {currentWindowWidth > 1200 &&
                     <a
                         aria-label={t("ariaLabel.goToEmail")}
-                        href="mailto:vibeartfake@mail.ru"
+                        href={`mailto:${email}`}
                         className={c.email_link}
                     >
-                        vibeartfake@mail.ru
+                        {email}
                     </a>
                 }
                 <HeaderLanguageButton
