@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const HOME_URL = "/";
+const HOME_URL = "/en/";
 
 test.describe("Home - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

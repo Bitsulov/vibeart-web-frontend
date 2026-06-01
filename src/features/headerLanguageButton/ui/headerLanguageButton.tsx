@@ -40,8 +40,10 @@ export const HeaderLanguageButton = ({
     const currentLanguage = useSelector(selectCurrentLanguage);
     const languageData = languagesConfig[currentLanguage] || languagesConfig["en"];
     const [isShowButton, setIsShowButton] = useState<boolean>(true);
-    const transitionTime = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--transition-time"))
-        || defaultTransitionTime;
+    const transitionTime = parseInt(
+        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
+            ?.getPropertyValue("--transition-time")
+    ) || defaultTransitionTime;
 
     useEffect(() => {
         if(isBurgerOpen) {

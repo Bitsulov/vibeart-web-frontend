@@ -36,6 +36,8 @@ export const CreatePost = () => {
 		<Layout>
             <title>{t("titles.postCreate")}</title>
             <meta name="description" content={t("description.postCreate")} />
+            <meta property="og:title" content={t("titles.postCreate")} />
+            <meta property="og:description" content={t("description.postCreate")} />
             <section className={c.content}>
                 <div className="container">
                     <div className={c.content_inner}>

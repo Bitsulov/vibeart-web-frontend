@@ -34,6 +34,8 @@ export const Profile = () => {
 		<Layout>
             <title>{t("titles.profile")}</title>
             <meta name="description" content={t("description.profile")} />
+            <meta property="og:title" content={t("titles.profile")} />
+            <meta property="og:description" content={t("description.profile")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&

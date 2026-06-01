@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const SETTINGS_URL = "/settings";
+const SETTINGS_URL = "/en/settings";
 
 test.describe("Settings - страница настроек профиля", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -57,6 +57,7 @@ test.describe("Settings - страница настроек профиля", () 
 
         test("Поле имени помечается невалидным при пустой отправке", async ({page}) => {
             await page.goto(SETTINGS_URL);
+            await page.waitForLoadState("networkidle");
 
             await page.getByRole("button", {name: "Save entered data"}).click();
 
@@ -65,6 +66,7 @@ test.describe("Settings - страница настроек профиля", () 
 
         test("Имя короче 3 символов показывает уведомление об ошибке", async ({page}) => {
             await page.goto(SETTINGS_URL);
+            await page.waitForLoadState("networkidle");
 
             await page.getByLabel("Enter name").fill("AB");
             await page.getByRole("button", {name: "Save entered data"}).click();
@@ -74,6 +76,7 @@ test.describe("Settings - страница настроек профиля", () 
 
         test("Имя длиннее 20 символов показывает уведомление об ошибке", async ({page}) => {
             await page.goto(SETTINGS_URL);
+            await page.waitForLoadState("networkidle");
 
             await page.getByLabel("Enter name").fill("A".repeat(21));
             await page.getByRole("button", {name: "Save entered data"}).click();
@@ -176,6 +179,7 @@ test.describe("Settings - страница настроек профиля", () 
 
         test("Пустой старый пароль помечается невалидным при отправке", async ({page}) => {
             await page.goto(SETTINGS_URL);
+            await page.waitForLoadState("networkidle");
 
             await page.getByRole("button", {name: "Continue"}).last().click();
 

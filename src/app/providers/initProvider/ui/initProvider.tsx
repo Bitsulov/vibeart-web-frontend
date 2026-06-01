@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import type { ReactNode } from "react";
-import {useTranslation} from "react-i18next";
-import {useDispatch} from "react-redux";
-import {setLanguage} from "entities/appConfig";
-import {principalUserMock, setUserInfo} from "entities/user";
-import {useLocation, useNavigate} from "react-router-dom";
-import {languagesConfig} from "widgets/layout";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage, selectCurrentLanguage } from "entities/appConfig";
+import { principalUserMock, setUserInfo } from "entities/user";
+import { useLocation, useNavigate, useMatches } from "react-router-dom";
+import { supportedLangs, defaultLang } from "shared/const/const";
 
 /** Свойства компонента {@link InitProvider}. */
 interface InitProviderProps {
@@ -14,19 +14,46 @@ interface InitProviderProps {
 }
 
 /**
- * Провайдер инициализации приложения: записывает данные пользователя в Redux-хранилище
- * и синхронизирует язык интерфейса с URL-параметром `lang`.
+ * Провайдер инициализации приложения.
  *
- * При первом монтировании записывает данные авторизованного пользователя в Redux через `setUserInfo`.
- * При каждом изменении адреса страницы проверяет параметр `lang` в строке запроса:
- * если отсутствует — определяет язык через i18n и добавляет его в URL;
- * если присутствует — устанавливает язык в i18n, Redux и атрибуте `lang` тега `<html>`.
+ * Выполняет две задачи:
+ *
+ * 1. **Инициализация пользователя.** При монтировании записывает данные
+ *    авторизованного пользователя в Redux-хранилище через {@link setUserInfo}.
+ *
+ * 2. **Синхронизация языка с URL.** При каждом изменении пути проверяет
+ *    языковой сегмент URL и приводит состояние приложения к согласованному
+ *    виду в следующем порядке:
+ *
+ *    - Если языковой сегмент отсутствует, выполняется навигация с добавлением
+ *      языка из текущего экземпляра i18n.
+ *    - Если языковой сегмент не входит в список поддерживаемых, выполняется
+ *      навигация с заменой сегмента на `"en"`.
+ *    - Если языковой сегмент отличается от значения в Redux, Redux и i18n
+ *      синхронизируются с URL.
+ *    - Если все значения совпадают, обновляется атрибут `lang` тега `<html>`.
+ *
+ * Языковой сегмент извлекается из совпадающих маршрутов через
+ * {@link useMatches}, что надёжнее прямого разбора `pathname`, так как
+ * учитывает, является ли первый сегмент именованным параметром `:lang`.
+ *
+ * @param props - Свойства компонента.
+ * @param props.children - Дочернее дерево, отрисовываемое внутри провайдера.
  */
 export const InitProvider = ({ children }: InitProviderProps) => {
     const { i18n } = useTranslation();
     const dispatch = useDispatch();
-    const location = useLocation();
+    const lang = useSelector(selectCurrentLanguage);
+    const { pathname } = useLocation();
     const navigate = useNavigate();
+
+    // Возвращает текущие активные маршруты
+    const matchesUrls = useMatches();
+
+    // Возвращает код текущего языка из пути текущего маршрута
+    const urlLangParam = matchesUrls
+        .map(m => m.params["lang"])
+        .find(l => l !== undefined);
 
     useEffect(() => {
         dispatch(setUserInfo({
@@ -51,30 +78,31 @@ export const InitProvider = ({ children }: InitProviderProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        const langParam = params.get('lang');
-
-        if(!langParam) {
-            const i18nLang = i18n.language.split("-", 1)[0];
-            const lang = document.documentElement.lang = languagesConfig[i18nLang]?.[4] || "en";
-            dispatch(setLanguage(lang));
-            params.set('lang', lang);
-            navigate({search: params.toString()}, {replace: true});
-        } else {
-            document.documentElement.lang = languagesConfig[langParam]?.[4] || "en";
-            dispatch(setLanguage(langParam));
-            i18n.changeLanguage(langParam)
-                .catch((er) => console.error("change language error:", er));
-            if(langParam !== document.documentElement.lang) {
-                params.set('lang', document.documentElement.lang);
-                navigate({search: params.toString()}, {replace: true});
+        // Заход на сайт без определенного языка
+        if (urlLangParam === undefined) {
+            navigate(`/${i18n.language}${pathname}`, { replace: true });
+        // Язык не поддерживается
+        } else if (!supportedLangs.includes(urlLangParam)) {
+            navigate(`/${defaultLang}${pathname.slice(1 + urlLangParam.length)}`, { replace: true });
+        // Сохранённый язык не совпадает с URL
+        } else if (urlLangParam !== lang) {
+            // Смена языка в интерфейсе
+            if (i18n.language === lang) {
+                navigate(`/${lang}${pathname.slice(1 + urlLangParam.length)}`, { replace: true });
+            // Первый заход, redux еще не синхронизирован
+            } else {
+                dispatch(setLanguage(urlLangParam));
+                i18n.changeLanguage(urlLangParam).catch((er) => console.error("change language error:", er));
+                document.documentElement.lang = urlLangParam;
             }
+        } else {
+            document.documentElement.lang = lang;
         }
-    }, [location, dispatch, i18n, navigate]);
+    }, [pathname, urlLangParam, lang, dispatch, i18n, navigate]);
 
-	return (
-		<>
+    return (
+        <>
             {children}
-		</>
-	)
-}
+        </>
+    );
+};

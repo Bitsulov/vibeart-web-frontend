@@ -39,6 +39,8 @@ export const Settings = () => {
 		<Layout>
             <title>{t("titles.settings")}</title>
             <meta name="description" content={t("description.settings")} />
+            <meta property="og:title" content={t("titles.settings")} />
+            <meta property="og:description" content={t("description.settings")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&

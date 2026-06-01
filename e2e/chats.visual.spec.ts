@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const CHATS_URL = "/chats";
+const CHATS_URL = "/en/chats";
 
 test.describe("Chats - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {
@@ -11,6 +11,7 @@ test.describe("Chats - визуальная проверка блоков", () =
     test("снимок блока ChatsList", async ({ page }) => {
         await expect(page.locator("main section").first()).toHaveScreenshot("chats-list.png", {
             animations: "disabled",
+            mask: [page.locator("[class*='date']")],
         });
     });
 });

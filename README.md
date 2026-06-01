@@ -8,6 +8,18 @@
 
 ## Быстрый старт
 
+Скопируй `.env.example` в `.env` и заполни переменные:
+
+| Переменная       | Описание                                |
+|------------------|-----------------------------------------|
+| `VITE_URL`       | Публичный URL сайта                     |
+| `VITE_API_BASE`  | Базовый URL API бэкенда                 |
+| `VITE_EMAIL`     | Контактный email, отображаемый на сайте |
+
+```bash
+cp .env.example .env
+```
+
 ### Режим разработки
 ```bash
 npm install
@@ -17,25 +29,28 @@ npm run dev
 ### Режим предпросмотра
 ```bash
 npm install
+npm run build
 npm run preview
 ```
+
 ---
 
 ## Команды
 
-| Команда                  | Описание                         |
-|--------------------------|----------------------------------|
-| `npm run dev`            | Запуск dev-сервера               |
-| `npm run build`          | Сборка проекта                   |
-| `npm run lint`           | Линтинг                          |
-| `npm run test`           | Юнит-тесты в watch-режиме        |
-| `npm run test:run`       | Однократный запуск юнит-тестов   |
-| `npm run test:coverage`  | Покрытие (порог 70%)             |
-| `npm run test:ui`        | UI-дашборд Vitest                |
-| `npm run test:e2e`       | E2E-тесты (Playwright)           |
-| `npm run test:e2e:ui`    | UI-дашборд Playwright            |
-| `npm run test:e2e:debug` | Отладка E2E-тестов               |
-| `npm run test:all`       | lint + tsc + vitest + playwright |
+| Команда                  | Описание                           |
+|--------------------------|------------------------------------|
+| `npm run dev`            | Запуск dev-сервера                 |
+| `npm run build`          | Сборка проекта                     |
+| `npm run lint`           | Линтинг                            |
+| `npm run typecheck`      | Проверка типов                     |
+| `npm run test`           | Юнит-тесты в watch-режиме          |
+| `npm run test:run`       | Однократный запуск юнит-тестов     |
+| `npm run test:coverage`  | Покрытие (порог 75%)               |
+| `npm run test:ui`        | UI-дашборд Vitest                  |
+| `npm run test:e2e`       | E2E-тесты (Playwright)             |
+| `npm run test:e2e:ui`    | UI-дашборд Playwright              |
+| `npm run test:e2e:debug` | Отладка E2E-тестов                 |
+| `npm run test:all`       | lint + tsc + vitest + playwright   |
 
 ---
 
@@ -43,6 +58,7 @@ npm run preview
 
 **Основное**
 - [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [React Router v7](https://reactrouter.com/) — роутинг и SSR
 - [Vite](https://vitejs.dev/) — сборщик
 - [SCSS Modules](https://sass-lang.com/) — стилизация
 
@@ -53,7 +69,7 @@ npm run preview
 - [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) — формы и валидация
 
 **Интернационализация**
-- [i18next](https://www.i18next.com/) — интернационализация (ru / en)
+- [i18next](https://www.i18next.com/) — интернационализация
 
 **Тестирование**
 - [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) — юнит и интеграционные тесты
@@ -73,7 +89,17 @@ npm run preview
 | `features/` | Пользовательские сценарии: логика + UI                 |
 | `widgets/`  | Композиции фич и сущностей для переиспользуемых секций |
 | `pages/`    | Полноэкранные представления из виджетов                |
-| `app/`      | Точка входа, провайдеры, Redux store                   |
+| `app/`      | Точка входа, провайдеры, Redux store, роутер           |
+
+---
+
+## SSR и роутинг
+
+Приложение использует React Router v7 в framework mode с серверным рендерингом (SSR).
+
+Маршруты имеют языковой префикс: `/ru/gallery`, `/en/profile`. Язык определяется автоматически из URL или заголовка `Accept-Language`. Корневой маршрут `/` перенаправляет на языковую версию.
+
+Файлы `robots.txt` и `sitemap.xml` генерируются автоматически как ресурсные маршруты React Router и включают `hreflang`-ссылки для всех языковых версий.
 
 ---
 
@@ -82,11 +108,11 @@ npm run preview
 Проект использует многоэтапный Dockerfile:
 
 - **Dev** — Node.js с Hot Module Replacement
-- **Prod** — оптимизированная сборка, раздаётся через Nginx
+- **Prod** — SSR-сервер Node.js + оптимизированная сборка
 
 ---
 
 ## Ссылки
 
 - [VibeArt](https://github.com/Bitsulov/VibeArt.git) — основной репозиторий
-- [VibeArt Backend](https://github.com/Bitsulov/vibeart-backend.git) — бэкенд
+- [VibeArt Backend](https://github.com/Bitsulov/vibeart-backend.git) — серверная часть

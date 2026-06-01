@@ -35,6 +35,7 @@
   "Delete": "Delete",
   "Continue": "Continue",
   "Send": "Send",
+  "Accept": "Accept",
   "You": "(You)",
 
   "develop": {
@@ -122,7 +123,8 @@
     "saveCommunity": "Save entered data",
     "addAdmin": "Add {{name}} as administrator",
     "deleteAdmin": "Cancel adding {{name}} as administrator",
-    "sendReport": "Send a report to the administration"
+    "sendReport": "Send a report to the administration",
+    "acceptCookies": "Accept cookies"
   },
 
   "hint": {
@@ -446,6 +448,11 @@
     "submitTextDesktop": "Create post"
   },
 
+  "cookies": {
+    "title": "Cookie usage",
+    "text": "We use cookies and process technical data to ensure the site works correctly and efficiently. By continuing to use the site, you agree to the terms of our <policy>Privacy Policy</policy> and <agreement>User Agreement</agreement>."
+  },
+
   "contacts": {
     "title": "Contact us",
     "description": "Use this form to send requests, report bugs, or submit suggestions. You can also write to us at {{email}}",
@@ -463,17 +470,17 @@
     "title5": "FINAL PROVISIONS",
     "text1_1": "This Personal Data Processing Policy (hereinafter referred to as the Policy) is drafted in accordance with the requirements of Federal Law No. 152-FZ “On Personal Data” and defines the procedure for processing personal data and measures to ensure the security of personal data taken by an individual Bitsulov Roman Alexandrovich, address: Russian Federation, Nizhny Novgorod Region, Vadsky Municipal District, village of Vad (hereinafter referred to as the Operator).",
     "text1_2": "The Operator considers the observance of human and civil rights and freedoms in the processing of personal data, including the protection of the right to privacy and personal and family secrets, to be its most important goal and condition for carrying out its activities.",
-    "text1_3": "This Policy applies to all information that the Operator may obtain about visitors of the website https://vibe-art.ru/ (hereinafter referred to as the Website).",
+    "text1_3": "This Policy applies to all information that the Operator may obtain about visitors of the website {{url}} (hereinafter referred to as the Website).",
     "text1_4": "Users of the Website may be persons who have reached the age of 14. Persons under 18 use the Website with the consent of their legal representatives.",
     "text2_1": "Automated processing of personal data – processing of personal data using computer technology.",
     "text2_2": "Blocking of personal data – temporary suspension of personal data processing (except when processing is necessary to clarify personal data).",
-    "text2_3": "Website – a set of graphic and informational materials, as well as computer programs and databases ensuring their availability on the Internet at the network address https://vibe-art.ru/.",
+    "text2_3": "Website – a set of graphic and informational materials, as well as computer programs and databases ensuring their availability on the Internet at the network address {{url}}.",
     "text2_4": "Personal data information system – a set of personal data contained in databases and the information technologies and technical means ensuring their processing.",
     "text2_5": "Depersonalization of personal data – actions as a result of which it is impossible to determine, without additional information, the belonging of personal data to a specific User or other personal data subject.",
     "text2_6": "Processing of personal data – any action (operation) or set of actions (operations) performed with or without automation tools on personal data, including collection, recording, systematization, accumulation, storage, clarification (updating, modification), extraction, use, transfer (distribution, provision, access), depersonalization, blocking, deletion, and destruction of personal data.",
     "text2_7": "Operator – a state authority, municipal authority, legal entity, or individual that independently or jointly with others organizes and/or carries out the processing of personal data and determines the purposes of personal data processing, the composition of personal data to be processed, and the actions (operations) performed on personal data.",
-    "text2_8": "Personal data – any information relating directly or indirectly to an identified or identifiable User of the website https://vibe-art.ru/.",
-    "text2_9": "User – any visitor of the website https://vibe-art.ru/ who has reached the age of 14.",
+    "text2_8": "Personal data – any information relating directly or indirectly to an identified or identifiable User of the website {{url}}.",
+    "text2_9": "User – any visitor of the website {{url}} who has reached the age of 14.",
     "text2_10": "Provision of personal data – actions aimed at disclosing personal data to a specific person or a specific group of persons.",
     "text2_11": "Dissemination of personal data – any actions aimed at disclosing personal data to an indefinite number of persons or making personal data accessible to an unlimited number of persons.",
     "text2_12": "Cross-border transfer of personal data – transfer of personal data to the territory of a foreign state to a foreign authority, foreign individual, or foreign legal entity.",
@@ -482,9 +489,9 @@
     "text3_1_1": "registration and authentication of Users on the Website;",
     "text3_1_2": "establishing feedback with the User, including sending notifications, requests related to the use of the Website, and processing User inquiries and requests;",
     "text3_1_3": "collecting information about User actions on the Website, improving the quality of the Website and its content (anonymized data).",
-    "text3_2": "The Operator has the right to send the User notifications about new products and services, special offers, and various events. The User may opt out of receiving informational messages at any time by sending an email to vibeartfake@mail.ru with the subject “Unsubscribe from notifications”.",
+    "text3_2": "The Operator has the right to send the User notifications about new products and services, special offers, and various events. The User may opt out of receiving informational messages at any time by sending an email to {{email}} with the subject “Unsubscribe from notifications”.",
     "text3_3": "Anonymized User data collected using internet statistics services is used to collect information about User actions on the Website and to improve the quality of the Website and its content.",
-    "text4_1": "The Operator processes the User's personal data only if it is filled in and/or submitted by the User independently through special forms located on the website https://vibe-art.ru/. By filling out the relevant forms and/or submitting personal data, the User agrees to this Policy.",
+    "text4_1": "The Operator processes the User's personal data only if it is filled in and/or submitted by the User independently through special forms located on the website {{url}}. By filling out the relevant forms and/or submitting personal data, the User agrees to this Policy.",
     "text4_2": "The Operator processes the following personal data of the User:",
     "text4_2_1": "username;",
     "text4_2_2": "email address;",
@@ -500,15 +507,15 @@
     "text4_4_3": "processing is necessary for the performance of a contract to which the data subject is a party or beneficiary.",
     "text4_5": "Personal data is processed and stored until the purposes of processing are achieved or until the User's account is deleted.",
     "text4_6": "The User has the right to receive information about the processing of their personal data and to request clarification, blocking, or deletion.",
-    "text5_1": "The User may obtain any clarifications regarding the processing of their personal data by contacting the Operator via email vibeartfake@mail.ru.",
+    "text5_1": "The User may obtain any clarifications regarding the processing of their personal data by contacting the Operator via email {{email}}.",
     "text5_2": "Any changes to the personal data processing policy will be reflected in this document. The Policy is valid indefinitely until replaced by a new version.",
-    "text5_3": "The current version of the Policy is publicly available on the Internet at https://vibe-art.ru/policy."
+    "text5_3": "The current version of the Policy is publicly available on the Internet at {{url}}/policy."
   },
 
   "agreement": {
     "title": "USER AGREEMENT (PUBLIC OFFER)",
     "number": "Revised on 16.03.2026",
-    "subtitle": "This User Agreement (hereinafter referred to as the “Agreement”) is a public offer and defines the terms of use of materials and services available on the website located at: https://vibe-art.ru (hereinafter referred to as the “Website”) by visitors and users of this Website (hereinafter referred to as the “Users”).",
+    "subtitle": "This User Agreement (hereinafter referred to as the “Agreement”) is a public offer and defines the terms of use of materials and services available on the website located at: {{url}} (hereinafter referred to as the “Website”) by visitors and users of this Website (hereinafter referred to as the “Users”).",
     "title1": "TERMS AND DEFINITIONS",
     "title2": "SUBJECT OF THE AGREEMENT",
     "title3": "RIGHTS AND OBLIGATIONS OF THE PARTIES",
@@ -519,7 +526,7 @@
     "title8": "ADMINISTRATION DETAILS",
     "text1_1": "Website Administration – an individual Bitsulov Roman Alexandrovich, address: Russian Federation, Nizhny Novgorod Region, Vadsky Municipal District, village of Vad, who is the owner of the Website.",
     "text1_2": "User – an individual who has reached the age of 14 and uses the Website. Persons under 18 use the Website with the consent of their legal representatives.",
-    "text1_3": "Website – a set of software for computers and other information contained in an information system, access to which is provided via the Internet under the domain name https://vibe-art.ru.",
+    "text1_3": "Website – a set of software for computers and other information contained in an information system, access to which is provided via the Internet under the domain name {{url}}.",
     "text1_4": "Acceptance of the offer – full and unconditional acceptance by the User of the terms of this Agreement by using the Website (viewing pages, registration, submitting forms, etc.).",
     "text2_1": "The Website Administration grants the User the right to use the Website and its services on an “as is” basis. The Administration does not guarantee that the Website will meet the User’s expectations.",
     "text2_2": "This Agreement is a legally binding document for both the User and the Website Administration.",
@@ -554,9 +561,9 @@
     "text6_3": "All disputes shall be resolved through negotiations.",
     "text6_4": "Dispute resolution procedure: pre-trial claims process. Response time is 30 calendar days. Disputes are considered at the location of the Administration.",
     "text7_1": "This Agreement comes into force from the moment the User starts using the Website and remains valid indefinitely.",
-    "text7_2": "The current version of the Agreement is always available at: https://vibe-art.ru/agreement.",
+    "text7_2": "The current version of the Agreement is always available at: {{url}}/agreement.",
     "text7_3": "All matters not covered by this Agreement shall be governed by the laws of the Russian Federation.",
     "text8_1": "Individual Bitsulov Roman Alexandrovich, address: Russian Federation, Nizhny Novgorod Region, Vadsky Municipal District, village of Vad",
-    "text8_2": "Contact email: vibeartfake@mail.ru"
+    "text8_2": "Contact email: {{email}}"
   }
 }

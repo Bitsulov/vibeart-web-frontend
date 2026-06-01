@@ -1,9 +1,6 @@
 import {describe, it, expect, vi, afterEach} from "vitest";
 import {getResultDay} from "./getResultDay";
-
-vi.mock("i18next", () => ({
-    default: { t: (key: string) => key },
-}));
+import i18n from "shared/tests/i18n";
 
 const FIXED_NOW = new Date("2026-04-15T12:00:00.000Z");
 
@@ -16,7 +13,7 @@ describe("getResultDay - возвращает строку для отображ
         vi.useFakeTimers();
         vi.setSystemTime(FIXED_NOW);
 
-        const result = getResultDay("ru", "2026-04-15T08:00:00.000Z");
+        const result = getResultDay(i18n.t, "ru", "2026-04-15T08:00:00.000Z");
         expect(result).toBe("today");
     });
 
@@ -24,7 +21,7 @@ describe("getResultDay - возвращает строку для отображ
         vi.useFakeTimers();
         vi.setSystemTime(FIXED_NOW);
 
-        const result = getResultDay("ru", "2026-04-14T10:00:00.000Z");
+        const result = getResultDay(i18n.t, "ru", "2026-04-14T10:00:00.000Z");
         expect(result).toBe("yesterday");
     });
 
@@ -32,7 +29,7 @@ describe("getResultDay - возвращает строку для отображ
         vi.useFakeTimers();
         vi.setSystemTime(FIXED_NOW);
 
-        const result = getResultDay("ru", "2024-01-15T14:23:00.000Z");
+        const result = getResultDay(i18n.t, "ru", "2024-01-15T14:23:00.000Z");
         expect(typeof result).toBe("string");
         expect(result).not.toBe("today");
         expect(result).not.toBe("yesterday");

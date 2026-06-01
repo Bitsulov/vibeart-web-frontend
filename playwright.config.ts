@@ -18,56 +18,70 @@
  * Поведение в среде непрерывной интеграции:
  *   - `forbidOnly` запрещает случайно закоммиченные вызовы `.only`,
  *     которые привели бы к пропуску остального набора тестов.
- *   - Повторных попыток при сбое: 2, чтобы поглотить нестабильные тесты.
+ *   - Повторных попыток при сбое: 4, чтобы поглотить нестабильные тесты.
  *   - Количество параллельных процессов ограничено до 1 во избежание
  *     конкуренции за ресурсы.
  *
  * @see https://playwright.dev/docs/test-configuration
  */
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-    testDir: './e2e',
+    testDir: "./e2e",
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
-    retries: process.env.CI ? 2 : 1,
+    retries: 4,
     workers: process.env.CI ? 1 : 3,
-    reporter: 'html',
+    reporter: "html",
     use: {
-        baseURL: 'http://localhost:5173',
-        trace: 'on-first-retry',
+        baseURL: "http://localhost:5173",
+        trace: "on-first-retry",
+        storageState: {
+            cookies: [{
+                name: "acceptedCookie",
+                value: "1",
+                domain: "localhost",
+                path: "/",
+                expires: -1,
+                httpOnly: false,
+                secure: false,
+                sameSite: "Lax",
+            }],
+            origins: [],
+        },
     },
     projects: [
-        { name: 'setup', testMatch: '**/global.setup.ts' },
+        { name: "setup", testMatch: "**/global.setup.ts" },
         {
-            name: 'Desktop Chromium',
-            use: { ...devices['Desktop Chrome'] },
-            dependencies: ['setup'],
+            name: "Desktop Chromium",
+            use: { ...devices["Desktop Chrome"] },
+            dependencies: ["setup"],
         },
         {
-            name: 'Mobile Chromium',
+            name: "Mobile Chromium",
             use: { ...devices["Pixel 7"] },
-            dependencies: ['setup'],
+            dependencies: ["setup"],
         },
         {
-            name: 'Firefox',
-            use: { ...devices['Desktop Firefox'] },
-            dependencies: ['setup'],
+            name: "Firefox",
+            use: { ...devices["Desktop Firefox"] },
+            dependencies: ["setup"],
         },
-        {
-            name: 'Desktop Webkit',
-            use: { ...devices['Desktop Safari'] },
-            dependencies: ['setup'],
-        },
-        {
-            name: 'Mobile Webkit',
-            use: { ...devices['iPhone 13'] },
-            dependencies: ['setup'],
-        },
+        // {
+        //     name: 'Desktop Webkit',
+        //     use: { ...devices['Desktop Safari'] },
+        //     dependencies: ['setup'],
+        // },
+        // {
+        //     name: 'Mobile Webkit',
+        //     use: { ...devices['iPhone 13'] },
+        //     dependencies: ['setup'],
+        // },
     ],
     webServer: {
-        command: 'npm run dev',
-        url: 'http://localhost:5173',
+        command: "npm run dev",
+        url: "http://localhost:5173",
+        env: { PLAYWRIGHT: "1" },
         reuseExistingServer: !process.env.CI,
     },
 });

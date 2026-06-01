@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const SETTINGS_URL = "/settings";
+const SETTINGS_URL = "/en/settings";
 
 test.describe("Settings - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

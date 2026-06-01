@@ -1,25 +1,17 @@
 import type { i18n } from "i18next";
-import type {Dispatch} from "@reduxjs/toolkit";
-import {setLanguage} from "entities/appConfig";
-import type {NavigateFunction} from "react-router-dom";
-import type {Location} from "react-router-dom";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { setLanguage } from "entities/appConfig";
 
 /**
- * Меняет язык интерфейса: обновляет i18n, язык в глобальном хранилище и параметр `lang` в URL.
+ * Меняет язык интерфейса: обновляет i18n и язык в Redux-хранилище.
  *
  * @param lang - Код нового языка по стандарту BCP 47 (например, `"ru"`, `"en"`).
  * @param i18n - Экземпляр i18next.
  * @param dispatch - Функция записи данных в Redux.
- * @param navigate - Функция навигации React Router.
- * @param location - Текущий объект `location` React Router.
  */
-export function changeLanguageClickHandler(lang: string, i18n: i18n, dispatch: Dispatch, navigate: NavigateFunction, location: Location) {
+export function changeLanguageClickHandler(lang: string, i18n: i18n, dispatch: Dispatch) {
     i18n.changeLanguage(lang)
         .catch((er) => console.error("change language error:", er));
 
     dispatch(setLanguage(lang));
-
-    const params = new URLSearchParams(location.search);
-    params.set('lang', lang);
-    navigate({search: params.toString()}, {replace: true});
 }

@@ -7,30 +7,18 @@ import {useSelector} from "react-redux";
 import {PostComments} from "widgets/postComments";
 import {commentsMock} from "entities/comment";
 import {useTranslation} from "react-i18next";
-import {useEffect} from "react";
-import {useLocation} from "react-router-dom";
 
-/**
- * Страница публикации с карточкой поста и секцией комментариев.
- *
- * При наличии якоря в URL (например, `#comments`) после монтирования
- * выполняет плавную прокрутку к соответствующему элементу страницы.
- */
+/** Страница публикации с карточкой поста и секцией комментариев. */
 export const Post = () => {
     const userInfo = useSelector(selectUserInfo);
     const { t } = useTranslation();
-    const { hash } = useLocation();
-
-    useEffect(() => {
-        if (hash) {
-            document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [hash]);
 
     return (
         <Layout>
             <title>{t("titles.post")}</title>
             <meta name="description" content={t("description.post")} />
+            <meta property="og:title" content={t("titles.post")} />
+            <meta property="og:description" content={t("description.post")} />
             <PostCard
                 authorAvatarUrl={principalUserMock.avatarUrl}
                 authorName={principalUserMock.name}

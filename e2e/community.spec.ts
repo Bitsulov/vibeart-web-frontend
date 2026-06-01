@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const COMMUNITY_URL = "/communities/01ARZ3NDEKTSV4RRFFQ69G5FC1";
+const COMMUNITY_URL = "/en/communities/01ARZ3NDEKTSV4RRFFQ69G5FC1";
 
 test.describe("Community - страница сообщества", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -46,19 +46,22 @@ test.describe("Community - страница сообщества", () => {
 
     test("Клик по кнопке открывает модальное окно с информацией", async ({page}) => {
         await page.goto(COMMUNITY_URL);
+        await page.waitForLoadState("networkidle");
 
         await page.getByRole("button", {name: "Expand description"}).click();
 
-        await expect(page.getByRole("dialog")).toBeVisible();
+        await expect(page.locator("dialog")).toBeVisible();
     });
 
     test("Модальное окно закрывается по кнопке закрытия", async ({page}) => {
         await page.goto(COMMUNITY_URL);
+        await page.waitForLoadState("networkidle");
 
         await page.getByRole("button", {name: "Expand description"}).click();
+        await expect(page.locator("dialog")).toBeVisible();
         await page.getByRole("button", {name: "Close modal window"}).click();
 
-        await expect(page.getByRole("dialog")).not.toBeVisible();
+        await expect(page.locator("dialog")).not.toBeVisible();
     });
 
     test("Отображается слайдер альбомов", async ({page}) => {

@@ -10,6 +10,8 @@ export const Register = () => {
         <Layout isShowFooter={false}>
             <title>{t("titles.register")}</title>
             <meta name="description" content={t("description.register")} />
+            <meta property="og:title" content={t("titles.register")} />
+            <meta property="og:description" content={t("description.register")} />
             <RegisterForm />
         </Layout>
     )

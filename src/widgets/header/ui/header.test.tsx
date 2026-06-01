@@ -14,6 +14,22 @@ const defaultProps = {
     languagesConfig: {ru: ["", "", "", ""]},
 };
 
+describe("Header - заголовок страницы", () => {
+    beforeEach(() => {
+        vi.mocked(useWindowWidth).mockReturnValue(375);
+    });
+
+    it("Отображает заголовок главной страницы по маршруту /ru/", () => {
+        renderWithProviders(<Header {...defaultProps} />, {route: "/ru/"});
+        expect(screen.getByText("pages.home")).toBeInTheDocument();
+    });
+
+    it("Отображает заголовок главной страницы по маршруту /ru (без слеша)", () => {
+        renderWithProviders(<Header {...defaultProps} />, {route: "/ru"});
+        expect(screen.getByText("pages.home")).toBeInTheDocument();
+    });
+});
+
 describe("Header - адаптация при разной ширине экрана", () => {
     describe("Мобильная версия (< 1200px)", () => {
         beforeEach(() => {

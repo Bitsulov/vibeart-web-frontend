@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const AUTH_URL = "/auth";
+const AUTH_URL = "/en/auth";
 
 test.describe("Auth - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

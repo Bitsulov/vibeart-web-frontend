@@ -8,9 +8,11 @@
  *
  * Покрытие кода:
  *   - Инструмент: V8 (встроенный в Node.js, без дополнительной инструментации).
- *   - Минимальные пороги: 70 % строк кода и 70 % функций.
+ *   - Минимальные пороги: 75 % строк кода и 75 % функций.
  *   - Из анализа исключены файлы с моковыми данными (`mockConst.ts`)
  *     и объявления типов (`*.d.ts`), поскольку они не содержат логики.
+ *   - Страницы (`pages/`) и провайдеры (`app/providers/`, `app/router/`)
+ *     исключены из порогов: они покрываются Playwright e2e-тестами.
  *
  * Псевдонимы путей дублируют `vite.config.ts`, чтобы разрешение
  * модулей в тестах было идентично поведению в сборке.
@@ -38,8 +40,15 @@ export default defineConfig({
             provider: 'v8',
             reporter: ['text', 'html'],
             include: ['src/**/*.{ts,tsx}'],
-            exclude: ['src/**/*.stories.*', 'src/**/*.d.ts', 'src/**/mockConst.ts'],
-            thresholds: { lines: 70, functions: 70 }
+            exclude: [
+                'src/**/*.stories.*',
+                'src/**/*.d.ts',
+                'src/**/mockConst.ts',
+                'src/app/router/**',
+                'src/app/providers/**',
+                'src/pages/**',
+            ],
+            thresholds: { lines: 75, functions: 75 }
         }
     },
     resolve: {

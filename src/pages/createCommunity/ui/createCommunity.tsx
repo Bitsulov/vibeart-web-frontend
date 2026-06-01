@@ -23,6 +23,8 @@ export const CreateCommunity = () => {
 		<Layout isSmallTitle={true}>
             <title>{t("titles.communityCreate")}</title>
             <meta name="description" content={t("description.communityCreate")} />
+            <meta property="og:title" content={t("titles.communityCreate")} />
+            <meta property="og:description" content={t("description.communityCreate")} />
             <CreateCommunityWidget
                 tagsList={communityTagsMock}
                 communityInfo={communityInfo}

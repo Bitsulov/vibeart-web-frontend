@@ -1,43 +1,53 @@
+import { useMemo } from "react";
 import type { ReactNode } from "react";
-import i18n from "i18next";
-import { I18nextProvider } from "react-i18next";
-import { initReactI18next } from "react-i18next";
-import LanguageDetector from "i18next-browser-languagedetector";
+import i18nBase from "i18next";
+import { I18nextProvider, initReactI18next } from "react-i18next";
+import { defaultLang } from "shared/const/const";
 
 import en from "shared/locales/en.json";
 import ru from "shared/locales/ru.json";
 
-i18n
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-        showSupportNotice: false,
-        resources: {
-            en: { translation: en },
-            ru: { translation: ru }
-        },
-        fallbackLng: "en",
-        interpolation: {
-            escapeValue: false
-        },
-        detection: {
-            order: ["navigator", "htmlTag", "localStorage", "cookie"],
-            caches: ["localStorage", "cookie"],
-        },
-    }).catch(() => console.error(`internalization initialization failed`));
-
 /** Свойства компонента {@link I18nProvider}. */
 interface I18nProviderPropsType {
+    /** Двухбуквенный код языка, определённый загрузчиком корневого маршрута. */
+    lang: string;
     /** Дочернее дерево, которое получает доступ к локализации через контекст i18next. */
     children: ReactNode;
 }
 
 /**
- * Провайдер локализации: инициализирует i18next и оборачивает дерево в `I18nextProvider`.
+ * Провайдер локализации приложения.
  *
- * i18next настраивается с детектором языка (порядок: `navigator` → `htmlTag` → `localStorage` → `cookie`),
- * резервным языком `"en"` и двумя локалями — `ru` и `en`. Инициализация происходит при импорте модуля.
+ * Передаёт дочерним компонентам доступ к переводам через контекст React.
+ * Язык определяется на сервере через {@link detectLanguageFromRequest} и передаётся
+ * через свойство `lang`, что обеспечивает одинаковый результат на сервере и клиенте.
+ *
+ * Каждый язык использует отдельный изолированный объект i18next, созданный через
+ * `createInstance`, чтобы параллельные запросы на сервере не мешали друг другу.
+ *
+ * @param props - Свойства компонента.
+ * @param props.lang - Код языка, переданный из загрузчика корневого маршрута.
+ * @param props.children - Дочерние компоненты, использующие переводы.
+ * @returns Дочерние компоненты, обёрнутые в провайдер i18next.
+ *
+ * @see {@link https://www.i18next.com/overview/api#createinstance}
+ * @see {@link detectLanguageFromRequest}
  */
-export const I18nProvider = ({ children }: I18nProviderPropsType) => {
-    return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+export const I18nProvider = ({ lang, children }: I18nProviderPropsType) => {
+    const instance = useMemo(() => {
+        const i = i18nBase.createInstance();
+        i.use(initReactI18next).init({
+            resources: {
+                en: { translation: en },
+                ru: { translation: ru },
+            },
+            lng: lang,
+            fallbackLng: defaultLang,
+            interpolation: { escapeValue: false },
+            showSupportNotice: false,
+        });
+        return i;
+    }, [lang]);
+
+    return <I18nextProvider i18n={instance}>{children}</I18nextProvider>;
 };

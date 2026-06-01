@@ -17,6 +17,8 @@ export const Chats = () => {
 		<Layout>
             <title>{t("titles.chats")}</title>
             <meta name="description" content={t("description.chats")} />
+            <meta property="og:title" content={t("titles.chats")} />
+            <meta property="og:description" content={t("description.chats")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&

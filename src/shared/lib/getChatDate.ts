@@ -1,4 +1,4 @@
-import i18n from "i18next";
+import type {TFunction} from "i18next";
 import {getLocalTimeNumbers} from "./getLocalTimeNumbers";
 
 /**
@@ -13,16 +13,17 @@ import {getLocalTimeNumbers} from "./getLocalTimeNumbers";
  * - Если прошло более года — возвращает полную дату в числовом формате
  *   через {@link getLocalTimeNumbers}.
  *
+ * @param t - Функция перевода из хука `useTranslation`.
  * @param language - Код языка по стандарту BCP 47 (например, `"ru"`, `"en"`).
  * @param date - Дата сообщения в виде объекта `Date` или строки ISO 8601.
  * @returns Отформатированная строка с датой или временем.
  *
  * @example
- * getChatDate("ru", new Date()) // "14:32"
- * getChatDate("ru", "2026-04-10T10:00:00.000Z") // "5 дней назад"
- * getChatDate("ru", "2025-01-01T00:00:00.000Z") // "01.01.2025"
+ * getChatDate(t, "ru", new Date()) // "14:32"
+ * getChatDate(t, "ru", "2026-04-10T10:00:00.000Z") // "5 дней назад"
+ * getChatDate(t, "ru", "2025-01-01T00:00:00.000Z") // "01.01.2025"
  */
-export function getChatDate(language: string, date: Date | string): string {
+export function getChatDate(t: TFunction, language: string, date: Date | string): string {
     const d = new Date(date);
     const now = new Date();
 
@@ -46,10 +47,10 @@ export function getChatDate(language: string, date: Date | string): string {
 
     if (diffDays < 365) {
         if (diffMonths >= 1) {
-            return i18n.t("monthsAgo", { count: diffMonths });
+            return t("monthsAgo", { count: diffMonths });
         }
 
-        return i18n.t("daysAgo", { count: diffDays });
+        return t("daysAgo", { count: diffDays });
     }
 
     return getLocalTimeNumbers(language, d);

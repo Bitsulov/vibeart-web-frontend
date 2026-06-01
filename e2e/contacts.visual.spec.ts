@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CONTACTS_URL = "/contacts";
+const CONTACTS_URL = "/en/contacts";
 
 test.describe("Contacts - визуальная проверка блоков", () => {
     test.beforeEach(async ({page}) => {

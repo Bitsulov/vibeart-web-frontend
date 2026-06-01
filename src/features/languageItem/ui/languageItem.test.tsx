@@ -47,8 +47,6 @@ describe("LanguageItem - элемент списка выбора языка", (
             "en",
             expect.any(Object),
             expect.any(Function),
-            expect.any(Function),
-            expect.any(Object),
         );
     });
 });

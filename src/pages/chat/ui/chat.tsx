@@ -17,6 +17,8 @@ export const Chat = () => {
 		<Layout isShowFooter={false}>
             <title>{t("titles.chat")}</title>
             <meta name="description" content={t("description.chat")} />
+            <meta property="og:title" content={t("titles.chat")} />
+            <meta property="og:description" content={t("description.chat")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/en/register";
 
 test.describe("Register - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

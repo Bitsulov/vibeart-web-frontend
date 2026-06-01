@@ -34,8 +34,10 @@ export const Modal = ({
     const { t } = useTranslation();
 
     const [isDisappearring, setIsDisappearring] = useState(false);
-    const transitionTime = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--transition-time"))
-        || defaultTransitionTime;
+    const transitionTime = parseInt(
+        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
+            ?.getPropertyValue("--transition-time")
+    ) || defaultTransitionTime;
 
 	return (
 		<>

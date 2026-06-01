@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const COMMUNITIES_URL = "/communities";
+const COMMUNITIES_URL = "/en/communities";
 
 test.describe("Communities - страница сообществ", () => {
     test("Контент страницы загружается", async ({page}) => {

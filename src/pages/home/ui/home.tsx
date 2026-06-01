@@ -13,6 +13,8 @@ export const Home = () => {
         <Layout>
             <title>{t("titles.home")}</title>
             <meta name="description" content={t("description.home")} />
+            <meta property="og:title" content={t("titles.home")} />
+            <meta property="og:description" content={t("description.home")} />
             <HomeIntro/>
             <HomeSteps/>
             <HomeReviews/>

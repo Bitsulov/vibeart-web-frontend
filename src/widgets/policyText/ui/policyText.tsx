@@ -4,6 +4,8 @@ import {useTranslation} from "react-i18next";
 /** Текст политики конфиденциальности в виде структурированного списка. */
 export const PolicyText = ({ ...props }) => {
     const { t } = useTranslation();
+    const email = import.meta.env.VITE_EMAIL;
+    const url = import.meta.env.VITE_URL;
 
 	return (
 		<section className={c.policy_text} {...props}>
@@ -16,7 +18,7 @@ export const PolicyText = ({ ...props }) => {
                         <ol className={c.list}>
                             <li className={c.list_item}>{t("policy.text1_1")}</li>
                             <li className={c.list_item}>{t("policy.text1_2")}</li>
-                            <li className={c.list_item}>{t("policy.text1_3")}</li>
+                            <li className={c.list_item}>{t("policy.text1_3", {url})}</li>
                             <li className={c.list_item}>{t("policy.text1_4")}</li>
                         </ol>
                     </li>
@@ -24,13 +26,13 @@ export const PolicyText = ({ ...props }) => {
                         <ol className={c.list}>
                             <li className={c.list_item}>{t("policy.text2_1")}</li>
                             <li className={c.list_item}>{t("policy.text2_2")}</li>
-                            <li className={c.list_item}>{t("policy.text2_3")}</li>
+                            <li className={c.list_item}>{t("policy.text2_3", {url})}</li>
                             <li className={c.list_item}>{t("policy.text2_4")}</li>
                             <li className={c.list_item}>{t("policy.text2_5")}</li>
                             <li className={c.list_item}>{t("policy.text2_6")}</li>
                             <li className={c.list_item}>{t("policy.text2_7")}</li>
-                            <li className={c.list_item}>{t("policy.text2_8")}</li>
-                            <li className={c.list_item}>{t("policy.text2_9")}</li>
+                            <li className={c.list_item}>{t("policy.text2_8", {url})}</li>
+                            <li className={c.list_item}>{t("policy.text2_9", {url})}</li>
                             <li className={c.list_item}>{t("policy.text2_10")}</li>
                             <li className={c.list_item}>{t("policy.text2_11")}</li>
                             <li className={c.list_item}>{t("policy.text2_12")}</li>
@@ -46,13 +48,13 @@ export const PolicyText = ({ ...props }) => {
                                     <li className={c.list_item_ul}>{t("policy.text3_1_3")}</li>
                                 </ul>
                             </li>
-                            <li className={c.list_item}>{t("policy.text3_2")}</li>
+                            <li className={c.list_item}>{t("policy.text3_2", {email})}</li>
                             <li className={c.list_item}>{t("policy.text3_3")}</li>
                         </ol>
                     </li>
                     <li className={c.subtitle}>{t("policy.title4")}
                         <ol className={c.list}>
-                            <li className={c.list_item}>{t("policy.text4_1")}</li>
+                            <li className={c.list_item}>{t("policy.text4_1", {url})}</li>
                             <li className={c.list_item}>{t("policy.text4_2")}
                                 <ul className={c.list_ul}>
                                     <li className={c.list_item_ul}>{t("policy.text4_2_1")}</li>
@@ -81,9 +83,9 @@ export const PolicyText = ({ ...props }) => {
                     </li>
                     <li className={c.subtitle}>{t("policy.title5")}
                         <ol className={c.list}>
-                            <li className={c.list_item}>{t("policy.text5_1")}</li>
+                            <li className={c.list_item}>{t("policy.text5_1", {email})}</li>
                             <li className={c.list_item}>{t("policy.text5_2")}</li>
-                            <li className={c.list_item}>{t("policy.text5_3")}</li>
+                            <li className={c.list_item}>{t("policy.text5_3", {url})}</li>
                         </ol>
                     </li>
                 </ol>

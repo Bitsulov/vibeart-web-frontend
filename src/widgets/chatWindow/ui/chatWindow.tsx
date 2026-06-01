@@ -53,9 +53,9 @@ export const ChatWindow = ({
 
     const options = chatOptionsConfig.map(option => ({
         ...option,
-        text: option.text(),
+        text: option.text(t),
         color: option.color(),
-        ariaLabel: option.ariaLabel?.(),
+        ariaLabel: option.ariaLabel?.(t),
         onClick: () => option.onClick(setIsShowDeleteChatModal),
     }));
 

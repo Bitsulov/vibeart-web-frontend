@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const POST_URL = "/post/01ARZ3NDEKTSV4RRFFQ69G5FAB";
+const POST_URL = "/en/post/01ARZ3NDEKTSV4RRFFQ69G5FAB";
 
 test.describe("Post - страница поста", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -75,6 +75,7 @@ test.describe("Post - страница поста", () => {
 
     test("Клик по кнопке лайка переключает состояние", async ({page}) => {
         await page.goto(POST_URL);
+        await page.waitForLoadState("networkidle");
 
         await page.getByRole("button", {name: "Like"}).click();
         await expect(page.getByRole("button", {name: "Unlike"})).toBeVisible();
@@ -103,6 +104,7 @@ test.describe("Post - страница поста", () => {
     test("Переход по хэшу #comments скроллит к секции комментариев", async ({page}) => {
         await page.goto(`${POST_URL}#comments`);
 
+        await page.locator("#comments").waitFor({ state: "visible" });
         await expect(page.locator("#comments")).toBeInViewport();
     });
 });

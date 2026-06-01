@@ -1,5 +1,5 @@
 import {describe, it, expect, beforeEach} from "vitest";
-import {screen} from "@testing-library/react";
+import {screen, fireEvent} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 import {renderWithProviders} from "shared/tests/renderWithProviders";
 import {CommunityInfo} from "./communityInfo";
@@ -120,6 +120,101 @@ describe("CommunityInfo - блок информации о сообществе"
             const link = screen.getByRole("link", {name: "ariaLabel.goToSettings"});
 
             expect(link).toHaveAttribute("href", `/communities/${communityInfo.ULID}/edit`);
+        });
+    });
+
+    describe("Подсказки при наведении на статистику", () => {
+        beforeEach(() => {
+            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+        });
+
+        it("Наведение на счётчик публикаций показывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: otherUser},
+            });
+
+            fireEvent.mouseEnter(screen.getByText("42").parentElement!);
+
+            expect(store.getState().hint.text).toBe("hint.works");
+        });
+
+        it("Уход курсора с счётчика публикаций скрывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: otherUser},
+            });
+
+            fireEvent.mouseLeave(screen.getByText("42").parentElement!);
+
+            expect(store.getState().hint.text).toBe("");
+        });
+
+        it("Наведение на счётчик подписчиков показывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: otherUser},
+            });
+
+            fireEvent.mouseEnter(screen.getByText("100").parentElement!);
+
+            expect(store.getState().hint.text).toBe("hint.subscribers");
+        });
+
+        it("Наведение на счётчик подписок показывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: otherUser},
+            });
+
+            fireEvent.mouseEnter(screen.getByText("5").parentElement!);
+
+            expect(store.getState().hint.text).toBe("hint.subscribes");
+        });
+    });
+
+    describe("Подсказки при наведении на кнопки управления (владелец)", () => {
+        beforeEach(() => {
+            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+        });
+
+        it("Наведение на ссылку настроек показывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: owner},
+            });
+
+            fireEvent.mouseEnter(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+
+            expect(store.getState().hint.text).toBe("hint.settings");
+        });
+
+        it("Уход курсора с ссылки настроек скрывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: owner},
+            });
+
+            fireEvent.mouseLeave(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+
+            expect(store.getState().hint.text).toBe("");
+        });
+
+        it("Клик по ссылке настроек скрывает подсказку", () => {
+            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: owner},
+            });
+
+            fireEvent.click(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+
+            expect(store.getState().hint.text).toBe("");
+        });
+
+        it("Клик по кнопке удаления открывает окно подтверждения", async () => {
+            renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
+                preloadedState: {user: owner},
+            });
+
+            const buttons = screen.getAllByRole("button");
+            const deleteButton = buttons.find(b => b.getAttribute("aria-label") === "");
+
+            await userEvent.click(deleteButton!);
+
+            expect(screen.getByRole("dialog")).toBeInTheDocument();
         });
     });
 

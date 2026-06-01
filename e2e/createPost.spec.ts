@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CREATE_POST_URL = "/post/add";
+const CREATE_POST_URL = "/en/post/add";
 
 test.describe("CreatePost - страница создания поста", () => {
     test("Контент страницы загружается", async ({page}) => {
