@@ -17,6 +17,8 @@ export const Contacts = () => {
 		<Layout>
             <title>{t("titles.contacts")}</title>
             <meta name="description" content={t("description.contacts")} />
+            <meta property="og:title" content={t("titles.contacts")} />
+            <meta property="og:description" content={t("description.contacts")} />
             <ContactsForm userInfo={userInfo} />
 		</Layout>
 	)

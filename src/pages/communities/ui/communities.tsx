@@ -17,6 +17,8 @@ export const Communities = () => {
 		<Layout isSmallTitle={true}>
             <title>{t("titles.communities")}</title>
             <meta name="description" content={t("description.communities")} />
+            <meta property="og:title" content={t("titles.communities")} />
+            <meta property="og:description" content={t("description.communities")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&

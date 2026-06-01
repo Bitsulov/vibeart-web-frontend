@@ -10,6 +10,8 @@ export const Policy = () => {
 		<Layout>
             <title>{t("titles.policy")}</title>
             <meta name="description" content={t("description.policy")} />
+            <meta property="og:title" content={t("titles.policy")} />
+            <meta property="og:description" content={t("description.policy")} />
             <PolicyText />
 		</Layout>
 	)

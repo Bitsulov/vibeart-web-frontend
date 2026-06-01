@@ -10,6 +10,8 @@ export const Error = () => {
         <Layout isShowFooter={false}>
             <title>{t("titles.error")}</title>
             <meta name="description" content={t("description.error")} />
+            <meta property="og:title" content={t("titles.error")} />
+            <meta property="og:description" content={t("description.error")} />
             <ErrorInfo/>
         </Layout>
     )

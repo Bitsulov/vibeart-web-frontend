@@ -46,6 +46,8 @@ export const CreateAlbum = () => {
 		<Layout>
             <title>{t("titles.albumCreate")}</title>
             <meta name="description" content={t("description.albumCreate")} />
+            <meta property="og:title" content={t("titles.albumCreate")} />
+            <meta property="og:description" content={t("description.albumCreate")} />
             <section className={c.content}>
                 <ConfirmModal
                     text={t("modal.confirmCreateAlbumEmptyImg")}

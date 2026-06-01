@@ -17,6 +17,8 @@ export const Gallery = () => {
 		<Layout>
             <title>{t("titles.gallery")}</title>
             <meta name="description" content={t("description.gallery")} />
+            <meta property="og:title" content={t("titles.gallery")} />
+            <meta property="og:description" content={t("description.gallery")} />
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&
