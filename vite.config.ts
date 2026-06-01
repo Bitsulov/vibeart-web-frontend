@@ -9,11 +9,15 @@
  * @see https://vitejs.dev/config/
  */
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { reactRouter } from "@react-router/dev/vite";
 import path from "path";
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [reactRouter()],
+    server: {
+        hmr: !process.env.PLAYWRIGHT,
+        headers: process.env.PLAYWRIGHT ? { "Connection": "close" } : undefined,
+    },
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "src"),
@@ -26,4 +30,4 @@ export default defineConfig({
             app: path.resolve(__dirname, "src/app")
         }
     }
-})
+});

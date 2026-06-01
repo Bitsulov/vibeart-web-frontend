@@ -29,7 +29,7 @@ import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-    globalIgnores(['dist', 'coverage']),
+    globalIgnores(['dist', 'coverage', '.react-router']),
     {
         files: ['**/*.{ts,tsx}'],
         extends: [
@@ -52,6 +52,12 @@ export default defineConfig([
                 destructuredArrayIgnorePattern: "^_",
             }],
             "react-hooks/set-state-in-effect": "off"
+        }
+    },
+    {
+        files: ["src/app/router/**/*.{ts,tsx}"],
+        rules: {
+            "react-refresh/only-export-components": ["warn", { allowExportNames: ["loader", "Layout"] }]
         }
     },
     {

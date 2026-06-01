@@ -17,7 +17,11 @@ package-lock.json
 node_modules
 dist
 dist-ssr
+build
 *.local
+
+# React Router generated files
+.react-router
 
 # Credits
 .env
