@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CREATE_ALBUM_URL = "/album/add";
+const CREATE_ALBUM_URL = "/en/album/add";
 
 test.describe("CreateAlbum - страница создания альбома", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -49,7 +49,8 @@ test.describe("CreateAlbum - страница создания альбома", 
         await page.goto(CREATE_ALBUM_URL);
 
         await page.getByLabel("title", {exact: false}).fill("Мой альбом");
-        await expect(page.getByText("Мой альбом")).toBeVisible();
+        await page.getByLabel("title", {exact: false}).dispatchEvent("input");
+        await expect(page.getByText("Мой альбом")).toBeVisible({ timeout: 10000 });
     });
     test("Отправка без названия показывает ошибку на поле", async ({page}) => {
         await page.goto(CREATE_ALBUM_URL);

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const CREATE_POST_URL = "/post/add";
+const CREATE_POST_URL = "/en/post/add";
 
 test.describe("CreatePost - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

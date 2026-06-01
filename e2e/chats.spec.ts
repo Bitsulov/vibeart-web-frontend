@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CHATS_URL = "/chats";
+const CHATS_URL = "/en/chats";
 
 test.describe("Chats - страница чатов", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -49,6 +49,7 @@ test.describe("Chats - страница чатов", () => {
         await page.goto(CHATS_URL);
 
         await page.getByRole("link", {name: /^Go to chat \S/}).first().click();
+        await page.waitForURL(/\/chats\/.+/);
 
         expect(new URL(page.url()).pathname).toMatch(/^\/chats\/.+/);
     });

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const CREATE_ALBUM_URL = "/album/add";
+const CREATE_ALBUM_URL = "/en/album/add";
 
 test.describe("CreateAlbum - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const PROFILE_URL = "/profile/01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const PROFILE_URL = "/en/profile/01ARZ3NDEKTSV4RRFFQ69G5FAV";
 
 test.describe("Profile - страница профиля", () => {
     test("Контент страницы загружается", async ({ page }) => {

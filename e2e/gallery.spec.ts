@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const GALLERY_URL = "/gallery";
+const GALLERY_URL = "/en/gallery";
 
 test.describe("Gallery - страница галереи", () => {
     test("Контент страницы загружается", async ({page}) => {

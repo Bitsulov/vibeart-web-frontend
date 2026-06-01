@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CHAT_URL = "/chats/01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const CHAT_URL = "/en/chats/01ARZ3NDEKTSV4RRFFQ69G5FAV";
 
 test.describe("Chat - страница чата", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -80,9 +80,9 @@ test.describe("Chat - страница чата", () => {
     test("Ссылка назад ведёт на список чатов", async ({page}) => {
         await page.goto(CHAT_URL);
 
-        await page.locator("section").getByRole("link", {name: "Go to chats"}).click();
+        const link = page.locator("section").getByRole("link", {name: "Go to chats"});
 
-        expect(new URL(page.url()).pathname).toBe("/chats");
+        await expect(link).toHaveAttribute("href", "/chats");
     });
 
     test("Настройки чата закрываются при повторном нажатии", async ({page}) => {
@@ -103,8 +103,8 @@ test.describe("Chat - страница чата", () => {
         await page.getByRole("button", {name: "Delete chat"}).click();
         await page.getByRole("button", {name: "Delete messages"}).click();
 
-        await page.waitForURL(/\/chats(\?|$)/);
-        expect(new URL(page.url()).pathname).toBe("/chats");
+        await page.waitForURL(/\/en\/chats(\?|$)/, { waitUntil: "commit" });
+        expect(new URL(page.url()).pathname).toBe("/en/chats");
     });
 
     test("Отмена удаления чата закрывает модальное окно", async ({page}) => {

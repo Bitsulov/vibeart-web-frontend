@@ -1,11 +1,13 @@
 import { expect, test } from "@playwright/test";
 
-const CHAT_URL = "/chats/01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const CHAT_URL = "/en/chats/01ARZ3NDEKTSV4RRFFQ69G5FAV";
 
 test.describe("Chat - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(CHAT_URL);
+        await page.waitForSelector("nav");
         await expect(page.getByRole("main")).toBeVisible();
+        await page.addStyleTag({ content: "*::-webkit-scrollbar { display: none !important; }" });
     });
 
     test("снимок блока ChatWindow", async ({ page }) => {
