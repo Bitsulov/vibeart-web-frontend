@@ -5,6 +5,7 @@ import {clearCookiesTokens} from "../lib/clearCookiesTokens";
 import {refreshIgnoreEndpoints} from "../const/const";
 import {store} from "app/store";
 import {showToast} from "features/toast";
+import {setUserInfo} from "entities/user";
 
 const API_BASE: string = import.meta.env.VITE_API_BASE;
 
@@ -67,17 +68,33 @@ api.interceptors.request.use(
                     const refreshTokenExpiresAt = Date.now() + refreshTokenExpiresIn;
 
                     clearCookiesTokens();
-                    document.cookie = `accessToken=${encryptedAccessToken}; max-age=${Number(accessTokenExpiresIn) / 1000}; SameSite=Lax; path=/`;
-                    document.cookie = `accessTokenExpiresAt=${accessTokenExpiresAt}; max-age=${Number(accessTokenExpiresIn) / 1000}; SameSite=Lax; path=/`;
-                    document.cookie = `refreshToken=${encryptedRefreshToken}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; path=/`;
-                    document.cookie = `refreshTokenExpiresAt=${refreshTokenExpiresAt}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; path=/`;
+                    document.cookie = `accessToken=${encryptedAccessToken}; max-age=${Number(accessTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
+                    document.cookie = `accessTokenExpiresAt=${accessTokenExpiresAt}; max-age=${Number(accessTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
+                    document.cookie = `refreshToken=${encryptedRefreshToken}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
+                    document.cookie = `refreshTokenExpiresAt=${refreshTokenExpiresAt}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
 
                     config.headers = config.headers ?? {};
                     config.headers.Authorization = `Bearer ${response.data.accessToken}`;
                 } catch (error: unknown) {
                     if(axios.isAxiosError(error)) {
                         if(error.response) {
-                            store.dispatch(showToast({message: "api.serverError", type: "error"}));
+                            if(error.response.status === 400) {
+                                clearCookiesTokens();
+                                store.dispatch(setUserInfo({
+                                    isAuthenticated: false,
+                                    accessToken: "",
+                                    refreshToken: "",
+                                    accessTokenExpiresIn: 0,
+                                    refreshTokenExpiresIn: 0,
+                                }));
+                                store.dispatch(showToast({message: "api.sessionExpired", type: "error"}));
+
+                                if(typeof window !== "undefined") {
+                                    window.location.href = "/auth";
+                                }
+                            } else {
+                                store.dispatch(showToast({message: "api.serverError", type: "error"}));
+                            }
                         } else {
                             store.dispatch(showToast({message: "api.networkError", type: "error"}));
                         }

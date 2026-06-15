@@ -57,7 +57,8 @@
     "verifyAccess": "You have successfully registered!",
     "sendCodeAccess": "The verification code has been resent to {{email}}",
     "earlyCodeRequest": "A new verification code was requested too soon",
-    "networkError": "Could not connect to the server. Please try reloading the page later"
+    "networkError": "Could not connect to the server. Please try reloading the page later",
+    "sessionExpired": "Your session has expired. Please sign in again"
   },
   "ariaLabel": {
     "openBurgerMenu": "Open navigation menu",
