@@ -57,8 +57,7 @@ export const InitProvider = ({ children }: InitProviderProps) => {
 
     useEffect(() => {
         dispatch(setUserInfo({
-            id: principalUserMock.id,
-            ULID: principalUserMock.ULID,
+            UUID: principalUserMock.UUID,
             email: principalUserMock.email,
             name: principalUserMock.name,
             username: principalUserMock.username,
@@ -74,6 +73,10 @@ export const InitProvider = ({ children }: InitProviderProps) => {
             onlineStatus: principalUserMock.onlineStatus,
             role: principalUserMock.role,
             avatarUrl: principalUserMock.avatarUrl,
+            accessToken: principalUserMock.accessToken,
+            refreshToken: principalUserMock.refreshToken,
+            accessTokenExpiresIn: principalUserMock.accessTokenExpiresIn,
+            refreshTokenExpiresIn: principalUserMock.refreshTokenExpiresIn,
         }));
     }, [dispatch]);
 

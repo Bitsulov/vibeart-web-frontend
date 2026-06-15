@@ -5,6 +5,7 @@ import { StoreProvider } from "../providers/storeProvider";
 import { I18nProvider } from "../providers/i18nProvider";
 import { InitProvider } from "../providers/initProvider";
 import { detectLanguageFromRequest } from "shared/lib/detectLanguageFromRequest";
+import {QueryProvider} from "../providers/queryProvider";
 export { Layout } from "./layout";
 
 /**
@@ -26,7 +27,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 /**
  * Корневой layout приложения.
  *
- * Оборачивает всё дерево провайдерами: StoreProvider → I18nProvider → InitProvider.
+ * Оборачивает всё дерево провайдерами: StoreProvider → QueryProvider → I18nProvider → InitProvider.
  * Маршрутизация обеспечивается React Router framework mode, текущий маршрут
  * рендерится через `<Outlet />`.
  */
@@ -35,11 +36,13 @@ export default function Root() {
 
     return (
         <StoreProvider>
-            <I18nProvider lang={lang}>
-                <InitProvider>
-                    <Outlet />
-                </InitProvider>
-            </I18nProvider>
+            <QueryProvider>
+                <I18nProvider lang={lang}>
+                    <InitProvider>
+                        <Outlet />
+                    </InitProvider>
+                </I18nProvider>
+            </QueryProvider>
         </StoreProvider>
     );
 }

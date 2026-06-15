@@ -4,8 +4,7 @@ import {createUser} from "./createUser";
 describe("createTag - Возвращает объект типа TagType", () => {
     it("Создание экземпляра тега", () => {
         expect(createUser({
-            id: 0,
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             name: "",
             email: "a",
             username: "fgfgf",
@@ -20,10 +19,13 @@ describe("createTag - Возвращает объект типа TagType", () =>
             isBlocked: false,
             onlineStatus: "offline",
             role: "user",
-            avatarUrl: ""
+            avatarUrl: "",
+            accessToken: "",
+            refreshToken: "",
+            accessTokenExpiresIn: 0,
+            refreshTokenExpiresIn: 0
         })).toEqual({
-            id: 0,
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             name: "",
             email: "a",
             username: "@fgfgf",
@@ -38,13 +40,17 @@ describe("createTag - Возвращает объект типа TagType", () =>
             isBlocked: false,
             onlineStatus: "offline",
             role: "user",
-            avatarUrl: ""
+            avatarUrl: "",
+            accessToken: "",
+            refreshToken: "",
+            accessTokenExpiresIn: 0,
+            refreshTokenExpiresIn: 0
         });
     });
     it("Создание экземпляра тега с неполными данными", () => {
         // @ts-expect-error неполная информация
         expect(createUser({
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             email: "a",
             username: "gfgf",
             createdAt: "2026-03-29T17:25:15.940Z",
@@ -53,8 +59,7 @@ describe("createTag - Возвращает объект типа TagType", () =>
             isBlocked: false,
             onlineStatus: "offline",
         })).toEqual({
-            id: 0,
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             name: "",
             email: "a",
             username: "@gfgf",
@@ -69,7 +74,11 @@ describe("createTag - Возвращает объект типа TagType", () =>
             isBlocked: false,
             onlineStatus: "offline",
             role: "user",
-            avatarUrl: ""
+            avatarUrl: "",
+            accessToken: "",
+            refreshToken: "",
+            accessTokenExpiresIn: 0,
+            refreshTokenExpiresIn: 0
         });
     });
 });

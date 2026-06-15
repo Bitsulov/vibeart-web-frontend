@@ -1,28 +1,23 @@
-# Deps
+# Dependencies
 FROM node:20.19.0-alpine AS base
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 
-# Dev run
-FROM base AS dev
-EXPOSE 5173
-CMD ["npm", "run", "dev", "--", "--host"]
-
-# Prod build
+# Build
 FROM base AS build
-#ARG VITE_CRYPTO_KEY
+ARG VITE_CRYPTO_KEY
 ARG VITE_URL
 ARG VITE_API_BASE
 ARG VITE_EMAIL
-#ENV VITE_CRYPTO_KEY=$VITE_CRYPTO_KEY
+ENV VITE_CRYPTO_KEY=$VITE_CRYPTO_KEY
 ENV VITE_URL=$VITE_URL
 ENV VITE_API_BASE=$VITE_API_BASE
 ENV VITE_EMAIL=$VITE_EMAIL
 RUN npm run build
 
-# Prod run
+# Production run
 FROM node:20.19.0-alpine AS prod
 WORKDIR /app
 COPY --from=build /app/build ./build

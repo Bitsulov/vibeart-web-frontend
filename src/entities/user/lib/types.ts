@@ -11,10 +11,8 @@ import type {AlbumType} from "entities/album";
  * работы с селекторами.
  */
 export interface UserType {
-    /** Внутренний числовой идентификатор в базе данных. */
-    id: number;
-    /** ULID, используемый в публичных URL (например, `/profile/:ulid`). */
-    ULID: string;
+    /** UUID, используемый в публичных URL (например, `/profile/:uuid`). */
+    UUID: string;
     /** Зарегистрированный адрес электронной почты. */
     email: string;
     /** Отображаемое имя пользователя. */
@@ -45,4 +43,60 @@ export interface UserType {
     role: Roles;
     /** URL аватара пользователя. Пустая строка, если аватар не задан. */
     avatarUrl: string;
+    /** Зашифрованный access-токен авторизации. */
+    accessToken: string;
+    /** Зашифрованный refresh-токен авторизации. */
+    refreshToken: string;
+    /** Срок действия access-токена в миллисекундах. */
+    accessTokenExpiresIn: number;
+    /** Срок действия refresh-токена в миллисекундах. */
+    refreshTokenExpiresIn: number;
+}
+
+/** Данные формы регистрации, отправляемые на сервер. */
+export interface SignUpRequest {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+/** Адрес электронной почты для повторной отправки кода подтверждения. */
+export interface SendCodeRequest {
+    email: string;
+}
+
+/** Адрес электронной почты и код подтверждения для верификации аккаунта. */
+export interface VerifyRequest {
+    email: string;
+    verificationCode: string;
+}
+
+/** Адрес электронной почты и пароль для входа в аккаунт. */
+export interface SignInRequest {
+    email: string;
+    password: string;
+}
+
+/** Refresh-токен для обновления пары токенов авторизации. */
+export interface RefreshRequest {
+    refreshToken: string;
+}
+
+/** Результат входа, верификации или обновления токенов: UUID пользователя, пара токенов авторизации и сроки их действия. */
+export interface AuthResponse {
+    uuid: string;
+    accessToken: string;
+    refreshToken: string;
+    accessTokenExpiresIn: number;
+    refreshTokenExpiresIn: number;
+}
+
+/** Профиль текущего авторизованного пользователя. */
+export interface UserDetailResponse {
+    uuid: string;
+    name: string;
+    username: string;
+    email: string;
+    photoUrl: string;
+    enabled: string;
 }

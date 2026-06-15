@@ -23,8 +23,7 @@ export const selectIsAuthenticated = (state: RootState): boolean => state.user.i
  */
 export const selectUserInfo = createSelector([selectUser], user => {
     return {
-        id: user.id,
-        ULID: user.ULID,
+        UUID: user.UUID,
         email: user.email,
         name: user.name,
         username: user.username,
@@ -39,6 +38,10 @@ export const selectUserInfo = createSelector([selectUser], user => {
         isBlocked: user.isBlocked,
         onlineStatus: user.onlineStatus,
         role: user.role,
-        avatarUrl: user.avatarUrl
+        avatarUrl: user.avatarUrl,
+        accessToken: user.accessToken,
+        refreshToken: user.refreshToken,
+        accessTokenExpiresIn: user.accessTokenExpiresIn,
+        refreshTokenExpiresIn: user.refreshTokenExpiresIn
     };
 });

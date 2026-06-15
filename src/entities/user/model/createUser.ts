@@ -11,15 +11,14 @@ import type {UserType} from "../lib/types";
  * @returns Нормализованный объект пользователя.
  *
  * @example
- * const user = createUser({ ULID: "01ARZ...", email: "a@b.com",
+ * const user = createUser({ UUID: "01ARZ...", email: "a@b.com",
  *   username: "johndoe", createdAt: "2026-01-01T00:00:00.000Z",
  *   trustStatus: "trust", isAuthenticated: true, isBlocked: false,
  *   onlineStatus: "online" });
  * user.username // "@johndoe"
  */
 export function createUser({
-    id = 0,
-    ULID,
+    UUID,
     name = "",
     email,
     username,
@@ -34,11 +33,14 @@ export function createUser({
     isBlocked,
     onlineStatus,
     role = "user",
-    avatarUrl = ""
+    avatarUrl = "",
+    accessToken = "",
+    refreshToken = "",
+    accessTokenExpiresIn = 0,
+    refreshTokenExpiresIn = 0
 }: UserType) {
     return {
-        id,
-        ULID,
+        UUID,
         name,
         email,
         username: `@${username}`,
@@ -53,6 +55,10 @@ export function createUser({
         isBlocked,
         onlineStatus,
         role,
-        avatarUrl
+        avatarUrl,
+        accessToken,
+        refreshToken,
+        accessTokenExpiresIn,
+        refreshTokenExpiresIn
     };
 }
