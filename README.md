@@ -15,6 +15,7 @@
 | `VITE_URL`       | Публичный URL сайта                     |
 | `VITE_API_BASE`  | Базовый URL API бэкенда                 |
 | `VITE_EMAIL`     | Контактный email, отображаемый на сайте |
+| `VITE_CRYPTO_KEY`| Ключ AES-GCM для шифрования токенов авторизации в cookies |
 
 ```bash
 cp .env.example .env
@@ -107,12 +108,14 @@ npm run preview
 
 Проект использует многоэтапный Dockerfile:
 
-- **Dev** — Node.js с Hot Module Replacement
-- **Prod** — SSR-сервер Node.js + оптимизированная сборка
+- **Base** — установка зависимостей Node.js
+- **Build** — сборка проекта через Vite
+- **Run** — SSR-сервер на Node.js
 
 ---
 
 ## Ссылки
 
-- [VibeArt](https://github.com/Bitsulov/VibeArt.git) — основной репозиторий
-- [VibeArt Backend](https://github.com/Bitsulov/vibeart-backend.git) — серверная часть
+- [VibeArt](https://github.com/Bitsulov/VibeArt) — основной репозиторий
+- [VibeArt API](https://github.com/Bitsulov/vibeart-service-api) — основной сервис API
+- [VibeArt email service](https://github.com/Bitsulov/vibeart-service-email) — сервис отправки электронных писем

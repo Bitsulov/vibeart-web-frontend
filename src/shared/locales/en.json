@@ -37,13 +37,29 @@
   "Send": "Send",
   "Accept": "Accept",
   "You": "(You)",
-
   "develop": {
     "title": "This page is under construction.",
     "back": "Go back",
     "returnToHome": "Return to home"
   },
-
+  "api": {
+    "registerAccess": "A verification code has been sent to {{email}}",
+    "serverError": "A server error occurred. Please try again later",
+    "forbiddenError": "You do not have permission to perform this action",
+    "unknownError": "An unknown error occurred. Please try again later",
+    "conflictEmailError": "A user with this email address already exists",
+    "invalidData": "The entered data is invalid",
+    "conflictUserEmailError": "The entered email address is already taken",
+    "conflictVerifyUser": "This user has already been verified",
+    "userNotFound": "This user was not found",
+    "codeExpired": "The verification code has expired",
+    "invalidCode": "Invalid verification code",
+    "verifyAccess": "You have successfully registered!",
+    "sendCodeAccess": "The verification code has been resent to {{email}}",
+    "earlyCodeRequest": "A new verification code was requested too soon",
+    "networkError": "Could not connect to the server. Please try reloading the page later",
+    "sessionExpired": "Your session has expired. Please sign in again"
+  },
   "ariaLabel": {
     "openBurgerMenu": "Open navigation menu",
     "goToHome": "Go to home page",
@@ -124,9 +140,11 @@
     "addAdmin": "Add {{name}} as administrator",
     "deleteAdmin": "Cancel adding {{name}} as administrator",
     "sendReport": "Send a report to the administration",
-    "acceptCookies": "Accept cookies"
+    "acceptCookies": "Accept cookies",
+    "backToRegister": "Return to registration",
+    "confirmRegister": "Send code and confirm registration",
+    "sendCodeAgain": "Resend verification code"
   },
-
   "hint": {
     "works": "Number of posts",
     "subscribers": "Number of subscribers",
@@ -144,7 +162,6 @@
     "deleteCommunity": "Delete community",
     "editCommunity": "Edit community"
   },
-
   "toast": {
     "loadImg": "Please upload an image",
     "longTitle": "Title is too long",
@@ -166,7 +183,6 @@
     "longReport": "Message is too long",
     "reportSent": "Message sent successfully"
   },
-
   "modal": {
     "deletePost": "Are you sure you want to delete this post? (irreversible)",
     "deleteAlbum": "Are you sure you want to delete this album? (irreversible, posts will remain)",
@@ -174,7 +190,6 @@
     "deleteCommunity": "Are you sure you want to delete this community? (irreversible)",
     "confirmCreateAlbumEmptyImg": "Do you want to create an album without a cover?"
   },
-
   "pages": {
     "home": "Home",
     "auth": "Log in",
@@ -197,18 +212,15 @@
     "community": "Community",
     "error": "$#!%^&*"
   },
-
   "languages": {
     "altRu": "Russian",
     "altEn": "English"
   },
-
   "serverStatus": {
     "good": "🟢 Operational",
     "problem": "🟡 Issues",
     "bad": "🔴 Down"
   },
-
   "errors": {
     "requiredEmail": "Enter your email address",
     "acceptAgreement": "Please accept the User Agreement",
@@ -219,7 +231,6 @@
     "longPassword": "Maximum password length is 64",
     "dontMatch": "Passwords do not match"
   },
-
   "titles": {
     "home": "Home | VibeArt",
     "auth": "Login | VibeArt",
@@ -241,7 +252,6 @@
     "communityCreate": "Create Community | VibeArt",
     "contacts": "Contact Us | VibeArt"
   },
-
   "description": {
     "home": "A professional space for creators. Build your portfolio, join communities, and receive honest feedback. We care about content quality: strict 18+ moderation and protection against AI-generated art.",
     "auth": "Log in to publish your works, create albums, and connect with like-minded creators.",
@@ -323,7 +333,11 @@
     "passwordPlaceholder": "Enter password",
     "confirmPasswordPlaceholder": "Confirm password",
     "agreeAgreement": "I accept the <agreement>User Agreement</agreement>",
-    "agreePolicy": "I accept the <policy>Privacy Policy</policy>"
+    "agreePolicy": "I accept the <policy>Privacy Policy</policy>",
+    "codeFormTitle": "Email address verification",
+    "sentCodeText": "A verification code has been sent to {{address}}",
+    "sendCodeButtonTimer": "Resend verification code ({{timer}}s)",
+    "sendCodeButton": "Resend verification code"
   },
 
   "post": {

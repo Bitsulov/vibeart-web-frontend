@@ -37,9 +37,9 @@ export const CommunitiesList = ({
                 {isExistsCommunities ?
                     communitiesList.map(community => (
                         <CommunityItem
-                            key={community.ULID}
+                            key={community.UUID}
                             imageUrl={community.imageUrl}
-                            ULID={community.ULID}
+                            UUID={community.UUID}
                             title={community.title}
                             description={community.description}
                             subscribersCount={community.subscribers}

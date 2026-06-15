@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const ALBUM_URL = "/en/album/01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const ALBUM_URL = "/en/album/00000000-0000-4000-8000-00000000000b";
 
 test.describe("Album - страница альбома", () => {
     test("Контент страницы загружается", async ({page}) => {

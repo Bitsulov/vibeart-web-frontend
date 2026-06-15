@@ -48,7 +48,7 @@ export const CreatePost = () => {
                             author={principalUser}
                             title={postInfo?.name ?? ""}
                             imageUrl={postInfo?.imageUrl ?? ""}
-                            ULID={postInfo?.ULID ?? ""}
+                            UUID={postInfo?.UUID ?? ""}
                             type="button"
                             enable={false}
                         />

@@ -22,7 +22,7 @@ export const Post = () => {
             <PostCard
                 authorAvatarUrl={principalUserMock.avatarUrl}
                 authorName={principalUserMock.name}
-                authorULID={principalUserMock.ULID}
+                authorUUID={principalUserMock.UUID}
                 imageUrl={postMock.imageUrl}
                 title={postMock.name}
                 description={postMock.description}
@@ -31,9 +31,9 @@ export const Post = () => {
                 reportsCount={postMock.reports}
                 createdAt={postMock.createdAt}
                 albumName={albumMock.name}
-                albumULID={albumMock.ULID}
-                ULID={postMock.ULID}
-                isOwner={principalUserMock.id === userInfo.id}
+                albumUUID={albumMock.UUID}
+                UUID={postMock.UUID}
+                isOwner={principalUserMock.UUID === userInfo.UUID}
             />
             <PostComments userInfo={userInfo} commentsCount={commentsMock.length} commentsList={commentsMock} />
         </Layout>

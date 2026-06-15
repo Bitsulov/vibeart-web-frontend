@@ -7,8 +7,8 @@ import {NavigationItem} from "features/navigationItem";
 
 /** Свойства компонента {@link Navigation}. */
 interface NavigationProps {
-    /** ULID текущего пользователя — передаётся в каждый {@link NavigationItem} для генерации URL. */
-    ULID: string;
+    /** UUID текущего пользователя — передаётся в каждый {@link NavigationItem} для генерации URL. */
+    UUID: string;
     /** Роль текущего пользователя. Пункты с `isAdmin: true` отображаются только при значении `"admin"`. */
     role: string;
 }
@@ -20,7 +20,7 @@ interface NavigationProps {
  * пункты для обычных пользователей. Отображает бейджи непрочитанных чатов
  * и уведомлений, считывая их количество из Redux-хранилища.
  */
-export const Navigation = ({ ULID, role, ...props }: NavigationProps) => {
+export const Navigation = ({ UUID, role, ...props }: NavigationProps) => {
     const path = useLocation().pathname;
     const chatsNotices = useSelector(selectUnreadChatsCount);
     const notificationsNotices = useSelector(selectUnreadNotificationsCount);
@@ -35,9 +35,9 @@ export const Navigation = ({ ULID, role, ...props }: NavigationProps) => {
                         if(role === "admin") {
                             return (
                                 <NavigationItem
-                                    key={`link ${link.href(ULID)}`}
+                                    key={`link ${link.href(UUID)}`}
                                     Icon={Icon}
-                                    ULID={ULID}
+                                    UUID={UUID}
                                     link={link}
                                     path={path}
                                     chatsNotices={chatsNotices}
@@ -48,9 +48,9 @@ export const Navigation = ({ ULID, role, ...props }: NavigationProps) => {
                     } else {
                         return (
                             <NavigationItem
-                                key={`link ${link.href(ULID)}`}
+                                key={`link ${link.href(UUID)}`}
                                 Icon={Icon}
-                                ULID={ULID}
+                                UUID={UUID}
                                 link={link}
                                 path={path}
                                 chatsNotices={chatsNotices}

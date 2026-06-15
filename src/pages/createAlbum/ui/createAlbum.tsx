@@ -62,7 +62,7 @@ export const CreateAlbum = () => {
                         <AlbumSlide
                             imageUrl={albumInfo.imageUrl ?? ""}
                             name={albumInfo.name ?? ""}
-                            ULID={albumInfo.ULID ?? ""}
+                            UUID={albumInfo.UUID ?? ""}
                             className={clsx(c.item, isErrorImg && c.error)}
                             selectedAlbum={selectedAlbum}
                             setSelectedAlbum={setSelectedAlbum}

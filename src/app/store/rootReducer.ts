@@ -1,5 +1,5 @@
 import {combineReducers} from "@reduxjs/toolkit";
-import {userReducer} from "entities/user";
+import {userReducer} from "entities/user/model/userSlice";
 import {appReducer} from "entities/appConfig";
 import {hintReducer} from "features/mouseHint";
 import {ToastReducer} from "features/toast/model/toastSlice";

@@ -1,8 +1,24 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderWithProviders } from "shared/tests/renderWithProviders";
 import { RegisterForm } from "./registerForm";
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+
+const mockNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+    const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+    return { ...actual, useNavigate: () => mockNavigate };
+});
+
+const fillAndSubmitStep1 = async (user: ReturnType<typeof userEvent.setup>) => {
+    await user.type(screen.getByLabelText("register.emailPlaceholder"), "test@example.com");
+    await user.type(screen.getByLabelText("register.passwordPlaceholder"), "password123");
+    await user.type(screen.getByLabelText("register.confirmPasswordPlaceholder"), "password123");
+    await user.click(screen.getByRole("checkbox", { name: "ariaLabel.agreeAgreement" }));
+    await user.click(screen.getByRole("checkbox", { name: "ariaLabel.agreePolicy" }));
+    await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
+};
 
 describe("RegisterForm - форма регистрации", () => {
     describe("Рендер", () => {
@@ -86,6 +102,64 @@ describe("RegisterForm - форма регистрации", () => {
             await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
 
             expect(screen.getByLabelText("register.emailPlaceholder")).toBeInvalid();
+        });
+    });
+
+    describe("Шаг 2 - подтверждение кода", () => {
+        it("После успешной регистрации показывается форма ввода кода", async () => {
+            const user = userEvent.setup();
+            renderWithProviders(<RegisterForm />);
+
+            await fillAndSubmitStep1(user);
+
+            expect(await screen.findByText("register.codeFormTitle")).toBeInTheDocument();
+            expect(screen.getAllByRole("textbox")).toHaveLength(6);
+            expect(screen.getByRole("button", { name: "ariaLabel.confirmRegister" })).toBeInTheDocument();
+            expect(screen.getByRole("button", { name: "ariaLabel.sendCodeAgain" })).toBeDisabled();
+        });
+
+        it("Кнопка 'назад' возвращает к форме регистрации", async () => {
+            const user = userEvent.setup();
+            renderWithProviders(<RegisterForm />);
+
+            await fillAndSubmitStep1(user);
+            await screen.findByText("register.codeFormTitle");
+
+            await user.click(screen.getByRole("button", { name: "ariaLabel.backToRegister" }));
+
+            expect(screen.getByText("register.registerAccount")).toBeInTheDocument();
+        });
+
+        it("Показывает ошибку в ячейках при отправке неполного кода", async () => {
+            const user = userEvent.setup();
+            renderWithProviders(<RegisterForm />);
+
+            await fillAndSubmitStep1(user);
+            await screen.findByText("register.codeFormTitle");
+
+            const inputs = screen.getAllByRole("textbox");
+            await user.type(inputs[0], "1");
+            await user.click(screen.getByRole("button", { name: "ariaLabel.confirmRegister" }));
+
+            expect(inputs[1].className).toContain("error");
+        });
+
+        it("При вводе валидного кода переходит на страницу профиля", async () => {
+            const user = userEvent.setup();
+            renderWithProviders(<RegisterForm />);
+
+            await fillAndSubmitStep1(user);
+            await screen.findByText("register.codeFormTitle");
+
+            const inputs = screen.getAllByRole("textbox");
+            for (let i = 0; i < inputs.length; i++) {
+                await user.type(inputs[i], String((i + 1) % 10));
+            }
+            await user.click(screen.getByRole("button", { name: "ariaLabel.confirmRegister" }));
+
+            await waitFor(() => {
+                expect(mockNavigate).toHaveBeenCalledWith("/profile/00000000-0000-4000-8000-00000000000a");
+            });
         });
     });
 });

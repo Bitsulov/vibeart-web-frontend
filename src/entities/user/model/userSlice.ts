@@ -2,8 +2,7 @@ import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import type {UserType} from "../lib/types";
 
 const initialState: UserType = {
-    id: 0,
-    ULID: "",
+    UUID: "",
     email: "",
     name: "",
     username: "",
@@ -18,7 +17,11 @@ const initialState: UserType = {
     isBlocked: false,
     onlineStatus: "offline",
     role: "user",
-    avatarUrl: ""
+    avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 }
 
 /**
@@ -41,11 +44,10 @@ export const userSlice = createSlice({
          * @param action.payload - Частичный объект `UserType` с полями для обновления.
          *
          * @example
-         * dispatch(setUserInfo({ isAuthenticated: true, ULID: "01ARZ..." }));
+         * dispatch(setUserInfo({ isAuthenticated: true, UUID: "01ARZ..." }));
          */
         setUserInfo(state, action: PayloadAction<Partial<UserType>>) {
-            if(action.payload.id !== undefined) state.id = action.payload.id;
-            if(action.payload.ULID !== undefined) state.ULID = action.payload.ULID;
+            if(action.payload.UUID !== undefined) state.UUID = action.payload.UUID;
             if(action.payload.email !== undefined) state.email = action.payload.email;
             if(action.payload.name !== undefined) state.name = action.payload.name;
             if(action.payload.username !== undefined) state.username = action.payload.username;
@@ -61,6 +63,10 @@ export const userSlice = createSlice({
             if(action.payload.onlineStatus !== undefined) state.onlineStatus = action.payload.onlineStatus;
             if(action.payload.role !== undefined) state.role = action.payload.role;
             if(action.payload.avatarUrl !== undefined) state.avatarUrl = action.payload.avatarUrl;
+            if(action.payload.accessToken !== undefined) state.accessToken = action.payload.accessToken;
+            if(action.payload.refreshToken !== undefined) state.refreshToken = action.payload.refreshToken;
+            if(action.payload.accessTokenExpiresIn !== undefined) state.accessTokenExpiresIn = action.payload.accessTokenExpiresIn;
+            if(action.payload.refreshTokenExpiresIn !== undefined) state.refreshTokenExpiresIn = action.payload.refreshTokenExpiresIn;
         }
     }
 })

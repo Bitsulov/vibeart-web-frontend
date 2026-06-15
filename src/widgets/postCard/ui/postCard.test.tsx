@@ -13,16 +13,16 @@ vi.mock("react-router-dom", async () => {
 const defaultProps = {
     authorAvatarUrl: "",
     authorName: profileUserMock.name,
-    authorULID: profileUserMock.ULID,
+    authorUUID: profileUserMock.UUID,
     imageUrl: "https://example.com/img.jpg",
     albumName: "Альбом",
-    albumULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    albumUUID: "00000000-0000-4000-8000-00000000000b",
     title: "Название поста",
     description: "Описание поста",
     tagsList: [],
     likesCount: 10,
     reportsCount: 2,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     createdAt: "2026-04-05T12:00:00.000Z",
 };
 
@@ -45,7 +45,7 @@ describe("PostCard - карточка поста", () => {
     it("Ссылка на профиль автора корректна", () => {
         renderWithProviders(<PostCard {...defaultProps} />);
         const link = screen.getByRole("link", { name: `ariaLabel.goToUserProfile` });
-        expect(link).toHaveAttribute("href", `/profile/${profileUserMock.ULID}`);
+        expect(link).toHaveAttribute("href", `/profile/${profileUserMock.UUID}`);
     });
 
     it("Кнопки редактирования и удаления не отображаются, если isOwner = false", () => {

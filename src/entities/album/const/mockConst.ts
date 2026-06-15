@@ -11,8 +11,7 @@ import img from "shared/icons/img-CTA.jpg";
 
 export const profileAlbumsMock = [
     createAlbum({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+        UUID: "00000000-0000-4000-8000-00000000000b",
         name: "test album",
         description: "Description of album 1 Description of album 1 Description of album 1 Description of album 1 Description of album 1",
         postCount: 4,
@@ -21,8 +20,7 @@ export const profileAlbumsMock = [
         createdAt: "2026-03-24T18:48:16.175Z"
     }),
     createAlbum({
-        id: 2,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAK",
+        UUID: "00000000-0000-4000-8000-000000000009",
         name: "test album 2",
         description: "Description of album 2 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 1,
@@ -31,8 +29,7 @@ export const profileAlbumsMock = [
         createdAt: "2026-03-23T18:48:16.175Z"
     }),
     createAlbum({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+        UUID: "00000000-0000-4000-8000-000000000006",
         name: "test album 3",
         description: "Description of album 3 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 0,
@@ -41,8 +38,7 @@ export const profileAlbumsMock = [
         createdAt: "2026-03-23T18:48:16.175Z"
     }),
     createAlbum({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAC",
+        UUID: "00000000-0000-4000-8000-000000000008",
         name: "test album 4",
         description: "Description of album 4 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 0,
@@ -53,8 +49,7 @@ export const profileAlbumsMock = [
 ];
 
 export const albumMock = createAlbum({
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     name: "Album title",
     description: "Description Description Description Description Description Description Description Description Description",
     postCount: 4,

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const POST_URL = "/en/post/01ARZ3NDEKTSV4RRFFQ69G5FAB";
+const POST_URL = "/en/post/00000000-0000-4000-8000-000000000007";
 
 test.describe("Post - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

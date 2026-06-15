@@ -16,7 +16,7 @@ export const BurgerMenuAuth = ({ ...props }) => {
 	return (
         <nav className={c.menu_burger_nav} {...props}>
             {linksConfig.map(item => {
-                const resultLink = item.url === "/profile/" ? item.url + userInfo.ULID : item.url;
+                const resultLink = item.url === "/profile/" ? item.url + userInfo.UUID : item.url;
 
                 if(item.isAdmin) {
                     if(userInfo.role === "admin") {

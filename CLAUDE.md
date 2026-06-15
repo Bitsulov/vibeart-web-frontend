@@ -64,7 +64,7 @@ React Router v7 в framework mode с серверным рендерингом (
 - `src/app/router/routes.ts` — дерево маршрутов
 - `src/app/router/routes/` — файлы маршрутов (ре-экспорты страниц + ресурсные маршруты)
 
-Динамические сегменты используют ULID (`/profile/:ulid`, `/post/:ulid`).
+Динамические сегменты используют UUID (`/profile/:uuid`, `/post/:uuid`).
 
 SSR отключается во время Playwright-тестов через `PLAYWRIGHT=1`.
 
@@ -87,6 +87,15 @@ Redux Toolkit, три слайса в `src/app/store/rootReducer.ts`:
 `setUserInfo(Partial<UserType>)` — мёрджит только переданные поля.
 
 TanStack Query — для серверных данных, Redux — для клиентского/UI-стейта.
+`QueryProvider` (`src/app/providers/queryProvider`) оборачивает приложение в `QueryClientProvider`.
+
+## API и авторизация
+
+- `src/shared/api/instance.ts` — общий axios-инстанс `api` с базовым URL из `VITE_API_BASE`. Перехватчик запросов подставляет заголовок `Authorization` из `accessToken` в cookies, а при его отсутствии обновляет токены через `/auth/refresh`
+- `src/shared/lib/crypto.ts` — `encryptToString`/`decryptFromString`, AES-GCM шифрование токенов перед сохранением в cookies (ключ — `VITE_CRYPTO_KEY`)
+- `src/shared/lib/clearCookiesTokens.ts` — удаляет cookies токенов авторизации
+- `src/shared/const/const.ts` — `refreshIgnoreEndpoints`, эндпоинты, для которых перехватчик не подставляет и не обновляет токен
+- `entities/user/api/userApi.ts` — `register`, `sendCode`, `verify`, `login`, `refresh`, `getPrincipalUser`
 
 ## Тесты
 

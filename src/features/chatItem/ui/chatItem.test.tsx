@@ -4,7 +4,7 @@ import {ChatItem} from "./chatItem";
 import {screen} from "@testing-library/react";
 
 const defaultProps = {
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FA1",
+    UUID: "00000000-0000-4000-8000-000000000001",
     title: "Иван",
     imageUrl: "https://example.com/avatar.jpg",
     lastMessage: "Привет! Как дела?",
@@ -20,12 +20,12 @@ describe("ChatItem - элемент списка чатов", () => {
         ).toBeInTheDocument();
     });
 
-    it("Ссылка ведёт на страницу чата по ULID", () => {
+    it("Ссылка ведёт на страницу чата по UUID", () => {
         renderWithProviders(<ChatItem {...defaultProps} />);
 
         expect(screen.getByRole("link")).toHaveAttribute(
             "href",
-            `/chats/${defaultProps.ULID}`
+            `/chats/${defaultProps.UUID}`
         );
     });
 

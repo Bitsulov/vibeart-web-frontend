@@ -12,6 +12,8 @@ export interface ToastItem {
      * - `"error"` — ошибка (красный).
      */
     type: "success" | "error";
+    /** Параметры интерполяции для перевода текста уведомления (i18next). */
+    params?: Record<string, string | number>;
 }
 
 /** Состояние Redux-слайса уведомлений. */

@@ -1,16 +1,13 @@
 /**
  * @file Фикстуры сущности `user` для использования в модульных тестах
  * и сквозных сценариях Playwright.
- *
- * Все моки исключены из анализа покрытия кода, так как не содержат
- * тестируемой логики.
  */
 import {createUser} from "../model/createUser";
+import type {AuthResponse, UserDetailResponse} from "../lib/types";
 import avatar from "shared/icons/img-CTA.jpg";
 
 export const principalUserMock = createUser({
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     email: "testEmail@test.com",
     name: "testUsergffdgfd",
     username: "testUser",
@@ -25,12 +22,15 @@ export const principalUserMock = createUser({
     isBlocked: true,
     onlineStatus: "online",
     role: "user",
-    avatarUrl: ""
+    avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 });
 
 export const profileUserMock = createUser({
-    id: 2,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+    UUID: "00000000-0000-4000-8000-000000000006",
     email: "testEmail2@test.com",
     name: "testUser",
     username: "testUser",
@@ -45,13 +45,33 @@ export const profileUserMock = createUser({
     isBlocked: false,
     onlineStatus: "online",
     role: "user",
-    avatarUrl: avatar
+    avatarUrl: avatar,
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 });
+
+export const authResponseMock: AuthResponse = {
+    uuid: "00000000-0000-4000-8000-00000000000a",
+    accessToken: "access-token",
+    refreshToken: "refresh-token",
+    accessTokenExpiresIn: 60000,
+    refreshTokenExpiresIn: 120000,
+};
+
+export const userDetailResponseMock: UserDetailResponse = {
+    uuid: "00000000-0000-4000-8000-00000000000a",
+    name: "testUser",
+    username: "testUser",
+    email: "testEmail@test.com",
+    photoUrl: "",
+    enabled: "true",
+};
 
 export const communityAdminsMock = [
     createUser({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB0",
+        UUID: "00000000-0000-4000-8000-000000000014",
         email: "admin1@test.com",
         name: "Alice Wonder",
         username: "alice.wonder",
@@ -66,11 +86,14 @@ export const communityAdminsMock = [
         isBlocked: false,
         onlineStatus: "online",
         role: "user",
-        avatarUrl: avatar
+        avatarUrl: avatar,
+        accessToken: "",
+        refreshToken: "",
+        accessTokenExpiresIn: 0,
+        refreshTokenExpiresIn: 0
     }),
     createUser({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB9",
+        UUID: "00000000-0000-4000-8000-00000000001b",
         email: "admin2@test.com",
         name: "Bob Rivers",
         username: "bob.rivers",
@@ -85,6 +108,10 @@ export const communityAdminsMock = [
         isBlocked: false,
         onlineStatus: "offline",
         role: "user",
-        avatarUrl: avatar
+        avatarUrl: avatar,
+        accessToken: "",
+        refreshToken: "",
+        accessTokenExpiresIn: 0,
+        refreshTokenExpiresIn: 0
     }),
 ];

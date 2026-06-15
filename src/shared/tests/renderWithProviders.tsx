@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
 import { configureStore } from "@reduxjs/toolkit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { type RootState } from "app/store";
 import {rootReducer} from "app/store/rootReducer";
 import i18n from "../tests/i18n";
@@ -28,8 +29,8 @@ interface Options extends RenderOptions {
  * Рендерит компонент React в изолированном тестовом окружении
  * с полным набором провайдеров приложения.
  *
- * Создаёт отдельный экземпляр Redux-хранилища для каждого теста,
- * что предотвращает утечку состояния между тестами.
+ * Создаёт отдельный экземпляр Redux-хранилища и клиента TanStack Query
+ * для каждого теста, что предотвращает утечку состояния между тестами.
  *
  * @param ui - Тестируемый элемент React.
  * @param options - Дополнительные параметры: начальное состояние
@@ -41,7 +42,7 @@ interface Options extends RenderOptions {
  * @example
  * const { getByText } = renderWithProviders(<MyComponent />, {
  *   preloadedState: { user: { isAuthenticated: true } },
- *   route: "/profile/01ARZ3NDEKTSV4RRFFQ69G5FAV",
+ *   route: "/profile/00000000-0000-4000-8000-00000000000b",
  * });
  */
 export function renderWithProviders(
@@ -53,13 +54,17 @@ export function renderWithProviders(
         preloadedState,
     })
 
+    const queryClient = new QueryClient({defaultOptions: {queries: {retry: false}}});
+
     const Wrapper = ({ children }: { children: React.ReactNode }) => (
             <Provider store={store}>
-                <I18nextProvider i18n={i18n}>
-                    <MemoryRouter initialEntries={[route]}>
-                        {children}
-                    </MemoryRouter>
-                </I18nextProvider>
+                <QueryClientProvider client={queryClient}>
+                    <I18nextProvider i18n={i18n}>
+                        <MemoryRouter initialEntries={[route]}>
+                            {children}
+                        </MemoryRouter>
+                    </I18nextProvider>
+                </QueryClientProvider>
             </Provider>
     )
 

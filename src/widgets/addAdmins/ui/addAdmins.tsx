@@ -54,19 +54,19 @@ export const AddAdmins = ({
                         className={`${c.user} ${c.select}`}
                         imageUrl={author.avatarUrl}
                         name={`${author.name} ${t("You")}`}
-                        ULID={author.ULID}
+                        UUID={author.UUID}
                     />
                 </li>
                 {communityAdminsMock.map(user =>
-                    <li key={`add admin wrapper ${user.ULID}`} className={c.item}>
+                    <li key={`add admin wrapper ${user.UUID}`} className={c.item}>
                         <CommunityUserItem
                             onClick={(e) => userClickHandler(e, selectedAdmins, setSelectedAdmins, user)}
                             aria-label={t(selectedAdmins?.includes(user) ? "ariaLabel.deleteAdmin" : "ariaLabel.addAdmin", {name: user.name})}
                             className={clsx(c.user, selectedAdmins?.includes(user) && c.select)}
                             imageUrl={user.avatarUrl}
                             name={user.name}
-                            key={`add admin ${user.ULID}`}
-                            ULID={user.ULID}
+                            key={`add admin ${user.UUID}`}
+                            UUID={user.UUID}
                         />
                     </li>
                 )}

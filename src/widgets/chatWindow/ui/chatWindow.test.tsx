@@ -12,7 +12,7 @@ import {profileUserMock} from "entities/user";
 const defaultProps = {
     messages: messagesMock,
     name: profileUserMock.name,
-    ULID: profileUserMock.ULID,
+    UUID: profileUserMock.UUID,
     avatarUrl: profileUserMock.avatarUrl,
     onlineStatus: "online" as const,
 };

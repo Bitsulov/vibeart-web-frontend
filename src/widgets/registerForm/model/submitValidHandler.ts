@@ -1,17 +1,20 @@
 import type {IRegisterForm} from "../lib/types";
-import type {UseFormSetValue} from "react-hook-form";
+import type {AxiosResponse} from "axios";
+import type {SignUpRequest} from "entities/user";
+
+type SubmitFn = (data: SignUpRequest) => Promise<AxiosResponse<string>>;
 
 /**
- * Обрабатывает успешную отправку формы регистрации и сбрасывает все поля.
+ * Обрабатывает успешную валидацию формы регистрации: отправляет запрос
+ * на сервер, сбрасывает все поля формы и помечает связанные запросы
+ * как устаревшие для повторной загрузки.
  *
  * @param data - Данные формы с e-mail, паролем и подтверждением согласий.
- * @param setValue - Функция сброса полей формы (react-hook-form).
+ * @param submit - Функция отправки данных регистрации на сервер.
  */
-export function submitValidHandler(data: IRegisterForm, setValue: UseFormSetValue<IRegisterForm>) {
-    console.log("Valid form submit ", data);
-    setValue("email", "");
-    setValue("password", "");
-    setValue("confirmPassword", "");
-    setValue("agreed", false);
-    setValue("agreed2", false);
+export async function submitValidHandler(
+    data: IRegisterForm,
+    submit: SubmitFn
+) {
+    submit(data)
 }

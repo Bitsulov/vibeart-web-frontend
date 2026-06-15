@@ -19,7 +19,6 @@ describe("submitValidHandler - добавляет сообщение и сбра
 
     it("Добавляет сообщение к существующим", () => {
         const existing: MessageType = {
-            id: 1,
             text: "Old",
             createdAt: "2026-04-15T10:00:00.000Z",
             isYour: false,

@@ -22,7 +22,7 @@ export const Gallery = () => {
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} ULID={profileUserMock.ULID} />
+                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
                     }
                     <div className={c.content}>
                         <GalleryPostList postList={galleryPostsMock} />

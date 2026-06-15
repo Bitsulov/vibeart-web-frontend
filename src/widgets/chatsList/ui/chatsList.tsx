@@ -35,9 +35,9 @@ export const ChatsList = ({ chatsList, ...props }: ChatListProps) => {
                 <div className={c.list}>
                     {chatsList.length > 0 ? chatsList.map(chat => (
                         <ChatItem
-                            key={`chat ${chat.ULID}`}
+                            key={`chat ${chat.UUID}`}
                             title={chat.companion.name}
-                            ULID={chat.ULID}
+                            UUID={chat.UUID}
                             className={c.chat}
                             imageUrl={chat.companion.avatarUrl}
                             lastMessage={chat.lastMessage.text}

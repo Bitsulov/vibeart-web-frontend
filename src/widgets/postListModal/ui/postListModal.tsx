@@ -25,7 +25,7 @@ interface PostListModalProps {
     pagesDelta: number;
     /** Функция обновления `pagesDelta`. Значение пересчитывается внутри компонента при изменении ширины экрана. */
     setPagesDelta: Dispatch<SetStateAction<number>>;
-    /** Массив ULID публикаций, выбранных пользователем для добавления в альбом. */
+    /** Массив UUID публикаций, выбранных пользователем для добавления в альбом. */
     selectedPosts: string[];
     /** Функция обновления массива выбранных публикаций. */
     setSelectedPosts: Dispatch<SetStateAction<string[]>>;
@@ -81,20 +81,20 @@ export const PostListModal = ({
                 <>
                     <div className={c.list}>
                         {postList.map(post => {
-                            const isChosenPost = selectedPosts.includes(post.ULID);
+                            const isChosenPost = selectedPosts.includes(post.UUID);
 
                             return (
                                 <Post
                                     imageUrl={post.imageUrl}
-                                    key={`post ${post.ULID}`}
+                                    key={`post ${post.UUID}`}
                                     title={post.name}
                                     date={post.createdAt}
                                     author={post.author}
-                                    ULID={post.ULID}
+                                    UUID={post.UUID}
                                     isShowAuthor={false}
                                     type="button"
                                     className={clsx(c.post, isChosenPost && c.active)}
-                                    onClick={() => postChooseHandler(isChosenPost, post.ULID, setSelectedPosts)}
+                                    onClick={() => postChooseHandler(isChosenPost, post.UUID, setSelectedPosts)}
                                     target="_blank"
                                 />
                             )

@@ -8,8 +8,8 @@ import defaultAvatarUrl from "shared/icons/icon-user.svg";
 
 /** Свойства компонента {@link Comment}. */
 interface CommentProps {
-    /** ULID автора для формирования ссылки `/profile/:ulid`. */
-    authorULID: string;
+    /** UUID автора для формирования ссылки `/profile/:uuid`. */
+    authorUUID: string;
     /** Отображаемое имя автора комментария. */
     authorName: string;
     /** URL аватара автора. При отсутствии подставляется иконка-заглушка. */
@@ -26,7 +26,7 @@ interface CommentProps {
  * Отображает аватар автора со ссылкой на профиль, имя, текст
  * и относительное время публикации, локализованное через {@link getLocalTimeAgoString}.
  */
-export const Comment = ({ text, authorULID, authorName, authorAvatarUrl, date, ...props }: CommentProps) => {
+export const Comment = ({ text, authorUUID, authorName, authorAvatarUrl, date, ...props }: CommentProps) => {
     const { t } = useTranslation();
     const language = useSelector(selectCurrentLanguage);
 
@@ -37,7 +37,7 @@ export const Comment = ({ text, authorULID, authorName, authorAvatarUrl, date, .
 			<Link
                 className={c.profile_link}
                 aria-label={t("ariaLabel.goToUserProfile", {name: authorName})}
-                to={`/profile/${authorULID}`}
+                to={`/profile/${authorUUID}`}
             >
                 <img width="35" height="35" src={avatar} alt={authorName} className={c.avatar} />
                 <p className={c.name}>{authorName}</p>

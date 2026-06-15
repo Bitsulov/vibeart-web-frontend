@@ -5,8 +5,7 @@ import {CommunityModal} from "./communityModal";
 import type {UserType} from "entities/user";
 
 const owner: UserType = {
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     email: "owner@test.com",
     name: "Owner Name",
     username: "owner",
@@ -22,12 +21,15 @@ const owner: UserType = {
     onlineStatus: "online",
     role: "user",
     avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0,
 };
 
 const admin: UserType = {
     ...owner,
-    id: 2,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+    UUID: "00000000-0000-4000-8000-000000000006",
     name: "Admin Name",
     username: "admin",
 };

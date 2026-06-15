@@ -20,8 +20,8 @@ vi.mock("swiper/css", () => ({}));
 vi.mock("swiper/css/navigation", () => ({}));
 
 const mockAlbums = [
-    createAlbum({ id: 1, ULID: "01ARZ3NDEKTSV4RRFFQ69G5FA1", name: "Пейзажи",  imageUrl: "", description: "", postCount: 0, postsList: [], createdAt: "2026-01-01T00:00:00.000Z" }),
-    createAlbum({ id: 2, ULID: "01ARZ3NDEKTSV4RRFFQ69G5FA2", name: "Портреты", imageUrl: "", description: "", postCount: 0, postsList: [], createdAt: "2026-01-01T00:00:00.000Z" }),
+    createAlbum({ UUID: "00000000-0000-4000-8000-000000000001", name: "Пейзажи",  imageUrl: "", description: "", postCount: 0, postsList: [], createdAt: "2026-01-01T00:00:00.000Z" }),
+    createAlbum({ UUID: "00000000-0000-4000-8000-000000000002", name: "Портреты", imageUrl: "", description: "", postCount: 0, postsList: [], createdAt: "2026-01-01T00:00:00.000Z" }),
 ];
 
 const defaultProps = {

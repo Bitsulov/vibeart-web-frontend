@@ -47,9 +47,9 @@ export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
     
     const avatarImg = communityInfo.imageUrl || defaultAvatar;
     const avatarAlt = `${t("profile.avatarAlt")} ${communityInfo.title}`;
-    const isPrincipalUser = communityInfo.owner.id === principalUserInfo.id;
+    const isPrincipalUser = communityInfo.owner.UUID === principalUserInfo.UUID;
 
-    const username = communityInfo.username ? communityInfo.username : communityInfo.ULID;
+    const username = communityInfo.username ? communityInfo.username : communityInfo.UUID;
 
     const dispatch = useDispatch();
 
@@ -84,7 +84,7 @@ export const CommunityInfo = ({ communityInfo }: CommunityInfoProps) => {
                         <div className={c.buttons}>
                             <Link
                                 aria-label={t("ariaLabel.goToSettings")}
-                                to={`/communities/${communityInfo.ULID}/edit`}
+                                to={`/communities/${communityInfo.UUID}/edit`}
                                 className={c.settings_wrapper}
                                 onMouseEnter={() => showHint(dispatch, t("hint.settings"))}
                                 onMouseLeave={() => hideHint(dispatch)}

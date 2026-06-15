@@ -15,7 +15,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
                 selectedAlbum="1"
                 setSelectedAlbum={setSelectedAlbum}
                 ariaLabel="button"
-                ULID="2"
+                UUID="2"
             />
         )
 
@@ -32,7 +32,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
                 selectedAlbum="1"
                 setSelectedAlbum={setSelectedAlbum}
                 ariaLabel="button"
-                ULID="2"
+                UUID="2"
             />
         );
 
@@ -42,21 +42,21 @@ describe("albumSlide - кнопка для выбора текущего выб�
         expect(setSelectedAlbum).toHaveBeenCalledWith("2");
         expect(setSelectedAlbum).toHaveBeenCalledTimes(1);
     });
-    it("При ULID === 'all' рендерит текст вместо ссылки", () => {
+    it("При UUID === 'all' рендерит текст вместо ссылки", () => {
         renderWithProviders(
             <AlbumSlide
                 imageUrl=""
                 name="Все работы"
                 selectedAlbum="all"
                 setSelectedAlbum={vi.fn()}
-                ULID="all"
+                UUID="all"
             />
         );
 
         expect(screen.getByText("Все работы")).toBeInTheDocument();
         expect(screen.queryByRole("link")).not.toBeInTheDocument();
     });
-    it("Активное состояние применяется когда selectedAlbum совпадает с ULID", () => {
+    it("Активное состояние применяется когда selectedAlbum совпадает с UUID", () => {
         renderWithProviders(
             <AlbumSlide
                 imageUrl=""
@@ -64,7 +64,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
                 selectedAlbum="42"
                 setSelectedAlbum={vi.fn()}
                 ariaLabel="button"
-                ULID="42"
+                UUID="42"
             />
         );
 
@@ -77,7 +77,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
                 name="Альбом"
                 selectedAlbum=""
                 setSelectedAlbum={vi.fn()}
-                ULID="1"
+                UUID="1"
                 animateName
             />
         );

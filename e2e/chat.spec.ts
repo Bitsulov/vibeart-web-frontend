@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const CHAT_URL = "/en/chats/01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const CHAT_URL = "/en/chats/00000000-0000-4000-8000-00000000000b";
 
 test.describe("Chat - страница чата", () => {
     test("Контент страницы загружается", async ({page}) => {

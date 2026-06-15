@@ -26,10 +26,10 @@ import {selectCurrentLanguage} from "entities/appConfig";
 interface AlbumCardProps {
     /** Признак того, что просматривающий пользователь является автором альбома. При `true` отображаются кнопки редактирования и удаления. */
     isOwner: boolean;
-    /** ULID альбома. */
-    ULID: string;
-    /** ULID автора альбома — используется при удалении для перехода на его профиль. */
-    authorULID: string;
+    /** UUID альбома. */
+    UUID: string;
+    /** UUID автора альбома — используется при удалении для перехода на его профиль. */
+    authorUUID: string;
     /** Название альбома. */
     title: string;
     /** Текстовое описание альбома. */
@@ -55,8 +55,8 @@ interface AlbumCardProps {
 export const AlbumCard = ({
     title,
     description,
-    ULID,
-    authorULID,
+    UUID,
+    authorUUID,
     imageUrl,
     worksCount,
     postList,
@@ -84,7 +84,7 @@ export const AlbumCard = ({
 		<section className={c.album} {...props}>
             <div className="container">
                 <ConfirmModal
-                    confirmFn={() => confirmDeletePost(navigate, authorULID)}
+                    confirmFn={() => confirmDeletePost(navigate, authorUUID)}
                     ariaLabelConfirm={t("ariaLabel.deleteAlbumModal", {name: title})}
                     text={t("modal.deleteAlbum")}
                     isShowModal={isShowConfirm}
@@ -102,7 +102,7 @@ export const AlbumCard = ({
                                 className={c.delete}
                             />
                             <EditButton
-                                ULID={ULID}
+                                UUID={UUID}
                                 type="album"
                                 ariaLabel={t("ariaLabel.editAlbum")}
                                 onMouseEnter={() => showHint(dispatch, t("hint.editAlbum"))}

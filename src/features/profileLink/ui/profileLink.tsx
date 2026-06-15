@@ -12,8 +12,8 @@ interface ProfileLinkProps {
     isPrincipalUser: boolean;
     /** Имя пользователя. */
     name: string;
-    /** ULID пользователя для формирования ссылки на диалог `/chats/:ulid`. */
-    ULID: string;
+    /** UUID пользователя для формирования ссылки на диалог `/chats/:uuid`. */
+    UUID: string;
 }
 
 /**
@@ -23,7 +23,7 @@ interface ProfileLinkProps {
  * для чужого — ссылку на личный диалог с этим пользователем.
  * При наведении показывает подсказку через Redux.
  */
-export const ProfileLink = ({ isPrincipalUser, name, ULID, ...props }: ProfileLinkProps) => {
+export const ProfileLink = ({ isPrincipalUser, name, UUID, ...props }: ProfileLinkProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -44,7 +44,7 @@ export const ProfileLink = ({ isPrincipalUser, name, ULID, ...props }: ProfileLi
                 :
                 <Link
                     aria-label={t("ariaLabel.writeUser", {name: name})}
-                    to={`/chats/${ULID}`}
+                    to={`/chats/${UUID}`}
                     className={c.messages_wrapper}
                     onMouseEnter={() => showHint(dispatch, t("hint.writeMessage"))}
                     onMouseLeave={() => hideHint(dispatch)}

@@ -78,7 +78,7 @@ export const CommunityModal = ({
                             <div className={c.text}>
                                 <h3 className={c.text_title}>{t("community.owner")}</h3>
                                 <CommunityUserItem
-                                    ULID={owner.ULID}
+                                    UUID={owner.UUID}
                                     imageUrl={owner.avatarUrl}
                                     name={owner.name}
                                     className={c.owner}
@@ -89,10 +89,10 @@ export const CommunityModal = ({
                                 <div className={c.admins}>
                                     {admins.map(admin => (
                                         <CommunityUserItem
-                                            key={`user ${admin.ULID}`}
+                                            key={`user ${admin.UUID}`}
                                             imageUrl={admin.avatarUrl}
                                             name={admin.name}
-                                            ULID={admin.ULID}
+                                            UUID={admin.UUID}
                                         />
                                     ))}
                                 </div>

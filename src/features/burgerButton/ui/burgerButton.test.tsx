@@ -13,7 +13,7 @@ describe("BurgerButton - кнопка бургер меню (мобильная 
                 imageUrl=""
                 isAuthenticated={true}
                 name=""
-                userULID=""
+                userUUID=""
                 isBurgerOpen={false}
                 setIsBurgerOpen={setIsBurgerOpen}
             />
@@ -31,7 +31,7 @@ describe("BurgerButton - кнопка бургер меню (мобильная 
                 imageUrl=""
                 isAuthenticated={true}
                 name=""
-                userULID=""
+                userUUID=""
                 isBurgerOpen={true}
                 setIsBurgerOpen={setIsBurgerOpen}
             />

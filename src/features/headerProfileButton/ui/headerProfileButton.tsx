@@ -10,8 +10,8 @@ interface HeaderProfileButtonProps extends Omit<LinkProps, "to"> {
     imageUrl: string;
     /** Признак авторизации. Определяет URL назначения и альтернативный текст. */
     isAuthenticated: boolean;
-    /** ULID пользователя для формирования ссылки `/profile/:ulid`. */
-    userULID: string;
+    /** UUID пользователя для формирования ссылки `/profile/:uuid`. */
+    userUUID: string;
     /** Имя пользователя для атрибута `alt` изображения аватара. */
     name: string;
     /** Признак открытого бургер-меню (зарезервировано для будущей логики). */
@@ -30,7 +30,7 @@ interface HeaderProfileButtonProps extends Omit<LinkProps, "to"> {
 export const HeaderProfileButton = ({
     imageUrl,
     name,
-    userULID,
+    userUUID,
     isAuthenticated,
     isBurgerOpen: _isBurgerOpen,
     setIsBurgerOpen: _setIsBurgerOpen,
@@ -39,7 +39,7 @@ export const HeaderProfileButton = ({
     const { t } = useTranslation();
     const alt = isAuthenticated ? name : "user";
     const image = isAuthenticated ? imageUrl || defaultAvatar : defaultAvatar;
-    const href = isAuthenticated ? `/profile/${userULID}` : "/auth"
+    const href = isAuthenticated ? `/profile/${userUUID}` : "/auth"
     const ariaLabel = isAuthenticated ? t("ariaLabel.goToProfile") : t("ariaLabel.goToAuth")
 
 	return (

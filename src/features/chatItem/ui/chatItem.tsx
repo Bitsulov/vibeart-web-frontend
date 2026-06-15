@@ -8,8 +8,8 @@ import defaultAvatar from "shared/icons/icon-user.svg";
 
 /** Свойства компонента {@link ChatItem}. */
 interface ChatItemProps extends Omit<LinkProps, "to"> {
-    /** ULID диалога для формирования ссылки `/chats/:ulid`. */
-    ULID: string;
+    /** UUID диалога для формирования ссылки `/chats/:uuid`. */
+    UUID: string;
     /** Имя собеседника, отображаемое в заголовке карточки. */
     title: string;
     /** Дополнительный CSS-класс для корневого элемента. */
@@ -31,7 +31,7 @@ interface ChatItemProps extends Omit<LinkProps, "to"> {
 export const ChatItem = ({
     className = "",
     title,
-    ULID,
+    UUID,
     imageUrl,
     lastMessage,
     date,
@@ -46,7 +46,7 @@ export const ChatItem = ({
 		<Link
             aria-label={t("ariaLabel.goToChat", {name: title})}
             className={`${c.chat} ${className}`}
-            to={`/chats/${ULID}`}
+            to={`/chats/${UUID}`}
             {...props}
         >
             <img src={imageUrl || defaultAvatar} alt={`${t("avatar")} ${title}`} className={c.img} />

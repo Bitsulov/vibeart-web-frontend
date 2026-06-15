@@ -13,8 +13,7 @@ import {postTagsMock} from "entities/tag";
 
 export const profileAlbum1PostsMock = [
     createPost({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAB",
+        UUID: "00000000-0000-4000-8000-000000000007",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -29,8 +28,7 @@ export const profileAlbum1PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+        UUID: "00000000-0000-4000-8000-00000000000b",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -45,8 +43,7 @@ export const profileAlbum1PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 2,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAU",
+        UUID: "00000000-0000-4000-8000-00000000000a",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -61,8 +58,7 @@ export const profileAlbum1PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+        UUID: "00000000-0000-4000-8000-000000000006",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -80,8 +76,7 @@ export const profileAlbum1PostsMock = [
 
 export const profileAlbum2PostsMock = [
     createPost({
-        id: 6,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAB",
+        UUID: "00000000-0000-4000-8000-000000000007",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -96,8 +91,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+        UUID: "00000000-0000-4000-8000-00000000000b",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -112,8 +106,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 2,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAU",
+        UUID: "00000000-0000-4000-8000-00000000000a",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -128,8 +121,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+        UUID: "00000000-0000-4000-8000-000000000006",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -144,8 +136,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAv",
+        UUID: "00000000-0000-4000-8000-000000000013",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -160,8 +151,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAA",
+        UUID: "00000000-0000-4000-8000-000000000006",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -176,8 +166,7 @@ export const profileAlbum2PostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAv",
+        UUID: "00000000-0000-4000-8000-000000000013",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -194,8 +183,7 @@ export const profileAlbum2PostsMock = [
 ];
 
 export const postMock = createPost({
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAB",
+    UUID: "00000000-0000-4000-8000-000000000007",
     name: "Post title",
     description: "Description Description Description Description Description Description Description Description Description",
     author: profileUserMock,
@@ -212,8 +200,7 @@ export const postMock = createPost({
 
 export const galleryPostsMock = [
     createPost({
-        id: 6,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAa",
+        UUID: "00000000-0000-4000-8000-00000000000d",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -228,8 +215,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAq",
+        UUID: "00000000-0000-4000-8000-000000000012",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -244,8 +230,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 2,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAv",
+        UUID: "00000000-0000-4000-8000-000000000013",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -260,8 +245,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAb",
+        UUID: "00000000-0000-4000-8000-00000000000e",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -276,8 +260,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAm",
+        UUID: "00000000-0000-4000-8000-000000000011",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -292,8 +275,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAh",
+        UUID: "00000000-0000-4000-8000-00000000000f",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,
@@ -308,8 +290,7 @@ export const galleryPostsMock = [
         createdAt: "2026-03-24T18:48:16.175Z",
     }),
     createPost({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAj",
+        UUID: "00000000-0000-4000-8000-000000000010",
         name: "post 1 name",
         description: "post 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 namepost 1 name",
         author: profileUserMock,

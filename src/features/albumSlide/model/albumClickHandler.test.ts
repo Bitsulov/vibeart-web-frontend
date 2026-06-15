@@ -5,8 +5,8 @@ describe("albumClickHandler - клик обработчик albumSlide", () => {
     it("Вызов функции", () => {
         const setSelectedAlbum = vi.fn();
 
-        albumClickHandler(setSelectedAlbum, "ULID");
+        albumClickHandler(setSelectedAlbum, "UUID");
 
-        expect(setSelectedAlbum).toHaveBeenCalledWith("ULID");
+        expect(setSelectedAlbum).toHaveBeenCalledWith("UUID");
     })
 });

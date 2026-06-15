@@ -5,7 +5,7 @@ import {renderWithProviders} from "shared/tests/renderWithProviders";
 import {CommunityItem} from "./communityItem";
 
 const defaultProps = {
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB1",
+    UUID: "00000000-0000-4000-8000-000000000015",
     title: "Digital Art Club",
     description: "Community for digital artists",
     subscribersCount: 1200,
@@ -30,7 +30,7 @@ describe("CommunityItem - Карточка сообщества", () => {
 
     it("Содержит ссылку на страницу сообщества", () => {
         renderWithProviders(<CommunityItem {...defaultProps} />);
-        expect(screen.getByRole("link", {name: "goLink"})).toHaveAttribute("href", `/communities/${defaultProps.ULID}`);
+        expect(screen.getByRole("link", {name: "goLink"})).toHaveAttribute("href", `/communities/${defaultProps.UUID}`);
     });
 
     it("Содержит кнопку подписки", () => {
