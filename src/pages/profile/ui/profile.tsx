@@ -26,7 +26,7 @@ export const Profile = () => {
     const [pagesDelta, setPagesDelta] = useState<number>(2);
 
     const currentAlbum = useMemo(
-        () => profileAlbumsMock.find(album => album.ULID === selectedAlbum),
+        () => profileAlbumsMock.find(album => album.UUID === selectedAlbum),
         [selectedAlbum]
     );
 
@@ -39,7 +39,7 @@ export const Profile = () => {
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} ULID={profileUserMock.ULID} />
+                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
                     }
                     <div className={c.content}>
                         <ProfileInfo userInfo={principalUserMock} />

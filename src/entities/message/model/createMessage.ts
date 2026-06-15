@@ -3,7 +3,7 @@ import type {MessageType} from "../lib/types";
 /**
  * Фабричная функция для создания нормализованного объекта сообщения.
  *
- * Устанавливает значения по умолчанию: `0` для `id`, пустую строку
+ * Устанавливает значения по умолчанию: пустую строку
  * для `text`, `"save"` для `status`, `false` для `isNew`.
  *
  * @param message - Данные сообщения, соответствующие типу `MessageType`.
@@ -15,7 +15,6 @@ import type {MessageType} from "../lib/types";
  * msg.isNew  // false
  */
 export function createMessage({
-    id = 0,
     text = "",
     createdAt = new Date().toISOString(),
     isYour,
@@ -23,7 +22,6 @@ export function createMessage({
     status = "save"
 }: MessageType) {
     return {
-        id,
         text,
         createdAt,
         isYour,

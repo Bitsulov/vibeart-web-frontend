@@ -20,7 +20,7 @@ export function submitValidHandler(
     setValue: UseFormSetValue<ICommentsForm>
 ) {
     setComments(comments => [
-        createComment({id: Date.now(), text: data.sendComment, createdAt: new Date().toISOString(), author}),
+        createComment({text: data.sendComment, createdAt: new Date().toISOString(), author}),
         ...comments
     ]);
     setValue("sendComment", "");

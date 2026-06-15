@@ -7,8 +7,7 @@ import {createCommunity} from "entities/community";
 import type {UserType} from "entities/user";
 
 const owner: UserType = {
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     email: "owner@test.com",
     name: "Owner Name",
     username: "owner",
@@ -24,17 +23,19 @@ const owner: UserType = {
     onlineStatus: "online",
     role: "user",
     avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0,
 };
 
 const otherUser: UserType = {
     ...owner,
-    id: 99,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FBB",
+    UUID: "00000000-0000-4000-8000-00000000001c",
 };
 
 const communityInfo = createCommunity({
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FC1",
+    UUID: "00000000-0000-4000-8000-00000000001d",
     owner,
     username: "test-community",
     title: "Test Community",
@@ -119,7 +120,7 @@ describe("CommunityInfo - блок информации о сообществе"
 
             const link = screen.getByRole("link", {name: "ariaLabel.goToSettings"});
 
-            expect(link).toHaveAttribute("href", `/communities/${communityInfo.ULID}/edit`);
+            expect(link).toHaveAttribute("href", `/communities/${communityInfo.UUID}/edit`);
         });
     });
 

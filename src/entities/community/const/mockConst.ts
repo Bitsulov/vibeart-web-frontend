@@ -11,8 +11,7 @@ import img from "shared/icons/img-CTA.jpg";
 
 export const communitiesMyMock = [
     createCommunity({
-        id: 1,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB1",
+        UUID: "00000000-0000-4000-8000-000000000015",
         owner: principalUserMock,
         username: "digital-art-club",
         title: "Digital Art Club",
@@ -28,8 +27,7 @@ export const communitiesMyMock = [
         trustStatus: "trust"
     }),
     createCommunity({
-        id: 2,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB2",
+        UUID: "00000000-0000-4000-8000-000000000016",
         owner: principalUserMock,
         username: "sketch-daily",
         title: "Sketch Daily",
@@ -48,8 +46,7 @@ export const communitiesMyMock = [
 
 export const communitiesAllMock = [
     createCommunity({
-        id: 3,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB3",
+        UUID: "00000000-0000-4000-8000-000000000017",
         owner: profileUserMock,
         username: "photo-masters",
         title: "Photo Masters",
@@ -65,8 +62,7 @@ export const communitiesAllMock = [
         trustStatus: "trust"
     }),
     createCommunity({
-        id: 4,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB4",
+        UUID: "00000000-0000-4000-8000-000000000018",
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
@@ -82,8 +78,7 @@ export const communitiesAllMock = [
         trustStatus: "trust"
     }),
     createCommunity({
-        id: 5,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB6",
+        UUID: "00000000-0000-4000-8000-00000000001a",
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
@@ -99,8 +94,7 @@ export const communitiesAllMock = [
         trustStatus: "trust"
     }),
     createCommunity({
-        id: 6,
-        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FB5",
+        UUID: "00000000-0000-4000-8000-000000000019",
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
@@ -118,8 +112,7 @@ export const communitiesAllMock = [
 ];
 
 export const communityMock = createCommunity({
-    id: 10,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FC1",
+    UUID: "00000000-0000-4000-8000-00000000001d",
     owner: principalUserMock,
     username: "digital-art-club",
     title: "Digital Art Club",

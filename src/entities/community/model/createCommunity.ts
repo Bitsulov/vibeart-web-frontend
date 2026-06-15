@@ -11,14 +11,13 @@ import type {CommunityType} from "../lib/types";
  * @returns Нормализованный объект сообщества.
  *
  * @example
- * const community = createCommunity({ ULID: "01ARZ...", owner: principalUserMock,
+ * const community = createCommunity({ UUID: "01ARZ...", owner: principalUserMock,
  *   username: "art-club" });
  * community.isSubscribed // false
  * community.posts        // 0
  */
 export function createCommunity({
-    id = 0,
-    ULID,
+    UUID,
     owner,
     username,
     title = "",
@@ -34,8 +33,7 @@ export function createCommunity({
     trustStatus = "trust",
 }: CommunityType) {
     return {
-        id,
-        ULID,
+        UUID,
         owner,
         username,
         title,

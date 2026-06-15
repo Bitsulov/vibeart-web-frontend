@@ -6,7 +6,7 @@ import {CommunityUserItem} from "./communityUserItem";
 const defaultProps = {
     imageUrl: "",
     name: "Alice Wonder",
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
 };
 
 describe("CommunityUserItem - элемент списка пользователей сообщества", () => {
@@ -21,7 +21,7 @@ describe("CommunityUserItem - элемент списка пользовател
 
         const link = screen.getByRole("link");
 
-        expect(link).toHaveAttribute("href", `/profile/${defaultProps.ULID}`);
+        expect(link).toHaveAttribute("href", `/profile/${defaultProps.UUID}`);
     });
 
     it("Отображает аватар с корректным alt", () => {

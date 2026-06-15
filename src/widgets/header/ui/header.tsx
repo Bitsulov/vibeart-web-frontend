@@ -92,7 +92,7 @@ export const Header = ({
                     setIsBurgerOpen={setIsBurgerOpen}
                     imageUrl={userInfo.avatarUrl}
                     name={userInfo.name}
-                    userULID={userInfo.ULID}
+                    userUUID={userInfo.UUID}
                     isAuthenticated={userInfo.isAuthenticated}
                 />
             </div>

@@ -5,8 +5,8 @@ import {screen} from "@testing-library/react";
 import {profileAlbum1PostsMock} from "entities/post";
 
 const baseProps = {
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
-    authorULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
+    authorUUID: "00000000-0000-4000-8000-00000000000b",
     title: "Test Album",
     description: "Album description",
     imageUrl: "/test-image.jpg",

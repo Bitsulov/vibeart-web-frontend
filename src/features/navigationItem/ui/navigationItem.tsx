@@ -7,18 +7,18 @@ import type {LucideIcon} from "lucide-react";
 interface NavigationItemProps extends Omit<LinkProps, "to"> {
     /** Компонент иконки из библиотеки Lucide. */
     Icon: LucideIcon;
-    /** ULID текущего пользователя — передаётся в генератор URL конфигурации ссылки. */
-    ULID: string;
+    /** UUID текущего пользователя — передаётся в генератор URL конфигурации ссылки. */
+    UUID: string;
     /**
      * Конфигурация пункта навигации:
-     * - `href` — функция, генерирующая URL на основе ULID пользователя.
+     * - `href` — функция, генерирующая URL на основе UUID пользователя.
      * - `icon` — иконка пункта.
      * - `title` — ключ локализации для подписи.
      * - `ariaLabel` — ключ локализации для метки доступности.
      * - `isAdmin` — признак того, что пункт доступен только администраторам.
      */
     link: {
-        href: (ULID: string) => string;
+        href: (UUID: string) => string;
         icon: LucideIcon;
         title: string;
         ariaLabel: string;
@@ -41,7 +41,7 @@ interface NavigationItemProps extends Omit<LinkProps, "to"> {
  */
 export const NavigationItem = ({
     Icon,
-    ULID,
+    UUID,
     link,
     path,
     chatsNotices,
@@ -49,7 +49,7 @@ export const NavigationItem = ({
     ...props
 }: NavigationItemProps) => {
     const { t } = useTranslation();
-    const href = link.href(ULID);
+    const href = link.href(UUID);
 
 	return (
         <Link

@@ -22,12 +22,12 @@ export const Chat = () => {
             <div className="container">
                 <div className={c.main}>
                     {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} ULID={profileUserMock.ULID} />
+                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
                     }
                     <ChatWindow
                         messages={messagesMock}
                         name={profileUserMock.name}
-                        ULID={profileUserMock.ULID}
+                        UUID={profileUserMock.UUID}
                         avatarUrl={profileUserMock.avatarUrl}
                         onlineStatus={profileUserMock.onlineStatus}
                     />

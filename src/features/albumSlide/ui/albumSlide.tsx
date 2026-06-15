@@ -14,12 +14,12 @@ interface AlbumSlideProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
     /** Метка доступности кнопки слайда для программ чтения с экрана. */
     ariaLabel?: string;
     /**
-     * ULID альбома для формирования ссылки `/album/:ulid`.
+     * UUID альбома для формирования ссылки `/album/:uuid`.
      * Специальное значение `"all"` отрисовывает текст вместо ссылки
      * (слайд «Все альбомы»).
      */
-    ULID: string;
-    /** ULID текущего выбранного альбома. Используется для подсветки активного слайда. */
+    UUID: string;
+    /** UUID текущего выбранного альбома. Используется для подсветки активного слайда. */
     selectedAlbum: string;
     /** Функция обновления выбранного альбома. */
     setSelectedAlbum: React.Dispatch<React.SetStateAction<string>>;
@@ -34,12 +34,12 @@ interface AlbumSlideProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
  *
  * При нажатии устанавливает данный альбом как выбранный. Ссылка на страницу
  * альбома встроена в название и доступна независимо от выбора слайда.
- * Специальное значение ULID `"all"` переключает слайдер в режим «все публикации».
+ * Специальное значение UUID `"all"` переключает слайдер в режим «все публикации».
  */
 export const AlbumSlide = ({
     imageUrl,
     name,
-    ULID,
+    UUID,
     ariaLabel = "",
     selectedAlbum,
     setSelectedAlbum,
@@ -52,8 +52,8 @@ export const AlbumSlide = ({
 	return (
         <button
             aria-label={ariaLabel}
-            className={clsx(c.slide, className, selectedAlbum === ULID && c.active)}
-            onClick={() => albumClickHandler(setSelectedAlbum, ULID)}
+            className={clsx(c.slide, className, selectedAlbum === UUID && c.active)}
+            onClick={() => albumClickHandler(setSelectedAlbum, UUID)}
             {...props}
         >
             {imageUrl ?
@@ -72,7 +72,7 @@ export const AlbumSlide = ({
                     </g>
                 </svg>
             }
-            {ULID === "all" ?
+            {UUID === "all" ?
                 <p className={c.text}>
                     {name}
                 </p>
@@ -80,7 +80,7 @@ export const AlbumSlide = ({
                 <Link
                     className={clsx(c.album_link, animateName && c.always_animate)}
                     aria-label={t("ariaLabel.goToAlbum", {name: name})}
-                    to={`/album/${ULID}`}
+                    to={`/album/${UUID}`}
                 >
                     <span className={c.album_link_text}>{name}</span>
                 </Link>

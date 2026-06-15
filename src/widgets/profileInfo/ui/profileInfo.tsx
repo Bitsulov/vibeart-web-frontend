@@ -52,7 +52,7 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
 
     const avatarImg = userInfo.avatarUrl || defaultAvatar;
     const avatarAlt = `${t("profile.avatarAlt")} ${userInfo.name}`;
-    const isPrincipalUser = userInfo.id === principalUserInfo.id;
+    const isPrincipalUser = userInfo.UUID === principalUserInfo.UUID;
 
     const resultDate = getLocalTimeString(language, userInfo.createdAt);
 
@@ -70,7 +70,7 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
                             classNameIcons={c.icon}
                         />
                     }
-                    <ProfileLink isPrincipalUser={isPrincipalUser} name={userInfo.name} ULID={userInfo.ULID} />
+                    <ProfileLink isPrincipalUser={isPrincipalUser} name={userInfo.name} UUID={userInfo.UUID} />
                     <div className={c.left}>
                         <div className={clsx(c.avatar_wrapper, userInfo.onlineStatus === "online" && c.online)}>
                             <img

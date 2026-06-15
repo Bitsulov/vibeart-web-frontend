@@ -21,14 +21,14 @@ interface AlbumSliderProps extends ComponentPropsWithoutRef<"section"> {
     albumsList: AlbumType[];
     /** Функция обновления идентификатора выбранного альбома. */
     setSelectedAlbum: Dispatch<SetStateAction<string>>;
-    /** ULID выбранного альбома. Специальное значение `"all"` означает «все публикации». */
+    /** UUID выбранного альбома. Специальное значение `"all"` означает «все публикации». */
     selectedAlbum: string;
 }
 
 /**
  * Горизонтальный слайдер альбомов на основе Swiper с кнопками навигации и слайдом создания альбома.
  *
- * Первым слайдом всегда отображается элемент «Все работы» с ULID `"all"`.
+ * Первым слайдом всегда отображается элемент «Все работы» с UUID `"all"`.
  * Последним — кнопка добавления нового альбома через {@link AlbumAdd}.
  * Кнопки навигации блокируются при достижении начала или конца слайдера.
  * Точки остановок слайдера задаются через {@link albumBreakpointsConfig}.
@@ -74,7 +74,7 @@ export const AlbumSlider = ({
                             imageUrl=""
                             name={t("profile.albumAll")}
                             key="album all"
-                            ULID="all"
+                            UUID="all"
                             aria-label={t("ariaLabel.chooseAll")}
                             setSelectedAlbum={setSelectedAlbum}
                             selectedAlbum={selectedAlbum}
@@ -89,8 +89,8 @@ export const AlbumSlider = ({
                             <AlbumSlide
                                 imageUrl={album.imageUrl}
                                 name={album.name}
-                                key={album.ULID}
-                                ULID={album.ULID}
+                                key={album.UUID}
+                                UUID={album.UUID}
                                 setSelectedAlbum={setSelectedAlbum}
                                 selectedAlbum={selectedAlbum}
                                 ariaLabel={t("ariaLabel.chooseAlbum", {name: album.name})}

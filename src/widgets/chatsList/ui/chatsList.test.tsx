@@ -36,12 +36,12 @@ describe("ChatsList - список чатов", () => {
         expect(screen.getByRole("heading", {level: 2})).toBeInTheDocument();
     });
 
-    it("Ссылки ведут на страницы чатов по ULID", () => {
+    it("Ссылки ведут на страницы чатов по UUID", () => {
         renderWithProviders(<ChatsList chatsList={chatsMock} />);
 
         const links = screen.getAllByRole("link");
         chatsMock.forEach((chat, i) => {
-            expect(links[i]).toHaveAttribute("href", `/chats/${chat.ULID}`);
+            expect(links[i]).toHaveAttribute("href", `/chats/${chat.UUID}`);
         });
     });
 

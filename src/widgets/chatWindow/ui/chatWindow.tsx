@@ -21,8 +21,8 @@ import {deleteChatConfirmClickHandler} from "../model/deleteChatConfirmClickHand
 interface ChatWindowProps {
     /** Отображаемое имя собеседника. */
     name: string;
-    /** ULID собеседника — используется для формирования ссылки на его профиль. */
-    ULID: string;
+    /** UUID собеседника — используется для формирования ссылки на его профиль. */
+    UUID: string;
     /** URL аватара собеседника. При отсутствии отображается заглушка. */
     avatarUrl?: string;
     /** Статус присутствия собеседника в сети. */
@@ -42,7 +42,7 @@ interface ChatWindowProps {
 export const ChatWindow = ({
     messages,
     name,
-    ULID,
+    UUID,
     avatarUrl = "",
     onlineStatus,
     ...props
@@ -94,12 +94,12 @@ export const ChatWindow = ({
                     <Link
                         className={clsx(c.link, onlineStatus === "online" && c.online)}
                         aria-label={t("ariaLabel.goToUserProfile", {name: name})}
-                        to={`/profile/${ULID}`}
+                        to={`/profile/${UUID}`}
                     >
                         <img src={avatarUrl || defaultAvatar} alt={name} className={c.avatar} />
                     </Link>
                     <div className={c.text}>
-                        <Link className={c.link} aria-label={t("ariaLabel.goToUserProfile", {name: name})} to={`/profile/${ULID}`}>
+                        <Link className={c.link} aria-label={t("ariaLabel.goToUserProfile", {name: name})} to={`/profile/${UUID}`}>
                             <h1 className={c.name}>{name}</h1>
                         </Link>
                         <p
@@ -133,7 +133,7 @@ export const ChatWindow = ({
                         const isDifferentDay = !prev || new Date(message.createdAt).toDateString() !== new Date(prev.createdAt).toDateString();
 
                         return (
-                            <Fragment key={message.id}>
+                            <Fragment key={i}>
                                 {isDifferentDay &&
                                     <ChatDate date={message.createdAt} />
                                 }

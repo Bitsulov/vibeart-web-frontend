@@ -15,8 +15,7 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
             {
                 preloadedState: {
                     user: {
-                        id: 1,
-                        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+                        UUID: "00000000-0000-4000-8000-00000000000b",
                         email: "testEmail@test.com",
                         name: "testUser",
                         username: "testUser",
@@ -31,7 +30,11 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
                         isBlocked: false,
                         onlineStatus: "online",
                         role: "user",
-                        avatarUrl: ""
+                        avatarUrl: "",
+                        accessToken: "",
+                        refreshToken: "",
+                        accessTokenExpiresIn: 0,
+                        refreshTokenExpiresIn: 0
                     }
                 }
             }
@@ -49,8 +52,7 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
             {
                 preloadedState: {
                     user: {
-                        id: 1,
-                        ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+                        UUID: "00000000-0000-4000-8000-00000000000b",
                         email: "testEmail@test.com",
                         name: "testUser",
                         username: "testUser",
@@ -65,7 +67,11 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
                         isBlocked: false,
                         onlineStatus: "online",
                         role: "admin",
-                        avatarUrl: ""
+                        avatarUrl: "",
+                        accessToken: "",
+                        refreshToken: "",
+                        accessTokenExpiresIn: 0,
+                        refreshTokenExpiresIn: 0
                     }
                 }
             }
@@ -78,14 +84,13 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
 
         renderWithProviders(
             <Routes>
-                <Route path="/profile/:ulid" element={<BurgerMenuAuth />} />
+                <Route path="/profile/:uuid" element={<BurgerMenuAuth />} />
             </Routes>,
             {
                 route: "/profile/123",
                 preloadedState: {
                     user: {
-                        id: 1,
-                        ULID: "123",
+                        UUID: "123",
                         email: "testEmail@test.com",
                         name: "testUser",
                         username: "testUser",
@@ -100,7 +105,11 @@ describe("burgerMenuAuth - бургер меню (пользователь ав�
                         isBlocked: false,
                         onlineStatus: "online",
                         role: "admin",
-                        avatarUrl: ""
+                        avatarUrl: "",
+                        accessToken: "",
+                        refreshToken: "",
+                        accessTokenExpiresIn: 0,
+                        refreshTokenExpiresIn: 0
                     }
                 }
             }

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const COMMUNITY_URL = "/en/communities/01ARZ3NDEKTSV4RRFFQ69G5FC1";
+const COMMUNITY_URL = "/en/communities/00000000-0000-4000-8000-00000000001d";
 
 test.describe("Community - визуальная проверка блоков", () => {
     test.beforeEach(async ({ page }) => {

@@ -7,7 +7,7 @@ import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 /**
  * Свойства компонента {@link BurgerButton}.
  *
- * Поля `imageUrl`, `isAuthenticated`, `name` и `userULID` передаются
+ * Поля `imageUrl`, `isAuthenticated`, `name` и `userUUID` передаются
  * из родителя, но не используются в самой кнопке — они нужны дочернему
  * меню (`BurgerMenuAuth`) и передаются вместе как единый набор props.
  */
@@ -18,8 +18,8 @@ interface BurgerButtonProps extends ComponentPropsWithoutRef<"button"> {
     isAuthenticated: boolean;
     /** Имя пользователя (передаётся вниз в меню). */
     name: string;
-    /** ULID пользователя для формирования ссылки на профиль. */
-    userULID: string;
+    /** UUID пользователя для формирования ссылки на профиль. */
+    userUUID: string;
     /** Текущее состояние меню: `true` — открыто, `false` — закрыто. */
     isBurgerOpen: boolean;
     /** Функция обновления состояния открытия меню. */
@@ -36,7 +36,7 @@ interface BurgerButtonProps extends ComponentPropsWithoutRef<"button"> {
 export const BurgerButton = ({
      imageUrl: _imageUrl,
      name: _name,
-     userULID: _userULID,
+     userUUID: _userUUID,
      isAuthenticated: _isAuthenticated,
      isBurgerOpen,
      setIsBurgerOpen,

@@ -3,29 +3,26 @@ import type {ChatType} from "../lib/types";
 /**
  * Фабричная функция для создания нормализованного объекта диалога.
  *
- * Устанавливает значения по умолчанию: `0` для `id`, текущую дату
- * для `createdAt`.
+ * Устанавливает значение по умолчанию: текущую дату для `createdAt`.
  *
  * @param chat - Данные диалога, соответствующие типу `ChatType`.
  * @returns Нормализованный объект диалога.
  *
  * @example
- * const chat = createChat({ ULID: "01ARZ...", companion: profileUserMock,
+ * const chat = createChat({ UUID: "01ARZ...", companion: profileUserMock,
  *   lastMessage: createMessage({ isYour: false, text: "Привет!" }),
  *   imageUrl: "" });
- * chat.id // 0
+ * chat.UUID // "01ARZ..."
  */
 export function createChat({
-    id = 0,
-    ULID,
+    UUID,
     companion,
     lastMessage,
     createdAt = new Date().toISOString(),
     imageUrl,
 }: ChatType) {
     return {
-        id,
-        ULID,
+        UUID,
         companion,
         lastMessage,
         createdAt,

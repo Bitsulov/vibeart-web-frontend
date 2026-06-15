@@ -3,7 +3,7 @@ import {Bell, CircleUser, Images, MessageCircle, Users, UserStar} from "lucide-r
 /** Конфигурация ссылок бокового навигационного меню. */
 export const navigationConfig = [
     {
-        href: (ULID: string) => `/profile/${ULID}`,
+        href: (UUID: string) => `/profile/${UUID}`,
         icon: CircleUser,
         title: "pages.profile",
         ariaLabel: "ariaLabel.goToProfile",

@@ -3,7 +3,7 @@ import type {CommentType} from "../lib/types";
 /**
  * Фабричная функция для создания нормализованного объекта комментария.
  *
- * Устанавливает значения по умолчанию: `0` для `id`, пустую строку
+ * Устанавливает значения по умолчанию: пустую строку
  * для `text`, текущую дату для `createdAt`.
  *
  * @param comment - Данные комментария, соответствующие типу `CommentType`.
@@ -12,16 +12,14 @@ import type {CommentType} from "../lib/types";
  * @example
  * const comment = createComment({ author: profileUserMock,
  *   text: "Отличная работа!" });
- * comment.id // 0
+ * comment.text // "Отличная работа!"
  */
 export function createComment({
-    id = 0,
     text = "",
     author,
     createdAt = new Date().toISOString()
 }: CommentType) {
     return {
-        id,
         text,
         author,
         createdAt

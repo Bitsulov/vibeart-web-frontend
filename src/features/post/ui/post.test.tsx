@@ -8,8 +8,7 @@ import * as postClickHandlerModule from "../model/postClickHandler";
 import * as toggleLikeHandlerModule from "../model/toggleLikeHandler";
 
 const mockAuthor: UserType = {
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     name: "Test User",
     email: "test@test.com",
     username: "@test_user",
@@ -25,10 +24,14 @@ const mockAuthor: UserType = {
     onlineStatus: "offline",
     role: "user",
     avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0,
 };
 
 const defaultProps = {
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAW",
+    UUID: "00000000-0000-4000-8000-00000000000c",
     title: "Test Post",
     author: mockAuthor,
     date: "2026-01-01T00:00:00.000Z",
@@ -40,14 +43,14 @@ const defaultProps = {
 describe("Post - карточка поста", () => {
     afterEach(() => vi.restoreAllMocks());
 
-    it("Клик по статье вызывает postClickHandler с нужным ULID", async () => {
+    it("Клик по статье вызывает postClickHandler с нужным UUID", async () => {
         const spy = vi.spyOn(postClickHandlerModule, "postClickHandler").mockImplementation(() => {});
 
         renderWithProviders(<Post {...defaultProps} />);
 
         await userEvent.click(screen.getByRole("article"));
 
-        expect(spy).toHaveBeenCalledWith(expect.any(Function), defaultProps.ULID);
+        expect(spy).toHaveBeenCalledWith(expect.any(Function), defaultProps.UUID);
     });
 
     it("Повторный клик по статье вызывает postClickHandler дважды", async () => {

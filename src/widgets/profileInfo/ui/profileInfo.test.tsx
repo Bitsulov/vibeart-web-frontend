@@ -6,8 +6,7 @@ import { userEvent } from "@testing-library/user-event";
 import type { UserType } from "entities/user";
 
 const userInfo: UserType = {
-    id: 1,
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
     name: "Иван Иванов",
     email: "test@test.com",
     username: "@ivan",
@@ -22,12 +21,15 @@ const userInfo: UserType = {
     isBlocked: false,
     onlineStatus: "offline",
     role: "user",
-    avatarUrl: ""
+    avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 };
 
 const principalUser: UserType = {
-    id: 99,
-    ULID: "02ARZ3NDEKTSV4RRFFQ69G5FAZ",
+    UUID: "00000000-0000-4000-8000-00000000001e",
     email: "",
     name: "Другой",
     username: "",
@@ -42,7 +44,11 @@ const principalUser: UserType = {
     isBlocked: false,
     onlineStatus: "offline",
     role: "user",
-    avatarUrl: ""
+    avatarUrl: "",
+    accessToken: "",
+    refreshToken: "",
+    accessTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 };
 
 describe("ProfileInfo - блок информации о профиле", () => {
@@ -170,8 +176,8 @@ describe("ProfileInfo - блок информации о профиле", () => 
 
         it("Показывает ссылку на настройки для своего профиля", () => {
             renderWithProviders(
-                <ProfileInfo userInfo={{ ...userInfo, id: 1 }} />,
-                { preloadedState: { user: { ...principalUser, id: 1 } } }
+                <ProfileInfo userInfo={{ ...userInfo, UUID: "same-uuid" }} />,
+                { preloadedState: { user: { ...principalUser, UUID: "same-uuid" } } }
             );
 
             expect(screen.getByRole("link", { name: "ariaLabel.goToSettings" })).toBeInTheDocument();
@@ -179,8 +185,8 @@ describe("ProfileInfo - блок информации о профиле", () => 
 
         it("Показывает ссылку на чат для чужого профиля", () => {
             renderWithProviders(
-                <ProfileInfo userInfo={{ ...userInfo, id: 1 }} />,
-                { preloadedState: { user: { ...principalUser, id: 99 } } }
+                <ProfileInfo userInfo={{ ...userInfo, UUID: "uuid-a" }} />,
+                { preloadedState: { user: { ...principalUser, UUID: "uuid-b" } } }
             );
 
             expect(screen.queryByRole("link", { name: "ariaLabel.goToSettings" })).not.toBeInTheDocument();

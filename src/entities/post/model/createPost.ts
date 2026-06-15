@@ -11,14 +11,13 @@ import type {PostType} from "../lib/types";
  * @returns Нормализованный объект публикации.
  *
  * @example
- * const post = createPost({ ULID: "01ARZ...", imageUrl: "/img.jpg",
+ * const post = createPost({ UUID: "01ARZ...", imageUrl: "/img.jpg",
  *   author: profileUserMock });
  * post.checkStatus // "unchecked"
  * post.likes       // 0
  */
 export function createPost({
-    id = 0,
-    ULID,
+    UUID,
     name = "",
     description = "",
     author,
@@ -33,8 +32,7 @@ export function createPost({
     createdAt = new Date().toISOString()
 }: PostType) {
     return {
-        id,
-        ULID,
+        UUID,
         name,
         description,
         author,

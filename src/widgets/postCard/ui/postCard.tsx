@@ -30,14 +30,14 @@ interface PostCardProps {
     authorAvatarUrl: string;
     /** Отображаемое имя автора публикации. */
     authorName: string;
-    /** ULID автора публикации — используется для формирования ссылки на его профиль. */
-    authorULID: string;
+    /** UUID автора публикации — используется для формирования ссылки на его профиль. */
+    authorUUID: string;
     /** URL изображения публикации. */
     imageUrl: string;
     /** Название альбома, к которому относится публикация. */
     albumName: string;
-    /** ULID альбома — используется для формирования ссылки на альбом. */
-    albumULID: string;
+    /** UUID альбома — используется для формирования ссылки на альбом. */
+    albumUUID: string;
     /** Заголовок публикации. */
     title: string;
     /** Текстовое описание публикации. */
@@ -50,8 +50,8 @@ interface PostCardProps {
     likesCount: number;
     /** Количество жалоб на публикацию. */
     reportsCount: number;
-    /** ULID публикации. */
-    ULID: string;
+    /** UUID публикации. */
+    UUID: string;
     /** Дата публикации в формате ISO 8601. По умолчанию пустая строка. */
     createdAt?: string;
 }
@@ -67,7 +67,7 @@ interface PostCardProps {
 export const PostCard = ({
     authorAvatarUrl,
     authorName,
-    authorULID,
+    authorUUID,
     imageUrl,
     title,
     description,
@@ -75,8 +75,8 @@ export const PostCard = ({
     likesCount,
     reportsCount,
     albumName,
-    albumULID,
-    ULID,
+    albumUUID,
+    UUID,
     isOwner = false,
     createdAt = ""
 }: PostCardProps) => {
@@ -102,7 +102,7 @@ export const PostCard = ({
     return (
         <section className={c.post_card}>
             <ConfirmModal
-                confirmFn={() => confirmDeletePost(navigate, authorULID)}
+                confirmFn={() => confirmDeletePost(navigate, authorUUID)}
                 ariaLabelConfirm={t("ariaLabel.deletePostModal", {name: title})}
                 text={t("modal.deletePost")}
                 isShowModal={isShowConfirm}
@@ -121,7 +121,7 @@ export const PostCard = ({
                                 className={c.delete}
                             />
                             <EditButton
-                                ULID={ULID}
+                                UUID={UUID}
                                 type="post"
                                 ariaLabel={t("ariaLabel.editPost")}
                                 onMouseEnter={() => showHint(dispatch, t("hint.editPost"))}
@@ -159,7 +159,7 @@ export const PostCard = ({
                             </div>
                             <Link
                                 aria-label={t("ariaLabel.goToUserProfile", {name: authorName})}
-                                to={`/profile/${authorULID}`}
+                                to={`/profile/${authorUUID}`}
                                 className={c.author}
                             >
                                 <img
@@ -179,7 +179,7 @@ export const PostCard = ({
                                     {t("post.inAlbum")}{" "}
                                     <Link
                                         aria-label={t("ariaLabel.goToAlbum", {name: albumName})}
-                                        to={`/album/${albumULID}`}
+                                        to={`/album/${albumUUID}`}
                                         className={c.album_name}
                                     >
                                         {albumName}
@@ -203,8 +203,8 @@ export const PostCard = ({
                             </div>
                             {tagsList.length > 0 && (
                                 <ul className={c.tags}>
-                                    {tagsList.map(tag => (
-                                        <li key={tag.id}>
+                                    {tagsList.map((tag, i) => (
+                                        <li key={i}>
                                             <PostTag tag={tag} />
                                         </li>
                                     ))}
@@ -215,7 +215,7 @@ export const PostCard = ({
                         {isOwner && (
                             <div className={c.desktop_actions}>
                                 <EditButton
-                                    ULID={ULID}
+                                    UUID={UUID}
                                     type="post"
                                     ariaLabel={t("ariaLabel.editPost")}
                                     onMouseEnter={() => showHint(dispatch, t("hint.editPost"))}

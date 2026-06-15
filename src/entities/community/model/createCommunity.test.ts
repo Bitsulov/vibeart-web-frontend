@@ -5,10 +5,9 @@ import {createUser} from "entities/user";
 describe("createCommunity - Возвращает объект типа CommunityType", () => {
     it("Создание экземпляра сообщества", () => {
         expect(createCommunity({
-            id: 1,
-            ULID: "hgghghgh",
+            UUID: "hgghghgh",
             // @ts-expect-error неполная информация
-            owner: createUser({id: 1, ULID: "321312312", email: "@", createdAt: ""}),
+            owner: createUser({UUID: "321312312", email: "@", createdAt: ""}),
             username: "",
             title: "",
             description: "",
@@ -22,10 +21,9 @@ describe("createCommunity - Возвращает объект типа Community
             isBlocked: false,
             trustStatus: "trust"
         })).toEqual({
-            id: 1,
-            ULID: "hgghghgh",
+            UUID: "hgghghgh",
             // @ts-expect-error неполная информация
-            owner: createUser({id: 1, ULID: "321312312", email: "@", createdAt: ""}),
+            owner: createUser({UUID: "321312312", email: "@", createdAt: ""}),
             username: "",
             title: "",
             description: "",
@@ -43,16 +41,15 @@ describe("createCommunity - Возвращает объект типа Community
     it("Создание экземпляра сообщества с неполными данными", () => {
         // @ts-expect-error неполная информация
         expect(createCommunity({
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             // @ts-expect-error неполная информация
-            owner: createUser({id: 1, ULID: "321312312", email: "@", createdAt: ""}),
+            owner: createUser({UUID: "321312312", email: "@", createdAt: ""}),
             username: "",
             createdAt: "2026-03-29T17:25:15.940Z"
         })).toEqual({
-            id: 0,
-            ULID: "gfgfgf",
+            UUID: "gfgfgf",
             // @ts-expect-error неполная информация
-            owner: createUser({id: 1, ULID: "321312312", email: "@", createdAt: ""}),
+            owner: createUser({UUID: "321312312", email: "@", createdAt: ""}),
             username: "",
             title: "",
             description: "",

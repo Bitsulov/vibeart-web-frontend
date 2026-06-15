@@ -4,7 +4,7 @@ import type {UserType} from "entities/user";
 /**
  * Переключает выбор пользователя в списке администраторов.
  *
- * Если пользователь уже выбран — удаляет его из списка по ULID.
+ * Если пользователь уже выбран — удаляет его из списка по UUID.
  * Если не выбран — добавляет в конец списка.
  * Блокирует навигацию по ссылке через `e.preventDefault()`.
  *
@@ -21,7 +21,7 @@ export function userClickHandler(
 ) {
     e.preventDefault();
     if(selectedAdmins.includes(selectedUser)) {
-        setSelectedAdmins(admins => admins.filter(admin => admin.ULID !== selectedUser.ULID));
+        setSelectedAdmins(admins => admins.filter(admin => admin.UUID !== selectedUser.UUID));
     } else {
         setSelectedAdmins(admins => [...admins, selectedUser]);
     }

@@ -12,7 +12,7 @@ describe("headerProfileButton - ссылка на профиль на дескт
             <HeaderProfileButton
                 imageUrl=""
                 isAuthenticated={false}
-                userULID=""
+                userUUID=""
                 name=""
                 isBurgerOpen={false}
                 setIsBurgerOpen={setIsBurgerOpen}
@@ -30,7 +30,7 @@ describe("headerProfileButton - ссылка на профиль на дескт
             <HeaderProfileButton
                 imageUrl=""
                 isAuthenticated={true}
-                userULID="123"
+                userUUID="123"
                 name="n"
                 isBurgerOpen={false}
                 setIsBurgerOpen={setIsBurgerOpen}
@@ -48,7 +48,7 @@ describe("headerProfileButton - ссылка на профиль на дескт
             <HeaderProfileButton
                 imageUrl="a"
                 isAuthenticated={true}
-                userULID="123"
+                userUUID="123"
                 name="n"
                 isBurgerOpen={false}
                 setIsBurgerOpen={setIsBurgerOpen}

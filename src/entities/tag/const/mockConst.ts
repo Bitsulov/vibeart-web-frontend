@@ -8,17 +8,17 @@
 import {createTag} from "../model/createTag";
 
 export const postTagsMock = [
-    createTag({id: 1, title: "beauty", createdAt: ""}),
-    createTag({id: 2, title: "nature", createdAt: ""}),
-    createTag({id: 3, title: "aaa", createdAt: ""}),
-    createTag({id: 4, title: "beauty", createdAt: ""}),
-    createTag({id: 5, title: "aaa", createdAt: ""})
+    createTag({title: "beauty", createdAt: ""}),
+    createTag({title: "nature", createdAt: ""}),
+    createTag({title: "aaa", createdAt: ""}),
+    createTag({title: "beauty", createdAt: ""}),
+    createTag({title: "aaa", createdAt: ""})
 ];
 
 export const communityTagsMock = [
-    createTag({id: 1, title: "beauty", createdAt: ""}),
-    createTag({id: 2, title: "nature", createdAt: ""}),
-    createTag({id: 3, title: "aaa", createdAt: ""}),
-    createTag({id: 4, title: "beauty", createdAt: ""}),
-    createTag({id: 5, title: "aaa", createdAt: ""})
+    createTag({title: "beauty", createdAt: ""}),
+    createTag({title: "nature", createdAt: ""}),
+    createTag({title: "aaa", createdAt: ""}),
+    createTag({title: "beauty", createdAt: ""}),
+    createTag({title: "aaa", createdAt: ""})
 ];

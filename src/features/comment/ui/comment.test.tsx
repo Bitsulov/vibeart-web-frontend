@@ -5,7 +5,7 @@ import {screen} from "@testing-library/react";
 import {profileUserMock} from "entities/user";
 
 const defaultProps = {
-    authorULID: profileUserMock.ULID,
+    authorUUID: profileUserMock.UUID,
     authorName: profileUserMock.name,
     authorAvatarUrl: "",
     text: "Текст комментария",
@@ -26,7 +26,7 @@ describe("Comment - отображение комментария", () => {
     it("Ссылка ведет на профиль автора", () => {
         renderWithProviders(<Comment {...defaultProps} />);
         const link = screen.getByRole("link", { name: `ariaLabel.goToUserProfile` });
-        expect(link).toHaveAttribute("href", `/profile/${profileUserMock.ULID}`);
+        expect(link).toHaveAttribute("href", `/profile/${profileUserMock.UUID}`);
     });
 
     it("Отображает аватар автора", () => {

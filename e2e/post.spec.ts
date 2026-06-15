@@ -1,6 +1,6 @@
 import {expect, test} from "@playwright/test";
 
-const POST_URL = "/en/post/01ARZ3NDEKTSV4RRFFQ69G5FAB";
+const POST_URL = "/en/post/00000000-0000-4000-8000-000000000007";
 
 test.describe("Post - страница поста", () => {
     test("Контент страницы загружается", async ({page}) => {
@@ -43,7 +43,7 @@ test.describe("Post - страница поста", () => {
 
         const authorLink = page.getByRole("article").getByRole("link", {name: "Go to testUsergffdgfd's profile"});
         await expect(authorLink).toBeVisible();
-        await expect(authorLink).toHaveAttribute("href", "/profile/01ARZ3NDEKTSV4RRFFQ69G5FAV");
+        await expect(authorLink).toHaveAttribute("href", "/profile/00000000-0000-4000-8000-00000000000b");
     });
 
     test("Отображается ссылка на альбом поста", async ({page}) => {

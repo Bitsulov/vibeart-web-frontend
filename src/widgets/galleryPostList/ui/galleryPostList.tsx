@@ -46,12 +46,12 @@ export const GalleryPostList = ({ postList, masonryBreakpoints, ...props }: Gall
             >
                 {resultPostList.map((post) => (
                     <Post
-                        key={post.ULID}
+                        key={post.UUID}
                         date={post.createdAt}
                         author={post.author}
                         title={post.name}
                         imageUrl={post.imageUrl}
-                        ULID={post.ULID}
+                        UUID={post.UUID}
                         autoHeight={true}
                     />
                 ))}

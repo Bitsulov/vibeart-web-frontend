@@ -7,10 +7,8 @@ import type {AlbumType} from "entities/album";
  * единой творческой тематики.
  */
 export interface CommunityType {
-    /** Внутренний числовой идентификатор в базе данных. */
-    id: number;
-    /** ULID, используемый в публичных URL (например, `/community/:ulid`). */
-    ULID: string;
+    /** UUID, используемый в публичных URL (например, `/community/:uuid`). */
+    UUID: string;
     /** Полный профиль пользователя-владельца сообщества. */
     owner: UserType;
     /** Уникальный псевдоним сообщества, используемый в URL. */

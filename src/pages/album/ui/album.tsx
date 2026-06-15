@@ -17,9 +17,9 @@ export const Album = () => {
             <meta property="og:title" content={t("titles.album")} />
             <meta property="og:description" content={t("description.album")} />
             <AlbumCard
-                isOwner={principalUserMock.id === userInfo.id}
-                ULID={albumMock.ULID}
-                authorULID={principalUserMock.ULID}
+                isOwner={principalUserMock.UUID === userInfo.UUID}
+                UUID={albumMock.UUID}
+                authorUUID={principalUserMock.UUID}
                 title={albumMock.name}
                 imageUrl={albumMock.imageUrl}
                 description={albumMock.description}

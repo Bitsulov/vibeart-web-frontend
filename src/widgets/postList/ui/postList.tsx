@@ -103,11 +103,11 @@ export const PostList = ({
                             {postList.map(post =>
                                 <Post
                                     imageUrl={post.imageUrl}
-                                    key={`post ${post.ULID}`}
+                                    key={`post ${post.UUID}`}
                                     title={post.name}
                                     date={post.createdAt}
                                     author={post.author}
-                                    ULID={post.ULID}
+                                    UUID={post.UUID}
                                     isShowAuthor={false}
                                 />
                             )}

@@ -3,29 +3,29 @@ import { renderWithProviders } from "shared/tests/renderWithProviders";
 import { Navigation } from "./navigation";
 import { screen } from "@testing-library/react";
 
-const ULID = "01ARZ3NDEKTSV4RRFFQ69G5FAV";
+const UUID = "00000000-0000-4000-8000-00000000000b";
 
 describe("Navigation - боковая навигация", () => {
     it("Рендерит nav-элемент", () => {
-        renderWithProviders(<Navigation ULID={ULID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="user" />);
 
         expect(screen.getByRole("navigation")).toBeInTheDocument();
     });
 
     it("Отображает 5 ссылок для обычного пользователя (без adminlink)", () => {
-        renderWithProviders(<Navigation ULID={ULID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="user" />);
 
         expect(screen.getAllByRole("link")).toHaveLength(5);
     });
 
     it("Не отображает ссылку администратора для обычного пользователя", () => {
-        renderWithProviders(<Navigation ULID={ULID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="user" />);
 
         expect(screen.queryByRole("link", { name: "ariaLabel.goToBan" })).not.toBeInTheDocument();
     });
 
     it("Отображает 6 ссылок для администратора (включая admin-ссылку)", () => {
-        renderWithProviders(<Navigation ULID={ULID} role="admin" />);
+        renderWithProviders(<Navigation UUID={UUID} role="admin" />);
 
         expect(screen.getAllByRole("link")).toHaveLength(6);
         expect(screen.getByRole("link", { name: "ariaLabel.goToBan" })).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("Navigation - боковая навигация", () => {
 
     it("Активная ссылка имеет aria-current='page'", () => {
         renderWithProviders(
-            <Navigation ULID={ULID} role="user" />,
+            <Navigation UUID={UUID} role="user" />,
             { route: "/gallery" }
         );
 
@@ -43,7 +43,7 @@ describe("Navigation - боковая навигация", () => {
 
     it("Неактивные ссылки не имеют aria-current", () => {
         renderWithProviders(
-            <Navigation ULID={ULID} role="user" />,
+            <Navigation UUID={UUID} role="user" />,
             { route: "/gallery" }
         );
 
@@ -53,7 +53,7 @@ describe("Navigation - боковая навигация", () => {
 
     it("Отображает счётчик непрочитанных чатов", () => {
         renderWithProviders(
-            <Navigation ULID={ULID} role="user" />,
+            <Navigation UUID={UUID} role="user" />,
             { preloadedState: { app: { unreadChatsCount: 3, unreadNotificationsCount: 0, currentLanguage: "ru", serverStatus: "good" } } }
         );
 
@@ -62,7 +62,7 @@ describe("Navigation - боковая навигация", () => {
 
     it("Не отображает счётчик чатов, если нет непрочитанных", () => {
         renderWithProviders(
-            <Navigation ULID={ULID} role="user" />,
+            <Navigation UUID={UUID} role="user" />,
             { preloadedState: { app: { unreadChatsCount: 0, unreadNotificationsCount: 0, currentLanguage: "ru", serverStatus: "good" } } }
         );
 

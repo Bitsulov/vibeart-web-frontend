@@ -5,8 +5,6 @@ import type {UserType} from "entities/user";
  * к публикации на сайте.
  */
 export interface CommentType {
-    /** Внутренний числовой идентификатор в базе данных. */
-    id: number;
     /** Текстовое содержимое комментария. */
     text: string;
     /** Дата и время публикации комментария в формате ISO 8601. */

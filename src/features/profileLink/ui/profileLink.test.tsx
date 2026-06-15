@@ -5,7 +5,7 @@ import {ProfileLink} from "./profileLink";
 
 const initialProps = {
     name: "",
-    ULID: "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+    UUID: "00000000-0000-4000-8000-00000000000b",
 };
 
 describe("ProfileLink - ссылка на настройки или чат пользователя", () => {
@@ -42,12 +42,12 @@ describe("ProfileLink - ссылка на настройки или чат по�
             expect(link).toBeInTheDocument();
         });
 
-        it("Ссылка ведёт на /chats/:ULID", () => {
+        it("Ссылка ведёт на /chats/:UUID", () => {
             renderWithProviders(<ProfileLink {...initialProps} isPrincipalUser={false} />);
 
             const link = screen.getByRole("link", {name: "ariaLabel.writeUser"});
 
-            expect(link).toHaveAttribute("href", `/chats/${initialProps.ULID}`);
+            expect(link).toHaveAttribute("href", `/chats/${initialProps.UUID}`);
         });
 
         it("Не отображает ссылку на настройки", () => {

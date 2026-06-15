@@ -18,7 +18,7 @@ describe("submitValidHandler - добавляет комментарий и сб
     });
 
     it("Добавляет комментарий в начало существующего массива", () => {
-        const existing: CommentType = { id: 1, text: "Старый", createdAt: "2026-04-05T12:00:00.000Z", author: profileUserMock };
+        const existing: CommentType = { text: "Старый", createdAt: "2026-04-05T12:00:00.000Z", author: profileUserMock };
         const setComments = vi.fn();
         const setValue = vi.fn();
 

@@ -17,7 +17,7 @@ export function submitValidHandler(
 ) {
     setMessages(messages => [
         ...messages,
-        createMessage({id: Date.now(), text: data.sendMessage, createdAt: new Date().toISOString(), isYour: true, isNew: true, status: "save"})
+        createMessage({text: data.sendMessage, createdAt: new Date().toISOString(), isYour: true, isNew: true, status: "save"})
     ]);
     setValue("sendMessage", "");
 }

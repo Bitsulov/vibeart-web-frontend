@@ -9,8 +9,8 @@ interface CommunityUserItemProps extends Omit<LinkProps, "to"> {
     imageUrl: string;
     /** Отображаемое имя пользователя. */
     name: string;
-    /** ULID пользователя для формирования ссылки `/profile/:ulid`. */
-    ULID: string;
+    /** UUID пользователя для формирования ссылки `/profile/:uuid`. */
+    UUID: string;
     /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
     /** Обработчик клика. Можно использовать для перехвата навигации (`e.preventDefault()`). */
@@ -21,19 +21,19 @@ interface CommunityUserItemProps extends Omit<LinkProps, "to"> {
  * Элемент списка участников сообщества.
  *
  * Отображает аватар и имя пользователя. При нажатии переходит
- * на страницу профиля (`/profile/:ulid`). При отсутствии аватара
+ * на страницу профиля (`/profile/:uuid`). При отсутствии аватара
  * подставляется иконка-заглушка.
  */
 export const CommunityUserItem = ({
     imageUrl,
     name,
-    ULID,
+    UUID,
     className = "",
     onClick = () => {},
     ...props
 }: CommunityUserItemProps) => {
 	return (
-		<Link onClick={onClick} to={`/profile/${ULID}`} className={`${c.user} ${className}`} {...props}>
+		<Link onClick={onClick} to={`/profile/${UUID}`} className={`${c.user} ${className}`} {...props}>
             <img decoding="async" width="25" height="25" src={imageUrl || defaultAvatar} alt={name} className={c.img} />
             <p className={c.name}>{name}</p>
 		</Link>

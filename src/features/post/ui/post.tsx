@@ -28,8 +28,8 @@ interface PostProps {
     commentsCount?: number;
     /** URL изображения публикации. */
     imageUrl: string;
-    /** ULID публикации для формирования ссылки `/post/:ulid`. */
-    ULID: string;
+    /** UUID публикации для формирования ссылки `/post/:uuid`. */
+    UUID: string;
     /** Признак видимости блока с именем автора. По умолчанию `true`. */
     isShowAuthor?: boolean;
     /** Дополнительный CSS-класс для корневого элемента. */
@@ -62,7 +62,7 @@ export const Post = ({
     title,
     author,
     date,
-    ULID,
+    UUID,
     likesCount = 0,
     commentsCount = 0,
     isShowAuthor = true,
@@ -85,7 +85,7 @@ export const Post = ({
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
     const resultOnClickFn = type === "link"
-        ? () => postClickHandler(navigate, ULID)
+        ? () => postClickHandler(navigate, UUID)
         : onClick;
 
 	return (
@@ -109,7 +109,7 @@ export const Post = ({
                         target === "_self" ? (
                             <Link
                                 aria-label={t("ariaLabel.goToUserProfile", {name: author.name})}
-                                to={`/profile/${author.ULID}`}
+                                to={`/profile/${author.UUID}`}
                                 className={c.name}
                                 target="_self"
                             >
@@ -119,7 +119,7 @@ export const Post = ({
                             <a
                                 rel="nofollow noopener noreferrer"
                                 aria-label={t("ariaLabel.goToUserProfile", {name: author.name})}
-                                href={`/profile/${author.ULID}`}
+                                href={`/profile/${author.UUID}`}
                                 className={c.name}
                                 target={target}
                             >
@@ -129,7 +129,7 @@ export const Post = ({
                     {target === "_self" ? (
                         <Link
                             aria-label={t("ariaLabel.goToPost", {name: title})}
-                            to={`/post/${ULID}`}
+                            to={`/post/${UUID}`}
                             className={clsx(c.title, !enable && c.disabled)}
                             target="_self"
                         >
@@ -139,7 +139,7 @@ export const Post = ({
                         <a
                             rel="nofollow noopener noreferrer"
                             aria-label={t("ariaLabel.goToPost", {name: title})}
-                            href={`/post/${ULID}`}
+                            href={`/post/${UUID}`}
                             className={clsx(c.title, !enable && c.disabled)}
                             target={target}
                         >
@@ -158,7 +158,7 @@ export const Post = ({
                         />
                         <StatItem
                             type="link"
-                            href={`/post/${ULID}#comments`}
+                            href={`/post/${UUID}#comments`}
                             ariaLabel={t("ariaLabel.goToPostComments", {name: title})}
                             className={clsx(c.stat, !enable && c.disabled)}
                             Icon={MessageSquare}

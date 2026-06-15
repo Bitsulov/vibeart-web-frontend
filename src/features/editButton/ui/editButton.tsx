@@ -16,8 +16,8 @@ interface EditButtonProps extends Omit<LinkProps, "to"> {
     onMouseEnter?: React.MouseEventHandler;
     /** Обработчик ухода курсора (используется для скрытия подсказок). */
     onMouseLeave?: React.MouseEventHandler;
-    /** ULID редактируемой сущности для формирования ссылки `/:type/:ulid/edit`. */
-    ULID: string;
+    /** UUID редактируемой сущности для формирования ссылки `/:type/:uuid/edit`. */
+    UUID: string;
     /** Тип редактируемой сущности. Определяет первый сегмент URL. */
     type: "post" | "album";
 }
@@ -25,7 +25,7 @@ interface EditButtonProps extends Omit<LinkProps, "to"> {
 /**
  * Кнопка-ссылка для перехода на страницу редактирования поста или альбома.
  *
- * Формирует URL вида `/:type/:ulid/edit`. Перед переходом вызывает
+ * Формирует URL вида `/:type/:uuid/edit`. Перед переходом вызывает
  * `onClick` и `onMouseLeave` для корректного скрытия всплывающих подсказок.
  */
 export const EditButton = ({
@@ -34,7 +34,7 @@ export const EditButton = ({
     ariaLabel = "",
     onClick = () => {},
     className = "",
-    ULID = "",
+    UUID = "",
     type,
     ...props
 }: EditButtonProps) => {
@@ -45,7 +45,7 @@ export const EditButton = ({
             onMouseLeave={onMouseLeave}
             onClick={(e) => clickHandler(onClick, onMouseLeave, e)}
             aria-label={ariaLabel}
-            to={`/${type}/${ULID}/edit`}
+            to={`/${type}/${UUID}/edit`}
             {...props}
         >
             <Pencil className={c.icon} />

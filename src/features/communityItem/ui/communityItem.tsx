@@ -15,8 +15,8 @@ import defaultAvatar from "shared/icons/icon-user.svg";
 interface CommunitiesItemProps extends ComponentPropsWithoutRef<"article"> {
     /** URL обложки сообщества. */
     imageUrl?: string;
-    /** ULID сообщества для формирования ссылки `/communities/:ulid`. */
-    ULID: string;
+    /** UUID сообщества для формирования ссылки `/communities/:uuid`. */
+    UUID: string;
     /** Название сообщества. */
     title?: string;
     /** Краткое описание сообщества. */
@@ -36,7 +36,7 @@ interface CommunitiesItemProps extends ComponentPropsWithoutRef<"article"> {
  */
 export const CommunityItem = ({
     imageUrl,
-    ULID,
+    UUID,
     title = "",
     description = "",
     subscribersCount = 0,
@@ -67,7 +67,7 @@ export const CommunityItem = ({
                 </div>
             </div>
             <div className={c.buttons}>
-                <TransparentLink className={c.link} href={`/communities/${ULID}`}>{t("goLink")}</TransparentLink>
+                <TransparentLink className={c.link} href={`/communities/${UUID}`}>{t("goLink")}</TransparentLink>
                 <CommunitiesSubscribeButton
                     setIsSubscribed={setIsSubscribedCommunity}
                     className={c.subscribe}
