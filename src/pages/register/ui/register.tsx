@@ -6,8 +6,10 @@ import {useTranslation} from "react-i18next";
 export const Register = () => {
     const { t } = useTranslation();
 
+
+
 	return (
-        <Layout isShowFooter={false}>
+        <Layout isSmallTitle={true} isShowFooter={false}>
             <title>{t("titles.register")}</title>
             <meta name="description" content={t("description.register")} />
             <meta property="og:title" content={t("titles.register")} />

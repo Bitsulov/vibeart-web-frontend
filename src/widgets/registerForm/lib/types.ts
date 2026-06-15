@@ -6,3 +6,8 @@ export interface IRegisterForm {
     agreed: boolean;
     agreed2: boolean;
 }
+
+/** Поля формы подтверждения адреса электронной почты кодом из письма. */
+export interface ICodeForm {
+    code: string;
+}

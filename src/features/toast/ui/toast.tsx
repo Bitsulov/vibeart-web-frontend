@@ -46,7 +46,7 @@ export const Toast = () => {
     return (
         <div className={`${c.toast} ${c[currentToast.type]} ${visible ? c.visible : ""}`}>
             {Icon && <Icon className={`${c.icon} ${c[currentToast.type]}`} width="30" height="30" />}
-            <span className={c.text}>{t(currentToast.message)}</span>
+            <span className={c.text}>{t(currentToast.message, currentToast.params)}</span>
         </div>
     );
 };

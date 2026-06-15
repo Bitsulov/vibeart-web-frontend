@@ -4,6 +4,7 @@
     margin-top: clamp(4.5rem, 10vw, 8rem);
 
     .authForm {
+        animation: fadeIn global.$transition-time ease;
         max-width: 57rem;
         margin: 0 auto;
         position: relative;
@@ -62,6 +63,166 @@
                 border-radius: clamp(.7rem, 2vw, 1.2rem);
             }
         }
+
+        .back {
+            position: absolute;
+            padding: clamp(.5rem, 1vw, .8rem);
+            background-color: global.$active-color;
+            color: global.$bright-background;
+            border-radius: clamp(.6rem, 1vw, 1.2rem);
+            top: clamp(.6rem, 1vw, 1.2rem);
+            left: clamp(1.2rem, 2vw, 2.5rem);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            .icon {
+                width: clamp(1.5rem, 3vw, 2.4rem);
+                height: clamp(1.5rem, 3vw, 2.4rem);
+            }
+        }
+
+        .text {
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            margin-top: clamp(1.2rem, 3vw, 2.8rem);
+        }
+
+        .code {
+            margin-top: 1rem;
+
+            @media (min-width: 380px) {
+                align-self: center;
+            }
+
+            @media (min-width: 500px) {
+                align-self: start;
+            }
+        }
+
+        .submit_email {
+            padding: 1rem 2rem;
+            font-size: 2rem;
+            border-radius: 1.5rem;
+            margin-top: auto;
+            align-self: center;
+
+            @media (min-width: 1200px) {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem 3rem;
+                margin: 0;
+                right: 2rem;
+                bottom: 2rem;
+                font-size: 2.4rem;
+                border-radius: 1.1rem;
+            }
+        }
+    }
+
+    .codeForm {
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn global.$transition-time ease;
+        max-width: 57rem;
+        min-height: clamp(30rem, 50vw, 40rem);
+        margin: 0 auto;
+        position: relative;
+        background-color: global.$bright-background;
+        border-radius: clamp(1.5rem, 4.5vw, 4.5rem);
+        padding: clamp(1.5rem, 3vw, 5.5rem) clamp(2.5rem, 6vw, 5.2rem) clamp(1.5rem, 4vw, 4rem);
+
+        .title {
+            margin: 0 .9rem;
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .back {
+            position: absolute;
+            padding: clamp(.5rem, 1vw, .8rem);
+            background-color: global.$active-color;
+            color: global.$bright-background;
+            border-radius: clamp(.6rem, 1vw, 1.2rem);
+            top: clamp(.6rem, 2vw, 1rem);
+            left: clamp(.6rem, 2vw, 2.5rem);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            .icon {
+                width: clamp(1.5rem, 3vw, 2.4rem);
+                height: clamp(1.5rem, 3vw, 2.4rem);
+            }
+        }
+
+        .text {
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            margin-top: clamp(1.2rem, 3vw, 2.8rem);
+        }
+
+        .code {
+            margin-top: 1rem;
+
+            @media (min-width: 380px) {
+                align-self: center;
+            }
+
+            @media (min-width: 500px) {
+                align-self: start;
+            }
+        }
+
+        .send_code {
+            color: global.$second-active-color;
+            background-color: transparent;
+            display: inline-block;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: global.$transition-time;
+            font-size: clamp(1.4rem, 2vw, 1.6rem);
+            margin: clamp(1rem, 3vw, 3rem) 0;
+
+            &.disabled {
+                color: global.$active-color;
+                text-decoration: none;
+                opacity: .5;
+                cursor: not-allowed;
+            }
+        }
+
+        .submit_code {
+            padding: 1rem 2rem;
+            font-size: 2rem;
+            border-radius: 1.5rem;
+            margin-top: auto;
+            align-self: center;
+
+            @media (min-width: 1200px) {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1rem 3rem;
+                margin: 0;
+                right: 2rem;
+                bottom: 2rem;
+                font-size: 2.4rem;
+                border-radius: 1.1rem;
+            }
+        }
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
