@@ -1,5 +1,5 @@
-import type {UseFormSetValue} from "react-hook-form";
-import type {ICreateCommunityForm} from "../lib/types";
+import type { UseFormSetValue } from "react-hook-form";
+import type { ICreateCommunityForm } from "../lib/types";
 
 /**
  * Сбрасывает все поля формы создания сообщества после успешной отправки.

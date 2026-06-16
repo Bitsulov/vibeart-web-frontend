@@ -14,7 +14,7 @@ const BASE_URL = import.meta.env.VITE_URL;
  * User-agent: *
  * Allow: /
  * Disallow: /api/
- * 
+ *
  * Sitemap: https://vibe-art.ru/sitemap.xml
  */
 export function loader() {
@@ -24,13 +24,13 @@ export function loader() {
         "Disallow: /api/",
         "",
         `Sitemap: ${BASE_URL}/sitemap.xml`,
-        "",
+        ""
     ].join("\n");
 
     return new Response(content, {
         headers: {
             "Content-Type": "text/plain; charset=utf-8",
-            "Cache-Control": "public, max-age=86400",
-        },
+            "Cache-Control": "public, max-age=86400"
+        }
     });
 }

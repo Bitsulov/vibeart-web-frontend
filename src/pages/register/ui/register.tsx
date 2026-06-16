@@ -1,14 +1,12 @@
-import {Layout} from "widgets/layout";
-import {RegisterForm} from "widgets/registerForm";
-import {useTranslation} from "react-i18next";
+import { Layout } from "widgets/layout";
+import { RegisterForm } from "widgets/registerForm";
+import { useTranslation } from "react-i18next";
 
 /** Страница регистрации. */
 export const Register = () => {
     const { t } = useTranslation();
 
-
-
-	return (
+    return (
         <Layout isSmallTitle={true} isShowFooter={false}>
             <title>{t("titles.register")}</title>
             <meta name="description" content={t("description.register")} />
@@ -16,5 +14,5 @@ export const Register = () => {
             <meta property="og:description" content={t("description.register")} />
             <RegisterForm />
         </Layout>
-    )
-}
+    );
+};

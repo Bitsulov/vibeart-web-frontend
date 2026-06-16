@@ -1,4 +1,4 @@
-import type {Dispatch, SetStateAction} from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Закрывает модальное окно куки и сохраняет согласие пользователя

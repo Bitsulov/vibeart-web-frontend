@@ -1,1 +1,1 @@
-export {CommunitiesAddButton} from "./ui/communitiesAddButton";
+export { CommunitiesAddButton } from "./ui/communitiesAddButton";

@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
 
 describe("submitValidHandler - успешная отправка формы изменения email", () => {
     it("Переключает форму в шаг ввода кода", () => {
@@ -7,7 +7,12 @@ describe("submitValidHandler - успешная отправка формы из
         const setIsEmailSent = vi.fn();
         const setNewEmailResult = vi.fn();
 
-        submitValidHandler(setValue, setIsEmailSent, setNewEmailResult, "new@example.com");
+        submitValidHandler(
+            setValue,
+            setIsEmailSent,
+            setNewEmailResult,
+            "new@example.com"
+        );
 
         expect(setIsEmailSent).toHaveBeenCalledWith(true);
     });
@@ -17,7 +22,12 @@ describe("submitValidHandler - успешная отправка формы из
         const setIsEmailSent = vi.fn();
         const setNewEmailResult = vi.fn();
 
-        submitValidHandler(setValue, setIsEmailSent, setNewEmailResult, "new@example.com");
+        submitValidHandler(
+            setValue,
+            setIsEmailSent,
+            setNewEmailResult,
+            "new@example.com"
+        );
 
         expect(setNewEmailResult).toHaveBeenCalledWith("new@example.com");
     });
@@ -27,7 +37,12 @@ describe("submitValidHandler - успешная отправка формы из
         const setIsEmailSent = vi.fn();
         const setNewEmailResult = vi.fn();
 
-        submitValidHandler(setValue, setIsEmailSent, setNewEmailResult, "new@example.com");
+        submitValidHandler(
+            setValue,
+            setIsEmailSent,
+            setNewEmailResult,
+            "new@example.com"
+        );
 
         expect(setValue).toHaveBeenCalledWith("oldEmail", "");
         expect(setValue).toHaveBeenCalledWith("newEmail", "");

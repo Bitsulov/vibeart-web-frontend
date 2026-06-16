@@ -1,1 +1,1 @@
-export {ErrorInfo} from "./ui/errorInfo";
+export { ErrorInfo } from "./ui/errorInfo";

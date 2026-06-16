@@ -19,34 +19,31 @@
  *
  * @see https://vitest.dev/config/
  */
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react-swc';
-import { resolve } from 'path';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
 
 export default defineConfig({
     plugins: [react()],
     test: {
-        environment: 'jsdom',
+        environment: "jsdom",
         globals: true,
-        setupFiles: ['./src/shared/tests/setup.ts'],
-        exclude: [
-            '**/node_modules/**',
-            '**/e2e/**',
-        ],
+        setupFiles: ["./src/shared/tests/setup.ts"],
+        exclude: ["**/node_modules/**", "**/e2e/**"],
         css: {
-            modules: { classNameStrategy: 'non-scoped' }
+            modules: { classNameStrategy: "non-scoped" }
         },
         coverage: {
-            provider: 'v8',
-            reporter: ['text', 'html'],
-            include: ['src/**/*.{ts,tsx}'],
+            provider: "v8",
+            reporter: ["text", "html"],
+            include: ["src/**/*.{ts,tsx}"],
             exclude: [
-                'src/**/*.stories.*',
-                'src/**/*.d.ts',
-                'src/**/mockConst.ts',
-                'src/app/router/**',
-                'src/app/providers/**',
-                'src/pages/**',
+                "src/**/*.stories.*",
+                "src/**/*.d.ts",
+                "src/**/mockConst.ts",
+                "src/app/router/**",
+                "src/app/providers/**",
+                "src/pages/**"
             ],
             thresholds: { lines: 75, functions: 75 }
         }

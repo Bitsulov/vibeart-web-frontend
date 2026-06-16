@@ -1,10 +1,10 @@
 import c from "./communitiesLists.module.scss";
-import {useTranslation} from "react-i18next";
-import {SearchInput} from "features/searchInput";
-import {CommunitiesAddButton} from "features/communitiesAddButton";
+import { useTranslation } from "react-i18next";
+import { SearchInput } from "features/searchInput";
+import { CommunitiesAddButton } from "features/communitiesAddButton";
 import type { ComponentPropsWithoutRef } from "react";
-import type {CommunityType} from "entities/community";
-import {CommunitiesList} from "widgets/communitiesList";
+import type { CommunityType } from "entities/community";
+import { CommunitiesList } from "widgets/communitiesList";
 
 /** Свойства компонента {@link CommunitiesLists}. */
 interface CommunitiesListsProps extends ComponentPropsWithoutRef<"section"> {
@@ -27,8 +27,8 @@ export const CommunitiesLists = ({
 }: CommunitiesListsProps) => {
     const { t } = useTranslation();
 
-	return (
-		<section className={c.communities} {...props}>
+    return (
+        <section className={c.communities} {...props}>
             <h1 className={c.title}>{t("communities.title")}</h1>
             <SearchInput className={c.search} placeholder={t("searchPlaceholder")} />
             <CommunitiesAddButton className={c.button} />
@@ -44,6 +44,6 @@ export const CommunitiesLists = ({
                 title={t("communities.allCommunities")}
                 emptyTitle={t("communities.emptyAll")}
             />
-		</section>
-	)
-}
+        </section>
+    );
+};

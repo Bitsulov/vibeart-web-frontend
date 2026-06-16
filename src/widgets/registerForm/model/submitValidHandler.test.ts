@@ -10,7 +10,7 @@ describe("submitValidHandler - отправляет данные формы ре
             password: "123456",
             confirmPassword: "123456",
             agreed: true,
-            agreed2: true,
+            agreed2: true
         };
 
         await submitValidHandler(data, submit);

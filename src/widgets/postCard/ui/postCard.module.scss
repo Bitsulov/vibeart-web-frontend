@@ -70,7 +70,7 @@ $description-collapsed-height: 5rem;
                 justify-content: center;
 
                 .stat {
-                    gap: .5rem;
+                    gap: 0.5rem;
                     cursor: pointer;
 
                     &.active {
@@ -81,7 +81,7 @@ $description-collapsed-height: 5rem;
 
                     .stat_icon {
                         path {
-                            stroke-width: .2rem;
+                            stroke-width: 0.2rem;
                         }
                     }
 
@@ -92,10 +92,10 @@ $description-collapsed-height: 5rem;
             }
 
             .author {
-                margin-top: .5rem;
+                margin-top: 0.5rem;
                 display: flex;
                 align-items: center;
-                gap: .5rem;
+                gap: 0.5rem;
                 overflow: hidden;
                 justify-self: start;
 
@@ -115,7 +115,7 @@ $description-collapsed-height: 5rem;
                 .author_name {
                     font-size: clamp(1.6rem, 3vw, 2rem);
                     font-weight: 400;
-                    letter-spacing: .16rem;
+                    letter-spacing: 0.16rem;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
@@ -128,10 +128,10 @@ $description-collapsed-height: 5rem;
             }
 
             .album {
-                margin-top: .5rem;
+                margin-top: 0.5rem;
                 font-size: 1.6rem;
                 font-weight: 500;
-                letter-spacing: .14rem;
+                letter-spacing: 0.14rem;
 
                 .album_name {
                     font-size: inherit;
@@ -148,7 +148,7 @@ $description-collapsed-height: 5rem;
                 margin-top: 1rem;
                 font-size: clamp(2.4rem, 4vw, 2.8rem);
                 font-weight: 600;
-                letter-spacing: .24rem;
+                letter-spacing: 0.24rem;
             }
 
             .description_wrapper {
@@ -158,7 +158,7 @@ $description-collapsed-height: 5rem;
                 .description {
                     font-size: 2rem;
                     font-weight: 400;
-                    letter-spacing: .2rem;
+                    letter-spacing: 0.2rem;
                     overflow: hidden;
 
                     &.description_collapsed {
@@ -172,7 +172,11 @@ $description-collapsed-height: 5rem;
                             left: 0;
                             width: 100%;
                             height: $description-collapsed-height;
-                            background: linear-gradient(180deg, transparent 0%, global.$bright-background 100%);
+                            background: linear-gradient(
+                                180deg,
+                                transparent 0%,
+                                global.$bright-background 100%
+                            );
                         }
                     }
                 }
@@ -191,7 +195,7 @@ $description-collapsed-height: 5rem;
                 margin-top: 1.5rem;
                 display: flex;
                 flex-wrap: wrap;
-                gap: .8rem;
+                gap: 0.8rem;
                 list-style: none;
             }
 
@@ -199,14 +203,14 @@ $description-collapsed-height: 5rem;
                 margin-top: 1.5rem;
                 font-size: 1.6rem;
                 font-weight: 600;
-                letter-spacing: .16rem;
+                letter-spacing: 0.16rem;
                 text-align: center;
             }
         }
     }
 }
 
-@media (min-width: 450px) {
+@media (width >= 450px) {
     .post_card {
         .card {
             .content {
@@ -218,7 +222,7 @@ $description-collapsed-height: 5rem;
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .post_card {
         .controls {
             margin: 0;
@@ -262,24 +266,24 @@ $description-collapsed-height: 5rem;
                 .author {
                     .author_name {
                         font-size: 2rem;
-                        letter-spacing: .2rem;
+                        letter-spacing: 0.2rem;
                     }
                 }
 
                 .album {
                     margin-top: 1rem;
                     font-size: 1.6rem;
-                    letter-spacing: .16rem;
+                    letter-spacing: 0.16rem;
                 }
 
                 .title {
                     margin-top: 1rem;
                     font-size: 2.8rem;
-                    letter-spacing: .28rem;
+                    letter-spacing: 0.28rem;
                 }
 
                 .description_wrapper {
-                    margin-top: .5rem;
+                    margin-top: 0.5rem;
                 }
 
                 .tags {

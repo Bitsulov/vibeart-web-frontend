@@ -28,5 +28,5 @@ export const getHintPosition = (
     const left = goToRight ? mousePosition.x - width - 10 : mousePosition.x + 10;
     const top = goToTop ? mousePosition.y + 10 : mousePosition.y - height - 10;
 
-    return {left, top};
+    return { left, top };
 };

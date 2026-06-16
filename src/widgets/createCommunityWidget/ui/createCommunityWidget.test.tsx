@@ -1,15 +1,15 @@
-import {describe, it, expect, vi} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CreateCommunityWidget} from "./createCommunityWidget";
-import {principalUserMock} from "entities/user";
-import {communityTagsMock} from "entities/tag";
+import { describe, it, expect, vi } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CreateCommunityWidget } from "./createCommunityWidget";
+import { principalUserMock } from "entities/user";
+import { communityTagsMock } from "entities/tag";
 
 const defaultProps = {
     userInfo: principalUserMock,
     tagsList: communityTagsMock,
     communityInfo: {},
-    setCommunityInfo: vi.fn(),
+    setCommunityInfo: vi.fn()
 };
 
 describe("CreateCommunityWidget - форма создания сообщества", () => {
@@ -46,7 +46,9 @@ describe("CreateCommunityWidget - форма создания сообществ
     it("Отображает кнопку отправки формы", () => {
         renderWithProviders(<CreateCommunityWidget {...defaultProps} />);
 
-        expect(screen.getByRole("button", {name: "ariaLabel.saveCommunity"})).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.saveCommunity" })
+        ).toBeInTheDocument();
     });
 
     it("Поле id содержит префикс @", () => {

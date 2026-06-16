@@ -1,1 +1,1 @@
-export {AuthBackLink} from "./ui/authBackLink";
+export { AuthBackLink } from "./ui/authBackLink";

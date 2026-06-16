@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {modalClickHandler} from "./modalClickButton";
+import { describe, it, expect, vi } from "vitest";
+import { modalClickHandler } from "./modalClickButton";
 import type React from "react";
 
 describe("modalClickHandler - предотвращает всплытие события из диалога", () => {

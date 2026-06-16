@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {returnBackHandler} from "./returnBackHandler";
+import { describe, it, expect, vi } from "vitest";
+import { returnBackHandler } from "./returnBackHandler";
 
 describe("returnBackHandler - навигация назад", () => {
     it("Вызывает navigate(-1)", () => {

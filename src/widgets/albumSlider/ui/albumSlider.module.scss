@@ -32,7 +32,7 @@
             }
 
             &.disabled {
-                opacity: .3;
+                opacity: 0.3;
                 cursor: default;
             }
         }
@@ -53,14 +53,14 @@
             }
 
             &.disabled {
-                opacity: .3;
+                opacity: 0.3;
                 cursor: default;
             }
         }
     }
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
     .albums {
         width: 80%;
         margin: 1.5rem auto 0;
@@ -77,7 +77,7 @@
     }
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
     .albums {
         width: 70%;
 
@@ -93,13 +93,13 @@
     }
 }
 
-@media (min-width: 1100px) {
+@media (width >= 1100px) {
     .albums {
         width: 60%;
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .albums {
         width: 100%;
 
@@ -115,7 +115,7 @@
     }
 }
 
-@media (min-width: 1750px) {
+@media (width >= 1750px) {
     .albums {
         width: clamp(80%, 32vw, 90%);
 

@@ -7,14 +7,21 @@ import { userEvent } from "@testing-library/user-event";
 const mockNavigate = vi.fn();
 
 vi.mock("react-router-dom", async () => {
-    const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+    const actual =
+        await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
     return { ...actual, useNavigate: () => mockNavigate };
 });
 
 const fillAndSubmitStep1 = async (user: ReturnType<typeof userEvent.setup>) => {
-    await user.type(screen.getByLabelText("register.emailPlaceholder"), "test@example.com");
+    await user.type(
+        screen.getByLabelText("register.emailPlaceholder"),
+        "test@example.com"
+    );
     await user.type(screen.getByLabelText("register.passwordPlaceholder"), "password123");
-    await user.type(screen.getByLabelText("register.confirmPasswordPlaceholder"), "password123");
+    await user.type(
+        screen.getByLabelText("register.confirmPasswordPlaceholder"),
+        "password123"
+    );
     await user.click(screen.getByRole("checkbox", { name: "ariaLabel.agreeAgreement" }));
     await user.click(screen.getByRole("checkbox", { name: "ariaLabel.agreePolicy" }));
     await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
@@ -31,23 +38,37 @@ describe("RegisterForm - форма регистрации", () => {
         it("Отображает поля email, пароль и подтверждение пароля", () => {
             renderWithProviders(<RegisterForm />);
 
-            expect(screen.getByLabelText("register.emailPlaceholder")).toBeInTheDocument();
-            expect(screen.getByLabelText("register.passwordPlaceholder")).toBeInTheDocument();
-            expect(screen.getByLabelText("register.confirmPasswordPlaceholder")).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("register.emailPlaceholder")
+            ).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("register.passwordPlaceholder")
+            ).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("register.confirmPasswordPlaceholder")
+            ).toBeInTheDocument();
         });
 
         it("Отображает чекбоксы соглашений", () => {
             renderWithProviders(<RegisterForm />);
 
-            expect(screen.getByRole("checkbox", { name: "ariaLabel.agreeAgreement" })).toBeInTheDocument();
-            expect(screen.getByRole("checkbox", { name: "ariaLabel.agreePolicy" })).toBeInTheDocument();
+            expect(
+                screen.getByRole("checkbox", { name: "ariaLabel.agreeAgreement" })
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole("checkbox", { name: "ariaLabel.agreePolicy" })
+            ).toBeInTheDocument();
         });
 
         it("Отображает кнопку регистрации и ссылку на вход", () => {
             renderWithProviders(<RegisterForm />);
 
-            expect(screen.getByRole("button", { name: "ariaLabel.register" })).toBeInTheDocument();
-            expect(screen.getByRole("link", { name: "ariaLabel.goToAuth" })).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.register" })
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole("link", { name: "ariaLabel.goToAuth" })
+            ).toBeInTheDocument();
         });
     });
 
@@ -65,7 +86,10 @@ describe("RegisterForm - форма регистрации", () => {
             const user = userEvent.setup();
             renderWithProviders(<RegisterForm />);
 
-            await user.type(screen.getByLabelText("register.emailPlaceholder"), "test@example.toolongextension");
+            await user.type(
+                screen.getByLabelText("register.emailPlaceholder"),
+                "test@example.toolongextension"
+            );
             await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
 
             expect(screen.getByText("errors.invalidEmail")).toBeInTheDocument();
@@ -75,9 +99,18 @@ describe("RegisterForm - форма регистрации", () => {
             const user = userEvent.setup();
             renderWithProviders(<RegisterForm />);
 
-            await user.type(screen.getByLabelText("register.emailPlaceholder"), "test@example.com");
-            await user.type(screen.getByLabelText("register.passwordPlaceholder"), "password123");
-            await user.type(screen.getByLabelText("register.confirmPasswordPlaceholder"), "different123");
+            await user.type(
+                screen.getByLabelText("register.emailPlaceholder"),
+                "test@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("register.passwordPlaceholder"),
+                "password123"
+            );
+            await user.type(
+                screen.getByLabelText("register.confirmPasswordPlaceholder"),
+                "different123"
+            );
             await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
 
             expect(screen.getByText("errors.dontMatch")).toBeInTheDocument();
@@ -87,9 +120,18 @@ describe("RegisterForm - форма регистрации", () => {
             const user = userEvent.setup();
             renderWithProviders(<RegisterForm />);
 
-            await user.type(screen.getByLabelText("register.emailPlaceholder"), "test@example.com");
-            await user.type(screen.getByLabelText("register.passwordPlaceholder"), "password123");
-            await user.type(screen.getByLabelText("register.confirmPasswordPlaceholder"), "password123");
+            await user.type(
+                screen.getByLabelText("register.emailPlaceholder"),
+                "test@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("register.passwordPlaceholder"),
+                "password123"
+            );
+            await user.type(
+                screen.getByLabelText("register.confirmPasswordPlaceholder"),
+                "password123"
+            );
             await user.click(screen.getByRole("button", { name: "ariaLabel.register" }));
 
             expect(screen.getByText("errors.acceptAgreement")).toBeInTheDocument();
@@ -114,8 +156,12 @@ describe("RegisterForm - форма регистрации", () => {
 
             expect(await screen.findByText("register.codeFormTitle")).toBeInTheDocument();
             expect(screen.getAllByRole("textbox")).toHaveLength(6);
-            expect(screen.getByRole("button", { name: "ariaLabel.confirmRegister" })).toBeInTheDocument();
-            expect(screen.getByRole("button", { name: "ariaLabel.sendCodeAgain" })).toBeDisabled();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.confirmRegister" })
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.sendCodeAgain" })
+            ).toBeDisabled();
         });
 
         it("Кнопка 'назад' возвращает к форме регистрации", async () => {
@@ -125,7 +171,9 @@ describe("RegisterForm - форма регистрации", () => {
             await fillAndSubmitStep1(user);
             await screen.findByText("register.codeFormTitle");
 
-            await user.click(screen.getByRole("button", { name: "ariaLabel.backToRegister" }));
+            await user.click(
+                screen.getByRole("button", { name: "ariaLabel.backToRegister" })
+            );
 
             expect(screen.getByText("register.registerAccount")).toBeInTheDocument();
         });
@@ -139,7 +187,9 @@ describe("RegisterForm - форма регистрации", () => {
 
             const inputs = screen.getAllByRole("textbox");
             await user.type(inputs[0], "1");
-            await user.click(screen.getByRole("button", { name: "ariaLabel.confirmRegister" }));
+            await user.click(
+                screen.getByRole("button", { name: "ariaLabel.confirmRegister" })
+            );
 
             expect(inputs[1].className).toContain("error");
         });
@@ -155,10 +205,14 @@ describe("RegisterForm - форма регистрации", () => {
             for (let i = 0; i < inputs.length; i++) {
                 await user.type(inputs[i], String((i + 1) % 10));
             }
-            await user.click(screen.getByRole("button", { name: "ariaLabel.confirmRegister" }));
+            await user.click(
+                screen.getByRole("button", { name: "ariaLabel.confirmRegister" })
+            );
 
             await waitFor(() => {
-                expect(mockNavigate).toHaveBeenCalledWith("/profile/00000000-0000-4000-8000-00000000000a");
+                expect(mockNavigate).toHaveBeenCalledWith(
+                    "/profile/00000000-0000-4000-8000-00000000000a"
+                );
             });
         });
     });

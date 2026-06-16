@@ -1,5 +1,5 @@
 import c from "./stylizedLink.module.scss";
-import {Link, type LinkProps} from "react-router-dom";
+import { Link, type LinkProps } from "react-router-dom";
 
 /** Свойства компонента {@link StylizedLink}. */
 interface StylizedLinkProps extends Omit<LinkProps, "to"> {
@@ -15,10 +15,21 @@ interface StylizedLinkProps extends Omit<LinkProps, "to"> {
  * Использует `Link` из React Router, принимая `href` вместо `to`
  * для единообразия с нативными HTML-ссылками в остальных компонентах.
  */
-export const StylizedLink = ({ className, children, href, ariaLabel, ...props }: StylizedLinkProps) => {
-	return (
-		<Link className={`${c.link} ${className}`} to={href} aria-label={ariaLabel} {...props}>
+export const StylizedLink = ({
+    className,
+    children,
+    href,
+    ariaLabel,
+    ...props
+}: StylizedLinkProps) => {
+    return (
+        <Link
+            className={`${c.link} ${className}`}
+            to={href}
+            aria-label={ariaLabel}
+            {...props}
+        >
             {children}
         </Link>
-	)
-}
+    );
+};

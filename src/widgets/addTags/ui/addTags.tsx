@@ -1,13 +1,18 @@
 import c from "./addTags.module.scss";
-import {useTranslation} from "react-i18next";
-import {SearchInput} from "features/searchInput";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction, useEffect} from "react";
-import type {TagType} from "entities/tag";
-import {PostTag} from "features/postTag";
-import {PagesButtons} from "features/pagesButtons";
-import {chooseTagClickHandler} from "../model/chooseTagClickHandler";
+import { useTranslation } from "react-i18next";
+import { SearchInput } from "features/searchInput";
+import {
+    type ComponentPropsWithoutRef,
+    type Dispatch,
+    type SetStateAction,
+    useEffect
+} from "react";
+import type { TagType } from "entities/tag";
+import { PostTag } from "features/postTag";
+import { PagesButtons } from "features/pagesButtons";
+import { chooseTagClickHandler } from "../model/chooseTagClickHandler";
 import clsx from "clsx";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
 
 /** Свойства компонента {@link AddTags}. */
 interface AddTagsProps extends ComponentPropsWithoutRef<"div"> {
@@ -62,21 +67,23 @@ export const AddTags = ({
         }
     }, [windowWidth, setPagesDelta]);
 
-	return (
-		<div className={c.tags} {...props}>
-			<h2 className={c.title}>{t("createPost.tagsTitle")}</h2>
+    return (
+        <div className={c.tags} {...props}>
+            <h2 className={c.title}>{t("createPost.tagsTitle")}</h2>
             <SearchInput className={c.search} />
             <div className={c.tags_list}>
-                {tagsList.map((tag, i) =>
+                {tagsList.map((tag, i) => (
                     <PostTag
                         type="button"
                         className={clsx(chosenTags.includes(tag.title) && c.select)}
-                        onClick={() => chooseTagClickHandler(tag.title, chosenTags, setChosenTags)}
-                        aria-label={t("chooseTag", {name: tag.title})}
+                        onClick={() =>
+                            chooseTagClickHandler(tag.title, chosenTags, setChosenTags)
+                        }
+                        aria-label={t("chooseTag", { name: tag.title })}
                         key={`tag ${i}`}
                         tag={tag}
                     />
-                )}
+                ))}
             </div>
             <PagesButtons
                 pagesCount={pages}
@@ -84,6 +91,6 @@ export const AddTags = ({
                 setCurrentPage={setCurrentPage}
                 pagesDelta={pagesDelta}
             />
-		</div>
-	)
-}
+        </div>
+    );
+};

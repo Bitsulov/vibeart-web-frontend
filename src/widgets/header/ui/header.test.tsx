@@ -1,17 +1,17 @@
-import {vi, expect, describe, it, beforeEach} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {Header} from "./header";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
+import { vi, expect, describe, it, beforeEach } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { Header } from "./header";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
 
 vi.mock("shared/hooks/useWindowWidth", () => ({
-    useWindowWidth: vi.fn(),
+    useWindowWidth: vi.fn()
 }));
 
 const defaultProps = {
     setIsShowChangeLanguage: vi.fn(),
     isShowChangeLanguage: false,
-    languagesConfig: {ru: ["", "", "", ""]},
+    languagesConfig: { ru: ["", "", "", ""] }
 };
 
 describe("Header - заголовок страницы", () => {
@@ -20,12 +20,12 @@ describe("Header - заголовок страницы", () => {
     });
 
     it("Отображает заголовок главной страницы по маршруту /ru/", () => {
-        renderWithProviders(<Header {...defaultProps} />, {route: "/ru/"});
+        renderWithProviders(<Header {...defaultProps} />, { route: "/ru/" });
         expect(screen.getByText("pages.home")).toBeInTheDocument();
     });
 
     it("Отображает заголовок главной страницы по маршруту /ru (без слеша)", () => {
-        renderWithProviders(<Header {...defaultProps} />, {route: "/ru"});
+        renderWithProviders(<Header {...defaultProps} />, { route: "/ru" });
         expect(screen.getByText("pages.home")).toBeInTheDocument();
     });
 });
@@ -39,13 +39,17 @@ describe("Header - адаптация при разной ширине экра�
         it("Отображает кнопку бургера", () => {
             renderWithProviders(<Header {...defaultProps} />);
 
-            expect(screen.getByRole("button", {name: "ariaLabel.openBurgerMenu"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.openBurgerMenu" })
+            ).toBeInTheDocument();
         });
 
         it("Не отображает ссылку на email", () => {
             renderWithProviders(<Header {...defaultProps} />);
 
-            expect(screen.queryByRole("link", {name: "ariaLabel.goToEmail"})).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("link", { name: "ariaLabel.goToEmail" })
+            ).not.toBeInTheDocument();
         });
 
         it("Отображает меню бургера", () => {
@@ -63,13 +67,17 @@ describe("Header - адаптация при разной ширине экра�
         it("Не отображает кнопку бургера", () => {
             renderWithProviders(<Header {...defaultProps} />);
 
-            expect(screen.queryByRole("button", {name: "ariaLabel.openBurgerMenu"})).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("button", { name: "ariaLabel.openBurgerMenu" })
+            ).not.toBeInTheDocument();
         });
 
         it("Отображает ссылку на email", () => {
             renderWithProviders(<Header {...defaultProps} />);
 
-            expect(screen.getByRole("link", {name: "ariaLabel.goToEmail"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("link", { name: "ariaLabel.goToEmail" })
+            ).toBeInTheDocument();
         });
 
         it("Не отображает меню бургера", () => {
@@ -81,7 +89,9 @@ describe("Header - адаптация при разной ширине экра�
         it("Отображает кнопку профиля вместо бургера", () => {
             renderWithProviders(<Header {...defaultProps} />);
 
-            expect(screen.getByRole("link", {name: "ariaLabel.goToAuth"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("link", { name: "ariaLabel.goToAuth" })
+            ).toBeInTheDocument();
         });
     });
 });

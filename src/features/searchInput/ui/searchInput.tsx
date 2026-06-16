@@ -1,6 +1,6 @@
 import c from "./searchInput.module.scss";
-import {Search} from "lucide-react";
-import {useTranslation} from "react-i18next";
+import { Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import React from "react";
 
 type SearchInputProps = React.InputHTMLAttributes<HTMLInputElement>;
@@ -15,7 +15,7 @@ export const SearchInput = ({
 }: SearchInputProps) => {
     const { t } = useTranslation();
 
-	return (
+    return (
         <div className={`${c.wrapper} ${className}`}>
             <Search className={c.icon} width="24" height="24" aria-hidden={false} />
             <input
@@ -26,5 +26,5 @@ export const SearchInput = ({
                 {...props}
             />
         </div>
-    )
-}
+    );
+};

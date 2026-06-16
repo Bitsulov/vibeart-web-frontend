@@ -5,6 +5,8 @@ import React from "react";
  *
  * @param setIsShowChangeLanguage - Сеттер видимости модального окна языка.
  */
-export function languageButtonClickHandler(setIsShowChangeLanguage: React.Dispatch<React.SetStateAction<boolean>>) {
+export function languageButtonClickHandler(
+    setIsShowChangeLanguage: React.Dispatch<React.SetStateAction<boolean>>
+) {
     setIsShowChangeLanguage(true);
 }

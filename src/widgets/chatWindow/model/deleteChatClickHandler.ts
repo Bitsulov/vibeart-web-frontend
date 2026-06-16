@@ -5,6 +5,8 @@ import type { Dispatch, SetStateAction } from "react";
  *
  * @param setIsShowModal - Сеттер видимости модального окна подтверждения.
  */
-export function deleteChatClickHandler(setIsShowModal: Dispatch<SetStateAction<boolean>>) {
+export function deleteChatClickHandler(
+    setIsShowModal: Dispatch<SetStateAction<boolean>>
+) {
     setIsShowModal(true);
 }

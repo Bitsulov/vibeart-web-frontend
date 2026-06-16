@@ -1,7 +1,7 @@
-import type {Dispatch} from "@reduxjs/toolkit";
-import type {FieldErrors} from "react-hook-form";
-import {showToast} from "features/toast";
-import type {ICreatePostForm} from "../lib/types";
+import type { Dispatch } from "@reduxjs/toolkit";
+import type { FieldErrors } from "react-hook-form";
+import { showToast } from "features/toast";
+import type { ICreatePostForm } from "../lib/types";
 
 /**
  * Показывает уведомление с первой ошибкой валидации формы создания поста.
@@ -16,6 +16,6 @@ export function submitInvalidHandler(
     const error = errors.title || errors.description || errors.img;
 
     if (error?.message) {
-        dispatch(showToast({message: error.message, type: "error"}));
+        dispatch(showToast({ message: error.message, type: "error" }));
     }
 }

@@ -1,5 +1,5 @@
-import {Check, CheckCheck, Clock, type LucideIcon} from "lucide-react";
-import type {MessageType} from "entities/message";
+import { Check, CheckCheck, Clock, type LucideIcon } from "lucide-react";
+import type { MessageType } from "entities/message";
 
 /**
  * Соответствие статуса доставки сообщения иконке из библиотеки Lucide.
@@ -9,7 +9,7 @@ import type {MessageType} from "entities/message";
  * - `"read"` — прочитано получателем (двойная галочка).
  */
 export const statusesConfig: Record<MessageType["status"], LucideIcon> = {
-    "save": Clock,
-    "sent": Check,
-    "read": CheckCheck
-}
+    save: Clock,
+    sent: Check,
+    read: CheckCheck
+};

@@ -13,7 +13,7 @@ $description-max-height: 8rem;
         .info_inner {
             position: relative;
             padding-bottom: 1rem;
-            border-bottom: .1rem solid global.$active-color;
+            border-bottom: 0.1rem solid global.$active-color;
             max-width: 40rem;
             margin: 0 auto;
             width: 100%;
@@ -23,7 +23,7 @@ $description-max-height: 8rem;
                 position: absolute;
                 left: 0;
                 top: 0;
-                gap: .5rem;
+                gap: 0.5rem;
 
                 .icon {
                     width: 2.4rem;
@@ -77,7 +77,7 @@ $description-max-height: 8rem;
 
             .username_wrapper {
                 display: flex;
-                margin-top: .5rem;
+                margin-top: 0.5rem;
                 background-color: global.$bright-background;
                 border-radius: 2rem;
                 padding: 1.2rem 1.4rem;
@@ -85,7 +85,7 @@ $description-max-height: 8rem;
                 .username {
                     font-size: clamp(1.6rem, 3vw, 2rem);
                     font-weight: 400;
-                    letter-spacing: clamp(0.16rem, .3vw, 0.2rem);
+                    letter-spacing: clamp(0.16rem, 0.3vw, 0.2rem);
                 }
 
                 .copy_button {
@@ -107,7 +107,7 @@ $description-max-height: 8rem;
 
                 .description {
                     position: relative;
-                    margin-top: .4rem;
+                    margin-top: 0.4rem;
                     border-radius: 2rem;
                     background-color: global.$bright-background;
                     padding: 1rem 1.4rem;
@@ -120,8 +120,8 @@ $description-max-height: 8rem;
                         max-height: $description-max-height;
                     }
 
-                    &.expandable:before {
-                        content: '';
+                    &.expandable::before {
+                        content: "";
                         display: block;
                         position: absolute;
                         width: 100%;
@@ -129,7 +129,11 @@ $description-max-height: 8rem;
                         border-radius: 2rem;
                         left: 0;
                         bottom: 0;
-                        background: linear-gradient(180deg, transparent 0%, global.$bright-background 100%);
+                        background: linear-gradient(
+                            180deg,
+                            transparent 0%,
+                            global.$bright-background 100%
+                        );
                     }
                 }
 
@@ -143,7 +147,7 @@ $description-max-height: 8rem;
                     z-index: 1;
                     cursor: pointer;
                     background-color: transparent;
-                    padding: .5rem .5rem;
+                    padding: 0.5rem;
 
                     .description_arrow {
                         width: 100%;
@@ -176,7 +180,7 @@ $description-max-height: 8rem;
     }
 }
 
-@media (min-width: 360px) {
+@media (width >= 360px) {
     .info {
         .content_wrapper {
             .info_inner {
@@ -190,7 +194,7 @@ $description-max-height: 8rem;
     }
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
     .info {
         .content_wrapper {
             .info_inner {
@@ -206,13 +210,13 @@ $description-max-height: 8rem;
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .info {
         .content_wrapper {
             .info_inner {
                 max-width: unset;
                 display: flex;
-                gap: .5rem;
+                gap: 0.5rem;
                 padding-bottom: 1.5rem;
 
                 .left {
@@ -222,7 +226,7 @@ $description-max-height: 8rem;
 
                     .stats {
                         flex-direction: column;
-                        gap: .5rem;
+                        gap: 0.5rem;
                         margin: 1.2rem auto;
                         width: fit-content;
                     }
@@ -252,8 +256,8 @@ $description-max-height: 8rem;
                 .right {
                     .bad_icons {
                         position: relative;
-                        margin-top: .8rem;
-                        gap: .8rem;
+                        margin-top: 0.8rem;
+                        gap: 0.8rem;
                     }
 
                     .description_wrapper {
@@ -265,7 +269,7 @@ $description-max-height: 8rem;
                         }
 
                         .description {
-                            margin-top: .5rem;
+                            margin-top: 0.5rem;
                         }
                     }
 
@@ -288,7 +292,7 @@ $description-max-height: 8rem;
     }
 }
 
-@media (min-width: 1400px) {
+@media (width >= 1400px) {
     .info {
         .content_wrapper {
             .info_inner {
@@ -300,7 +304,7 @@ $description-max-height: 8rem;
                     .date {
                         display: inline;
 
-                        &:before {
+                        &::before {
                             content: " ";
                         }
                     }

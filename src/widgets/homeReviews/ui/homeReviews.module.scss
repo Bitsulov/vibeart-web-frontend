@@ -1,5 +1,5 @@
 .reviews {
-    margin-top: clamp(5rem, 11vw, 20rem);;
+    margin-top: clamp(5rem, 11vw, 20rem);
 
     .title {
         font-size: clamp(2.4rem, 5vw, 6.4rem);
@@ -15,7 +15,7 @@
     }
 }
 
-@media (min-width: 700px) {
+@media (width >= 700px) {
     .reviews {
         .reviewsImg {
             margin: clamp(1.5rem, 6vw, 10rem) auto 0;

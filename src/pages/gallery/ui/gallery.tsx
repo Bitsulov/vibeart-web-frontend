@@ -1,11 +1,11 @@
-import {Layout} from "widgets/layout";
+import { Layout } from "widgets/layout";
 import c from "./gallery.module.scss";
-import {useTranslation} from "react-i18next";
-import {Navigation} from "widgets/navigation";
-import {profileUserMock} from "entities/user";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {GalleryPostList} from "widgets/galleryPostList";
-import {galleryPostsMock} from "entities/post";
+import { useTranslation } from "react-i18next";
+import { Navigation } from "widgets/navigation";
+import { profileUserMock } from "entities/user";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { GalleryPostList } from "widgets/galleryPostList";
+import { galleryPostsMock } from "entities/post";
 
 /** Страница галереи с Masonry-списком постов и навигацией. */
 export const Gallery = () => {
@@ -13,22 +13,25 @@ export const Gallery = () => {
 
     const windowWidth = useWindowWidth();
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.gallery")}</title>
             <meta name="description" content={t("description.gallery")} />
             <meta property="og:title" content={t("titles.gallery")} />
             <meta property="og:description" content={t("description.gallery")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <div className={c.content}>
                         <GalleryPostList postList={galleryPostsMock} />
                     </div>
                 </div>
             </div>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

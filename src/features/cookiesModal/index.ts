@@ -1,1 +1,1 @@
-export {CookiesModal} from "./ui/cookiesModal";
+export { CookiesModal } from "./ui/cookiesModal";

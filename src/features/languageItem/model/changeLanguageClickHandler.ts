@@ -10,8 +10,7 @@ import { setLanguage } from "entities/appConfig";
  * @param dispatch - Функция записи данных в Redux.
  */
 export function changeLanguageClickHandler(lang: string, i18n: i18n, dispatch: Dispatch) {
-    i18n.changeLanguage(lang)
-        .catch((er) => console.error("change language error:", er));
+    i18n.changeLanguage(lang).catch(er => console.error("change language error:", er));
 
     dispatch(setLanguage(lang));
 }

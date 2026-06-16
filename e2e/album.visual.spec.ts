@@ -9,8 +9,11 @@ test.describe("Album - визуальная проверка блоков", () =
     });
 
     test("снимок блока AlbumCard", async ({ page }) => {
-        await expect(page.locator("main section").nth(0)).toHaveScreenshot("album-card.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").nth(0)).toHaveScreenshot(
+            "album-card.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

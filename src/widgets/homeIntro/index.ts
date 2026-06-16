@@ -1,1 +1,1 @@
-export {HomeIntro} from "./ui/homeIntro";
+export { HomeIntro } from "./ui/homeIntro";

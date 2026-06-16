@@ -1,4 +1,11 @@
-import { Links, Meta, Scripts, ScrollRestoration, useLocation, useRouteLoaderData } from "react-router";
+import {
+    Links,
+    Meta,
+    Scripts,
+    ScrollRestoration,
+    useLocation,
+    useRouteLoaderData
+} from "react-router";
 import { defaultLang } from "shared/const/const";
 import { type ReactNode } from "react";
 
@@ -26,7 +33,7 @@ export function Layout({ children }: LayoutProps) {
     const data = useRouteLoaderData<{ lang: string }>("root");
     const lang = data?.lang ?? defaultLang;
     const { pathname } = useLocation();
-    
+
     const normalizedPathname = pathname.replace(/\/$/, "") || "/";
     const canonicalURL = `${import.meta.env.VITE_URL}${normalizedPathname}`;
 

@@ -1,5 +1,5 @@
-import type {TFunction} from "i18next";
-import {getLocalTimeString} from "shared/lib/getLocalTimeString";
+import type { TFunction } from "i18next";
+import { getLocalTimeString } from "shared/lib/getLocalTimeString";
 
 /**
  * Возвращает человекочитаемую метку дня для разделителя в чате.

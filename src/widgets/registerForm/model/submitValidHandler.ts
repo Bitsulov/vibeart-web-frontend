@@ -1,6 +1,6 @@
-import type {IRegisterForm} from "../lib/types";
-import type {AxiosResponse} from "axios";
-import type {SignUpRequest} from "entities/user";
+import type { IRegisterForm } from "../lib/types";
+import type { AxiosResponse } from "axios";
+import type { SignUpRequest } from "entities/user";
 
 type SubmitFn = (data: SignUpRequest) => Promise<AxiosResponse<string>>;
 
@@ -12,9 +12,6 @@ type SubmitFn = (data: SignUpRequest) => Promise<AxiosResponse<string>>;
  * @param data - Данные формы с e-mail, паролем и подтверждением согласий.
  * @param submit - Функция отправки данных регистрации на сервер.
  */
-export async function submitValidHandler(
-    data: IRegisterForm,
-    submit: SubmitFn
-) {
-    submit(data)
+export async function submitValidHandler(data: IRegisterForm, submit: SubmitFn) {
+    submit(data);
 }

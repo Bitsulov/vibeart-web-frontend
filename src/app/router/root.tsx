@@ -5,7 +5,7 @@ import { StoreProvider } from "../providers/storeProvider";
 import { I18nProvider } from "../providers/i18nProvider";
 import { InitProvider } from "../providers/initProvider";
 import { detectLanguageFromRequest } from "shared/lib/detectLanguageFromRequest";
-import {QueryProvider} from "../providers/queryProvider";
+import { QueryProvider } from "../providers/queryProvider";
 export { Layout } from "./layout";
 
 /**

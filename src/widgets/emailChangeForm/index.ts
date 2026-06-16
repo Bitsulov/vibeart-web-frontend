@@ -1,1 +1,1 @@
-export {EmailChangeForm} from "./ui/emailChangeForm";
+export { EmailChangeForm } from "./ui/emailChangeForm";

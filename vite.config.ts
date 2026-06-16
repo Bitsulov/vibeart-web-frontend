@@ -8,7 +8,7 @@
  *
  * @see https://vitejs.dev/config/
  */
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 import { reactRouter } from "@react-router/dev/vite";
 import path from "path";
 
@@ -16,7 +16,7 @@ export default defineConfig({
     plugins: [reactRouter()],
     server: {
         hmr: !process.env.PLAYWRIGHT,
-        headers: process.env.PLAYWRIGHT ? { "Connection": "close" } : undefined,
+        headers: process.env.PLAYWRIGHT ? { Connection: "close" } : undefined
     },
     resolve: {
         alias: {

@@ -1,5 +1,5 @@
-import type {Dispatch, RefObject, SetStateAction} from "react";
-import type {PostType} from "entities/post";
+import type { Dispatch, RefObject, SetStateAction } from "react";
+import type { PostType } from "entities/post";
 
 /**
  * Очищает input файла и сбрасывает imageUrl и загруженный файл.
@@ -13,9 +13,9 @@ export function deleteButtonClickHandler(
     setEntityInfo: Dispatch<SetStateAction<Partial<PostType>>>,
     setLoadedFile?: Dispatch<SetStateAction<File | undefined>>
 ) {
-    if(inputLoadRef.current) {
+    if (inputLoadRef.current) {
         inputLoadRef.current.value = "";
-        setEntityInfo(entity => ({...entity, imageUrl: ""}))
+        setEntityInfo(entity => ({ ...entity, imageUrl: "" }));
         setLoadedFile?.(undefined);
     }
 }

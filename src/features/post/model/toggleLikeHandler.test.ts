@@ -1,5 +1,5 @@
-import {describe, expect, it, vi} from "vitest";
-import {toggleLikeHandler} from "./toggleLikeHandler";
+import { describe, expect, it, vi } from "vitest";
+import { toggleLikeHandler } from "./toggleLikeHandler";
 
 describe("toggleLikeHandler - переключение лайка", () => {
     it("Добавляет лайк: увеличивает счётчик и устанавливает isLiked в true", () => {

@@ -1,16 +1,16 @@
 import c from "./layout.module.scss";
-import {Header} from "widgets/header";
-import {useEffect, useState} from "react";
+import { Header } from "widgets/header";
+import { useEffect, useState } from "react";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
-import {Modal} from "widgets/modal";
-import {languagesConfig} from "../config/languagesConfig";
-import {Footer} from "widgets/footer";
-import {MouseHint} from "features/mouseHint";
-import {Toast} from "features/toast";
-import {CookiesModal} from "features/cookiesModal";
-import {useLocation} from "react-router-dom";
-import {cookiesNoticeDisabledPaths} from "../config/cookiesNoticeDisabledPaths";
-import {getCookieByName} from "shared/lib/getCookieByName";
+import { Modal } from "widgets/modal";
+import { languagesConfig } from "../config/languagesConfig";
+import { Footer } from "widgets/footer";
+import { MouseHint } from "features/mouseHint";
+import { Toast } from "features/toast";
+import { CookiesModal } from "features/cookiesModal";
+import { useLocation } from "react-router-dom";
+import { cookiesNoticeDisabledPaths } from "../config/cookiesNoticeDisabledPaths";
+import { getCookieByName } from "shared/lib/getCookieByName";
 
 /** Свойства компонента {@link Layout}. */
 interface LayoutProps extends ComponentPropsWithoutRef<"main"> {
@@ -47,14 +47,17 @@ export const Layout = ({
     const [isShowConfirmCookies, setIsShowConfirmCookies] = useState(false);
 
     useEffect(() => {
-        if(!getCookieByName("acceptedCookie") && !cookiesNoticeDisabledPaths.includes(currentPath)) {
+        if (
+            !getCookieByName("acceptedCookie") &&
+            !cookiesNoticeDisabledPaths.includes(currentPath)
+        ) {
             setIsShowConfirmCookies(true);
         }
     }, [currentPath]);
 
-	return (
-		<>
-			<Header
+    return (
+        <>
+            <Header
                 isShowChangeLanguage={isShowChangeLanguage}
                 languagesConfig={languagesConfig}
                 setIsShowChangeLanguage={setIsShowChangeLanguage}
@@ -66,14 +69,15 @@ export const Layout = ({
                     isShowChangeLanguage={isShowChangeLanguage}
                     setIsShowChangeLanguage={setIsShowChangeLanguage}
                 />
-                <CookiesModal isShow={isShowConfirmCookies} setIsShow={setIsShowConfirmCookies} />
+                <CookiesModal
+                    isShow={isShowConfirmCookies}
+                    setIsShow={setIsShowConfirmCookies}
+                />
                 <MouseHint />
                 <Toast />
                 {children}
             </main>
-            {isShowFooter &&
-                <Footer />
-            }
-		</>
-	)
-}
+            {isShowFooter && <Footer />}
+        </>
+    );
+};

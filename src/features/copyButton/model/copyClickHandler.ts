@@ -6,8 +6,12 @@ import React from "react";
  * @param text - Текст для копирования.
  * @param setIsShowHint - Сеттер видимости подсказки.
  */
-export function copyClickHandler(text: string, setIsShowHint: React.Dispatch<React.SetStateAction<boolean>>) {
-    navigator.clipboard.writeText(text)
+export function copyClickHandler(
+    text: string,
+    setIsShowHint: React.Dispatch<React.SetStateAction<boolean>>
+) {
+    navigator.clipboard
+        .writeText(text)
         .catch(err => console.error("copying error ", err));
     setIsShowHint(true);
 }

@@ -1,19 +1,22 @@
 import c from "./createAlbumWidget.module.scss";
-import {useTranslation} from "react-i18next";
-import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useForm, useWatch} from "react-hook-form";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction} from "react";
-import {submitValidHandler} from "../model/submitValidHandler";
-import {submitInvalidHandler} from "../model/submitInvalidHandler";
-import {SettingsItem} from "features/settingsItem";
-import {StylizedButton} from "features/stylizedButton";
-import type {ICreateAlbumForm} from "../lib/types";
-import type {AlbumType} from "entities/album";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useForm, useWatch } from "react-hook-form";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { type ComponentPropsWithoutRef, type Dispatch, type SetStateAction } from "react";
+import { submitValidHandler } from "../model/submitValidHandler";
+import { submitInvalidHandler } from "../model/submitInvalidHandler";
+import { SettingsItem } from "features/settingsItem";
+import { StylizedButton } from "features/stylizedButton";
+import type { ICreateAlbumForm } from "../lib/types";
+import type { AlbumType } from "entities/album";
 
 /** Свойства компонента {@link CreateAlbumWidget}. */
-interface CreateAlbumWidgetProps extends Omit<ComponentPropsWithoutRef<"form">, "onSubmit"> {
+interface CreateAlbumWidgetProps extends Omit<
+    ComponentPropsWithoutRef<"form">,
+    "onSubmit"
+> {
     /** Дополнительный CSS-класс для корневого элемента формы. */
     className?: string;
     /** Функция обновления частичного состояния альбома — используется для обновления предпросмотра. */
@@ -50,31 +53,49 @@ export const CreateAlbumWidget = ({
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {register, handleSubmit, control, formState: {isSubmitted, errors} } = useForm<ICreateAlbumForm>({
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: { isSubmitted, errors }
+    } = useForm<ICreateAlbumForm>({
         shouldFocusError: false
     });
 
     const windowWidth = useWindowWidth();
 
-    const titleValue = useWatch<ICreateAlbumForm>({control, name: "title"});
-    const descriptionValue = useWatch<ICreateAlbumForm>({control, name: "description"});
+    const titleValue = useWatch<ICreateAlbumForm>({ control, name: "title" });
+    const descriptionValue = useWatch<ICreateAlbumForm>({ control, name: "description" });
 
     const isDesktop = windowWidth >= 1200;
 
-    const submitText = isDesktop ? "createAlbum.submitTextDesktop" : "createAlbum.submitTextMobile";
-    const descriptionText = isDesktop ? "createAlbum.textDescriptionDesktop" : "createAlbum.textDescriptionMobile";
-    const titlePlaceholder = isDesktop && windowWidth < 1750
-        ? "createAlbum.nameTitle"
-        : "createAlbum.namePlaceholder";
-    const descriptionPlaceholder = isDesktop && windowWidth < 1750
-        ? "createAlbum.textTitle"
-        : "createAlbum.textPlaceholder";
+    const submitText = isDesktop
+        ? "createAlbum.submitTextDesktop"
+        : "createAlbum.submitTextMobile";
+    const descriptionText = isDesktop
+        ? "createAlbum.textDescriptionDesktop"
+        : "createAlbum.textDescriptionMobile";
+    const titlePlaceholder =
+        isDesktop && windowWidth < 1750
+            ? "createAlbum.nameTitle"
+            : "createAlbum.namePlaceholder";
+    const descriptionPlaceholder =
+        isDesktop && windowWidth < 1750
+            ? "createAlbum.textTitle"
+            : "createAlbum.textPlaceholder";
 
     return (
         <form
             onSubmit={handleSubmit(
-                () => submitValidHandler(navigate, dispatch, loadedFile, setIsErrorImg, onSubmit),
-                (errors) => submitInvalidHandler(errors, dispatch)
+                () =>
+                    submitValidHandler(
+                        navigate,
+                        dispatch,
+                        loadedFile,
+                        setIsErrorImg,
+                        onSubmit
+                    ),
+                errors => submitInvalidHandler(errors, dispatch)
             )}
             className={`${c.settings} ${className}`}
             {...props}
@@ -103,8 +124,9 @@ export const CreateAlbumWidget = ({
                     maxLength={15}
                     registerProps={register("title", {
                         required: "toast.emptyTitle",
-                        maxLength: {value: 15, message: "toast.longTitle"},
-                        onChange: (e) => setAlbumInfo(album => ({...album, name: e.target.value}))
+                        maxLength: { value: 15, message: "toast.longTitle" },
+                        onChange: e =>
+                            setAlbumInfo(album => ({ ...album, name: e.target.value }))
                     })}
                     id="name"
                     setEntityInfo={setAlbumInfo}
@@ -120,15 +142,19 @@ export const CreateAlbumWidget = ({
                     maxLength={200}
                     // minLength={}
                     registerProps={register("description", {
-                        maxLength: {value: 200, message: "toast.longDescription"}
+                        maxLength: { value: 200, message: "toast.longDescription" }
                     })}
                     id="description"
                     setEntityInfo={setAlbumInfo}
                 />
             </div>
-            <StylizedButton aria-label={t("ariaLabel.createAlbum")} className={c.submit} type="submit">
+            <StylizedButton
+                aria-label={t("ariaLabel.createAlbum")}
+                className={c.submit}
+                type="submit"
+            >
                 {t(submitText)}
             </StylizedButton>
         </form>
-    )
-}
+    );
+};

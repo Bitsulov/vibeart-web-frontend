@@ -1,1 +1,1 @@
-export {HomeCTA} from "./ui/homeCTA";
+export { HomeCTA } from "./ui/homeCTA";

@@ -9,15 +9,18 @@ test.describe("Post - визуальная проверка блоков", () =>
     });
 
     test("снимок блока PostCard", async ({ page }) => {
-        await expect(page.locator("main section").nth(0)).toHaveScreenshot("post-card.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").nth(0)).toHaveScreenshot(
+            "post-card.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 
     test("снимок блока PostComments", async ({ page }) => {
         await expect(page.locator("#comments")).toHaveScreenshot("post-comments.png", {
             animations: "disabled",
-            mask: [page.locator("#comments a + div > p:last-child")],
+            mask: [page.locator("#comments a + div > p:last-child")]
         });
     });
 });

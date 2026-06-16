@@ -1,14 +1,14 @@
 import c from "./confirmModal.module.scss";
-import {closeButtonClickHandler} from "../model/closeButtonClickHandler";
+import { closeButtonClickHandler } from "../model/closeButtonClickHandler";
 import clsx from "clsx";
-import {modalClickHandler} from "../model/modalClickButton";
-import {StylizedButton} from "features/stylizedButton";
+import { modalClickHandler } from "../model/modalClickButton";
+import { StylizedButton } from "features/stylizedButton";
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import {useTranslation} from "react-i18next";
-import {defaultTransitionTime} from "shared/const/const";
-import {TransparentButton} from "features/transparentButton";
-import {agreeHandlerClick} from "../model/agreeHandlerClick";
+import { useTranslation } from "react-i18next";
+import { defaultTransitionTime } from "shared/const/const";
+import { TransparentButton } from "features/transparentButton";
+import { agreeHandlerClick } from "../model/agreeHandlerClick";
 
 /** Свойства компонента {@link ConfirmModal}. */
 interface ConfirmModalProps {
@@ -42,19 +42,33 @@ export const ConfirmModal = ({
     const { t } = useTranslation();
 
     const [isDisappearring, setIsDisappearring] = useState(false);
-    const transitionTime = parseInt(
-        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
-            ?.getPropertyValue("--transition-time")
-    ) || defaultTransitionTime;
+    const transitionTime =
+        parseInt(
+            globalThis
+                .getComputedStyle?.(globalThis.document?.documentElement)
+                ?.getPropertyValue("--transition-time")
+        ) || defaultTransitionTime;
 
-	return (
+    return (
         <>
             {isShowModal && (
                 <div
-                    onClick={() => closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShowModal)}
+                    onClick={() =>
+                        closeButtonClickHandler(
+                            setIsDisappearring,
+                            transitionTime,
+                            setIsShowModal
+                        )
+                    }
                     className={clsx(c.background, isDisappearring && c.close)}
                 >
-                    <dialog open onClick={e => modalClickHandler(e)} aria-modal="true" className={c.modal} {...props}>
+                    <dialog
+                        open
+                        onClick={e => modalClickHandler(e)}
+                        aria-modal="true"
+                        className={c.modal}
+                        {...props}
+                    >
                         <div className={c.top}>
                             <h3 className={c.title}>{t("Confirm")}</h3>
                         </div>
@@ -64,13 +78,28 @@ export const ConfirmModal = ({
                                 <TransparentButton
                                     className={c.cancel_button}
                                     ariaLabel={t("ariaLabel.closeModal")}
-                                    onClick={() => closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShowModal)}
+                                    onClick={() =>
+                                        closeButtonClickHandler(
+                                            setIsDisappearring,
+                                            transitionTime,
+                                            setIsShowModal
+                                        )
+                                    }
                                 >
                                     {t("Cancel")}
                                 </TransparentButton>
                                 <StylizedButton
-                                    ariaLabel={ariaLabelConfirm || t("ariaLabel.agreeModal")}
-                                    onClick={() => agreeHandlerClick(confirmFn, setIsDisappearring, transitionTime, setIsShowModal)}
+                                    ariaLabel={
+                                        ariaLabelConfirm || t("ariaLabel.agreeModal")
+                                    }
+                                    onClick={() =>
+                                        agreeHandlerClick(
+                                            confirmFn,
+                                            setIsDisappearring,
+                                            transitionTime,
+                                            setIsShowModal
+                                        )
+                                    }
                                 >
                                     {t("DoConfirm")}
                                 </StylizedButton>
@@ -80,5 +109,5 @@ export const ConfirmModal = ({
                 </div>
             )}
         </>
-	)
-}
+    );
+};

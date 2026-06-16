@@ -1,6 +1,6 @@
-import type {Dispatch, SetStateAction} from "react";
-import type {SendCodeRequest} from "entities/user";
-import type {AxiosResponse} from "axios";
+import type { Dispatch, SetStateAction } from "react";
+import type { SendCodeRequest } from "entities/user";
+import type { AxiosResponse } from "axios";
 
 type SentCodeFn = (data: SendCodeRequest) => Promise<AxiosResponse<string>>;
 
@@ -22,10 +22,12 @@ export function sentCodeButtonHandler(
     sendCode: SentCodeFn
 ) {
     setIsAllowSentCode(false);
-    sendCode({email}).then(() => {
-        setIsAllowSentCode(false);
-        setTimer(120);
-    }).catch(() => {
-        setIsAllowSentCode(true);
-    });
+    sendCode({ email })
+        .then(() => {
+            setIsAllowSentCode(false);
+            setTimer(120);
+        })
+        .catch(() => {
+            setIsAllowSentCode(true);
+        });
 }

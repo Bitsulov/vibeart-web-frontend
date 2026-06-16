@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
-import {getChatDate} from "./getChatDate";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { getChatDate } from "./getChatDate";
 import i18n from "shared/tests/i18n";
 
 describe("getChatDate - Возвращает форматированную дату для чата", () => {

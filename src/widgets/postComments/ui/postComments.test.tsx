@@ -1,14 +1,14 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {PostComments} from "./postComments";
-import {screen} from "@testing-library/react";
-import {commentsMock} from "entities/comment";
-import {principalUserMock} from "entities/user";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { PostComments } from "./postComments";
+import { screen } from "@testing-library/react";
+import { commentsMock } from "entities/comment";
+import { principalUserMock } from "entities/user";
 
 const defaultProps = {
     commentsCount: 5,
     commentsList: commentsMock,
-    userInfo: principalUserMock,
+    userInfo: principalUserMock
 };
 
 describe("PostComments - секция комментариев поста", () => {

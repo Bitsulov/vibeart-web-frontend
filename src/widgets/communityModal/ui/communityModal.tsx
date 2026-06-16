@@ -1,17 +1,17 @@
 import c from "./communityModal.module.scss";
-import {closeButtonClickHandler} from "../model/closeButtonClickHandler";
+import { closeButtonClickHandler } from "../model/closeButtonClickHandler";
 import clsx from "clsx";
-import {modalClickHandler} from "../model/modalClickHandler";
-import {StylizedButton} from "features/stylizedButton";
+import { modalClickHandler } from "../model/modalClickHandler";
+import { StylizedButton } from "features/stylizedButton";
 import { useState } from "react";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
-import {useTranslation} from "react-i18next";
-import {defaultTransitionTime} from "shared/const/const";
-import type {UserType} from "entities/user";
-import {CommunityUserItem} from "features/communityUserItem";
-import {getLocalTimeString} from "shared/lib/getLocalTimeString";
-import {useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
+import { useTranslation } from "react-i18next";
+import { defaultTransitionTime } from "shared/const/const";
+import type { UserType } from "entities/user";
+import { CommunityUserItem } from "features/communityUserItem";
+import { getLocalTimeString } from "shared/lib/getLocalTimeString";
+import { useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
 
 /** Свойства компонента {@link CommunityModal}. */
 interface CommunityModalProps extends ComponentPropsWithoutRef<"dialog"> {
@@ -49,18 +49,26 @@ export const CommunityModal = ({
     const language = useSelector(selectCurrentLanguage);
 
     const [isDisappearring, setIsDisappearring] = useState(false);
-    const transitionTime = parseInt(
-        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
-            ?.getPropertyValue("--transition-time")
-    ) || defaultTransitionTime;
+    const transitionTime =
+        parseInt(
+            globalThis
+                .getComputedStyle?.(globalThis.document?.documentElement)
+                ?.getPropertyValue("--transition-time")
+        ) || defaultTransitionTime;
 
     const resultDate = getLocalTimeString(language, createdAt);
 
-	return (
+    return (
         <>
             {isShow && (
                 <div
-                    onClick={() => closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShow)}
+                    onClick={() =>
+                        closeButtonClickHandler(
+                            setIsDisappearring,
+                            transitionTime,
+                            setIsShow
+                        )
+                    }
                     className={clsx(c.background, isDisappearring && c.close)}
                 >
                     <dialog
@@ -105,19 +113,31 @@ export const CommunityModal = ({
                         <div className={c.bottom}>
                             <StylizedButton
                                 ariaLabel={t("ariaLabel.closeLanguageModal")}
-                                onClick={() => closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShow)}
+                                onClick={() =>
+                                    closeButtonClickHandler(
+                                        setIsDisappearring,
+                                        transitionTime,
+                                        setIsShow
+                                    )
+                                }
                                 className={c.close}
                             >
                                 {t("Close")}
                             </StylizedButton>
                         </div>
                         <button
-                            onClick={() => closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShow)}
+                            onClick={() =>
+                                closeButtonClickHandler(
+                                    setIsDisappearring,
+                                    transitionTime,
+                                    setIsShow
+                                )
+                            }
                             className={c.close_button}
                         ></button>
                     </dialog>
                 </div>
             )}
         </>
-	)
-}
+    );
+};

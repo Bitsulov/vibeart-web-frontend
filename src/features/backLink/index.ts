@@ -1,1 +1,1 @@
-export {BackLink} from "./ui/backLink";
+export { BackLink } from "./ui/backLink";

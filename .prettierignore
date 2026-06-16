@@ -1,0 +1,10 @@
+dist
+build
+coverage
+.react-router
+node_modules
+playwright-report
+test-results
+.idea
+.claude
+*.md

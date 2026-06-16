@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {likeClickHandler} from "./likeClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { likeClickHandler } from "./likeClickHandler";
 
 describe("likeClickHandler - переключает лайк и обновляет счетчик", () => {
     it("Ставит лайк: переключает isLiked и увеличивает счетчик", () => {

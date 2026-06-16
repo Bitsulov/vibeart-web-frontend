@@ -1,7 +1,7 @@
 import c from "./headerProfileButton.module.scss";
-import {Link, type LinkProps} from "react-router-dom";
+import { Link, type LinkProps } from "react-router-dom";
 import defaultAvatar from "shared/icons/icon-user.svg";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import React from "react";
 
 /** Свойства компонента {@link HeaderProfileButton}. */
@@ -39,11 +39,13 @@ export const HeaderProfileButton = ({
     const { t } = useTranslation();
     const alt = isAuthenticated ? name : "user";
     const image = isAuthenticated ? imageUrl || defaultAvatar : defaultAvatar;
-    const href = isAuthenticated ? `/profile/${userUUID}` : "/auth"
-    const ariaLabel = isAuthenticated ? t("ariaLabel.goToProfile") : t("ariaLabel.goToAuth")
+    const href = isAuthenticated ? `/profile/${userUUID}` : "/auth";
+    const ariaLabel = isAuthenticated
+        ? t("ariaLabel.goToProfile")
+        : t("ariaLabel.goToAuth");
 
-	return (
-		<Link className={c.link} to={href} aria-label={ariaLabel} {...props}>
+    return (
+        <Link className={c.link} to={href} aria-label={ariaLabel} {...props}>
             <img
                 decoding="async"
                 loading="lazy"
@@ -53,6 +55,6 @@ export const HeaderProfileButton = ({
                 alt={alt}
                 className={c.avatar_img}
             />
-		</Link>
-	)
-}
+        </Link>
+    );
+};

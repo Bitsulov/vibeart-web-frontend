@@ -1,1 +1,1 @@
-export {StylizedLink} from "./ui/stylizedLink";
+export { StylizedLink } from "./ui/stylizedLink";

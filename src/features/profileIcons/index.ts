@@ -1,1 +1,1 @@
-export {ProfileIcons} from "./ui/profileIcons";
+export { ProfileIcons } from "./ui/profileIcons";

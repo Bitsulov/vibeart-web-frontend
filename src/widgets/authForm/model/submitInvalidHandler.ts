@@ -1,5 +1,5 @@
-import type {IAuthForm} from "../lib/types";
-import type {FieldErrors} from "react-hook-form";
+import type { IAuthForm } from "../lib/types";
+import type { FieldErrors } from "react-hook-form";
 
 /**
  * Обрабатывает неуспешную отправку формы авторизации.

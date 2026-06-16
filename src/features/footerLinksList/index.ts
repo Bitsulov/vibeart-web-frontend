@@ -1,1 +1,1 @@
-export {FooterLinksList} from "features/footerLinksList/ui/footerLinksList";
+export { FooterLinksList } from "features/footerLinksList/ui/footerLinksList";

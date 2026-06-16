@@ -1,4 +1,4 @@
-import type {NavigateFunction} from "react-router-dom";
+import type { NavigateFunction } from "react-router-dom";
 
 /**
  * Перенаправляет на страницу сообществ после удаления, заменяя запись в истории.
@@ -6,5 +6,5 @@ import type {NavigateFunction} from "react-router-dom";
  * @param navigate - Функция навигации React Router.
  */
 export function deleteCommunityClickHandler(navigate: NavigateFunction) {
-    navigate("/communities", {replace: true});
+    navigate("/communities", { replace: true });
 }

@@ -1,10 +1,10 @@
-import {describe, it, expect, beforeEach} from "vitest";
-import {screen, fireEvent} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunityInfo} from "./communityInfo";
-import {createCommunity} from "entities/community";
-import type {UserType} from "entities/user";
+import { describe, it, expect, beforeEach } from "vitest";
+import { screen, fireEvent } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CommunityInfo } from "./communityInfo";
+import { createCommunity } from "entities/community";
+import type { UserType } from "entities/user";
 
 const owner: UserType = {
     UUID: "00000000-0000-4000-8000-00000000000b",
@@ -26,12 +26,12 @@ const owner: UserType = {
     accessToken: "",
     refreshToken: "",
     accessTokenExpiresIn: 0,
-    refreshTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 };
 
 const otherUser: UserType = {
     ...owner,
-    UUID: "00000000-0000-4000-8000-00000000001c",
+    UUID: "00000000-0000-4000-8000-00000000001c"
 };
 
 const communityInfo = createCommunity({
@@ -48,18 +48,22 @@ const communityInfo = createCommunity({
     albumsList: [],
     isSubscribed: false,
     isBlocked: false,
-    trustStatus: "trust",
+    trustStatus: "trust"
 });
 
 describe("CommunityInfo - блок информации о сообществе", () => {
     describe("Базовый рендер", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Отображает название сообщества", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
             expect(screen.getByText("Test Community")).toBeInTheDocument();
@@ -67,7 +71,7 @@ describe("CommunityInfo - блок информации о сообществе"
 
         it("Отображает username сообщества", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
             expect(screen.getByText("@test-community")).toBeInTheDocument();
@@ -75,7 +79,7 @@ describe("CommunityInfo - блок информации о сообществе"
 
         it("Отображает счётчики статистики", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
             expect(screen.getByText("42")).toBeInTheDocument();
@@ -85,54 +89,74 @@ describe("CommunityInfo - блок информации о сообществе"
 
         it("Отображает аватар с корректным alt", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
-            expect(screen.getByAltText("profile.avatarAlt Test Community")).toBeInTheDocument();
+            expect(
+                screen.getByAltText("profile.avatarAlt Test Community")
+            ).toBeInTheDocument();
         });
     });
 
     describe("Кнопки управления (isPrincipalUser)", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Показывает ссылку на настройки для владельца", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
+                preloadedState: { user: owner }
             });
 
-            expect(screen.getByRole("link", {name: "ariaLabel.goToSettings"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("link", { name: "ariaLabel.goToSettings" })
+            ).toBeInTheDocument();
         });
 
         it("Не показывает ссылку на настройки для чужого пользователя", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
-            expect(screen.queryByRole("link", {name: "ariaLabel.goToSettings"})).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("link", { name: "ariaLabel.goToSettings" })
+            ).not.toBeInTheDocument();
         });
 
         it("Ссылка настроек ведёт на страницу редактирования", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
+                preloadedState: { user: owner }
             });
 
-            const link = screen.getByRole("link", {name: "ariaLabel.goToSettings"});
+            const link = screen.getByRole("link", { name: "ariaLabel.goToSettings" });
 
-            expect(link).toHaveAttribute("href", `/communities/${communityInfo.UUID}/edit`);
+            expect(link).toHaveAttribute(
+                "href",
+                `/communities/${communityInfo.UUID}/edit`
+            );
         });
     });
 
     describe("Подсказки при наведении на статистику", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Наведение на счётчик публикаций показывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: otherUser }
+                }
+            );
 
             fireEvent.mouseEnter(screen.getByText("42").parentElement!);
 
@@ -140,9 +164,12 @@ describe("CommunityInfo - блок информации о сообществе"
         });
 
         it("Уход курсора с счётчика публикаций скрывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: otherUser }
+                }
+            );
 
             fireEvent.mouseLeave(screen.getByText("42").parentElement!);
 
@@ -150,9 +177,12 @@ describe("CommunityInfo - блок информации о сообществе"
         });
 
         it("Наведение на счётчик подписчиков показывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: otherUser }
+                }
+            );
 
             fireEvent.mouseEnter(screen.getByText("100").parentElement!);
 
@@ -160,9 +190,12 @@ describe("CommunityInfo - блок информации о сообществе"
         });
 
         it("Наведение на счётчик подписок показывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: otherUser }
+                }
+            );
 
             fireEvent.mouseEnter(screen.getByText("5").parentElement!);
 
@@ -172,42 +205,59 @@ describe("CommunityInfo - блок информации о сообществе"
 
     describe("Подсказки при наведении на кнопки управления (владелец)", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 1440});
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Наведение на ссылку настроек показывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: owner }
+                }
+            );
 
-            fireEvent.mouseEnter(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+            fireEvent.mouseEnter(
+                screen.getByRole("link", { name: "ariaLabel.goToSettings" })
+            );
 
             expect(store.getState().hint.text).toBe("hint.settings");
         });
 
         it("Уход курсора с ссылки настроек скрывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: owner }
+                }
+            );
 
-            fireEvent.mouseLeave(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+            fireEvent.mouseLeave(
+                screen.getByRole("link", { name: "ariaLabel.goToSettings" })
+            );
 
             expect(store.getState().hint.text).toBe("");
         });
 
         it("Клик по ссылке настроек скрывает подсказку", () => {
-            const { store } = renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
-            });
+            const { store } = renderWithProviders(
+                <CommunityInfo communityInfo={communityInfo} />,
+                {
+                    preloadedState: { user: owner }
+                }
+            );
 
-            fireEvent.click(screen.getByRole("link", {name: "ariaLabel.goToSettings"}));
+            fireEvent.click(screen.getByRole("link", { name: "ariaLabel.goToSettings" }));
 
             expect(store.getState().hint.text).toBe("");
         });
 
         it("Клик по кнопке удаления открывает окно подтверждения", async () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: owner},
+                preloadedState: { user: owner }
             });
 
             const buttons = screen.getAllByRole("button");
@@ -221,23 +271,31 @@ describe("CommunityInfo - блок информации о сообществе"
 
     describe("Кнопка описания", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", {writable: true, configurable: true, value: 375});
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 375
+            });
         });
 
         it("Отображает кнопку открытия описания", () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
-            expect(screen.getByRole("button", {name: "ariaLabel.openDescription"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.openDescription" })
+            ).toBeInTheDocument();
         });
 
         it("Клик по кнопке открывает модальное окно", async () => {
             renderWithProviders(<CommunityInfo communityInfo={communityInfo} />, {
-                preloadedState: {user: otherUser},
+                preloadedState: { user: otherUser }
             });
 
-            await userEvent.click(screen.getByRole("button", {name: "ariaLabel.openDescription"}));
+            await userEvent.click(
+                screen.getByRole("button", { name: "ariaLabel.openDescription" })
+            );
 
             expect(screen.getByRole("dialog")).toBeInTheDocument();
         });

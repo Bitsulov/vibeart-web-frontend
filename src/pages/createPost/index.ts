@@ -1,1 +1,1 @@
-export {CreatePost} from "./ui/createPost";
+export { CreatePost } from "./ui/createPost";

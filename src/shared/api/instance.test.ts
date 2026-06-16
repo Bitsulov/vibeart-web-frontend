@@ -82,12 +82,14 @@ describe("instance - перехватчик запросов axios", () => {
                 receivedAuth = request.headers.get("Authorization");
                 return HttpResponse.json({});
             }),
-            http.post("*/auth/refresh", () => HttpResponse.json({
-                accessToken: "new-access",
-                refreshToken: "new-refresh",
-                accessTokenExpiresIn: 60000,
-                refreshTokenExpiresIn: 120000,
-            }))
+            http.post("*/auth/refresh", () =>
+                HttpResponse.json({
+                    accessToken: "new-access",
+                    refreshToken: "new-refresh",
+                    accessTokenExpiresIn: 60000,
+                    refreshTokenExpiresIn: 120000
+                })
+            )
         );
 
         document.cookie = `refreshToken=${await encryptToString("old-refresh", CRYPTO_KEY)}; path=/`;
@@ -100,14 +102,20 @@ describe("instance - перехватчик запросов axios", () => {
         const newRefreshToken = getCookieByName("refreshToken");
         expect(newAccessToken).not.toBeNull();
         expect(newRefreshToken).not.toBeNull();
-        expect(await decryptFromString(newAccessToken as string, CRYPTO_KEY)).toBe("new-access");
-        expect(await decryptFromString(newRefreshToken as string, CRYPTO_KEY)).toBe("new-refresh");
+        expect(await decryptFromString(newAccessToken as string, CRYPTO_KEY)).toBe(
+            "new-access"
+        );
+        expect(await decryptFromString(newRefreshToken as string, CRYPTO_KEY)).toBe(
+            "new-refresh"
+        );
     });
 
     it("Показывает уведомление об ошибке сервера, если /auth/refresh возвращает ошибку с ответом", async () => {
         server.use(
             http.get("*/protected", () => HttpResponse.json({})),
-            http.post("*/auth/refresh", () => HttpResponse.json({ message: "error" }, { status: 500 }))
+            http.post("*/auth/refresh", () =>
+                HttpResponse.json({ message: "error" }, { status: 500 })
+            )
         );
 
         document.cookie = `refreshToken=${await encryptToString("old-refresh", CRYPTO_KEY)}; path=/`;
@@ -129,6 +137,9 @@ describe("instance - перехватчик запросов axios", () => {
         await api.get("/protected");
 
         const queue = store.getState().toast.queue;
-        expect(queue.at(-1)).toMatchObject({ message: "api.networkError", type: "error" });
+        expect(queue.at(-1)).toMatchObject({
+            message: "api.networkError",
+            type: "error"
+        });
     });
 });

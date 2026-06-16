@@ -1,5 +1,5 @@
-import type {Dispatch} from "@reduxjs/toolkit";
-import {setText} from "features/mouseHint";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { setText } from "features/mouseHint";
 
 /**
  * Показывает подсказку с переданным текстом.

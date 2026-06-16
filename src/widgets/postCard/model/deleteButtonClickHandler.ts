@@ -5,6 +5,8 @@ import React from "react";
  *
  * @param setIsShowModal - Сеттер видимости модального окна подтверждения.
  */
-export function deleteButtonClickHandler(setIsShowModal: React.Dispatch<React.SetStateAction<boolean>>) {
+export function deleteButtonClickHandler(
+    setIsShowModal: React.Dispatch<React.SetStateAction<boolean>>
+) {
     setIsShowModal(true);
 }

@@ -1,18 +1,23 @@
 import c from "./settingsItem.module.scss";
-import {Download, Trash2} from "lucide-react";
-import {InputForm} from "features/inputForm";
-import {useTranslation} from "react-i18next";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction, useRef} from "react";
-import {TextareaForm} from "features/textareaForm";
-import type {UseFormRegisterReturn} from "react-hook-form";
+import { Download, Trash2 } from "lucide-react";
+import { InputForm } from "features/inputForm";
+import { useTranslation } from "react-i18next";
+import {
+    type ComponentPropsWithoutRef,
+    type Dispatch,
+    type SetStateAction,
+    useRef
+} from "react";
+import { TextareaForm } from "features/textareaForm";
+import type { UseFormRegisterReturn } from "react-hook-form";
 import clsx from "clsx";
-import {loadButtonClickHandler} from "../model/loadButtonClickHandler";
-import {onChangeLoadHandler} from "../model/onChangeLoadHandler";
-import {deleteButtonClickHandler} from "../model/deleteButtonClickHandler";
-import type {PostType} from "entities/post";
-import {StylizedButton} from "../../stylizedButton";
-import {onChangeAvatarLoadHandler} from "../model/onChangeAvatarLoadHandler";
-import {deleteAlbumButtonClickHandler} from "../model/deleteAlbumButtonClickHandler";
+import { loadButtonClickHandler } from "../model/loadButtonClickHandler";
+import { onChangeLoadHandler } from "../model/onChangeLoadHandler";
+import { deleteButtonClickHandler } from "../model/deleteButtonClickHandler";
+import type { PostType } from "entities/post";
+import { StylizedButton } from "../../stylizedButton";
+import { onChangeAvatarLoadHandler } from "../model/onChangeAvatarLoadHandler";
+import { deleteAlbumButtonClickHandler } from "../model/deleteAlbumButtonClickHandler";
 
 /** Свойства компонента {@link SettingsItem}. */
 interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
@@ -93,25 +98,30 @@ export const SettingsItem = ({
 
     const isText = type === "input" || type === "textarea" || type === "id";
     const isLimitOutMore = maxLength ? value?.length > maxLength : false;
-    const isLimitOutLess = minLength ? value?.length < minLength && (required || value.length > 0) : false;
+    const isLimitOutLess = minLength
+        ? value?.length < minLength && (required || value.length > 0)
+        : false;
 
     const inputLoadRef = useRef<HTMLInputElement>(null);
 
-	return (
+    return (
         <div className={c.wrapper} {...props}>
-            {isText &&
+            {isText && (
                 <p
-                    className={clsx(c.limiter, (isSubmitted && (isLimitOutMore || isLimitOutLess)) && c.error)}
+                    className={clsx(
+                        c.limiter,
+                        isSubmitted && (isLimitOutMore || isLimitOutLess) && c.error
+                    )}
                 >
                     {value?.length}/{maxLength}
                 </p>
-            }
+            )}
             <div className={c.info}>
                 <h3 className={c.title}>{title}</h3>
                 <p className={c.description}>{description}</p>
             </div>
             <div className={c.actions}>
-                {type === "buttons" &&
+                {type === "buttons" && (
                     <div className={c.buttons}>
                         <button
                             onClick={() => loadButtonClickHandler(inputLoadRef)}
@@ -122,14 +132,22 @@ export const SettingsItem = ({
                             <Download className={c.icon} width="38" height="38" />
                         </button>
                         <input
-                            onChange={e => onChangeLoadHandler(e, setEntityInfo, setLoadedFile)}
+                            onChange={e =>
+                                onChangeLoadHandler(e, setEntityInfo, setLoadedFile)
+                            }
                             ref={inputLoadRef}
-                            style={{display: "none"}}
+                            style={{ display: "none" }}
                             type="file"
                             accept="image/*"
                         />
                         <button
-                            onClick={() => deleteButtonClickHandler(inputLoadRef, setEntityInfo, setLoadedFile)}
+                            onClick={() =>
+                                deleteButtonClickHandler(
+                                    inputLoadRef,
+                                    setEntityInfo,
+                                    setLoadedFile
+                                )
+                            }
                             aria-label={t("ariaLabel.deleteImg")}
                             type="button"
                             className={c.delete}
@@ -137,8 +155,8 @@ export const SettingsItem = ({
                             <Trash2 className={c.icon} width="38" height="38" />
                         </button>
                     </div>
-                }
-                {type === "input" &&
+                )}
+                {type === "input" && (
                     <div className={c.input_wrapper}>
                         <InputForm
                             className={c.input}
@@ -151,8 +169,8 @@ export const SettingsItem = ({
                             {...registerProps}
                         />
                     </div>
-                }
-                {type === "textarea" &&
+                )}
+                {type === "textarea" && (
                     <div className={c.textarea_wrapper}>
                         <TextareaForm
                             className={c.textarea}
@@ -165,21 +183,21 @@ export const SettingsItem = ({
                             {...registerProps}
                         />
                     </div>
-                }
-                {type === "avatar" &&
+                )}
+                {type === "avatar" && (
                     <div className={c.avatar_wrapper}>
-                        {avatarUrl ?
+                        {avatarUrl ? (
                             <img
-                                decoding='async'
+                                decoding="async"
                                 width="140"
                                 height="140"
                                 src={avatarUrl}
                                 alt={avatarAlt}
                                 className={c.img}
                             />
-                        :
+                        ) : (
                             <span className={c.img}></span>
-                        }
+                        )}
                         <div className={c.avatar_buttons}>
                             <StylizedButton
                                 onClick={() => loadButtonClickHandler(inputLoadRef)}
@@ -189,7 +207,14 @@ export const SettingsItem = ({
                                 {t("Load")}
                             </StylizedButton>
                             <button
-                                onClick={() => deleteAlbumButtonClickHandler(inputLoadRef, setEntityInfo, setLoadedFile, avatarFieldName)}
+                                onClick={() =>
+                                    deleteAlbumButtonClickHandler(
+                                        inputLoadRef,
+                                        setEntityInfo,
+                                        setLoadedFile,
+                                        avatarFieldName
+                                    )
+                                }
                                 type="button"
                                 className={c.delete}
                             >
@@ -197,15 +222,22 @@ export const SettingsItem = ({
                             </button>
                         </div>
                         <input
-                            onChange={e => onChangeAvatarLoadHandler(e, setEntityInfo, setLoadedFile, avatarFieldName)}
+                            onChange={e =>
+                                onChangeAvatarLoadHandler(
+                                    e,
+                                    setEntityInfo,
+                                    setLoadedFile,
+                                    avatarFieldName
+                                )
+                            }
                             ref={inputLoadRef}
-                            style={{display: "none"}}
+                            style={{ display: "none" }}
                             type="file"
                             accept="image/*"
                         />
                     </div>
-                }
-                {type === "id" &&
+                )}
+                {type === "id" && (
                     <div className={c.id_wrapper}>
                         <span className={c.text}>@</span>
                         <InputForm
@@ -219,8 +251,8 @@ export const SettingsItem = ({
                             {...registerProps}
                         />
                     </div>
-                }
+                )}
             </div>
         </div>
-	)
-}
+    );
+};

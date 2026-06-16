@@ -1,1 +1,1 @@
-export {BurgerMenuUnAuth} from "./ui/burgerMenuUnAuth";
+export { BurgerMenuUnAuth } from "./ui/burgerMenuUnAuth";

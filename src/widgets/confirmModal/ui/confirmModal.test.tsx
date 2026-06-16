@@ -1,8 +1,8 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ConfirmModal} from "./confirmModal";
-import {screen, fireEvent} from "@testing-library/react";
-import {defaultTransitionTime} from "shared/const/const";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ConfirmModal } from "./confirmModal";
+import { screen, fireEvent } from "@testing-library/react";
+import { defaultTransitionTime } from "shared/const/const";
 
 describe("ConfirmModal - модальное окно подтверждения действия", () => {
     afterEach(() => {
@@ -17,30 +17,28 @@ describe("ConfirmModal - модальное окно подтверждения 
     });
 
     it("Рендерится, когда isShowModal = true", () => {
-        renderWithProviders(
-            <ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />
-        );
+        renderWithProviders(<ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />);
         expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
 
     it("Отображает заголовок из ключа Confirm", () => {
-        renderWithProviders(
-            <ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />
-        );
+        renderWithProviders(<ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />);
         expect(screen.getByRole("heading")).toBeInTheDocument();
     });
 
     it("Отображает переданный текст", () => {
         renderWithProviders(
-            <ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} text="Удалить этот пост?" />
+            <ConfirmModal
+                isShowModal={true}
+                setIsShowModal={vi.fn()}
+                text="Удалить этот пост?"
+            />
         );
         expect(screen.getByText("Удалить этот пост?")).toBeInTheDocument();
     });
 
     it("Отображает дефолтный текст из ключа questionAgreed при отсутствии text", () => {
-        renderWithProviders(
-            <ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />
-        );
+        renderWithProviders(<ConfirmModal isShowModal={true} setIsShowModal={vi.fn()} />);
         expect(screen.getByText("questionAgreed")).toBeInTheDocument();
     });
 
@@ -89,7 +87,11 @@ describe("ConfirmModal - модальное окно подтверждения 
         const setIsShowModal = vi.fn();
         const confirmFn = vi.fn();
         renderWithProviders(
-            <ConfirmModal isShowModal={true} setIsShowModal={setIsShowModal} confirmFn={confirmFn} />
+            <ConfirmModal
+                isShowModal={true}
+                setIsShowModal={setIsShowModal}
+                confirmFn={confirmFn}
+            />
         );
 
         fireEvent.click(screen.getByText("DoConfirm"));

@@ -12,8 +12,8 @@ export const Roles = {
     /** Стандартный зарегистрированный пользователь. */
     USER: "user",
     /** Администратор сайта с доступом к инструментам модерации. */
-    ADMIN: "admin",
+    ADMIN: "admin"
 } as const;
 
 /** Тип-объединение, выведенный из объекта {@link Roles}. */
-export type Roles = typeof Roles[keyof typeof Roles];
+export type Roles = (typeof Roles)[keyof typeof Roles];

@@ -1,12 +1,12 @@
-import {Layout} from "widgets/layout";
-import {PostCard} from "widgets/postCard";
-import {principalUserMock, selectUserInfo} from "entities/user";
-import {postMock} from "entities/post";
-import {albumMock} from "entities/album";
-import {useSelector} from "react-redux";
-import {PostComments} from "widgets/postComments";
-import {commentsMock} from "entities/comment";
-import {useTranslation} from "react-i18next";
+import { Layout } from "widgets/layout";
+import { PostCard } from "widgets/postCard";
+import { principalUserMock, selectUserInfo } from "entities/user";
+import { postMock } from "entities/post";
+import { albumMock } from "entities/album";
+import { useSelector } from "react-redux";
+import { PostComments } from "widgets/postComments";
+import { commentsMock } from "entities/comment";
+import { useTranslation } from "react-i18next";
 
 /** Страница публикации с карточкой поста и секцией комментариев. */
 export const Post = () => {
@@ -35,7 +35,11 @@ export const Post = () => {
                 UUID={postMock.UUID}
                 isOwner={principalUserMock.UUID === userInfo.UUID}
             />
-            <PostComments userInfo={userInfo} commentsCount={commentsMock.length} commentsList={commentsMock} />
+            <PostComments
+                userInfo={userInfo}
+                commentsCount={commentsMock.length}
+                commentsList={commentsMock}
+            />
         </Layout>
     );
 };

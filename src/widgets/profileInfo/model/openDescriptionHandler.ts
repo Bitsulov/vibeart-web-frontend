@@ -5,6 +5,8 @@ import React from "react";
  *
  * @param setIsOpened - Сеттер состояния раскрытия описания.
  */
-export function openDescriptionHandler(setIsOpened: React.Dispatch<React.SetStateAction<boolean>>) {
+export function openDescriptionHandler(
+    setIsOpened: React.Dispatch<React.SetStateAction<boolean>>
+) {
     setIsOpened(true);
 }

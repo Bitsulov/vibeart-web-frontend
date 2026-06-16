@@ -1,1 +1,1 @@
-export {ChatDate} from "./ui/chatDate";
+export { ChatDate } from "./ui/chatDate";

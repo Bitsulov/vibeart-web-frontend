@@ -7,12 +7,17 @@ test.describe("Chat - визуальная проверка блоков", () =>
         await page.goto(CHAT_URL);
         await page.waitForSelector("nav");
         await expect(page.getByRole("main")).toBeVisible();
-        await page.addStyleTag({ content: "*::-webkit-scrollbar { display: none !important; }" });
+        await page.addStyleTag({
+            content: "*::-webkit-scrollbar { display: none !important; }"
+        });
     });
 
     test("снимок блока ChatWindow", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("chat-window.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "chat-window.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

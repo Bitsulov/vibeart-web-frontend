@@ -9,11 +9,11 @@
  * остальные модули читают состояние через `useSelector` и отправляют
  * действия через `useDispatch`.
  */
-import {configureStore} from "@reduxjs/toolkit";
-import {rootReducer} from "../store/rootReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { rootReducer } from "../store/rootReducer";
 
 export const store = configureStore({
-    reducer: rootReducer,
+    reducer: rootReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;

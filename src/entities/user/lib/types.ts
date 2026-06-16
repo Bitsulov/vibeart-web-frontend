@@ -1,5 +1,5 @@
-import type {Roles} from "entities/role";
-import type {AlbumType} from "entities/album";
+import type { Roles } from "entities/role";
+import type { AlbumType } from "entities/album";
 
 /**
  * Описывает пользователя сайта.
@@ -34,7 +34,7 @@ export interface UserType {
     /** Уровень доверия, присвоенный модерацией платформы. */
     trustStatus: "trust" | "untrust";
     /** Признак того, что пользователь авторизован. */
-    isAuthenticated: boolean,
+    isAuthenticated: boolean;
     /** Признак блокировки аккаунта модерацией. */
     isBlocked: boolean;
     /** Статус присутствия пользователя в режиме реального времени. */

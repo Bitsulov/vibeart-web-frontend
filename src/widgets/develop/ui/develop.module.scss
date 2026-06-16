@@ -22,9 +22,9 @@
             gap: clamp(1rem, 1vw, 3rem);
 
             .button {
-                border-radius: clamp(.8rem, 1.4vw, 1.8rem);
+                border-radius: clamp(0.8rem, 1.4vw, 1.8rem);
                 font-size: clamp(1.6rem, 3vw, 3.2rem);
-                padding: clamp(.6rem, 1.2vw, 1.2rem) clamp(1.5rem, 2.25vw, 3.2rem);
+                padding: clamp(0.6rem, 1.2vw, 1.2rem) clamp(1.5rem, 2.25vw, 3.2rem);
             }
         }
     }

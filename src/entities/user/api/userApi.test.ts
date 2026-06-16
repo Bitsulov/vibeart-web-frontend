@@ -4,7 +4,11 @@ import { authResponseMock, userDetailResponseMock } from "../const/mockConst";
 
 describe("userApi - запросы к API авторизации и регистрации", () => {
     it("register отправляет данные регистрации на /auth/register", async () => {
-        const response = await register({ email: "test@example.com", password: "123456", confirmPassword: "123456" });
+        const response = await register({
+            email: "test@example.com",
+            password: "123456",
+            confirmPassword: "123456"
+        });
 
         expect(response.data).toBe("ok");
     });
@@ -16,7 +20,10 @@ describe("userApi - запросы к API авторизации и регист
     });
 
     it("verify отправляет email и код подтверждения на /auth/verify", async () => {
-        const response = await verify({ email: "test@example.com", verificationCode: "123456" });
+        const response = await verify({
+            email: "test@example.com",
+            verificationCode: "123456"
+        });
 
         expect(response.data).toEqual(authResponseMock);
     });

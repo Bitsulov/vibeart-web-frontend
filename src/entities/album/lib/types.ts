@@ -1,4 +1,4 @@
-import type {PostType} from "entities/post";
+import type { PostType } from "entities/post";
 
 /**
  * Описывает альбом — пользовательскую коллекцию, объединяющую

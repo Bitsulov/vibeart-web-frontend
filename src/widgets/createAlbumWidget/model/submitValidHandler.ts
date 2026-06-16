@@ -1,6 +1,6 @@
-import type {NavigateFunction} from "react-router-dom";
-import type {Dispatch} from "@reduxjs/toolkit";
-import type {Dispatch as ReactDispatch, SetStateAction} from "react";
+import type { NavigateFunction } from "react-router-dom";
+import type { Dispatch } from "@reduxjs/toolkit";
+import type { Dispatch as ReactDispatch, SetStateAction } from "react";
 // import {showToast} from "features/toast";
 
 /**
@@ -26,5 +26,5 @@ export function submitValidHandler(
     //     _dispatch(showToast({message: "toast.loadImg", type: "error"}));
     //     setIsErrorImg(true);
     // }
-    onSubmit(() => navigate("/gallery", {replace: true}));
+    onSubmit(() => navigate("/gallery", { replace: true }));
 }

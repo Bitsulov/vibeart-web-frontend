@@ -6,9 +6,12 @@ import type { AppError } from "shared/lib/types";
 
 function createError(statusCode?: number): AxiosError<AppError> {
     return {
-        response: statusCode === undefined ? undefined : {
-            data: { statusCode, message: "", path: "", timestamp: "" },
-        },
+        response:
+            statusCode === undefined
+                ? undefined
+                : {
+                      data: { statusCode, message: "", path: "", timestamp: "" }
+                  }
     } as AxiosError<AppError>;
 }
 

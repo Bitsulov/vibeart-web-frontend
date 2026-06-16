@@ -9,5 +9,5 @@ import { type Config } from "@react-router/dev/config";
  */
 export default {
     appDirectory: "src/app/router",
-    ssr: true,
+    ssr: true
 } satisfies Config;

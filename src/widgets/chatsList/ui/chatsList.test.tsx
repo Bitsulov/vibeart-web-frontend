@@ -1,15 +1,15 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ChatsList} from "./chatsList";
-import {chatsMock} from "entities/chat";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ChatsList } from "./chatsList";
+import { chatsMock } from "entities/chat";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("ChatsList - список чатов", () => {
     it("Отображает заголовок секции", () => {
         renderWithProviders(<ChatsList chatsList={chatsMock} />);
 
-        expect(screen.getByRole("heading", {level: 1})).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     });
 
     it("Отображает поле поиска", () => {
@@ -33,7 +33,7 @@ describe("ChatsList - список чатов", () => {
     it("При пустом списке отображает заглушку", () => {
         renderWithProviders(<ChatsList chatsList={[]} />);
 
-        expect(screen.getByRole("heading", {level: 2})).toBeInTheDocument();
+        expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
     });
 
     it("Ссылки ведут на страницы чатов по UUID", () => {

@@ -1,26 +1,26 @@
 import c from "./albumCard.module.scss";
-import {BackLink} from "features/backLink";
-import {DeleteButton} from "features/deleteButton";
-import {EditButton} from "features/editButton";
-import {useTranslation} from "react-i18next";
-import {showHint} from "../model/showHint";
-import {hideHint} from "../model/hideHint";
-import {useDispatch, useSelector} from "react-redux";
-import {deleteButtonClickHandler} from "../model/deleteButtonClickHandler";
-import {ConfirmModal} from "widgets/confirmModal";
-import {confirmDeletePost} from "../model/confirmDeletePost";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {StatItem} from "features/statItem";
-import {ChevronDown, Image} from "lucide-react";
-import {getShortNumber} from "shared/lib/getShortNumber";
+import { BackLink } from "features/backLink";
+import { DeleteButton } from "features/deleteButton";
+import { EditButton } from "features/editButton";
+import { useTranslation } from "react-i18next";
+import { showHint } from "../model/showHint";
+import { hideHint } from "../model/hideHint";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteButtonClickHandler } from "../model/deleteButtonClickHandler";
+import { ConfirmModal } from "widgets/confirmModal";
+import { confirmDeletePost } from "../model/confirmDeletePost";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { StatItem } from "features/statItem";
+import { ChevronDown, Image } from "lucide-react";
+import { getShortNumber } from "shared/lib/getShortNumber";
 import clsx from "clsx";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import type {PostType} from "entities/post";
-import {openDescriptionHandler} from "../model/openDescriptionHandler";
-import {PostList} from "widgets/postList";
-import {getLocalTimeNumbers} from "shared/lib/getLocalTimeNumbers";
-import {selectCurrentLanguage} from "entities/appConfig";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import type { PostType } from "entities/post";
+import { openDescriptionHandler } from "../model/openDescriptionHandler";
+import { PostList } from "widgets/postList";
+import { getLocalTimeNumbers } from "shared/lib/getLocalTimeNumbers";
+import { selectCurrentLanguage } from "entities/appConfig";
 
 /** Свойства компонента {@link AlbumCard}. */
 interface AlbumCardProps {
@@ -71,7 +71,7 @@ export const AlbumCard = ({
     const navigate = useNavigate();
     const windowWidth = useWindowWidth();
 
-    const isDesktop = windowWidth >= 1200
+    const isDesktop = windowWidth >= 1200;
 
     const [isShowConfirm, setIsShowConfirm] = useState(false);
     const [isDescriptionOpened, setIsDescriptionOpened] = useState(false);
@@ -80,12 +80,12 @@ export const AlbumCard = ({
     const [currentPage, setCurrentPage] = useState(1);
     const [pagesDelta, setPagesDelta] = useState(2);
 
-	return (
-		<section className={c.album} {...props}>
+    return (
+        <section className={c.album} {...props}>
             <div className="container">
                 <ConfirmModal
                     confirmFn={() => confirmDeletePost(navigate, authorUUID)}
-                    ariaLabelConfirm={t("ariaLabel.deleteAlbumModal", {name: title})}
+                    ariaLabelConfirm={t("ariaLabel.deleteAlbumModal", { name: title })}
                     text={t("modal.deleteAlbum")}
                     isShowModal={isShowConfirm}
                     setIsShowModal={setIsShowConfirm}
@@ -96,7 +96,9 @@ export const AlbumCard = ({
                         <div className={c.actions}>
                             <DeleteButton
                                 ariaLabel={t("ariaLabel.deleteAlbum")}
-                                onMouseEnter={() => showHint(dispatch, t("hint.deleteAlbum"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.deleteAlbum"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 onClick={() => deleteButtonClickHandler(setIsShowConfirm)}
                                 className={c.delete}
@@ -105,7 +107,9 @@ export const AlbumCard = ({
                                 UUID={UUID}
                                 type="album"
                                 ariaLabel={t("ariaLabel.editAlbum")}
-                                onMouseEnter={() => showHint(dispatch, t("hint.editAlbum"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.editAlbum"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 className={c.edit}
                             />
@@ -123,25 +127,36 @@ export const AlbumCard = ({
                             className={c.img}
                         />
                         <div className={c.info}>
-                            {!isDesktop &&
+                            {!isDesktop && (
                                 <StatItem
-                                    onMouseEnter={() => showHint(dispatch, t("hint.works"))}
+                                    onMouseEnter={() =>
+                                        showHint(dispatch, t("hint.works"))
+                                    }
                                     onMouseLeave={() => hideHint(dispatch)}
                                     className={c.works}
                                     iconClassName={c.icon}
                                     Icon={Image}
                                     number={getShortNumber(worksCount)}
                                 />
-                            }
+                            )}
                             <h1 className={c.title}>{title}</h1>
                             <div className={c.description_wrapper}>
-                                <p className={clsx(c.description, !isDescriptionOpened && !isDesktop && c.description_collapsed)}>
+                                <p
+                                    className={clsx(
+                                        c.description,
+                                        !isDescriptionOpened &&
+                                            !isDesktop &&
+                                            c.description_collapsed
+                                    )}
+                                >
                                     {description}
                                 </p>
                                 {!isDescriptionOpened && !isDesktop && (
                                     <button
                                         className={c.expand_btn}
-                                        onClick={() => openDescriptionHandler(setIsDescriptionOpened)}
+                                        onClick={() =>
+                                            openDescriptionHandler(setIsDescriptionOpened)
+                                        }
                                         aria-label={t("ariaLabel.openDescription")}
                                     >
                                         <ChevronDown width="24" height="24" />
@@ -149,17 +164,21 @@ export const AlbumCard = ({
                                 )}
                             </div>
                             <div className={c.bottom}>
-                                {isDesktop &&
+                                {isDesktop && (
                                     <StatItem
-                                        onMouseEnter={() => showHint(dispatch, t("hint.works"))}
+                                        onMouseEnter={() =>
+                                            showHint(dispatch, t("hint.works"))
+                                        }
                                         onMouseLeave={() => hideHint(dispatch)}
                                         className={c.desktop_stat}
                                         iconClassName={c.icon}
                                         Icon={Image}
                                         number={getShortNumber(worksCount)}
                                     />
-                                }
-                                <p className={c.date}>{getLocalTimeNumbers(currentLanguage, date)}</p>
+                                )}
+                                <p className={c.date}>
+                                    {getLocalTimeNumbers(currentLanguage, date)}
+                                </p>
                             </div>
                         </div>
                     </article>
@@ -178,6 +197,6 @@ export const AlbumCard = ({
                     />
                 </div>
             </div>
-		</section>
-	)
-}
+        </section>
+    );
+};

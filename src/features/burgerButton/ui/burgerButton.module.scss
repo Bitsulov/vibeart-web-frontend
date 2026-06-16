@@ -1,6 +1,6 @@
 @use "@/variables.scss" as global;
 
-$line-height: .3rem;
+$line-height: 0.3rem;
 
 .button_burger {
     position: relative;
@@ -15,7 +15,7 @@ $line-height: .3rem;
         width: 100%;
         height: clamp($line-height, 3vw - 2rem, $line-height * 1.4);
         background-color: global.$active-color;
-        border-radius: .3rem;
+        border-radius: 0.3rem;
         top: calc(50% - ($line-height / 2));
         left: 0;
         transition: global.$transition-time;

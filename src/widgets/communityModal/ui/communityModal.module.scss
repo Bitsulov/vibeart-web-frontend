@@ -23,7 +23,7 @@
         flex-direction: column;
         position: relative;
         color: global.$active-color;
-        font-family: "Montserrat", sans-serif;
+        font-family: Montserrat, sans-serif;
         width: clamp(26.8rem, 80vw, 57.1rem);
         background-color: global.$block-color;
         border-radius: 2.8rem;
@@ -33,7 +33,7 @@
         .top {
             padding: 1rem clamp(2rem, 3vw, 2.5rem);
             font-weight: 600;
-            border-bottom: .1rem solid global.$active-color;
+            border-bottom: 0.1rem solid global.$active-color;
 
             .title {
                 font-size: clamp(2.4rem, 3vw, 3.2rem);
@@ -47,11 +47,13 @@
             scrollbar-color: global.$active-color transparent;
 
             &::-webkit-scrollbar {
-                width: .6rem;
+                width: 0.6rem;
             }
+
             &::-webkit-scrollbar-track {
                 background: transparent;
             }
+
             &::-webkit-scrollbar-thumb {
                 background: global.$active-color;
                 border-radius: 1rem;
@@ -76,14 +78,14 @@
                 }
 
                 .owner {
-                    margin-top: clamp(.6rem, 1vw, .8rem);
+                    margin-top: clamp(0.6rem, 1vw, 0.8rem);
                 }
 
                 .admins {
-                    margin-top: clamp(.6rem, 1vw, .8rem);
+                    margin-top: clamp(0.6rem, 1vw, 0.8rem);
                     display: flex;
                     flex-direction: column;
-                    gap: .5rem;
+                    gap: 0.5rem;
                 }
             }
 
@@ -107,14 +109,14 @@
         .bottom {
             display: flex;
             justify-content: center;
-            border-top: .1rem solid global.$active-color;
+            border-top: 0.1rem solid global.$active-color;
             margin-top: auto;
             padding: clamp(1rem, 1vw, 1.2rem) 0;
 
             .close {
                 font-size: clamp(2rem, 3vw, 3.2rem);
-                border-radius: clamp(.9rem, 1vw, 1.5rem);
-                padding: clamp(.5rem, 1vw, 1rem) clamp(2rem, 1.5vw, 2.5rem);
+                border-radius: clamp(0.9rem, 1vw, 1.5rem);
+                padding: clamp(0.5rem, 1vw, 1rem) clamp(2rem, 1.5vw, 2.5rem);
             }
         }
 
@@ -128,36 +130,37 @@
             cursor: pointer;
 
             &:hover {
-                &:before, &:after {
+                &::before,
+                &::after {
                     background-color: global.$negative-active;
                 }
             }
 
-            &:before {
+            &::before {
                 display: block;
                 position: absolute;
-                content: '';
+                content: "";
                 width: 2rem;
-                height: .2rem;
+                height: 0.2rem;
                 top: 50%;
                 left: 50%;
                 background-color: global.$active-color;
                 transform: translate(-50%, -50%) rotate(45deg);
-                border-radius: .2rem;
+                border-radius: 0.2rem;
                 transition: global.$transition-time;
             }
 
-            &:after {
+            &::after {
                 display: block;
                 position: absolute;
-                content: '';
-                width: .2rem;
+                content: "";
+                width: 0.2rem;
                 height: 2rem;
                 top: 50%;
                 left: 50%;
                 background-color: global.$active-color;
                 transform: translate(-50%, -50%) rotate(45deg);
-                border-radius: .2rem;
+                border-radius: 0.2rem;
                 transition: global.$transition-time;
             }
         }
@@ -174,7 +177,7 @@
     }
 }
 
-@media (min-width: 800px) {
+@media (width >= 800px) {
     .background {
         .modal {
             .top {
@@ -186,7 +189,7 @@
     }
 }
 
-@media (min-width: 1400px) {
+@media (width >= 1400px) {
     .background {
         .modal {
             .info {
@@ -198,7 +201,7 @@
                     .date {
                         display: inline;
 
-                        &:before {
+                        &::before {
                             content: " ";
                         }
                     }

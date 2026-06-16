@@ -1,5 +1,3 @@
-import { test as setup } from '@playwright/test';
+import { test as setup } from "@playwright/test";
 
-setup('авторизация', async ({ page: _page }) => {
-
-});
+setup("авторизация", async ({ page: _page }) => {});

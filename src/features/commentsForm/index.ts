@@ -1,1 +1,1 @@
-export {CommentsForm} from "./ui/commentsForm";
+export { CommentsForm } from "./ui/commentsForm";

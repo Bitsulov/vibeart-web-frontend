@@ -1,4 +1,4 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import { renderWithProviders } from "shared/tests/renderWithProviders";
 import { Modal } from "./modal";
 import { screen, fireEvent } from "@testing-library/react";
@@ -6,14 +6,14 @@ import { defaultTransitionTime } from "shared/const/const";
 
 const languagesConfig: Record<string, string[]> = {
     ru: ["ru.png", "Русский", "Выбрать русский", "Флаг России", "ru"],
-    en: ["en.png", "English", "Select English", "UK Flag", "en"],
+    en: ["en.png", "English", "Select English", "UK Flag", "en"]
 };
 
 describe("Modal - модальное окно выбора языка", () => {
     afterEach(() => {
         vi.useRealTimers();
     });
-    
+
     it("Не рендерится, когда isShowChangeLanguage = false", () => {
         renderWithProviders(
             <Modal
@@ -83,7 +83,9 @@ describe("Modal - модальное окно выбора языка", () => {
             />
         );
 
-        const closeButton = screen.getByRole("button", { name: "ariaLabel.closeLanguageModal" });
+        const closeButton = screen.getByRole("button", {
+            name: "ariaLabel.closeLanguageModal"
+        });
         fireEvent.click(closeButton);
 
         vi.advanceTimersByTime(defaultTransitionTime);

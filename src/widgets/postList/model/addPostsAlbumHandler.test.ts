@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {addPostsAlbumHandler} from "./addPostsAlbumHandler";
+import { describe, it, expect, vi } from "vitest";
+import { addPostsAlbumHandler } from "./addPostsAlbumHandler";
 
 describe("addPostsAlbumHandler - открывает модальное окно добавления постов в альбом", () => {
     it("Устанавливает isShowAlbumModal в true", () => {

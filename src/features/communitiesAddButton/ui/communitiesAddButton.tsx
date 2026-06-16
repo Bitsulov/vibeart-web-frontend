@@ -1,6 +1,6 @@
 import c from "./communitiesAddButton.module.scss";
-import {useTranslation} from "react-i18next";
-import {Link, type LinkProps} from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, type LinkProps } from "react-router-dom";
 
 /** Свойства компонента {@link CommunitiesAddButton}. */
 interface CommunitiesAddButtonProps extends Omit<LinkProps, "to"> {
@@ -13,7 +13,10 @@ interface CommunitiesAddButtonProps extends Omit<LinkProps, "to"> {
  *
  * Текст и метка доступности локализованы через i18next.
  */
-export const CommunitiesAddButton = ({ className = "", ...props }: CommunitiesAddButtonProps) => {
+export const CommunitiesAddButton = ({
+    className = "",
+    ...props
+}: CommunitiesAddButtonProps) => {
     const { t } = useTranslation();
 
     return (
@@ -25,5 +28,5 @@ export const CommunitiesAddButton = ({ className = "", ...props }: CommunitiesAd
         >
             {t("communities.addCommunity")}
         </Link>
-    )
-}
+    );
+};

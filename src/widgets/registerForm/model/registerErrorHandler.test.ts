@@ -5,9 +5,12 @@ import type { AppError } from "shared/lib/types";
 
 function createError(statusCode?: number): AxiosError<AppError> {
     return {
-        response: statusCode === undefined ? undefined : {
-            data: { statusCode, message: "", path: "", timestamp: "" },
-        },
+        response:
+            statusCode === undefined
+                ? undefined
+                : {
+                      data: { statusCode, message: "", path: "", timestamp: "" }
+                  }
     } as AxiosError<AppError>;
 }
 
@@ -17,7 +20,10 @@ describe("registerErrorHandler - помечает поле email формы ре
 
         registerErrorHandler(createError(409), setError);
 
-        expect(setError).toHaveBeenCalledWith("email", { type: "client", message: "api.conflictUserEmailError" });
+        expect(setError).toHaveBeenCalledWith("email", {
+            type: "client",
+            message: "api.conflictUserEmailError"
+        });
     });
 
     it("Помечает email невалидными данными (400)", () => {
@@ -25,7 +31,10 @@ describe("registerErrorHandler - помечает поле email формы ре
 
         registerErrorHandler(createError(400), setError);
 
-        expect(setError).toHaveBeenCalledWith("email", { type: "client", message: "api.invalidData" });
+        expect(setError).toHaveBeenCalledWith("email", {
+            type: "client",
+            message: "api.invalidData"
+        });
     });
 
     it("Помечает email запретом (403)", () => {
@@ -33,7 +42,10 @@ describe("registerErrorHandler - помечает поле email формы ре
 
         registerErrorHandler(createError(403), setError);
 
-        expect(setError).toHaveBeenCalledWith("email", { type: "client", message: "api.forbiddenError" });
+        expect(setError).toHaveBeenCalledWith("email", {
+            type: "client",
+            message: "api.forbiddenError"
+        });
     });
 
     it("Помечает email ошибкой сервера (500)", () => {
@@ -41,7 +53,10 @@ describe("registerErrorHandler - помечает поле email формы ре
 
         registerErrorHandler(createError(500), setError);
 
-        expect(setError).toHaveBeenCalledWith("email", { type: "server", message: "api.serverError" });
+        expect(setError).toHaveBeenCalledWith("email", {
+            type: "server",
+            message: "api.serverError"
+        });
     });
 
     it("Помечает email неизвестной ошибкой при отсутствии тела ответа", () => {
@@ -49,6 +64,9 @@ describe("registerErrorHandler - помечает поле email формы ре
 
         registerErrorHandler(createError(), setError);
 
-        expect(setError).toHaveBeenCalledWith("email", { type: "unknown", message: "api.unknownError" });
+        expect(setError).toHaveBeenCalledWith("email", {
+            type: "unknown",
+            message: "api.unknownError"
+        });
     });
 });

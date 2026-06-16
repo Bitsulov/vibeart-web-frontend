@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {deleteCommunityClickHandler} from "./deleteCommunityClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { deleteCommunityClickHandler } from "./deleteCommunityClickHandler";
 
 describe("deleteCommunityClickHandler - перенаправление после удаления сообщества", () => {
     it("Вызывает navigate на /communities с replace", () => {
@@ -7,6 +7,6 @@ describe("deleteCommunityClickHandler - перенаправление посл�
 
         deleteCommunityClickHandler(navigate);
 
-        expect(navigate).toHaveBeenCalledWith("/communities", {replace: true});
+        expect(navigate).toHaveBeenCalledWith("/communities", { replace: true });
     });
 });

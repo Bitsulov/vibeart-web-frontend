@@ -1,6 +1,6 @@
-import type {NavigateFunction} from "react-router-dom";
-import type {Dispatch} from "@reduxjs/toolkit";
-import {showToast} from "features/toast";
+import type { NavigateFunction } from "react-router-dom";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { showToast } from "features/toast";
 
 /**
  * Обрабатывает валидную отправку формы создания поста.
@@ -18,10 +18,10 @@ export function submitValidHandler(
     loadedFile: File | undefined,
     onSubmit: () => void
 ) {
-    if(loadedFile) {
-        navigate("/gallery", {replace: true});
+    if (loadedFile) {
+        navigate("/gallery", { replace: true });
     } else {
-        dispatch(showToast({message: "toast.loadImg", type: "error"}));
+        dispatch(showToast({ message: "toast.loadImg", type: "error" }));
     }
     onSubmit();
 }

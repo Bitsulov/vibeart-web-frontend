@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {codeSubmitValidHandler} from "./codeSubmitValidHandler";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { codeSubmitValidHandler } from "./codeSubmitValidHandler";
 
 describe("codeSubmitValidHandler - отправка кода подтверждения смены пароля", () => {
     afterEach(() => {
@@ -12,7 +12,13 @@ describe("codeSubmitValidHandler - отправка кода подтвержд�
         const setIsPasswordSent = vi.fn();
         const resetPasswordForm = vi.fn();
 
-        codeSubmitValidHandler({code: "12"}, dispatch, setErrorCode, setIsPasswordSent, resetPasswordForm);
+        codeSubmitValidHandler(
+            { code: "12" },
+            dispatch,
+            setErrorCode,
+            setIsPasswordSent,
+            resetPasswordForm
+        );
 
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch.mock.calls[0][0].payload.message).toBe("toast.wrongCodeLength");
@@ -27,7 +33,13 @@ describe("codeSubmitValidHandler - отправка кода подтвержд�
         const setIsPasswordSent = vi.fn();
         const resetPasswordForm = vi.fn();
 
-        codeSubmitValidHandler({code: "123456"}, dispatch, setErrorCode, setIsPasswordSent, resetPasswordForm);
+        codeSubmitValidHandler(
+            { code: "123456" },
+            dispatch,
+            setErrorCode,
+            setIsPasswordSent,
+            resetPasswordForm
+        );
 
         expect(setErrorCode).toHaveBeenCalledWith(false);
         expect(setIsPasswordSent).toHaveBeenCalledWith(false);
@@ -39,7 +51,7 @@ describe("codeSubmitValidHandler - отправка кода подтвержд�
         vi.useFakeTimers();
         const dispatch = vi.fn();
 
-        codeSubmitValidHandler({code: "123456"}, dispatch, vi.fn(), vi.fn(), vi.fn());
+        codeSubmitValidHandler({ code: "123456" }, dispatch, vi.fn(), vi.fn(), vi.fn());
 
         expect(dispatch).not.toHaveBeenCalled();
     });

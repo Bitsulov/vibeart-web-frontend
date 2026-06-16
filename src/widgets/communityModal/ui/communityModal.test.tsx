@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {screen, fireEvent} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunityModal} from "./communityModal";
-import type {UserType} from "entities/user";
+import { describe, it, expect, vi } from "vitest";
+import { screen, fireEvent } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CommunityModal } from "./communityModal";
+import type { UserType } from "entities/user";
 
 const owner: UserType = {
     UUID: "00000000-0000-4000-8000-00000000000b",
@@ -24,14 +24,14 @@ const owner: UserType = {
     accessToken: "",
     refreshToken: "",
     accessTokenExpiresIn: 0,
-    refreshTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 };
 
 const admin: UserType = {
     ...owner,
     UUID: "00000000-0000-4000-8000-000000000006",
     name: "Admin Name",
-    username: "admin",
+    username: "admin"
 };
 
 const defaultProps = {
@@ -40,7 +40,7 @@ const defaultProps = {
     description: "Описание сообщества",
     createdAt: "2026-01-10T10:00:00.000Z",
     owner,
-    admins: [admin],
+    admins: [admin]
 };
 
 describe("CommunityModal - модальное окно информации о сообществе", () => {
@@ -73,7 +73,9 @@ describe("CommunityModal - модальное окно информации о �
         const setIsShow = vi.fn();
         renderWithProviders(<CommunityModal {...defaultProps} setIsShow={setIsShow} />);
 
-        fireEvent.click(screen.getByRole("button", {name: "ariaLabel.closeLanguageModal"}));
+        fireEvent.click(
+            screen.getByRole("button", { name: "ariaLabel.closeLanguageModal" })
+        );
         vi.runAllTimers();
 
         expect(setIsShow).toHaveBeenCalledWith(false);

@@ -1,1 +1,1 @@
-export {TransparentButton} from "./ui/transparentButton";
+export { TransparentButton } from "./ui/transparentButton";

@@ -1,6 +1,6 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
-import type {MessageType} from "entities/message";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
+import type { MessageType } from "entities/message";
 
 describe("submitValidHandler - добавляет сообщение и сбрасывает поле ввода", () => {
     it("Добавляет новое сообщение в конец списка", () => {
@@ -9,7 +9,9 @@ describe("submitValidHandler - добавляет сообщение и сбра
 
         submitValidHandler({ sendMessage: "Hello" }, setMessages, setValue);
 
-        const updater = setMessages.mock.calls[0][0] as (prev: MessageType[]) => MessageType[];
+        const updater = setMessages.mock.calls[0][0] as (
+            prev: MessageType[]
+        ) => MessageType[];
         const result = updater([]);
         expect(result).toHaveLength(1);
         expect(result[0].text).toBe("Hello");
@@ -22,13 +24,15 @@ describe("submitValidHandler - добавляет сообщение и сбра
             text: "Old",
             createdAt: "2026-04-15T10:00:00.000Z",
             isYour: false,
-            status: "read",
+            status: "read"
         };
         const setMessages = vi.fn();
 
         submitValidHandler({ sendMessage: "New" }, setMessages, vi.fn());
 
-        const updater = setMessages.mock.calls[0][0] as (prev: MessageType[]) => MessageType[];
+        const updater = setMessages.mock.calls[0][0] as (
+            prev: MessageType[]
+        ) => MessageType[];
         const result = updater([existing]);
         expect(result).toHaveLength(2);
         expect(result[1].text).toBe("New");

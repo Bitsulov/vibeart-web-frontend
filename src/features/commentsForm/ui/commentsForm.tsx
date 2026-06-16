@@ -1,13 +1,13 @@
 import c from "./commentsForm.module.scss";
-import {useForm} from "react-hook-form";
-import {InputForm} from "features/inputForm";
-import type {ICommentsForm} from "../lib/types";
-import type {CommentType} from "entities/comment";
+import { useForm } from "react-hook-form";
+import { InputForm } from "features/inputForm";
+import type { ICommentsForm } from "../lib/types";
+import type { CommentType } from "entities/comment";
 import React from "react";
-import {submitValidHandler} from "../model/submitValidHandler";
-import type {UserType} from "entities/user";
-import {SendHorizontal} from "lucide-react";
-import {useTranslation} from "react-i18next";
+import { submitValidHandler } from "../model/submitValidHandler";
+import type { UserType } from "entities/user";
+import { SendHorizontal } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 /** Свойства компонента {@link CommentsForm}. */
 interface CommentFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
@@ -25,22 +25,24 @@ interface CommentFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
  * `setComments`, а поле очищается.
  */
 export const CommentsForm = ({ user, setComments, ...props }: CommentFormProps) => {
-    const { register, setValue, handleSubmit, formState: {errors, isSubmitted} } = useForm<ICommentsForm>({shouldFocusError: false});
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        formState: { errors, isSubmitted }
+    } = useForm<ICommentsForm>({ shouldFocusError: false });
     const { t } = useTranslation();
 
-	return (
-		<form
+    return (
+        <form
             className={c.form}
-            onSubmit={handleSubmit(
-                (data) => submitValidHandler(data, setComments, user, setValue)
+            onSubmit={handleSubmit(data =>
+                submitValidHandler(data, setComments, user, setValue)
             )}
             {...props}
         >
-			<InputForm
-                {...register(
-                    "sendComment",
-                    {required: true}
-                )}
+            <InputForm
+                {...register("sendComment", { required: true })}
                 placeholder={t("post.placeholder")}
                 className={c.input}
                 isError={!!errors.sendComment}
@@ -52,6 +54,6 @@ export const CommentsForm = ({ user, setComments, ...props }: CommentFormProps) 
             <button type="submit" className={c.submit}>
                 <SendHorizontal height="30" width="30" className={c.submit_icon} />
             </button>
-		</form>
-	)
-}
+        </form>
+    );
+};

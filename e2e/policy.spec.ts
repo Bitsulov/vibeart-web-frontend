@@ -5,7 +5,9 @@ test.describe("Policy - страница политики конфиденциа
         await page.goto("/en/policy");
 
         await expect(page.getByRole("main")).toBeVisible();
-        await expect(page.getByRole("heading", { level: 1, name: "An error occurred" })).not.toBeVisible();
+        await expect(
+            page.getByRole("heading", { level: 1, name: "An error occurred" })
+        ).not.toBeVisible();
     });
 
     test("Заголовок и описание страницы", async ({ page }) => {

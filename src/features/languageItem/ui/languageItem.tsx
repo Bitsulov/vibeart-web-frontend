@@ -1,7 +1,7 @@
 import c from "./languageItem.module.scss";
-import {useTranslation} from "react-i18next";
-import {changeLanguageClickHandler} from "../model/changeLanguageClickHandler";
-import {useDispatch} from "react-redux";
+import { useTranslation } from "react-i18next";
+import { changeLanguageClickHandler } from "../model/changeLanguageClickHandler";
+import { useDispatch } from "react-redux";
 import React from "react";
 
 /** Свойства компонента {@link LanguageItem}. */
@@ -24,19 +24,33 @@ interface LanguageItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement
  * При нажатии переключает язык через i18next и обновляет код языка
  * в хранилище Redux.
  */
-export const LanguageItem = ({ imageUrl, title, ariaLabel, alt, value, ...props }: LanguageItemProps) => {
+export const LanguageItem = ({
+    imageUrl,
+    title,
+    ariaLabel,
+    alt,
+    value,
+    ...props
+}: LanguageItemProps) => {
     const { i18n, t } = useTranslation();
     const dispatch = useDispatch();
 
-	return (
-		<button
+    return (
+        <button
             onClick={() => changeLanguageClickHandler(value, i18n, dispatch)}
             aria-label={t(ariaLabel)}
             className={c.button}
             {...props}
         >
-            <img decoding="async" width="20" height="20" src={imageUrl} alt={t(alt)} className={c.image} />
+            <img
+                decoding="async"
+                width="20"
+                height="20"
+                src={imageUrl}
+                alt={t(alt)}
+                className={c.image}
+            />
             <p className={c.title}>{title}</p>
-		</button>
-	)
-}
+        </button>
+    );
+};

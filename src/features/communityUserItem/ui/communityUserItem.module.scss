@@ -3,7 +3,7 @@
 .user {
     display: flex;
     align-items: center;
-    gap: clamp(.5rem, 1vw, 1rem);
+    gap: clamp(0.5rem, 1vw, 1rem);
 
     &:hover {
         .name {

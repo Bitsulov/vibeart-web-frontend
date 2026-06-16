@@ -67,7 +67,7 @@ npm run preview
 - [Redux Toolkit](https://redux-toolkit.js.org/) — клиентский стейт
 - [TanStack Query](https://tanstack.com/query) — серверные данные
 - [Axios](https://axios-http.com/) — HTTP-клиент
-- [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) — формы и валидация
+- [React Hook Form](https://react-hook-form.com/) — формы и валидация
 
 **Интернационализация**
 - [i18next](https://www.i18next.com/) — интернационализация

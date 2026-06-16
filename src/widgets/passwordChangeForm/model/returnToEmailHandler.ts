@@ -1,6 +1,6 @@
-import type {Dispatch, SetStateAction} from "react";
-import type {UseFormReset} from "react-hook-form";
-import type {IPasswordChangeForm, ICodeForm} from "../lib/types";
+import type { Dispatch, SetStateAction } from "react";
+import type { UseFormReset } from "react-hook-form";
+import type { IPasswordChangeForm, ICodeForm } from "../lib/types";
 
 /**
  * Возвращает форму к шагу ввода пароля и сбрасывает обе формы.

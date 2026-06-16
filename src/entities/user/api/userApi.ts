@@ -1,8 +1,9 @@
-import {api} from "shared/api/instance";
-import type {AxiosResponse} from "axios";
+import { api } from "shared/api/instance";
+import type { AxiosResponse } from "axios";
 import type {
     AuthResponse,
-    RefreshRequest, SendCodeRequest,
+    RefreshRequest,
+    SendCodeRequest,
     SignInRequest,
     SignUpRequest,
     UserDetailResponse,
@@ -12,12 +13,24 @@ import type {
 const urls = {
     baseUrlAuth: "/auth",
     baseUrlUser: "/users",
-    register: function () { return `${this.baseUrlAuth}/register` },
-    sendCode: function () { return `${this.baseUrlAuth}/send` },
-    verify: function () { return `${this.baseUrlAuth}/verify` },
-    login: function () { return `${this.baseUrlAuth}/login` },
-    refresh: function () { return `${this.baseUrlAuth}/refresh` },
-    user: function () { return `${this.baseUrlAuth}/user` },
+    register: function () {
+        return `${this.baseUrlAuth}/register`;
+    },
+    sendCode: function () {
+        return `${this.baseUrlAuth}/send`;
+    },
+    verify: function () {
+        return `${this.baseUrlAuth}/verify`;
+    },
+    login: function () {
+        return `${this.baseUrlAuth}/login`;
+    },
+    refresh: function () {
+        return `${this.baseUrlAuth}/refresh`;
+    },
+    user: function () {
+        return `${this.baseUrlAuth}/user`;
+    }
 };
 
 /**
@@ -74,7 +87,9 @@ export async function login(data: SignInRequest): Promise<AxiosResponse<AuthResp
  * @param data - объект {@link RefreshRequest}.
  * @returns Новая пара токенов авторизации и `UUID` пользователя: {@link AuthResponse}.
  */
-export async function refresh(data: RefreshRequest): Promise<AxiosResponse<AuthResponse>> {
+export async function refresh(
+    data: RefreshRequest
+): Promise<AxiosResponse<AuthResponse>> {
     console.log("Calling refresh", data);
     return api.post(urls.refresh(), data);
 }

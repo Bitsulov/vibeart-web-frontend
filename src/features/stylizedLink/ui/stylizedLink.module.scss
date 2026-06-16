@@ -12,12 +12,13 @@
     transition: global.$transition-time;
 
     &:hover {
-        box-shadow: 0 0 clamp(1rem, 2vw, 2rem) .1rem rgba(global.$active-color, .5);
+        box-shadow: 0 0 clamp(1rem, 2vw, 2rem) 0.1rem rgba(global.$active-color, 0.5);
     }
 
     &:active {
         background-color: global.$second-active-color;
-        box-shadow: 0 0 clamp(1rem, 2vw, 2rem) .1rem rgba(global.$second-active-color, .5);
+        box-shadow: 0 0 clamp(1rem, 2vw, 2rem) 0.1rem
+            rgba(global.$second-active-color, 0.5);
         transform: scale(0.975);
     }
 }

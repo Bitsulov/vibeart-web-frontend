@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {toggleSubscribeClickHandler} from "./toggleSubscribeClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { toggleSubscribeClickHandler } from "./toggleSubscribeClickHandler";
 
 describe("toggleSubscribeClickHandler - Переключение подписки", () => {
     it("Вызывает setIsSubscribed", () => {

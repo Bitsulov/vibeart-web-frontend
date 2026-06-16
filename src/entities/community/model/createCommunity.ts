@@ -1,4 +1,4 @@
-import type {CommunityType} from "../lib/types";
+import type { CommunityType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта сообщества.
@@ -30,7 +30,7 @@ export function createCommunity({
     imageUrl = "",
     isSubscribed = false,
     isBlocked = false,
-    trustStatus = "trust",
+    trustStatus = "trust"
 }: CommunityType) {
     return {
         UUID,
@@ -46,6 +46,6 @@ export function createCommunity({
         imageUrl,
         isSubscribed,
         isBlocked,
-        trustStatus,
-    }
+        trustStatus
+    };
 }

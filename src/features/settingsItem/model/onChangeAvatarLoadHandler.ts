@@ -1,5 +1,5 @@
-import React, {type Dispatch, type SetStateAction} from "react";
-import type {UserType} from "entities/user";
+import React, { type Dispatch, type SetStateAction } from "react";
+import type { UserType } from "entities/user";
 
 /**
  * Обрабатывает выбор файла: создаёт ObjectURL для предпросмотра и сохраняет файл.
@@ -18,8 +18,8 @@ export function onChangeAvatarLoadHandler(
 ) {
     const file = e.target.files?.[0];
 
-    if(file) {
-        setEntityInfo(entity => ({...entity, [fieldName]: URL.createObjectURL(file)}));
+    if (file) {
+        setEntityInfo(entity => ({ ...entity, [fieldName]: URL.createObjectURL(file) }));
         setLoadedFile?.(file);
     }
 

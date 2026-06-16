@@ -1,1 +1,1 @@
-export {InputForm} from "./ui/inputForm";
+export { InputForm } from "./ui/inputForm";

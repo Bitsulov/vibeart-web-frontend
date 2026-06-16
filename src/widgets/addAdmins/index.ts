@@ -1,1 +1,1 @@
-export {AddAdmins} from "./ui/addAdmins";
+export { AddAdmins } from "./ui/addAdmins";

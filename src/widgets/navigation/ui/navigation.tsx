@@ -1,9 +1,12 @@
 import c from "./navigation.module.scss";
-import {navigationConfig} from "../config/linksConfig";
-import {useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {selectUnreadChatsCount, selectUnreadNotificationsCount} from "entities/appConfig";
-import {NavigationItem} from "features/navigationItem";
+import { navigationConfig } from "../config/linksConfig";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+    selectUnreadChatsCount,
+    selectUnreadNotificationsCount
+} from "entities/appConfig";
+import { NavigationItem } from "features/navigationItem";
 
 /** Свойства компонента {@link Navigation}. */
 interface NavigationProps {
@@ -25,14 +28,14 @@ export const Navigation = ({ UUID, role, ...props }: NavigationProps) => {
     const chatsNotices = useSelector(selectUnreadChatsCount);
     const notificationsNotices = useSelector(selectUnreadNotificationsCount);
 
-	return (
+    return (
         <aside className={c.nav_wrapper} {...props}>
             <nav className={c.nav}>
                 {navigationConfig.map(link => {
                     const Icon = link.icon;
 
-                    if(link.isAdmin) {
-                        if(role === "admin") {
+                    if (link.isAdmin) {
+                        if (role === "admin") {
                             return (
                                 <NavigationItem
                                     key={`link ${link.href(UUID)}`}
@@ -43,7 +46,7 @@ export const Navigation = ({ UUID, role, ...props }: NavigationProps) => {
                                     chatsNotices={chatsNotices}
                                     notificationsNotices={notificationsNotices}
                                 />
-                            )
+                            );
                         }
                     } else {
                         return (
@@ -56,10 +59,10 @@ export const Navigation = ({ UUID, role, ...props }: NavigationProps) => {
                                 chatsNotices={chatsNotices}
                                 notificationsNotices={notificationsNotices}
                             />
-                        )
+                        );
                     }
                 })}
             </nav>
         </aside>
-	)
-}
+    );
+};

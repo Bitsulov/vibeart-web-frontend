@@ -1,8 +1,8 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {EmailChangeForm} from "./emailChangeForm";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { EmailChangeForm } from "./emailChangeForm";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("EmailChangeForm - форма изменения email", () => {
     describe("Рендер", () => {
@@ -15,14 +15,20 @@ describe("EmailChangeForm - форма изменения email", () => {
         it("Отображает поля старого и нового email", () => {
             renderWithProviders(<EmailChangeForm />);
 
-            expect(screen.getByLabelText("emailChange.oldEmailPlaceholder")).toBeInTheDocument();
-            expect(screen.getByLabelText("emailChange.newEmailPlaceholder")).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder")
+            ).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("emailChange.newEmailPlaceholder")
+            ).toBeInTheDocument();
         });
 
         it("Отображает кнопку продолжения", () => {
             renderWithProviders(<EmailChangeForm />);
 
-            expect(screen.getByRole("button", {name: "ariaLabel.continue"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.continue" })
+            ).toBeInTheDocument();
         });
     });
 
@@ -31,21 +37,34 @@ describe("EmailChangeForm - форма изменения email", () => {
             const user = userEvent.setup();
             renderWithProviders(<EmailChangeForm />);
 
-            await user.type(screen.getByLabelText("emailChange.oldEmailPlaceholder"), "notanemail");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder"),
+                "notanemail"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByLabelText("emailChange.oldEmailPlaceholder")).toBeInvalid();
+            expect(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder")
+            ).toBeInvalid();
         });
 
         it("Показывает ошибку при отправке с невалидным email в поле нового адреса", async () => {
             const user = userEvent.setup();
             renderWithProviders(<EmailChangeForm />);
 
-            await user.type(screen.getByLabelText("emailChange.oldEmailPlaceholder"), "old@example.com");
-            await user.type(screen.getByLabelText("emailChange.newEmailPlaceholder"), "notanemail");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder"),
+                "old@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("emailChange.newEmailPlaceholder"),
+                "notanemail"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByLabelText("emailChange.newEmailPlaceholder")).toBeInvalid();
+            expect(
+                screen.getByLabelText("emailChange.newEmailPlaceholder")
+            ).toBeInvalid();
         });
     });
 
@@ -54,21 +73,37 @@ describe("EmailChangeForm - форма изменения email", () => {
             const user = userEvent.setup();
             renderWithProviders(<EmailChangeForm />);
 
-            await user.type(screen.getByLabelText("emailChange.oldEmailPlaceholder"), "old@example.com");
-            await user.type(screen.getByLabelText("emailChange.newEmailPlaceholder"), "new@example.com");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder"),
+                "old@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("emailChange.newEmailPlaceholder"),
+                "new@example.com"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByRole("button", {name: "ariaLabel.backToChangeEmail"})).toBeInTheDocument();
-            expect(screen.getByRole("button", {name: "ariaLabel.changeEmail"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.backToChangeEmail" })
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.changeEmail" })
+            ).toBeInTheDocument();
         });
 
         it("Показывает 6 ячеек кода на шаге подтверждения", async () => {
             const user = userEvent.setup();
             renderWithProviders(<EmailChangeForm />);
 
-            await user.type(screen.getByLabelText("emailChange.oldEmailPlaceholder"), "old@example.com");
-            await user.type(screen.getByLabelText("emailChange.newEmailPlaceholder"), "new@example.com");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder"),
+                "old@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("emailChange.newEmailPlaceholder"),
+                "new@example.com"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
             expect(screen.getAllByRole("textbox")).toHaveLength(6);
         });
@@ -77,12 +112,22 @@ describe("EmailChangeForm - форма изменения email", () => {
             const user = userEvent.setup();
             renderWithProviders(<EmailChangeForm />);
 
-            await user.type(screen.getByLabelText("emailChange.oldEmailPlaceholder"), "old@example.com");
-            await user.type(screen.getByLabelText("emailChange.newEmailPlaceholder"), "new@example.com");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
-            await user.click(screen.getByRole("button", {name: "ariaLabel.backToChangeEmail"}));
+            await user.type(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder"),
+                "old@example.com"
+            );
+            await user.type(
+                screen.getByLabelText("emailChange.newEmailPlaceholder"),
+                "new@example.com"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
+            await user.click(
+                screen.getByRole("button", { name: "ariaLabel.backToChangeEmail" })
+            );
 
-            expect(screen.getByLabelText("emailChange.oldEmailPlaceholder")).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("emailChange.oldEmailPlaceholder")
+            ).toBeInTheDocument();
         });
     });
 });

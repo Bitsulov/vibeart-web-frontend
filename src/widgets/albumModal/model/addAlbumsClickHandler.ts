@@ -1,4 +1,4 @@
-import {closeButtonClickHandler} from "./closeButtonClickHandler";
+import { closeButtonClickHandler } from "./closeButtonClickHandler";
 import React from "react";
 
 /**
@@ -15,5 +15,10 @@ export function addAlbumsClickHandler(
     setIsShowModal: React.Dispatch<React.SetStateAction<boolean>>,
     setSelectedPosts: React.Dispatch<React.SetStateAction<string[]>>
 ) {
-    closeButtonClickHandler(setIsDisappearring, transitionTime, setIsShowModal, setSelectedPosts);
+    closeButtonClickHandler(
+        setIsDisappearring,
+        transitionTime,
+        setIsShowModal,
+        setSelectedPosts
+    );
 }

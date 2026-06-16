@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {PostListModal} from "./postListModal";
-import {screen} from "@testing-library/react";
-import {profileAlbum1PostsMock} from "entities/post";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { PostListModal } from "./postListModal";
+import { screen } from "@testing-library/react";
+import { profileAlbum1PostsMock } from "entities/post";
 
 const defaultProps = {
     postList: [],
@@ -12,7 +12,7 @@ const defaultProps = {
     pagesDelta: 2,
     setPagesDelta: vi.fn(),
     selectedPosts: [],
-    setSelectedPosts: vi.fn(),
+    setSelectedPosts: vi.fn()
 };
 
 describe("PostListModal - список постов для добавления в альбом", () => {
@@ -32,6 +32,8 @@ describe("PostListModal - список постов для добавления 
         renderWithProviders(
             <PostListModal {...defaultProps} postList={profileAlbum1PostsMock} />
         );
-        expect(screen.getAllByRole("button", { name: /ariaLabel\.changePage/ }).length).toBeGreaterThan(0);
+        expect(
+            screen.getAllByRole("button", { name: /ariaLabel\.changePage/ }).length
+        ).toBeGreaterThan(0);
     });
 });

@@ -1,4 +1,4 @@
-import type {ChatType} from "../lib/types";
+import type { ChatType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта диалога.
@@ -19,13 +19,13 @@ export function createChat({
     companion,
     lastMessage,
     createdAt = new Date().toISOString(),
-    imageUrl,
+    imageUrl
 }: ChatType) {
     return {
         UUID,
         companion,
         lastMessage,
         createdAt,
-        imageUrl,
-    }
+        imageUrl
+    };
 }

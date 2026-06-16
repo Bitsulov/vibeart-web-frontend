@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {hideHint} from "./hideHint";
+import { describe, it, expect, vi } from "vitest";
+import { hideHint } from "./hideHint";
 
 vi.mock("features/mouseHint", () => ({
-    setText: (text: string) => ({ type: "hint/setText", payload: text }),
+    setText: (text: string) => ({ type: "hint/setText", payload: text })
 }));
 
 describe("hideHint - сбрасывает текст подсказки", () => {

@@ -1,1 +1,1 @@
-export {AddTags} from "./ui/addTags";
+export { AddTags } from "./ui/addTags";

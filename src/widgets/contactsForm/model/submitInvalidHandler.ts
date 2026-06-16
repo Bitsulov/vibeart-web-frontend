@@ -1,7 +1,7 @@
-import type {FieldErrors} from "react-hook-form";
-import type {IContactsForm} from "../lib/types";
-import type {Dispatch} from "@reduxjs/toolkit";
-import {showToast} from "features/toast";
+import type { FieldErrors } from "react-hook-form";
+import type { IContactsForm } from "../lib/types";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { showToast } from "features/toast";
 
 /**
  * Показывает уведомление с первой ошибкой валидации формы связи с администрацией.
@@ -19,6 +19,6 @@ export function submitInvalidHandler(
     const error = errors.text;
 
     if (error?.message) {
-        dispatch(showToast({message: error.message, type: "error"}));
+        dispatch(showToast({ message: error.message, type: "error" }));
     }
 }

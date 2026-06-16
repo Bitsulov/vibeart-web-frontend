@@ -1,7 +1,7 @@
-import {describe, it, expect} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunitiesAddButton} from "./communitiesAddButton";
+import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CommunitiesAddButton } from "./communitiesAddButton";
 
 describe("CommunitiesAddButton - Кнопка создания сообщества", () => {
     it("Отображается как ссылка", () => {

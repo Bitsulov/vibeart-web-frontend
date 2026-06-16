@@ -1,12 +1,12 @@
-import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
-import type {AppConfigType, ServerStatusType} from "../lib/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { AppConfigType, ServerStatusType } from "../lib/types";
 
 const initialState: AppConfigType = {
     currentLanguage: "ru",
     serverStatus: "good",
     unreadChatsCount: 0,
     unreadNotificationsCount: 0
-}
+};
 
 /**
  * Redux-слайс для управления глобальной конфигурацией приложения.
@@ -23,7 +23,7 @@ export const appSlice = createSlice({
          *
          * @param action.payload - Код языка по стандарту BCP 47 (например, `"ru"`, `"en"`).
          */
-        setLanguage(state, action ) {
+        setLanguage(state, action) {
             state.currentLanguage = action.payload;
         },
 
@@ -56,6 +56,11 @@ export const appSlice = createSlice({
     }
 });
 
-export const {setLanguage, setServerStatus, setUnreadNotificationsCount, setUnreadChatsCount} = appSlice.actions;
+export const {
+    setLanguage,
+    setServerStatus,
+    setUnreadNotificationsCount,
+    setUnreadChatsCount
+} = appSlice.actions;
 
 export const appReducer = appSlice.reducer;

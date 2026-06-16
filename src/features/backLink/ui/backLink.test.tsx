@@ -1,12 +1,13 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {BackLink} from "./backLink";
-import {screen, fireEvent} from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { BackLink } from "./backLink";
+import { screen, fireEvent } from "@testing-library/react";
 
 const mockNavigate = vi.fn();
 
 vi.mock("react-router-dom", async () => {
-    const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+    const actual =
+        await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
     return { ...actual, useNavigate: () => mockNavigate };
 });
 

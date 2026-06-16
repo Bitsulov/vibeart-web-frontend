@@ -1,13 +1,13 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {MessageItem} from "./messageItem";
-import {screen} from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { MessageItem } from "./messageItem";
+import { screen } from "@testing-library/react";
 
 const defaultProps = {
     isYour: false,
     text: "Lorem ipsum dolor sit amet.",
     date: "2026-04-15T14:30:00.000Z",
-    status: "read" as const,
+    status: "read" as const
 };
 
 describe("MessageItem - элемент сообщения в чате", () => {

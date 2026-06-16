@@ -1,1 +1,1 @@
-export {FooterLogo} from "./ui/footerLogo";
+export { FooterLogo } from "./ui/footerLogo";

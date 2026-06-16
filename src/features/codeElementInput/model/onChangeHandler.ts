@@ -1,4 +1,4 @@
-import type {ChangeEvent, ChangeEventHandler, Dispatch, SetStateAction} from "react";
+import type { ChangeEvent, ChangeEventHandler, Dispatch, SetStateAction } from "react";
 
 /**
  * Обновляет значение ячейки кода, если введён ровно один цифровой символ.
@@ -12,7 +12,7 @@ export function onChangeHandler(
     setValue: Dispatch<SetStateAction<string>>,
     onChange: ChangeEventHandler<HTMLInputElement>
 ) {
-    if(/^\d$/.test(e.target.value)) {
+    if (/^\d$/.test(e.target.value)) {
         setValue(e.target.value);
         onChange(e);
     }

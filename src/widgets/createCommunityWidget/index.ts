@@ -1,1 +1,1 @@
-export {CreateCommunityWidget} from "./ui/createCommunityWidget";
+export { CreateCommunityWidget } from "./ui/createCommunityWidget";

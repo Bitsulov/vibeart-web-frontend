@@ -7,18 +7,18 @@
  * перевода достаточно проверять ключ (`"pages.profile"`), а не его
  * значение (`"Профиль"`).
  */
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
 i18n.use(initReactI18next).init({
-    lng: 'ru',
-    fallbackLng: 'ru',
-    ns: ['translation'],
-    defaultNS: 'translation',
+    lng: "ru",
+    fallbackLng: "ru",
+    ns: ["translation"],
+    defaultNS: "translation",
     resources: {
-        ru: { translation: {} }, // пустой — ключи вернутся как есть
+        ru: { translation: {} } // пустой — ключи вернутся как есть
     },
-    interpolation: { escapeValue: false },
-})
+    interpolation: { escapeValue: false }
+});
 
 export default i18n;

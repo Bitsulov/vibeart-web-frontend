@@ -1,15 +1,15 @@
 import c from "./contactsForm.module.scss";
-import type {UserType} from "entities/user";
-import {useForm, useWatch} from "react-hook-form";
-import {useTranslation} from "react-i18next";
-import {TextareaForm} from "features/textareaForm";
-import type {IContactsForm} from "../lib/types";
-import {submitValidHandler} from "../model/submitValidHandler";
-import {submitInvalidHandler} from "../model/submitInvalidHandler";
-import {useDispatch} from "react-redux";
+import type { UserType } from "entities/user";
+import { useForm, useWatch } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { TextareaForm } from "features/textareaForm";
+import type { IContactsForm } from "../lib/types";
+import { submitValidHandler } from "../model/submitValidHandler";
+import { submitInvalidHandler } from "../model/submitInvalidHandler";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
-import {StylizedButton} from "features/stylizedButton";
-import type {ComponentPropsWithoutRef} from "react";
+import { StylizedButton } from "features/stylizedButton";
+import type { ComponentPropsWithoutRef } from "react";
 
 /** Свойства компонента {@link ContactsForm}. */
 interface ContactsFormProps extends ComponentPropsWithoutRef<"section"> {
@@ -29,28 +29,40 @@ export const ContactsForm = ({ userInfo: _userInfo, ...props }: ContactsFormProp
     const dispatch = useDispatch();
     const email = import.meta.env.VITE_EMAIL;
 
-    const {register, setValue, handleSubmit, control, formState: {errors, isSubmitted}, /*setError*/} = useForm<IContactsForm>(
-        {shouldFocusError: false}
-    );
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        formState: { errors, isSubmitted } /*setError*/
+    } = useForm<IContactsForm>({ shouldFocusError: false });
 
-    const textValue = useWatch<IContactsForm>({control, name: "text"});
+    const textValue = useWatch<IContactsForm>({ control, name: "text" });
     const maxTextLength = 1000;
     const textLength = textValue?.length || 0;
 
-	return (
-		<section className={c.contacts} {...props}>
+    return (
+        <section className={c.contacts} {...props}>
             <div className="container">
                 <div className={c.contacts_inner}>
                     <h1 className={c.title}>{t("contacts.title")}</h1>
-                    <p className={c.description}>{t("contacts.description", {email})}</p>
+                    <p className={c.description}>
+                        {t("contacts.description", { email })}
+                    </p>
                     <form
                         onSubmit={handleSubmit(
                             () => submitValidHandler(setValue, dispatch),
-                            (errors) => submitInvalidHandler(errors, dispatch)
+                            errors => submitInvalidHandler(errors, dispatch)
                         )}
                         className={c.form}
                     >
-                        <div aria-hidden={true} className={clsx(c.limit, errors.text?.type === "maxLength" && c.error)}>
+                        <div
+                            aria-hidden={true}
+                            className={clsx(
+                                c.limit,
+                                errors.text?.type === "maxLength" && c.error
+                            )}
+                        >
                             {textLength}/{maxTextLength}
                         </div>
                         <TextareaForm
@@ -67,12 +79,16 @@ export const ContactsForm = ({ userInfo: _userInfo, ...props }: ContactsFormProp
                             isSubmitted={isSubmitted}
                             className={c.input}
                         />
-                        <StylizedButton className={c.submit} aria-label={t("ariaLabel.sendReport")} type="submit">
+                        <StylizedButton
+                            className={c.submit}
+                            aria-label={t("ariaLabel.sendReport")}
+                            type="submit"
+                        >
                             {t("Send")}
                         </StylizedButton>
                     </form>
                 </div>
             </div>
-		</section>
-	)
-}
+        </section>
+    );
+};

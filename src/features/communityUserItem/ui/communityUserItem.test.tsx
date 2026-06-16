@@ -1,12 +1,12 @@
-import {describe, it, expect} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunityUserItem} from "./communityUserItem";
+import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CommunityUserItem } from "./communityUserItem";
 
 const defaultProps = {
     imageUrl: "",
     name: "Alice Wonder",
-    UUID: "00000000-0000-4000-8000-00000000000b",
+    UUID: "00000000-0000-4000-8000-00000000000b"
 };
 
 describe("CommunityUserItem - элемент списка пользователей сообщества", () => {
@@ -25,7 +25,9 @@ describe("CommunityUserItem - элемент списка пользовател
     });
 
     it("Отображает аватар с корректным alt", () => {
-        renderWithProviders(<CommunityUserItem {...defaultProps} imageUrl="avatar.jpg" />);
+        renderWithProviders(
+            <CommunityUserItem {...defaultProps} imageUrl="avatar.jpg" />
+        );
 
         expect(screen.getByAltText("Alice Wonder")).toBeInTheDocument();
     });

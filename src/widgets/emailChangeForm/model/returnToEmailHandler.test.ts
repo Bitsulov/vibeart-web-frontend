@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {returnToEmailHandler} from "./returnToEmailHandler";
+import { describe, it, expect, vi } from "vitest";
+import { returnToEmailHandler } from "./returnToEmailHandler";
 
 describe("returnToEmailHandler - возврат к шагу ввода email", () => {
     it("Устанавливает isEmailSent в false", () => {

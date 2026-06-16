@@ -5,8 +5,8 @@
  * Все моки исключены из анализа покрытия кода, так как не содержат
  * тестируемой логики.
  */
-import {createCommunity} from "../model/createCommunity";
-import {principalUserMock, profileUserMock} from "entities/user";
+import { createCommunity } from "../model/createCommunity";
+import { principalUserMock, profileUserMock } from "entities/user";
 import img from "shared/icons/img-CTA.jpg";
 
 export const communitiesMyMock = [
@@ -41,7 +41,7 @@ export const communitiesMyMock = [
         isSubscribed: true,
         isBlocked: false,
         trustStatus: "trust"
-    }),
+    })
 ];
 
 export const communitiesAllMock = [
@@ -66,7 +66,8 @@ export const communitiesAllMock = [
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
-        description: "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
+        description:
+            "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
         posts: 95,
         subscribers: 2100,
         subscribes: 7,
@@ -82,7 +83,8 @@ export const communitiesAllMock = [
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
-        description: "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
+        description:
+            "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
         posts: 95,
         subscribers: 2100,
         subscribes: 7,
@@ -98,7 +100,8 @@ export const communitiesAllMock = [
         owner: profileUserMock,
         username: "watercolor-world",
         title: "Watercolor World",
-        description: "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
+        description:
+            "Dedicated to the art of watercolor painting — tutorials, showcases and critiques",
         posts: 91,
         subscribers: 2000,
         subscribes: 7,
@@ -108,7 +111,7 @@ export const communitiesAllMock = [
         isSubscribed: false,
         isBlocked: false,
         trustStatus: "trust"
-    }),
+    })
 ];
 
 export const communityMock = createCommunity({
@@ -116,7 +119,8 @@ export const communityMock = createCommunity({
     owner: principalUserMock,
     username: "digital-art-club",
     title: "Digital Art Club",
-    description: "Сообщество цифровых художников — делимся работами, разбираем техники и вдохновляем друг друга. Открыты для всех уровней.",
+    description:
+        "Сообщество цифровых художников — делимся работами, разбираем техники и вдохновляем друг друга. Открыты для всех уровней.",
     posts: 42,
     subscribers: 1200,
     subscribes: 5,

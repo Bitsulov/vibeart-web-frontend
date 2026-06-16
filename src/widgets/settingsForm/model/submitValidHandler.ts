@@ -1,5 +1,5 @@
-import type {UseFormSetValue} from "react-hook-form";
-import type {ISettingsForm} from "../lib/types";
+import type { UseFormSetValue } from "react-hook-form";
+import type { ISettingsForm } from "../lib/types";
 
 /**
  * Сбрасывает все поля формы настроек после успешной отправки.

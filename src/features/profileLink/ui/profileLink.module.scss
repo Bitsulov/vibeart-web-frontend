@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     background-color: global.$bright-background;
-    padding: .6rem;
+    padding: 0.6rem;
     border-radius: 1.2rem;
     cursor: pointer;
     transition: global.$transition-time;
@@ -27,7 +27,7 @@
     .settings {
         width: 3.1rem;
         height: 3.1rem;
-        stroke-width: .2rem;
+        stroke-width: 0.2rem;
         transition: global.$transition-time;
     }
 }
@@ -42,7 +42,7 @@
     align-items: center;
     justify-content: center;
     background-color: global.$bright-background;
-    padding: .6rem;
+    padding: 0.6rem;
     border-radius: 1.2rem;
     cursor: pointer;
     transition: global.$transition-time;
@@ -59,7 +59,7 @@
     .message {
         width: 3.1rem;
         height: 3.1rem;
-        stroke-width: .2rem;
+        stroke-width: 0.2rem;
         transition: global.$transition-time;
     }
 }

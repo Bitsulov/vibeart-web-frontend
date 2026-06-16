@@ -1,23 +1,23 @@
 import c from "./createPostWidget.module.scss";
-import {useTranslation} from "react-i18next";
-import {SettingsItem} from "features/settingsItem";
-import {useForm, useWatch} from "react-hook-form";
-import type {ICreatePostForm} from "../lib/types";
+import { useTranslation } from "react-i18next";
+import { SettingsItem } from "features/settingsItem";
+import { useForm, useWatch } from "react-hook-form";
+import type { ICreatePostForm } from "../lib/types";
 import {
     type ComponentPropsWithoutRef,
     type Dispatch,
     type SetStateAction,
     useState
 } from "react";
-import {submitValidHandler} from "../model/submitValidHandler";
-import {submitInvalidHandler} from "../model/submitInvalidHandler";
-import {useNavigate} from "react-router-dom";
-import {AddTags} from "widgets/addTags";
-import {postTagsMock} from "entities/tag";
-import {StylizedButton} from "features/stylizedButton";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import type {PostType} from "entities/post";
-import {useDispatch} from "react-redux";
+import { submitValidHandler } from "../model/submitValidHandler";
+import { submitInvalidHandler } from "../model/submitInvalidHandler";
+import { useNavigate } from "react-router-dom";
+import { AddTags } from "widgets/addTags";
+import { postTagsMock } from "entities/tag";
+import { StylizedButton } from "features/stylizedButton";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import type { PostType } from "entities/post";
+import { useDispatch } from "react-redux";
 
 /** Свойства компонента {@link CreatePostWidget}. */
 interface CreatePostWidgetProps extends ComponentPropsWithoutRef<"form"> {
@@ -69,33 +69,44 @@ export const CreatePostWidget = ({
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {register, handleSubmit, control, formState: {isSubmitted, errors} } = useForm<ICreatePostForm>({
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: { isSubmitted, errors }
+    } = useForm<ICreatePostForm>({
         shouldFocusError: false
     });
 
     const windowWidth = useWindowWidth();
 
-    const titleValue = useWatch<ICreatePostForm>({control, name: "title"});
-    const descriptionValue = useWatch<ICreatePostForm>({control, name: "description"});
+    const titleValue = useWatch<ICreatePostForm>({ control, name: "title" });
+    const descriptionValue = useWatch<ICreatePostForm>({ control, name: "description" });
 
     const isDesktop = windowWidth >= 1200;
 
-    const submitText = isDesktop ? "createPost.submitTextDesktop" : "createPost.submitTextMobile";
-    const descriptionText = isDesktop ? "createPost.textDescriptionDesktop" : "createPost.textDescriptionMobile";
-    const titlePlaceholder = isDesktop && windowWidth < 1750
-        ? "createPost.nameTitle"
-        : "createPost.namePlaceholder";
-    const descriptionPlaceholder = isDesktop && windowWidth < 1750
-        ? "createPost.textTitle"
-        : "createPost.textPlaceholder";
+    const submitText = isDesktop
+        ? "createPost.submitTextDesktop"
+        : "createPost.submitTextMobile";
+    const descriptionText = isDesktop
+        ? "createPost.textDescriptionDesktop"
+        : "createPost.textDescriptionMobile";
+    const titlePlaceholder =
+        isDesktop && windowWidth < 1750
+            ? "createPost.nameTitle"
+            : "createPost.namePlaceholder";
+    const descriptionPlaceholder =
+        isDesktop && windowWidth < 1750
+            ? "createPost.textTitle"
+            : "createPost.textPlaceholder";
 
     const [chosenTags, setChosenTags] = useState<string[]>([]);
 
-	return (
-		<form
+    return (
+        <form
             onSubmit={handleSubmit(
                 () => submitValidHandler(navigate, dispatch, loadedFile, onSubmit),
-                (errors) => submitInvalidHandler(errors, dispatch)
+                errors => submitInvalidHandler(errors, dispatch)
             )}
             className={`${c.settings} ${className}`}
             {...props}
@@ -124,8 +135,9 @@ export const CreatePostWidget = ({
                     maxLength={15}
                     registerProps={register("title", {
                         required: "toast.emptyTitle",
-                        maxLength: {value: 15, message: "toast.longTitle"},
-                        onChange: (e) => setPostInfo(post => ({...post, name: e.target.value}))
+                        maxLength: { value: 15, message: "toast.longTitle" },
+                        onChange: e =>
+                            setPostInfo(post => ({ ...post, name: e.target.value }))
                     })}
                     id="name"
                     setEntityInfo={setPostInfo}
@@ -141,7 +153,7 @@ export const CreatePostWidget = ({
                     maxLength={200}
                     // minLength={}
                     registerProps={register("description", {
-                        maxLength: {value: 200, message: "toast.longDescription"}
+                        maxLength: { value: 200, message: "toast.longDescription" }
                     })}
                     id="description"
                     setEntityInfo={setPostInfo}
@@ -157,9 +169,13 @@ export const CreatePostWidget = ({
                 setChosenTags={setChosenTags}
                 tagsList={postTagsMock}
             />
-            <StylizedButton aria-label={t("ariaLabel.createPost")} className={c.submit} type="submit">
+            <StylizedButton
+                aria-label={t("ariaLabel.createPost")}
+                className={c.submit}
+                type="submit"
+            >
                 {t(submitText)}
             </StylizedButton>
-		</form>
-	)
-}
+        </form>
+    );
+};

@@ -1,8 +1,8 @@
-import type {Dispatch} from "@reduxjs/toolkit";
-import React, {type SetStateAction} from "react";
-import type {UseFormReset} from "react-hook-form";
-import {showToast} from "features/toast";
-import type {IPasswordChangeForm, ICodeForm} from "../lib/types";
+import type { Dispatch } from "@reduxjs/toolkit";
+import React, { type SetStateAction } from "react";
+import type { UseFormReset } from "react-hook-form";
+import { showToast } from "features/toast";
+import type { IPasswordChangeForm, ICodeForm } from "../lib/types";
 
 /**
  * Обрабатывает отправку кода подтверждения смены пароля:
@@ -21,10 +21,10 @@ export function codeSubmitValidHandler(
     setIsEmailSent: React.Dispatch<SetStateAction<boolean>>,
     resetEmailForm: UseFormReset<IPasswordChangeForm>
 ) {
-    if(data.code.length !== 6) {
-        dispatch(showToast({message: "toast.wrongCodeLength", type: "error"}));
+    if (data.code.length !== 6) {
+        dispatch(showToast({ message: "toast.wrongCodeLength", type: "error" }));
         setErrorCode(true);
-        return
+        return;
     }
 
     setErrorCode(false);

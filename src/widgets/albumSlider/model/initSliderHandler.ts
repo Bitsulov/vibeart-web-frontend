@@ -1,5 +1,5 @@
 import type Swiper from "swiper";
-import React, {type RefObject} from "react";
+import React, { type RefObject } from "react";
 
 /**
  * Инициализирует экземпляр Swiper и устанавливает начальные состояния границ.

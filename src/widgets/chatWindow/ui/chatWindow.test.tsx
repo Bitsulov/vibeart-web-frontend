@@ -1,20 +1,20 @@
-import {describe, it, expect, vi, beforeAll} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ChatWindow} from "./chatWindow";
+import { describe, it, expect, vi, beforeAll } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ChatWindow } from "./chatWindow";
 
 beforeAll(() => {
     window.HTMLElement.prototype.scrollTo = vi.fn();
 });
-import {screen, fireEvent} from "@testing-library/react";
-import {messagesMock} from "entities/message";
-import {profileUserMock} from "entities/user";
+import { screen, fireEvent } from "@testing-library/react";
+import { messagesMock } from "entities/message";
+import { profileUserMock } from "entities/user";
 
 const defaultProps = {
     messages: messagesMock,
     name: profileUserMock.name,
     UUID: profileUserMock.UUID,
     avatarUrl: profileUserMock.avatarUrl,
-    onlineStatus: "online" as const,
+    onlineStatus: "online" as const
 };
 
 describe("ChatWindow - окно чата", () => {
@@ -35,7 +35,9 @@ describe("ChatWindow - окно чата", () => {
 
     it("Отображает кнопку назад к чатам", () => {
         renderWithProviders(<ChatWindow {...defaultProps} />);
-        expect(screen.getByRole("link", { name: "ariaLabel.goToChats" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("link", { name: "ariaLabel.goToChats" })
+        ).toBeInTheDocument();
     });
 
     it("Открывает всплывающий список настроек при клике на кнопку", () => {

@@ -1,15 +1,15 @@
 import c from "./postList.module.scss";
-import type {PostType} from "entities/post";
-import {useTranslation} from "react-i18next";
-import {Post} from "features/post";
-import {PagesButtons} from "features/pagesButtons";
+import type { PostType } from "entities/post";
+import { useTranslation } from "react-i18next";
+import { Post } from "features/post";
+import { PagesButtons } from "features/pagesButtons";
 import { useEffect, useState } from "react";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {PlusCircle} from "lucide-react";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { PlusCircle } from "lucide-react";
 import clsx from "clsx";
-import {AlbumModal} from "widgets/albumModal";
-import {addPostsAlbumHandler} from "../model/addPostsAlbumHandler";
+import { AlbumModal } from "widgets/albumModal";
+import { addPostsAlbumHandler } from "../model/addPostsAlbumHandler";
 
 /** Свойства компонента {@link PostList}. */
 interface PostListProps extends ComponentPropsWithoutRef<"section"> {
@@ -86,21 +86,23 @@ export const PostList = ({
 
     const [isShowAlbumModal, setIsShowAlbumModal] = useState(false);
 
-	return (
-		<section className={`${c.post_list} ${className}`} {...props}>
-            {isShowButton &&
+    return (
+        <section className={`${c.post_list} ${className}`} {...props}>
+            {isShowButton && (
                 <AlbumModal
                     isShowModal={isShowAlbumModal}
                     setIsShowModal={setIsShowAlbumModal}
                     postList={postList ?? []}
                 />
-            }
+            )}
             {isPostsExists ? (
                 <>
-                    <h1 className={clsx(c.title, flexible && c.flexible)}>{isUniqueTitle ? title : t("Posts")}</h1>
+                    <h1 className={clsx(c.title, flexible && c.flexible)}>
+                        {isUniqueTitle ? title : t("Posts")}
+                    </h1>
                     <div className={c.list_wrapper}>
                         <div className={clsx(c.list, flexible && c.flexible)}>
-                            {postList.map(post =>
+                            {postList.map(post => (
                                 <Post
                                     imageUrl={post.imageUrl}
                                     key={`post ${post.UUID}`}
@@ -110,17 +112,19 @@ export const PostList = ({
                                     UUID={post.UUID}
                                     isShowAuthor={false}
                                 />
-                            )}
-                            {isShowButton &&
+                            ))}
+                            {isShowButton && (
                                 <button
-                                    onClick={() => addPostsAlbumHandler(setIsShowAlbumModal)}
+                                    onClick={() =>
+                                        addPostsAlbumHandler(setIsShowAlbumModal)
+                                    }
                                     aria-label={t("ariaLabel.addPostAlbum")}
                                     className={c.add_post}
                                 >
                                     <PlusCircle className={c.add_icon} />
                                     <h3 className={c.add_post_title}>{t("AddAlbum")}</h3>
                                 </button>
-                            }
+                            )}
                         </div>
                     </div>
                     <PagesButtons
@@ -130,21 +134,26 @@ export const PostList = ({
                         pagesCount={pagesCount}
                     />
                 </>
-            ): isShowAddButton ? (
-                    <>
-                        <h1 className={clsx(c.title, flexible && c.flexible)}>{isUniqueTitle ? title : t("Posts")}</h1>
-                        <div className={c.list_wrapper}>
-                            <div className={clsx(c.list, c.grid_3, flexible && c.flexible)}>
-                                <button aria-label={t("ariaLabel.addPostAlbum")} className={c.add_post}>
-                                    <PlusCircle className={c.add_icon} />
-                                    <h3 className={c.add_post_title}>{t("AddAlbum")}</h3>
-                                </button>
-                            </div>
+            ) : isShowAddButton ? (
+                <>
+                    <h1 className={clsx(c.title, flexible && c.flexible)}>
+                        {isUniqueTitle ? title : t("Posts")}
+                    </h1>
+                    <div className={c.list_wrapper}>
+                        <div className={clsx(c.list, c.grid_3, flexible && c.flexible)}>
+                            <button
+                                aria-label={t("ariaLabel.addPostAlbum")}
+                                className={c.add_post}
+                            >
+                                <PlusCircle className={c.add_icon} />
+                                <h3 className={c.add_post_title}>{t("AddAlbum")}</h3>
+                            </button>
                         </div>
-                    </>
-            ):
+                    </div>
+                </>
+            ) : (
                 <h1 className={`${c.title} ${c.empty}`}>{t("emptyPosts")}</h1>
-            }
-		</section>
-	)
-}
+            )}
+        </section>
+    );
+};

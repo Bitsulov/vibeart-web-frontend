@@ -1,1 +1,1 @@
-export {PolicyText} from "./ui/policyText";
+export { PolicyText } from "./ui/policyText";

@@ -1,12 +1,13 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {PostCard} from "./postCard";
-import {screen, fireEvent} from "@testing-library/react";
-import {profileUserMock} from "entities/user";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { PostCard } from "./postCard";
+import { screen, fireEvent } from "@testing-library/react";
+import { profileUserMock } from "entities/user";
 
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {
-    const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+    const actual =
+        await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
     return { ...actual, useNavigate: () => mockNavigate };
 });
 
@@ -23,7 +24,7 @@ const defaultProps = {
     likesCount: 10,
     reportsCount: 2,
     UUID: "00000000-0000-4000-8000-00000000000b",
-    createdAt: "2026-04-05T12:00:00.000Z",
+    createdAt: "2026-04-05T12:00:00.000Z"
 };
 
 describe("PostCard - карточка поста", () => {
@@ -34,7 +35,9 @@ describe("PostCard - карточка поста", () => {
 
     it("Отображает заголовок поста", () => {
         renderWithProviders(<PostCard {...defaultProps} />);
-        expect(screen.getByRole("heading", { level: 1, name: "Название поста" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("heading", { level: 1, name: "Название поста" })
+        ).toBeInTheDocument();
     });
 
     it("Отображает описание поста", () => {
@@ -50,19 +53,29 @@ describe("PostCard - карточка поста", () => {
 
     it("Кнопки редактирования и удаления не отображаются, если isOwner = false", () => {
         renderWithProviders(<PostCard {...defaultProps} isOwner={false} />);
-        expect(screen.queryByRole("link", { name: "ariaLabel.editPost" })).not.toBeInTheDocument();
-        expect(screen.queryByRole("button", { name: "ariaLabel.deletePost" })).not.toBeInTheDocument();
+        expect(
+            screen.queryByRole("link", { name: "ariaLabel.editPost" })
+        ).not.toBeInTheDocument();
+        expect(
+            screen.queryByRole("button", { name: "ariaLabel.deletePost" })
+        ).not.toBeInTheDocument();
     });
 
     it("Кнопки редактирования и удаления отображаются при isOwner = true", () => {
         renderWithProviders(<PostCard {...defaultProps} isOwner={true} />);
-        expect(screen.getAllByRole("link", { name: "ariaLabel.editPost" }).length).toBeGreaterThan(0);
-        expect(screen.getAllByRole("button", { name: "ariaLabel.deletePost" }).length).toBeGreaterThan(0);
+        expect(
+            screen.getAllByRole("link", { name: "ariaLabel.editPost" }).length
+        ).toBeGreaterThan(0);
+        expect(
+            screen.getAllByRole("button", { name: "ariaLabel.deletePost" }).length
+        ).toBeGreaterThan(0);
     });
 
     it("Клик по кнопке удаления открывает модальное окно подтверждения", () => {
         renderWithProviders(<PostCard {...defaultProps} isOwner={true} />);
-        const deleteBtn = screen.getAllByRole("button", { name: "ariaLabel.deletePost" })[0];
+        const deleteBtn = screen.getAllByRole("button", {
+            name: "ariaLabel.deletePost"
+        })[0];
         fireEvent.click(deleteBtn);
         expect(screen.getByRole("dialog")).toBeInTheDocument();
     });
@@ -71,7 +84,9 @@ describe("PostCard - карточка поста", () => {
         renderWithProviders(<PostCard {...defaultProps} />);
         const likeBtn = screen.getByRole("button", { name: "ariaLabel.like" });
         fireEvent.click(likeBtn);
-        expect(screen.getByRole("button", { name: "ariaLabel.unlike" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.unlike" })
+        ).toBeInTheDocument();
     });
 
     it("Повторный клик по лайку убирает лайк", () => {
@@ -79,26 +94,34 @@ describe("PostCard - карточка поста", () => {
         const likeBtn = screen.getByRole("button", { name: "ariaLabel.like" });
         fireEvent.click(likeBtn);
         fireEvent.click(screen.getByRole("button", { name: "ariaLabel.unlike" }));
-        expect(screen.getByRole("button", { name: "ariaLabel.like" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.like" })
+        ).toBeInTheDocument();
     });
 
     it("Клик по кнопке жалобы переключает состояние", () => {
         renderWithProviders(<PostCard {...defaultProps} />);
         const reportBtn = screen.getByRole("button", { name: "ariaLabel.report" });
         fireEvent.click(reportBtn);
-        expect(screen.getByRole("button", { name: "ariaLabel.reported" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.reported" })
+        ).toBeInTheDocument();
     });
 
     it("Повторный клик по жалобе не сбрасывает состояние", () => {
         renderWithProviders(<PostCard {...defaultProps} />);
         fireEvent.click(screen.getByRole("button", { name: "ariaLabel.report" }));
         fireEvent.click(screen.getByRole("button", { name: "ariaLabel.reported" }));
-        expect(screen.getByRole("button", { name: "ariaLabel.reported" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.reported" })
+        ).toBeInTheDocument();
     });
 
     it("Наведение на кнопку удаления показывает подсказку", () => {
         renderWithProviders(<PostCard {...defaultProps} isOwner={true} />);
-        const deleteBtn = screen.getAllByRole("button", { name: "ariaLabel.deletePost" })[0];
+        const deleteBtn = screen.getAllByRole("button", {
+            name: "ariaLabel.deletePost"
+        })[0];
         fireEvent.mouseEnter(deleteBtn);
         fireEvent.mouseLeave(deleteBtn);
     });
@@ -113,7 +136,9 @@ describe("PostCard - карточка поста", () => {
     it("Подтверждение удаления вызывает navigate на профиль автора", () => {
         vi.useFakeTimers();
         renderWithProviders(<PostCard {...defaultProps} isOwner={true} />);
-        fireEvent.click(screen.getAllByRole("button", { name: "ariaLabel.deletePost" })[0]);
+        fireEvent.click(
+            screen.getAllByRole("button", { name: "ariaLabel.deletePost" })[0]
+        );
         fireEvent.click(screen.getByText("DoConfirm"));
         vi.advanceTimersByTime(300);
         expect(mockNavigate).toHaveBeenCalled();

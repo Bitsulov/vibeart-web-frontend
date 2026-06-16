@@ -1,17 +1,17 @@
 import c from "./createAlbum.module.scss";
-import {Layout} from "widgets/layout";
-import {useTranslation} from "react-i18next";
-import {BackLink} from "features/backLink";
-import {AlbumSlide} from "features/albumSlide";
-import {useEffect, useState} from "react";
-import type {AlbumType} from "entities/album";
-import {CreateAlbumWidget} from "widgets/createAlbumWidget";
-import {onSubmitForm} from "../model/onSubmitForm";
+import { Layout } from "widgets/layout";
+import { useTranslation } from "react-i18next";
+import { BackLink } from "features/backLink";
+import { AlbumSlide } from "features/albumSlide";
+import { useEffect, useState } from "react";
+import type { AlbumType } from "entities/album";
+import { CreateAlbumWidget } from "widgets/createAlbumWidget";
+import { onSubmitForm } from "../model/onSubmitForm";
 import clsx from "clsx";
-import {ConfirmModal} from "widgets/confirmModal";
-import {openModalHandler} from "../model/openModalHandler";
-import {confirmModalHandler} from "../model/confirmModalHandler";
-import {useNavigate} from "react-router-dom";
+import { ConfirmModal } from "widgets/confirmModal";
+import { openModalHandler } from "../model/openModalHandler";
+import { confirmModalHandler } from "../model/confirmModalHandler";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Страница создания альбома с живым предпросмотром обложки и формой заполнения данных.
@@ -32,7 +32,7 @@ export const CreateAlbum = () => {
     const [isErrorImg, setIsErrorImg] = useState<boolean>(false);
 
     useEffect(() => {
-        if(loadedFile) {
+        if (loadedFile) {
             setIsErrorImg(false);
         }
     }, [loadedFile]);
@@ -42,8 +42,8 @@ export const CreateAlbum = () => {
         ? (navigation: () => void) => onSubmitForm(navigation, loadedFile, setIsErrorImg)
         : (_navigation: () => void) => openModalHandler(setIsShowConfirm);
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.albumCreate")}</title>
             <meta name="description" content={t("description.albumCreate")} />
             <meta property="og:title" content={t("titles.albumCreate")} />
@@ -78,6 +78,6 @@ export const CreateAlbum = () => {
                     </div>
                 </div>
             </section>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

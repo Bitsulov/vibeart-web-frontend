@@ -1,4 +1,4 @@
-import {Check, type LucideIcon, TriangleAlert} from "lucide-react";
+import { Check, type LucideIcon, TriangleAlert } from "lucide-react";
 
 /**
  * Соответствие типа всплывающего уведомления иконке из библиотеки Lucide.
@@ -7,6 +7,6 @@ import {Check, type LucideIcon, TriangleAlert} from "lucide-react";
  * - `"error"` — произошла ошибка (треугольник с восклицательным знаком).
  */
 export const toastIconsConfig: Record<string, LucideIcon> = {
-    "success": Check,
-    "error": TriangleAlert,
-}
+    success: Check,
+    error: TriangleAlert
+};

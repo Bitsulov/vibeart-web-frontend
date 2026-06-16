@@ -1,8 +1,8 @@
-import {describe, expect, it, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CopyButton} from "./copyButton";
-import {screen, waitFor} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CopyButton } from "./copyButton";
+import { screen, waitFor } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("copyButton - Кнопка копирования", () => {
     it("Нажатие, копирование, подсказка", async () => {
@@ -10,15 +10,13 @@ describe("copyButton - Кнопка копирования", () => {
 
         Object.assign(navigator, {
             clipboard: {
-                writeText: copyFn,
-            },
+                writeText: copyFn
+            }
         });
 
-        renderWithProviders(
-            <CopyButton text="t" />
-        );
+        renderWithProviders(<CopyButton text="t" />);
 
-        const button = screen.getByRole("button", {name: "ariaLabel.copy"});
+        const button = screen.getByRole("button", { name: "ariaLabel.copy" });
         await userEvent.click(button);
         const hint = screen.getByText("hint.copied");
 
@@ -27,5 +25,5 @@ describe("copyButton - Кнопка копирования", () => {
         await waitFor(() => {
             expect(hint).not.toBeInTheDocument();
         });
-    })
+    });
 });

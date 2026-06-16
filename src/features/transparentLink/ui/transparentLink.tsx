@@ -1,5 +1,5 @@
 import c from "./transparentLink.module.scss";
-import {Link, type LinkProps} from "react-router-dom";
+import { Link, type LinkProps } from "react-router-dom";
 
 /** Свойства компонента {@link TransparentLink}. */
 interface TransparentLinkProps extends Omit<LinkProps, "to"> {
@@ -15,10 +15,21 @@ interface TransparentLinkProps extends Omit<LinkProps, "to"> {
  * Используется для действий меньшей приоритетности рядом со {@link StylizedLink}.
  * Принимает `href` вместо `to` для единообразия с нативными HTML-ссылками.
  */
-export const TransparentLink = ({ className, children, href, ariaLabel, ...props }: TransparentLinkProps) => {
-	return (
-        <Link className={`${c.link} ${className}`} to={href} aria-label={ariaLabel} {...props}>
+export const TransparentLink = ({
+    className,
+    children,
+    href,
+    ariaLabel,
+    ...props
+}: TransparentLinkProps) => {
+    return (
+        <Link
+            className={`${c.link} ${className}`}
+            to={href}
+            aria-label={ariaLabel}
+            {...props}
+        >
             {children}
         </Link>
-	)
-}
+    );
+};

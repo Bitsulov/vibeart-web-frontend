@@ -1,1 +1,1 @@
-export {PostListModal} from "./ui/postListModal";
+export { PostListModal } from "./ui/postListModal";

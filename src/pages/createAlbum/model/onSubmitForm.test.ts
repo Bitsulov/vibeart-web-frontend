@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {onSubmitForm} from "./onSubmitForm";
+import { describe, it, expect, vi } from "vitest";
+import { onSubmitForm } from "./onSubmitForm";
 
 describe("onSubmitForm - обработка отправки формы создания альбома", () => {
     it("Устанавливает ошибку и не перенаправляет на другую страницу если файл не загружен", () => {
@@ -14,7 +14,7 @@ describe("onSubmitForm - обработка отправки формы созд
     it("Сбрасывает ошибку и перенаправляет на другую страницу если файл загружен", () => {
         const navigation = vi.fn();
         const setIsErrorImg = vi.fn();
-        const file = new File(["content"], "image.png", {type: "image/png"});
+        const file = new File(["content"], "image.png", { type: "image/png" });
 
         onSubmitForm(navigation, file, setIsErrorImg);
 

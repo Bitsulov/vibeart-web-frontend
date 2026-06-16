@@ -1,11 +1,11 @@
-import {describe, it, expect, vi} from "vitest";
-import type {MouseEvent} from "react";
-import {userClickHandler} from "./userClickHandler";
-import {principalUserMock, profileUserMock} from "entities/user";
+import { describe, it, expect, vi } from "vitest";
+import type { MouseEvent } from "react";
+import { userClickHandler } from "./userClickHandler";
+import { principalUserMock, profileUserMock } from "entities/user";
 
 describe("userClickHandler - переключение выбора администратора", () => {
     it("Вызывает preventDefault", () => {
-        const e = {preventDefault: vi.fn()} as unknown as MouseEvent;
+        const e = { preventDefault: vi.fn() } as unknown as MouseEvent;
 
         userClickHandler(e, [], vi.fn(), principalUserMock);
 
@@ -13,7 +13,7 @@ describe("userClickHandler - переключение выбора админи�
     });
 
     it("Добавляет пользователя если он не выбран", () => {
-        const e = {preventDefault: vi.fn()} as unknown as MouseEvent;
+        const e = { preventDefault: vi.fn() } as unknown as MouseEvent;
         const setSelectedAdmins = vi.fn();
 
         userClickHandler(e, [], setSelectedAdmins, principalUserMock);
@@ -23,7 +23,7 @@ describe("userClickHandler - переключение выбора админи�
     });
 
     it("Удаляет пользователя если он уже выбран", () => {
-        const e = {preventDefault: vi.fn()} as unknown as MouseEvent;
+        const e = { preventDefault: vi.fn() } as unknown as MouseEvent;
         const setSelectedAdmins = vi.fn();
 
         userClickHandler(e, [principalUserMock], setSelectedAdmins, principalUserMock);
@@ -33,10 +33,15 @@ describe("userClickHandler - переключение выбора админи�
     });
 
     it("Удаляет только нужного пользователя из списка", () => {
-        const e = {preventDefault: vi.fn()} as unknown as MouseEvent;
+        const e = { preventDefault: vi.fn() } as unknown as MouseEvent;
         const setSelectedAdmins = vi.fn();
 
-        userClickHandler(e, [principalUserMock, profileUserMock], setSelectedAdmins, principalUserMock);
+        userClickHandler(
+            e,
+            [principalUserMock, profileUserMock],
+            setSelectedAdmins,
+            principalUserMock
+        );
 
         const updater = setSelectedAdmins.mock.calls[0][0];
         expect(updater([principalUserMock, profileUserMock])).toEqual([profileUserMock]);

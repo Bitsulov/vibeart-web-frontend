@@ -1,4 +1,4 @@
-import type {MouseEvent} from "react";
+import type { MouseEvent } from "react";
 
 /**
  * Блокирует переход по ссылке при клике на карточку автора сообщества.

@@ -1,16 +1,18 @@
-import {expect, test} from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const SETTINGS_URL = "/en/settings";
 
 test.describe("Settings - страница настроек профиля", () => {
-    test("Контент страницы загружается", async ({page}) => {
+    test("Контент страницы загружается", async ({ page }) => {
         await page.goto(SETTINGS_URL);
 
         await expect(page.getByRole("main")).toBeVisible();
-        await expect(page.getByRole("heading", {level: 1, name: "An error occurred"})).not.toBeVisible();
+        await expect(
+            page.getByRole("heading", { level: 1, name: "An error occurred" })
+        ).not.toBeVisible();
     });
 
-    test("Заголовок и описание страницы", async ({page}) => {
+    test("Заголовок и описание страницы", async ({ page }) => {
         await page.goto(SETTINGS_URL);
 
         await expect(page).toHaveTitle("Profile Settings | VibeArt");
@@ -21,155 +23,183 @@ test.describe("Settings - страница настроек профиля", () 
     });
 
     test.describe("SettingsForm - форма настроек", () => {
-        test("Отображается заголовок формы", async ({page}) => {
+        test("Отображается заголовок формы", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
-            await expect(page.getByRole("heading", {level: 1, name: "Settings"})).toBeVisible();
+            await expect(
+                page.getByRole("heading", { level: 1, name: "Settings" })
+            ).toBeVisible();
         });
 
-        test("Отображаются секции аватара, имени, id и описания", async ({page}) => {
+        test("Отображаются секции аватара, имени, id и описания", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByText("Profile photo")).toBeVisible();
-            await expect(page.getByText("Name", {exact: true})).toBeVisible();
-            await expect(page.getByRole("heading", {name: "Unique ID"})).toBeVisible();
-            await expect(page.getByRole("heading", {name: "Description"})).toBeVisible();
+            await expect(page.getByText("Name", { exact: true })).toBeVisible();
+            await expect(page.getByRole("heading", { name: "Unique ID" })).toBeVisible();
+            await expect(
+                page.getByRole("heading", { name: "Description" })
+            ).toBeVisible();
         });
 
-        test("Отображаются поля ввода имени и id", async ({page}) => {
+        test("Отображаются поля ввода имени и id", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByLabel("Enter name")).toBeVisible();
             await expect(page.getByLabel("Enter ID")).toBeVisible();
         });
 
-        test("Отображается кнопка загрузки аватара", async ({page}) => {
+        test("Отображается кнопка загрузки аватара", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
-            await expect(page.getByRole("button", {name: "Load"})).toBeVisible();
+            await expect(page.getByRole("button", { name: "Load" })).toBeVisible();
         });
 
-        test("Отображается кнопка сохранения", async ({page}) => {
+        test("Отображается кнопка сохранения", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
-            await expect(page.getByRole("button", {name: "Save entered data"})).toBeVisible();
+            await expect(
+                page.getByRole("button", { name: "Save entered data" })
+            ).toBeVisible();
         });
 
-        test("Поле имени помечается невалидным при пустой отправке", async ({page}) => {
+        test("Поле имени помечается невалидным при пустой отправке", async ({ page }) => {
             await page.goto(SETTINGS_URL);
             await page.waitForLoadState("networkidle");
 
-            await page.getByRole("button", {name: "Save entered data"}).click();
+            await page.getByRole("button", { name: "Save entered data" }).click();
 
-            await expect(page.getByLabel("Enter name")).toHaveAttribute("aria-invalid", "true");
+            await expect(page.getByLabel("Enter name")).toHaveAttribute(
+                "aria-invalid",
+                "true"
+            );
         });
 
-        test("Имя короче 3 символов показывает уведомление об ошибке", async ({page}) => {
+        test("Имя короче 3 символов показывает уведомление об ошибке", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
             await page.waitForLoadState("networkidle");
 
             await page.getByLabel("Enter name").fill("AB");
-            await page.getByRole("button", {name: "Save entered data"}).click();
+            await page.getByRole("button", { name: "Save entered data" }).click();
 
             await expect(page.getByText("Name is too short")).toBeVisible();
         });
 
-        test("Имя длиннее 20 символов показывает уведомление об ошибке", async ({page}) => {
+        test("Имя длиннее 20 символов показывает уведомление об ошибке", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
             await page.waitForLoadState("networkidle");
 
             await page.getByLabel("Enter name").fill("A".repeat(21));
-            await page.getByRole("button", {name: "Save entered data"}).click();
+            await page.getByRole("button", { name: "Save entered data" }).click();
 
             await expect(page.getByText("Name is too long")).toBeVisible();
         });
 
-        test("Описание длиннее 200 символов показывает уведомление об ошибке", async ({page}) => {
+        test("Описание длиннее 200 символов показывает уведомление об ошибке", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter name").fill("Valid Name");
             await page.getByLabel("Description").fill("A".repeat(201));
-            await page.getByRole("button", {name: "Save entered data"}).click();
+            await page.getByRole("button", { name: "Save entered data" }).click();
 
             await expect(page.getByText("Description is too long")).toBeVisible();
         });
     });
 
     test.describe("EmailChangeForm - форма изменения email", () => {
-        test("Отображается заголовок формы", async ({page}) => {
+        test("Отображается заголовок формы", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByText("Change email")).toBeVisible();
         });
 
-        test("Отображаются поля старого и нового email", async ({page}) => {
+        test("Отображаются поля старого и нового email", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByLabel("Enter old email")).toBeVisible();
             await expect(page.getByLabel("Enter new email")).toBeVisible();
         });
 
-        test("Невалидный email в поле старого адреса помечается ошибкой", async ({page}) => {
+        test("Невалидный email в поле старого адреса помечается ошибкой", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter old email").fill("notanemail");
-            await page.getByRole("button", {name: "Continue"}).first().click();
+            await page.getByRole("button", { name: "Continue" }).first().click();
 
-            await expect(page.getByLabel("Enter old email")).toHaveAttribute("aria-invalid", "true");
+            await expect(page.getByLabel("Enter old email")).toHaveAttribute(
+                "aria-invalid",
+                "true"
+            );
         });
 
-        test("Одинаковые адреса показывают уведомление об ошибке", async ({page}) => {
+        test("Одинаковые адреса показывают уведомление об ошибке", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter old email").fill("same@example.com");
             await page.getByLabel("Enter new email").fill("same@example.com");
-            await page.getByRole("button", {name: "Continue"}).first().click();
+            await page.getByRole("button", { name: "Continue" }).first().click();
 
             await expect(page.getByText("Email addresses match")).toBeVisible();
         });
 
-        test("Валидные адреса переключают форму на шаг ввода кода", async ({page}) => {
+        test("Валидные адреса переключают форму на шаг ввода кода", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter old email").fill("old@example.com");
             await page.getByLabel("Enter new email").fill("new@example.com");
-            await page.getByRole("button", {name: "Continue"}).first().click();
+            await page.getByRole("button", { name: "Continue" }).first().click();
 
-            await expect(page.getByRole("button", {name: "Return to email change form"})).toBeVisible();
-            await expect(page.getByRole("button", {name: "Change email"})).toBeVisible();
+            await expect(
+                page.getByRole("button", { name: "Return to email change form" })
+            ).toBeVisible();
+            await expect(
+                page.getByRole("button", { name: "Change email" })
+            ).toBeVisible();
         });
 
-        test("На шаге кода отображается 6 ячеек ввода", async ({page}) => {
+        test("На шаге кода отображается 6 ячеек ввода", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter old email").fill("old@example.com");
             await page.getByLabel("Enter new email").fill("new@example.com");
-            await page.getByRole("button", {name: "Continue"}).first().click();
+            await page.getByRole("button", { name: "Continue" }).first().click();
 
             const inputs = page.locator("input[inputmode='numeric']");
             await expect(inputs).toHaveCount(6);
         });
 
-        test("Кнопка назад возвращает к форме ввода email", async ({page}) => {
+        test("Кнопка назад возвращает к форме ввода email", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Enter old email").fill("old@example.com");
             await page.getByLabel("Enter new email").fill("new@example.com");
-            await page.getByRole("button", {name: "Continue"}).first().click();
-            await page.getByRole("button", {name: "Return to email change form"}).click();
+            await page.getByRole("button", { name: "Continue" }).first().click();
+            await page
+                .getByRole("button", { name: "Return to email change form" })
+                .click();
 
             await expect(page.getByLabel("Enter old email")).toBeVisible();
         });
     });
 
     test.describe("PasswordChangeForm - форма изменения пароля", () => {
-        test("Отображается заголовок формы", async ({page}) => {
+        test("Отображается заголовок формы", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByText("Change password")).toBeVisible();
         });
 
-        test("Отображаются поля старого, нового и подтверждения пароля", async ({page}) => {
+        test("Отображаются поля старого, нового и подтверждения пароля", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
 
             await expect(page.getByLabel("Old password")).toBeVisible();
@@ -177,57 +207,72 @@ test.describe("Settings - страница настроек профиля", () 
             await expect(page.getByLabel("Confirm password")).toBeVisible();
         });
 
-        test("Пустой старый пароль помечается невалидным при отправке", async ({page}) => {
+        test("Пустой старый пароль помечается невалидным при отправке", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
             await page.waitForLoadState("networkidle");
 
-            await page.getByRole("button", {name: "Continue"}).last().click();
+            await page.getByRole("button", { name: "Continue" }).last().click();
 
-            await expect(page.getByLabel("Old password")).toHaveAttribute("aria-invalid", "true");
+            await expect(page.getByLabel("Old password")).toHaveAttribute(
+                "aria-invalid",
+                "true"
+            );
         });
 
-        test("Новый пароль, совпадающий со старым, показывает уведомление", async ({page}) => {
+        test("Новый пароль, совпадающий со старым, показывает уведомление", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Old password").fill("same123");
             await page.getByLabel("New password").fill("same123");
             await page.getByLabel("Confirm password").fill("same123");
-            await page.getByRole("button", {name: "Continue"}).last().click();
+            await page.getByRole("button", { name: "Continue" }).last().click();
 
             await expect(page.getByText("Old and new passwords match")).toBeVisible();
         });
 
-        test("Несовпадающее подтверждение пароля показывает уведомление", async ({page}) => {
+        test("Несовпадающее подтверждение пароля показывает уведомление", async ({
+            page
+        }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Old password").fill("oldpass1");
             await page.getByLabel("New password").fill("newpass1");
             await page.getByLabel("Confirm password").fill("different1");
-            await page.getByRole("button", {name: "Continue"}).last().click();
+            await page.getByRole("button", { name: "Continue" }).last().click();
 
             await expect(page.getByText("Passwords do not match")).toBeVisible();
         });
 
-        test("Валидные данные переключают форму на шаг ввода кода", async ({page}) => {
+        test("Валидные данные переключают форму на шаг ввода кода", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Old password").fill("oldpass1");
             await page.getByLabel("New password").fill("newpass1");
             await page.getByLabel("Confirm password").fill("newpass1");
-            await page.getByRole("button", {name: "Continue"}).last().click();
+            await page.getByRole("button", { name: "Continue" }).last().click();
 
-            await expect(page.getByRole("button", {name: "Return to password change form"})).toBeVisible();
-            await expect(page.getByRole("button", {name: "Change password"})).toBeVisible();
+            await expect(
+                page.getByRole("button", { name: "Return to password change form" })
+            ).toBeVisible();
+            await expect(
+                page.getByRole("button", { name: "Change password" })
+            ).toBeVisible();
         });
 
-        test("Кнопка назад возвращает к форме ввода пароля", async ({page}) => {
+        test("Кнопка назад возвращает к форме ввода пароля", async ({ page }) => {
             await page.goto(SETTINGS_URL);
 
             await page.getByLabel("Old password").fill("oldpass1");
             await page.getByLabel("New password").fill("newpass1");
             await page.getByLabel("Confirm password").fill("newpass1");
-            await page.getByRole("button", {name: "Continue"}).last().click();
-            await page.getByRole("button", {name: "Return to password change form"}).click();
+            await page.getByRole("button", { name: "Continue" }).last().click();
+            await page
+                .getByRole("button", { name: "Return to password change form" })
+                .click();
 
             await expect(page.getByLabel("Old password")).toBeVisible();
         });

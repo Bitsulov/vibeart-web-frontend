@@ -13,5 +13,5 @@ export function likeClickHandler(
     setIsLiked: React.Dispatch<React.SetStateAction<boolean>>
 ) {
     setIsLiked(!isLiked);
-    setLikes(likes => isLiked ? likes - 1 : likes + 1);
+    setLikes(likes => (isLiked ? likes - 1 : likes + 1));
 }

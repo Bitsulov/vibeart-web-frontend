@@ -1,8 +1,8 @@
-import type {ICommentsForm} from "../lib/types";
-import {type CommentType, createComment} from "entities/comment";
+import type { ICommentsForm } from "../lib/types";
+import { type CommentType, createComment } from "entities/comment";
 import React from "react";
-import type {UserType} from "entities/user";
-import type {UseFormSetValue} from "react-hook-form";
+import type { UserType } from "entities/user";
+import type { UseFormSetValue } from "react-hook-form";
 
 /**
  * Обрабатывает успешную отправку формы комментария.
@@ -20,7 +20,11 @@ export function submitValidHandler(
     setValue: UseFormSetValue<ICommentsForm>
 ) {
     setComments(comments => [
-        createComment({text: data.sendComment, createdAt: new Date().toISOString(), author}),
+        createComment({
+            text: data.sendComment,
+            createdAt: new Date().toISOString(),
+            author
+        }),
         ...comments
     ]);
     setValue("sendComment", "");

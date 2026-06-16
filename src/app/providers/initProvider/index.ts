@@ -1,1 +1,1 @@
-export {InitProvider} from "./ui/initProvider";
+export { InitProvider } from "./ui/initProvider";

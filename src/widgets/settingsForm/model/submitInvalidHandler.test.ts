@@ -1,11 +1,14 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitInvalidHandler} from "./submitInvalidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitInvalidHandler } from "./submitInvalidHandler";
 
 describe("submitInvalidHandler - ошибка валидации формы настроек", () => {
     it("Вызывает dispatch с toast при ошибке title", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({title: {message: "toast.emptyName", type: "required"}}, dispatch);
+        submitInvalidHandler(
+            { title: { message: "toast.emptyName", type: "required" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         const action = dispatch.mock.calls[0][0];
@@ -16,7 +19,10 @@ describe("submitInvalidHandler - ошибка валидации формы на
     it("Вызывает dispatch при ошибке description", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({description: {message: "toast.longDescription", type: "maxLength"}}, dispatch);
+        submitInvalidHandler(
+            { description: { message: "toast.longDescription", type: "maxLength" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch.mock.calls[0][0].payload.message).toBe("toast.longDescription");

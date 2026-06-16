@@ -1,1 +1,1 @@
-export {FooterLinksItem} from "./ui/footerLinksItem";
+export { FooterLinksItem } from "./ui/footerLinksItem";

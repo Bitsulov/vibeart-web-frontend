@@ -1,15 +1,15 @@
-import {describe, it, expect} from "vitest";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CommunityItem} from "./communityItem";
+import { describe, it, expect } from "vitest";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CommunityItem } from "./communityItem";
 
 const defaultProps = {
     UUID: "00000000-0000-4000-8000-000000000015",
     title: "Digital Art Club",
     description: "Community for digital artists",
     subscribersCount: 1200,
-    isSubscribed: false,
+    isSubscribed: false
 };
 
 describe("CommunityItem - Карточка сообщества", () => {
@@ -20,7 +20,9 @@ describe("CommunityItem - Карточка сообщества", () => {
 
     it("Отображает название сообщества", () => {
         renderWithProviders(<CommunityItem {...defaultProps} />);
-        expect(screen.getByRole("heading", {level: 3, name: defaultProps.title})).toBeInTheDocument();
+        expect(
+            screen.getByRole("heading", { level: 3, name: defaultProps.title })
+        ).toBeInTheDocument();
     });
 
     it("Отображает описание сообщества", () => {
@@ -30,7 +32,10 @@ describe("CommunityItem - Карточка сообщества", () => {
 
     it("Содержит ссылку на страницу сообщества", () => {
         renderWithProviders(<CommunityItem {...defaultProps} />);
-        expect(screen.getByRole("link", {name: "goLink"})).toHaveAttribute("href", `/communities/${defaultProps.UUID}`);
+        expect(screen.getByRole("link", { name: "goLink" })).toHaveAttribute(
+            "href",
+            `/communities/${defaultProps.UUID}`
+        );
     });
 
     it("Содержит кнопку подписки", () => {

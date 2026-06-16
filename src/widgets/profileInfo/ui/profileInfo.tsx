@@ -1,21 +1,21 @@
 import c from "./profileInfo.module.scss";
-import {useTranslation} from "react-i18next";
-import {ChevronDown, Heart, Image, UsersRound} from "lucide-react";
-import {selectUserInfo, type UserType} from "entities/user";
+import { useTranslation } from "react-i18next";
+import { ChevronDown, Heart, Image, UsersRound } from "lucide-react";
+import { selectUserInfo, type UserType } from "entities/user";
 import defaultAvatar from "shared/icons/icon-user.svg";
-import {CopyButton} from "features/copyButton";
+import { CopyButton } from "features/copyButton";
 import clsx from "clsx";
-import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
-import {getLocalTimeString} from "shared/lib/getLocalTimeString";
-import {useState, useRef, useEffect} from "react";
-import {openDescriptionHandler} from "../model/openDescriptionHandler";
-import {ProfileLink} from "features/profileLink";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {ProfileIcons} from "features/profileIcons";
-import {StatItem} from "features/statItem";
-import {showHint} from "../model/showHint";
-import {hideHint} from "../model/hideHint";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
+import { getLocalTimeString } from "shared/lib/getLocalTimeString";
+import { useState, useRef, useEffect } from "react";
+import { openDescriptionHandler } from "../model/openDescriptionHandler";
+import { ProfileLink } from "features/profileLink";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { ProfileIcons } from "features/profileIcons";
+import { StatItem } from "features/statItem";
+import { showHint } from "../model/showHint";
+import { hideHint } from "../model/hideHint";
 
 /** Свойства компонента {@link ProfileInfo}. */
 interface ProfileInfoProps {
@@ -38,7 +38,7 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
     const windowWidth = useWindowWidth();
 
     const [isOpened, setIsOpened] = useState<boolean>(false);
-    
+
     const [isExpandable, setIsExpandable] = useState<boolean>(false);
     const descriptionRef = useRef<HTMLParagraphElement>(null);
 
@@ -47,7 +47,9 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
             setIsExpandable(false);
             return;
         }
-        setIsExpandable(descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight);
+        setIsExpandable(
+            descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight
+        );
     }, [userInfo.description, windowWidth]);
 
     const avatarImg = userInfo.avatarUrl || defaultAvatar;
@@ -58,21 +60,30 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
 
     const dispatch = useDispatch();
 
-	return (
-		<section className={c.info}>
+    return (
+        <section className={c.info}>
             <div className={c.content_wrapper}>
                 <div className={c.info_inner}>
-                    {windowWidth < 1200 &&
+                    {windowWidth < 1200 && (
                         <ProfileIcons
                             isBlocked={userInfo.isBlocked}
                             trustStatus={userInfo.trustStatus}
                             className={c.bad_icons}
                             classNameIcons={c.icon}
                         />
-                    }
-                    <ProfileLink isPrincipalUser={isPrincipalUser} name={userInfo.name} UUID={userInfo.UUID} />
+                    )}
+                    <ProfileLink
+                        isPrincipalUser={isPrincipalUser}
+                        name={userInfo.name}
+                        UUID={userInfo.UUID}
+                    />
                     <div className={c.left}>
-                        <div className={clsx(c.avatar_wrapper, userInfo.onlineStatus === "online" && c.online)}>
+                        <div
+                            className={clsx(
+                                c.avatar_wrapper,
+                                userInfo.onlineStatus === "online" && c.online
+                            )}
+                        >
                             <img
                                 decoding="async"
                                 width="125"
@@ -91,14 +102,18 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
                                 number={userInfo.worksCount}
                             />
                             <StatItem
-                                onMouseEnter={() => showHint(dispatch, t("hint.subscribers"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.subscribers"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 Icon={UsersRound}
                                 className={c.subscribers_wrapper}
                                 number={userInfo.subscribersCount}
                             />
                             <StatItem
-                                onMouseEnter={() => showHint(dispatch, t("hint.subscribes"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.subscribes"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 Icon={Heart}
                                 className={c.subscribes_wrapper}
@@ -115,27 +130,40 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
                                 text={userInfo.username}
                             />
                         </div>
-                        {windowWidth >= 1200 &&
+                        {windowWidth >= 1200 && (
                             <ProfileIcons
                                 isBlocked={userInfo.isBlocked}
                                 trustStatus={userInfo.trustStatus}
                                 className={c.bad_icons}
                                 classNameIcons={c.icon}
                             />
-                        }
+                        )}
                         <div className={c.description_wrapper}>
-                            {!isOpened && windowWidth < 1200 && isExpandable &&
-                                <button aria-label={t("ariaLabel.openDescription")} onClick={() => openDescriptionHandler(setIsOpened)} className={c.description_button}>
-                                    <ChevronDown width="24" height="24" className={c.description_arrow} />
+                            {!isOpened && windowWidth < 1200 && isExpandable && (
+                                <button
+                                    aria-label={t("ariaLabel.openDescription")}
+                                    onClick={() => openDescriptionHandler(setIsOpened)}
+                                    className={c.description_button}
+                                >
+                                    <ChevronDown
+                                        width="24"
+                                        height="24"
+                                        className={c.description_arrow}
+                                    />
                                 </button>
-                            }
-                            <h3 className={c.description_sign}>{t("profile.description")}</h3>
+                            )}
+                            <h3 className={c.description_sign}>
+                                {t("profile.description")}
+                            </h3>
                             <p
                                 ref={descriptionRef}
                                 className={clsx(
                                     c.description,
                                     !isOpened && windowWidth < 1200 && c.hide,
-                                    !isOpened && windowWidth < 1200 && isExpandable && c.expandable,
+                                    !isOpened &&
+                                        windowWidth < 1200 &&
+                                        isExpandable &&
+                                        c.expandable
                                 )}
                             >
                                 {userInfo.description || t("community.emptyDescription")}
@@ -148,6 +176,6 @@ export const ProfileInfo = ({ userInfo }: ProfileInfoProps) => {
                     </div>
                 </div>
             </div>
-		</section>
-	)
-}
+        </section>
+    );
+};

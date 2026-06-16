@@ -1,17 +1,17 @@
-import {Layout} from "widgets/layout";
-import {AlbumCard} from "widgets/albumCard";
-import {principalUserMock, selectUserInfo} from "entities/user";
-import {useSelector} from "react-redux";
-import {albumMock} from "entities/album";
-import {useTranslation} from "react-i18next";
+import { Layout } from "widgets/layout";
+import { AlbumCard } from "widgets/albumCard";
+import { principalUserMock, selectUserInfo } from "entities/user";
+import { useSelector } from "react-redux";
+import { albumMock } from "entities/album";
+import { useTranslation } from "react-i18next";
 
 /** Страница альбома. */
 export const Album = () => {
     const { t } = useTranslation();
     const userInfo = useSelector(selectUserInfo);
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.album")}</title>
             <meta name="description" content={t("description.album")} />
             <meta property="og:title" content={t("titles.album")} />
@@ -27,6 +27,6 @@ export const Album = () => {
                 postList={albumMock.postsList}
                 date={albumMock.createdAt}
             />
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

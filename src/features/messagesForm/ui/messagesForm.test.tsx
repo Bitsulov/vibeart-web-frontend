@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {MessagesForm} from "./messagesForm";
-import {screen, fireEvent, waitFor} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { MessagesForm } from "./messagesForm";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("MessagesForm - форма отправки сообщения", () => {
     it("Рендерит поле ввода", () => {
@@ -12,7 +12,9 @@ describe("MessagesForm - форма отправки сообщения", () => 
 
     it("Рендерит кнопку отправки", () => {
         renderWithProviders(<MessagesForm setMessages={vi.fn()} />);
-        expect(screen.getByRole("button", { name: "ariaLabel.sendMessage" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.sendMessage" })
+        ).toBeInTheDocument();
     });
 
     it("Отправка пустой формы не вызывает setMessages", () => {

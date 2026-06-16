@@ -20,5 +20,5 @@ export interface MessageType {
      * - `"sent"` — доставлено на сервер, получатель ещё не прочитал;
      * - `"read"` — открыто и прочитано получателем.
      */
-    status: "save" | "sent" | "read"
+    status: "save" | "sent" | "read";
 }

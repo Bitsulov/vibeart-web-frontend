@@ -1,16 +1,16 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
 
 describe("submitValidHandler - обработчик успешной отправки формы создания поста", () => {
     it("Перенаправляет в /gallery если файл загружен", () => {
         const navigate = vi.fn();
         const dispatch = vi.fn();
         const onSubmit = vi.fn();
-        const file = new File(["content"], "image.png", {type: "image/png"});
+        const file = new File(["content"], "image.png", { type: "image/png" });
 
         submitValidHandler(navigate, dispatch, file, onSubmit);
 
-        expect(navigate).toHaveBeenCalledWith("/gallery", {replace: true});
+        expect(navigate).toHaveBeenCalledWith("/gallery", { replace: true });
         expect(dispatch).not.toHaveBeenCalled();
         expect(onSubmit).toHaveBeenCalled();
     });

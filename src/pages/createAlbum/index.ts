@@ -1,1 +1,1 @@
-export {CreateAlbum} from "./ui/createAlbum";
+export { CreateAlbum } from "./ui/createAlbum";

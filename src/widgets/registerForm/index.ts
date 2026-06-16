@@ -1,1 +1,1 @@
-export {RegisterForm} from "./ui/registerForm";
+export { RegisterForm } from "./ui/registerForm";

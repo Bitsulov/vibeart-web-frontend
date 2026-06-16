@@ -1,8 +1,8 @@
-import {describe, expect, it, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {BurgerButton} from "./burgerButton";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { BurgerButton } from "./burgerButton";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("BurgerButton - кнопка бургер меню (мобильная версия)", () => {
     it("Существует на странице", () => {
@@ -19,7 +19,7 @@ describe("BurgerButton - кнопка бургер меню (мобильная 
             />
         );
 
-        const button = screen.getByRole("button", {name: "ariaLabel.openBurgerMenu"});
+        const button = screen.getByRole("button", { name: "ariaLabel.openBurgerMenu" });
 
         expect(button).toBeInTheDocument();
     });
@@ -37,7 +37,7 @@ describe("BurgerButton - кнопка бургер меню (мобильная 
             />
         );
 
-        const button = screen.getByRole("button", {name: "ariaLabel.openBurgerMenu"});
+        const button = screen.getByRole("button", { name: "ariaLabel.openBurgerMenu" });
 
         await userEvent.click(button);
 

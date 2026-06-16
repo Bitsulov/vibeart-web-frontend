@@ -1,6 +1,6 @@
-import {Provider} from "react-redux";
-import {store} from "app/store";
-import type {ReactNode} from "react";
+import { Provider } from "react-redux";
+import { store } from "app/store";
+import type { ReactNode } from "react";
 
 /** Свойства компонента {@link StoreProvider}. */
 interface StoreProviderProps {
@@ -9,10 +9,6 @@ interface StoreProviderProps {
 }
 
 /** Оборачивает дерево компонентов в Redux `Provider` с корневым хранилищем приложения. */
-export const StoreProvider = ({children}: StoreProviderProps) => {
-	return (
-		<Provider store={store}>
-            {children}
-		</Provider>
-	)
-}
+export const StoreProvider = ({ children }: StoreProviderProps) => {
+    return <Provider store={store}>{children}</Provider>;
+};

@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {chooseTagClickHandler} from "./chooseTagClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { chooseTagClickHandler } from "./chooseTagClickHandler";
 
 describe("chooseTagClickHandler - обработчик клика на тег", () => {
     it("добавляет тег если его нет в списке", () => {

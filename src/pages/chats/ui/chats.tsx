@@ -1,11 +1,11 @@
 import c from "./chats.module.scss";
-import {Layout} from "widgets/layout";
-import {ChatsList} from "widgets/chatsList";
-import {chatsMock} from "entities/chat";
-import {Navigation} from "widgets/navigation";
-import {profileUserMock} from "entities/user";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {useTranslation} from "react-i18next";
+import { Layout } from "widgets/layout";
+import { ChatsList } from "widgets/chatsList";
+import { chatsMock } from "entities/chat";
+import { Navigation } from "widgets/navigation";
+import { profileUserMock } from "entities/user";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { useTranslation } from "react-i18next";
 
 /** Страница списка чатов. */
 export const Chats = () => {
@@ -13,22 +13,25 @@ export const Chats = () => {
 
     const windowWidth = useWindowWidth();
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.chats")}</title>
             <meta name="description" content={t("description.chats")} />
             <meta property="og:title" content={t("titles.chats")} />
             <meta property="og:description" content={t("description.chats")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <div className={c.content}>
                         <ChatsList chatsList={chatsMock} />
                     </div>
                 </div>
             </div>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

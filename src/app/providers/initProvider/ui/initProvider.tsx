@@ -56,46 +56,54 @@ export const InitProvider = ({ children }: InitProviderProps) => {
         .find(l => l !== undefined);
 
     useEffect(() => {
-        dispatch(setUserInfo({
-            UUID: principalUserMock.UUID,
-            email: principalUserMock.email,
-            name: principalUserMock.name,
-            username: principalUserMock.username,
-            description: principalUserMock.description,
-            worksCount: principalUserMock.worksCount,
-            subscribersCount: principalUserMock.subscribersCount,
-            subscribesCount: principalUserMock.subscribesCount,
-            albumList: principalUserMock.albumList,
-            createdAt: principalUserMock.createdAt,
-            trustStatus: principalUserMock.trustStatus,
-            isAuthenticated: principalUserMock.isAuthenticated,
-            isBlocked: principalUserMock.isBlocked,
-            onlineStatus: principalUserMock.onlineStatus,
-            role: principalUserMock.role,
-            avatarUrl: principalUserMock.avatarUrl,
-            accessToken: principalUserMock.accessToken,
-            refreshToken: principalUserMock.refreshToken,
-            accessTokenExpiresIn: principalUserMock.accessTokenExpiresIn,
-            refreshTokenExpiresIn: principalUserMock.refreshTokenExpiresIn,
-        }));
+        dispatch(
+            setUserInfo({
+                UUID: principalUserMock.UUID,
+                email: principalUserMock.email,
+                name: principalUserMock.name,
+                username: principalUserMock.username,
+                description: principalUserMock.description,
+                worksCount: principalUserMock.worksCount,
+                subscribersCount: principalUserMock.subscribersCount,
+                subscribesCount: principalUserMock.subscribesCount,
+                albumList: principalUserMock.albumList,
+                createdAt: principalUserMock.createdAt,
+                trustStatus: principalUserMock.trustStatus,
+                isAuthenticated: principalUserMock.isAuthenticated,
+                isBlocked: principalUserMock.isBlocked,
+                onlineStatus: principalUserMock.onlineStatus,
+                role: principalUserMock.role,
+                avatarUrl: principalUserMock.avatarUrl,
+                accessToken: principalUserMock.accessToken,
+                refreshToken: principalUserMock.refreshToken,
+                accessTokenExpiresIn: principalUserMock.accessTokenExpiresIn,
+                refreshTokenExpiresIn: principalUserMock.refreshTokenExpiresIn
+            })
+        );
     }, [dispatch]);
 
     useEffect(() => {
         // Заход на сайт без определенного языка
         if (urlLangParam === undefined) {
             navigate(`/${i18n.language}${pathname}`, { replace: true });
-        // Язык не поддерживается
+            // Язык не поддерживается
         } else if (!supportedLangs.includes(urlLangParam)) {
-            navigate(`/${defaultLang}${pathname.slice(1 + urlLangParam.length)}`, { replace: true });
-        // Сохранённый язык не совпадает с URL
+            navigate(`/${defaultLang}${pathname.slice(1 + urlLangParam.length)}`, {
+                replace: true
+            });
+            // Сохранённый язык не совпадает с URL
         } else if (urlLangParam !== lang) {
             // Смена языка в интерфейсе
             if (i18n.language === lang) {
-                navigate(`/${lang}${pathname.slice(1 + urlLangParam.length)}`, { replace: true });
-            // Первый заход, redux еще не синхронизирован
+                navigate(`/${lang}${pathname.slice(1 + urlLangParam.length)}`, {
+                    replace: true
+                });
+                // Первый заход, redux еще не синхронизирован
             } else {
                 dispatch(setLanguage(urlLangParam));
-                i18n.changeLanguage(urlLangParam).catch((er) => console.error("change language error:", er));
+                i18n.changeLanguage(urlLangParam).catch(er =>
+                    console.error("change language error:", er)
+                );
                 document.documentElement.lang = urlLangParam;
             }
         } else {
@@ -103,9 +111,5 @@ export const InitProvider = ({ children }: InitProviderProps) => {
         }
     }, [pathname, urlLangParam, lang, dispatch, i18n, navigate]);
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    return <>{children}</>;
 };

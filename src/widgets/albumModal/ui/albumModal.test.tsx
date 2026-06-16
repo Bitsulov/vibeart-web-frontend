@@ -1,13 +1,13 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {AlbumModal} from "./albumModal";
-import {screen} from "@testing-library/react";
-import {profileAlbum1PostsMock} from "entities/post";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { AlbumModal } from "./albumModal";
+import { screen } from "@testing-library/react";
+import { profileAlbum1PostsMock } from "entities/post";
 
 const baseProps = {
     isShowModal: false,
     setIsShowModal: vi.fn(),
-    postList: profileAlbum1PostsMock,
+    postList: profileAlbum1PostsMock
 };
 
 describe("AlbumModal - модальное окно добавления постов в альбом", () => {

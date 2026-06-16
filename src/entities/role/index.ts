@@ -1,1 +1,1 @@
-export type {Roles} from "./lib/enums";
+export type { Roles } from "./lib/enums";

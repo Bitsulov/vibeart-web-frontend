@@ -1,7 +1,7 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {SearchInput} from "./searchInput";
-import {screen, fireEvent} from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { SearchInput } from "./searchInput";
+import { screen, fireEvent } from "@testing-library/react";
 
 describe("SearchInput - поле поиска с иконкой", () => {
     it("Рендерится input", () => {
@@ -10,7 +10,9 @@ describe("SearchInput - поле поиска с иконкой", () => {
     });
 
     it("Отображает переданный placeholder", () => {
-        renderWithProviders(<SearchInput value="" onChange={vi.fn()} placeholder="Найти..." />);
+        renderWithProviders(
+            <SearchInput value="" onChange={vi.fn()} placeholder="Найти..." />
+        );
         expect(screen.getByPlaceholderText("Найти...")).toBeInTheDocument();
     });
 

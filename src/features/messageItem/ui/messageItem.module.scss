@@ -4,7 +4,7 @@
     align-self: start;
     background-color: global.$second-active-color;
     border-radius: clamp(1rem, 2vw, 1.4rem);
-    padding: clamp(.5rem, 1vw, 1rem) clamp(1rem, 2vw, 1.5rem) clamp(.3rem, 1vw, .7rem);
+    padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 1.5rem) clamp(0.3rem, 1vw, 0.7rem);
     max-width: 75%;
 
     &.your {
@@ -19,7 +19,7 @@
     }
 
     &.new {
-        animation: slideUp global.$transition-time ease-out;
+        animation: slide-up global.$transition-time ease-out;
     }
 
     .text {
@@ -36,9 +36,9 @@
     }
 
     .info {
-        margin-top: clamp(.1rem, 1vw, .7rem);
+        margin-top: clamp(0.1rem, 1vw, 0.7rem);
         display: flex;
-        gap: clamp(.3rem, .5vw, .5rem);
+        gap: clamp(0.3rem, 0.5vw, 0.5rem);
         justify-self: end;
 
         .icon {
@@ -57,11 +57,12 @@
     }
 }
 
-@keyframes slideUp {
+@keyframes slide-up {
     from {
         opacity: 0;
         transform: translateY(2rem);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

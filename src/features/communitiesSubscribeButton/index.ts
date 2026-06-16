@@ -1,1 +1,1 @@
-export {CommunitiesSubscribeButton} from "./ui/communitiesSubscribeButton";
+export { CommunitiesSubscribeButton } from "./ui/communitiesSubscribeButton";

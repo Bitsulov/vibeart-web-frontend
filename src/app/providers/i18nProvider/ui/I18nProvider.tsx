@@ -39,12 +39,12 @@ export const I18nProvider = ({ lang, children }: I18nProviderPropsType) => {
         i.use(initReactI18next).init({
             resources: {
                 en: { translation: en },
-                ru: { translation: ru },
+                ru: { translation: ru }
             },
             lng: lang,
             fallbackLng: defaultLang,
             interpolation: { escapeValue: false },
-            showSupportNotice: false,
+            showSupportNotice: false
         });
         return i;
     }, [lang]);

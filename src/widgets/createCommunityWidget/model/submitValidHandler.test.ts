@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
 
 describe("submitValidHandler - сброс формы создания сообщества после сохранения", () => {
     it("Сбрасывает все поля формы", () => {

@@ -1,6 +1,6 @@
-import type {UseFormSetValue} from "react-hook-form";
-import type {IPasswordChangeForm} from "../lib/types";
-import type {Dispatch, SetStateAction} from "react";
+import type { UseFormSetValue } from "react-hook-form";
+import type { IPasswordChangeForm } from "../lib/types";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Обрабатывает успешную отправку формы изменения пароля: сохраняет новый пароль,

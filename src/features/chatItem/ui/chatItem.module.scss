@@ -2,7 +2,7 @@
 
 .chat {
     display: flex;
-    gap: clamp(.6rem, 1.8vw, 1.5rem);
+    gap: clamp(0.6rem, 1.8vw, 1.5rem);
 
     &:hover {
         .title {
@@ -60,10 +60,10 @@
     }
 }
 
-@media (min-width: 680px) {
+@media (width >= 680px) {
     .chat {
         .info {
-            padding: clamp(.2rem, .5vw, 1rem) 0;
+            padding: clamp(0.2rem, 0.5vw, 1rem) 0;
 
             .bottom {
                 .date {

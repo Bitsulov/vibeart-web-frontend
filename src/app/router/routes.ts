@@ -32,7 +32,7 @@ const appRoutes = [
     route("notifications", "./routes/notifications.tsx"),
     route("agreement", "./routes/agreement.tsx"),
     route("policy", "./routes/policy.tsx"),
-    route("contacts", "./routes/contacts.tsx"),
+    route("contacts", "./routes/contacts.tsx")
 ];
 
 /**
@@ -58,14 +58,20 @@ const langAppRoutes = [
     route("chats", "./routes/chats.tsx", { id: "lang-chats" }),
     route("chats/:uuid", "./routes/chats.$uuid.tsx", { id: "lang-chats-item" }),
     route("communities", "./routes/communities.tsx", { id: "lang-communities" }),
-    route("communities/add", "./routes/communities.add.tsx", { id: "lang-communities-add" }),
-    route("communities/:uuid", "./routes/communities.$uuid.tsx", { id: "lang-communities-item" }),
-    route("communities/:uuid/edit", "./routes/communities.$uuid.edit.tsx", { id: "lang-communities-edit" }),
+    route("communities/add", "./routes/communities.add.tsx", {
+        id: "lang-communities-add"
+    }),
+    route("communities/:uuid", "./routes/communities.$uuid.tsx", {
+        id: "lang-communities-item"
+    }),
+    route("communities/:uuid/edit", "./routes/communities.$uuid.edit.tsx", {
+        id: "lang-communities-edit"
+    }),
     route("settings", "./routes/settings.tsx", { id: "lang-settings" }),
     route("notifications", "./routes/notifications.tsx", { id: "lang-notifications" }),
     route("agreement", "./routes/agreement.tsx", { id: "lang-agreement" }),
     route("policy", "./routes/policy.tsx", { id: "lang-policy" }),
-    route("contacts", "./routes/contacts.tsx", { id: "lang-contacts" }),
+    route("contacts", "./routes/contacts.tsx", { id: "lang-contacts" })
 ];
 
 /**
@@ -83,5 +89,5 @@ export default [
     index("./routes/_redirect.tsx"),
     ...appRoutes,
     ...prefix(":lang", langAppRoutes),
-    route("*", "./routes/$.tsx"),
+    route("*", "./routes/$.tsx")
 ] satisfies RouteConfig;
