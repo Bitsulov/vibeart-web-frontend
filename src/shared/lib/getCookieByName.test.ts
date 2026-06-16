@@ -1,5 +1,5 @@
-import {describe, it, expect, beforeEach} from "vitest";
-import {getCookieByName} from "./getCookieByName";
+import { describe, it, expect, beforeEach } from "vitest";
+import { getCookieByName } from "./getCookieByName";
 
 const clearCookies = () => {
     document.cookie.split(";").forEach(cookie => {

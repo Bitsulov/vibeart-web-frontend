@@ -1,4 +1,4 @@
-import type {CommentType} from "../lib/types";
+import type { CommentType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта комментария.
@@ -23,5 +23,5 @@ export function createComment({
         text,
         author,
         createdAt
-    }
+    };
 }

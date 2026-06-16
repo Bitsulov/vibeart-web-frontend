@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {agreeHandlerClick} from "./agreeHandlerClick";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { agreeHandlerClick } from "./agreeHandlerClick";
 
 describe("agreeHandlerClick - запускает закрытие модалки и вызывает confirmFn", () => {
     afterEach(() => {

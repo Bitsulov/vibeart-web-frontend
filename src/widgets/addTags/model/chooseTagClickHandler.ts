@@ -1,4 +1,4 @@
-import type {Dispatch, SetStateAction} from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Добавляет тег в список выбранных или убирает, если уже выбран.
@@ -7,8 +7,12 @@ import type {Dispatch, SetStateAction} from "react";
  * @param chosenTags - Текущий список выбранных тегов.
  * @param setChosenTags - Сеттер списка выбранных тегов.
  */
-export function chooseTagClickHandler(name: string, chosenTags: string[], setChosenTags: Dispatch<SetStateAction<string[]>>) {
-    if(chosenTags.includes(name)) {
+export function chooseTagClickHandler(
+    name: string,
+    chosenTags: string[],
+    setChosenTags: Dispatch<SetStateAction<string[]>>
+) {
+    if (chosenTags.includes(name)) {
         setChosenTags(tags => tags.filter(tag => tag !== name));
     } else {
         setChosenTags(tags => [...tags, name]);

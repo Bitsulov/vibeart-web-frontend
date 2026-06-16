@@ -1,6 +1,6 @@
-import type {Dispatch, SetStateAction} from "react";
-import type {UseFormReset} from "react-hook-form";
-import type {ICodeForm, IEmailChangeForm} from "../lib/types";
+import type { Dispatch, SetStateAction } from "react";
+import type { UseFormReset } from "react-hook-form";
+import type { ICodeForm, IEmailChangeForm } from "../lib/types";
 
 /**
  * Возвращает форму к шагу ввода email и сбрасывает обе формы.

@@ -1,10 +1,10 @@
-import type {AxiosResponse} from "axios";
-import {setUserInfo, type VerifyRequest} from "entities/user";
-import {showToast} from "features/toast";
-import type {Dispatch} from "@reduxjs/toolkit";
-import type {NavigateFunction} from "react-router-dom";
-import type {AuthResponse} from "entities/user";
-import {encryptToString} from "shared/lib/crypto";
+import type { AxiosResponse } from "axios";
+import { setUserInfo, type VerifyRequest } from "entities/user";
+import { showToast } from "features/toast";
+import type { Dispatch } from "@reduxjs/toolkit";
+import type { NavigateFunction } from "react-router-dom";
+import type { AuthResponse } from "entities/user";
+import { encryptToString } from "shared/lib/crypto";
 
 /**
  * Обрабатывает успешную верификацию кода подтверждения: шифрует и сохраняет
@@ -25,8 +25,14 @@ export async function verifySuccessHandler(
 ) {
     const data = response.data;
 
-    const encryptedAccessToken = await encryptToString(response.data.accessToken, import.meta.env.VITE_CRYPTO_KEY);
-    const encryptedRefreshToken = await encryptToString(response.data.refreshToken, import.meta.env.VITE_CRYPTO_KEY);
+    const encryptedAccessToken = await encryptToString(
+        response.data.accessToken,
+        import.meta.env.VITE_CRYPTO_KEY
+    );
+    const encryptedRefreshToken = await encryptToString(
+        response.data.refreshToken,
+        import.meta.env.VITE_CRYPTO_KEY
+    );
     const accessTokenExpiresIn = response.data.accessTokenExpiresIn;
     const refreshTokenExpiresIn = response.data.refreshTokenExpiresIn;
     const now = Date.now();
@@ -38,17 +44,21 @@ export async function verifySuccessHandler(
     document.cookie = `refreshToken=${encryptedRefreshToken}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
     document.cookie = `refreshTokenExpiresAt=${refreshTokenExpiresAt}; max-age=${Number(refreshTokenExpiresIn) / 1000}; SameSite=Lax; Secure; path=/`;
 
-    dispatch(showToast({
-        message: "api.verifyAccess",
-        type: "success",
-    }));
-    dispatch(setUserInfo({
-        UUID: data.uuid,
-        email: request.email,
-        accessToken: encryptedAccessToken,
-        refreshToken: encryptedRefreshToken,
-        accessTokenExpiresIn: response.data.accessTokenExpiresIn,
-        refreshTokenExpiresIn: response.data.refreshTokenExpiresIn
-    }));
+    dispatch(
+        showToast({
+            message: "api.verifyAccess",
+            type: "success"
+        })
+    );
+    dispatch(
+        setUserInfo({
+            UUID: data.uuid,
+            email: request.email,
+            accessToken: encryptedAccessToken,
+            refreshToken: encryptedRefreshToken,
+            accessTokenExpiresIn: response.data.accessTokenExpiresIn,
+            refreshTokenExpiresIn: response.data.refreshTokenExpiresIn
+        })
+    );
     navigate(`/profile/${response.data.uuid}`);
 }

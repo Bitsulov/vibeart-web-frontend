@@ -11,13 +11,13 @@
         width: 100%;
         font-weight: 600;
         font-size: clamp(1.8rem, 5vw, 3rem);
-        border-right: .1rem solid global.$active-color;
-        padding: clamp(0rem, 1vw - .5rem, .5rem) clamp(1rem, 3vw - .5rem, 1.5rem);
+        border-right: 0.1rem solid global.$active-color;
+        padding: clamp(0rem, 1vw - 0.5rem, 0.5rem) clamp(1rem, 3vw - 0.5rem, 1.5rem);
         text-align: end;
 
         &.active {
             font-weight: 800;
-            border-right: .2rem solid global.$active-color;
+            border-right: 0.2rem solid global.$active-color;
         }
     }
 }

@@ -1,5 +1,5 @@
-import type {IRegisterForm} from "../lib/types";
-import type {FieldErrors} from "react-hook-form";
+import type { IRegisterForm } from "../lib/types";
+import type { FieldErrors } from "react-hook-form";
 
 /**
  * Обрабатывает неуспешную отправку формы регистрации.

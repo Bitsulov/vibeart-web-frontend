@@ -1,7 +1,7 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ChatDate} from "./chatDate";
-import {screen} from "@testing-library/react";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ChatDate } from "./chatDate";
+import { screen } from "@testing-library/react";
 
 afterEach(() => {
     vi.useRealTimers();

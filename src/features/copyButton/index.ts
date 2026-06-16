@@ -1,1 +1,1 @@
-export {CopyButton} from "./ui/copyButton";
+export { CopyButton } from "./ui/copyButton";

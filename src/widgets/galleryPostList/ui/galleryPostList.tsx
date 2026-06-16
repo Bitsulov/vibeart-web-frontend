@@ -1,13 +1,13 @@
 import c from "./galleryPostList.module.scss";
-import {useTranslation} from "react-i18next";
-import {SearchInput} from "features/searchInput";
-import {useState} from "react";
-import {searchChangeHandler} from "../model/searchChangeHandler";
-import type {PostType} from "entities/post";
-import {GalleryAddButton} from "features/galleryAddButton";
-import Masonry, {type MasonryProps} from "react-masonry-css";
-import {Post} from "features/post";
-import {masonryBreakpointsConfig} from "../config/masonryBreakpointsConfig";
+import { useTranslation } from "react-i18next";
+import { SearchInput } from "features/searchInput";
+import { useState } from "react";
+import { searchChangeHandler } from "../model/searchChangeHandler";
+import type { PostType } from "entities/post";
+import { GalleryAddButton } from "features/galleryAddButton";
+import Masonry, { type MasonryProps } from "react-masonry-css";
+import { Post } from "features/post";
+import { masonryBreakpointsConfig } from "../config/masonryBreakpointsConfig";
 
 /** Свойства компонента {@link GalleryPostList}. */
 interface GalleryPostListProps {
@@ -24,14 +24,18 @@ interface GalleryPostListProps {
  * {@link masonryBreakpointsConfig} или переданный `masonryBreakpoints`. Каждая публикация
  * отображается с автоматической высотой через {@link Post}.
  */
-export const GalleryPostList = ({ postList, masonryBreakpoints, ...props }: GalleryPostListProps) => {
+export const GalleryPostList = ({
+    postList,
+    masonryBreakpoints,
+    ...props
+}: GalleryPostListProps) => {
     const { t } = useTranslation();
 
     const [searchValue, setSearchValue] = useState("");
     const [resultPostList, _setResultPostList] = useState<PostType[]>(postList);
 
-	return (
-		<section className={c.gallery_list} {...props}>
+    return (
+        <section className={c.gallery_list} {...props}>
             <h1 className={c.title}>{t("gallery.title")}</h1>
             <SearchInput
                 className={c.search}
@@ -44,7 +48,7 @@ export const GalleryPostList = ({ postList, masonryBreakpoints, ...props }: Gall
                 className={c.list}
                 columnClassName={c.column}
             >
-                {resultPostList.map((post) => (
+                {resultPostList.map(post => (
                     <Post
                         key={post.UUID}
                         date={post.createdAt}
@@ -56,6 +60,6 @@ export const GalleryPostList = ({ postList, masonryBreakpoints, ...props }: Gall
                     />
                 ))}
             </Masonry>
-		</section>
-	)
-}
+        </section>
+    );
+};

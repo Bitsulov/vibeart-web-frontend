@@ -1,1 +1,1 @@
-export {AlbumsSliderNavigationButton} from "./ui/albumsSliderNavigationButton";
+export { AlbumsSliderNavigationButton } from "./ui/albumsSliderNavigationButton";

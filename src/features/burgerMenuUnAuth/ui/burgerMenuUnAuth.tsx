@@ -1,7 +1,7 @@
 import c from "./burgerMenuUnAuth.module.scss";
-import {Link, useLocation} from "react-router-dom";
-import {useTranslation} from "react-i18next";
-import {linksConfig} from "../config/linksConfig";
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { linksConfig } from "../config/linksConfig";
 import clsx from "clsx";
 
 /** Навигационное меню бургера для неавторизованного пользователя. */
@@ -9,7 +9,7 @@ export const BurgerMenuUnAuth = ({ ...props }) => {
     const { t } = useTranslation();
     const path = useLocation().pathname;
 
-	return (
+    return (
         <nav className={c.menu_burger_nav} {...props}>
             {linksConfig.map(item => (
                 <Link
@@ -23,5 +23,5 @@ export const BurgerMenuUnAuth = ({ ...props }) => {
                 </Link>
             ))}
         </nav>
-	)
-}
+    );
+};

@@ -2,8 +2,8 @@
  * @file Фикстуры сущности `user` для использования в модульных тестах
  * и сквозных сценариях Playwright.
  */
-import {createUser} from "../model/createUser";
-import type {AuthResponse, UserDetailResponse} from "../lib/types";
+import { createUser } from "../model/createUser";
+import type { AuthResponse, UserDetailResponse } from "../lib/types";
 import avatar from "shared/icons/img-CTA.jpg";
 
 export const principalUserMock = createUser({
@@ -11,7 +11,8 @@ export const principalUserMock = createUser({
     email: "testEmail@test.com",
     name: "testUsergffdgfd",
     username: "testUser",
-    description: "Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user",
+    description:
+        "Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user",
     worksCount: 0,
     subscribersCount: 0,
     subscribesCount: 0,
@@ -34,7 +35,8 @@ export const profileUserMock = createUser({
     email: "testEmail2@test.com",
     name: "testUser",
     username: "testUser",
-    description: "Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user",
+    description:
+        "Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user Description of first test user",
     worksCount: 0,
     subscribersCount: 999100,
     subscribesCount: 0,
@@ -57,7 +59,7 @@ export const authResponseMock: AuthResponse = {
     accessToken: "access-token",
     refreshToken: "refresh-token",
     accessTokenExpiresIn: 60000,
-    refreshTokenExpiresIn: 120000,
+    refreshTokenExpiresIn: 120000
 };
 
 export const userDetailResponseMock: UserDetailResponse = {
@@ -66,7 +68,7 @@ export const userDetailResponseMock: UserDetailResponse = {
     username: "testUser",
     email: "testEmail@test.com",
     photoUrl: "",
-    enabled: "true",
+    enabled: "true"
 };
 
 export const communityAdminsMock = [
@@ -113,5 +115,5 @@ export const communityAdminsMock = [
         refreshToken: "",
         accessTokenExpiresIn: 0,
         refreshTokenExpiresIn: 0
-    }),
+    })
 ];

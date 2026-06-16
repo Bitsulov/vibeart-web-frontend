@@ -1,4 +1,4 @@
-import type {NavigateFunction} from "react-router-dom";
+import type { NavigateFunction } from "react-router-dom";
 
 /**
  * Переходит на предыдущую страницу в истории браузера.
@@ -6,5 +6,5 @@ import type {NavigateFunction} from "react-router-dom";
  * @param navigate - Функция навигации React Router.
  */
 export function returnBackHandler(navigate: NavigateFunction) {
-     navigate(-1);
+    navigate(-1);
 }

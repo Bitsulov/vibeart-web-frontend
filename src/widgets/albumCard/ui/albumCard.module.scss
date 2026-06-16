@@ -36,7 +36,7 @@ $description-collapsed-height: 5rem;
             }
 
             .info {
-                border-bottom: .1rem solid global.$active-color;
+                border-bottom: 0.1rem solid global.$active-color;
                 margin: 0 clamp(1rem, 3vw, 5rem);
                 padding: clamp(1rem, 3vw, 2rem) 0;
                 display: flex;
@@ -46,14 +46,16 @@ $description-collapsed-height: 5rem;
                 .works {
                     margin-left: auto;
                     align-items: center;
-                    gap: clamp(.3rem, .6rem, .8rem);
+                    gap: clamp(0.3rem, 0.6rem, 0.8rem);
 
                     .icon {
                         width: clamp(2rem, 3.5vw, 3.5rem);
                         height: clamp(2rem, 3.5vw, 3.5rem);
 
-                        path, rect, circle {
-                            stroke-width: .2rem;
+                        path,
+                        rect,
+                        circle {
+                            stroke-width: 0.2rem;
                         }
                     }
 
@@ -79,7 +81,7 @@ $description-collapsed-height: 5rem;
                     .description {
                         font-size: clamp(2rem, 4vw, 2.2rem);
                         font-weight: 400;
-                        letter-spacing: .2rem;
+                        letter-spacing: 0.2rem;
                         overflow: hidden;
 
                         &.description_collapsed {
@@ -93,7 +95,11 @@ $description-collapsed-height: 5rem;
                                 left: 0;
                                 width: 100%;
                                 height: $description-collapsed-height;
-                                background: linear-gradient(180deg, transparent 0%, global.$bright-background 100%);
+                                background: linear-gradient(
+                                    180deg,
+                                    transparent 0%,
+                                    global.$bright-background 100%
+                                );
                             }
                         }
                     }
@@ -113,14 +119,16 @@ $description-collapsed-height: 5rem;
 
                     .desktop_stat {
                         align-items: center;
-                        gap: clamp(.3rem, .6rem, .8rem);
+                        gap: clamp(0.3rem, 0.6rem, 0.8rem);
 
                         .icon {
                             width: clamp(2rem, 3.5vw, 3.5rem);
                             height: clamp(2rem, 3.5vw, 3.5rem);
 
-                            path, rect, circle {
-                                stroke-width: .2rem;
+                            path,
+                            rect,
+                            circle {
+                                stroke-width: 0.2rem;
                             }
                         }
 
@@ -148,7 +156,7 @@ $description-collapsed-height: 5rem;
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .album {
         margin-bottom: 5rem;
 
@@ -159,7 +167,7 @@ $description-collapsed-height: 5rem;
                 display: flex;
                 gap: 2.5rem;
                 padding-bottom: 2rem;
-                border-bottom: .1rem solid global.$active-color;
+                border-bottom: 0.1rem solid global.$active-color;
 
                 .img {
                     width: 30rem;

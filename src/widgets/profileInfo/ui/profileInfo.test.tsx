@@ -54,7 +54,11 @@ const principalUser: UserType = {
 describe("ProfileInfo - блок информации о профиле", () => {
     describe("Базовый рендер", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1440 });
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Отображает имя пользователя", () => {
@@ -86,7 +90,9 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 preloadedState: { user: principalUser }
             });
 
-            expect(screen.getByAltText("profile.avatarAlt Иван Иванов")).toBeInTheDocument();
+            expect(
+                screen.getByAltText("profile.avatarAlt Иван Иванов")
+            ).toBeInTheDocument();
         });
 
         it("Отображает счётчики статистики", () => {
@@ -102,12 +108,22 @@ describe("ProfileInfo - блок информации о профиле", () => 
 
     describe("Адаптация — мобильная версия (< 1200px)", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 375 });
-            Object.defineProperty(HTMLElement.prototype, "scrollHeight", { configurable: true, get: () => 300 });
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 375
+            });
+            Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+                configurable: true,
+                get: () => 300
+            });
         });
 
         afterEach(() => {
-            Object.defineProperty(HTMLElement.prototype, "scrollHeight", { configurable: true, get: () => 0 });
+            Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+                configurable: true,
+                get: () => 0
+            });
         });
 
         it("Показывает кнопку раскрытия описания", () => {
@@ -115,7 +131,9 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 preloadedState: { user: principalUser }
             });
 
-            expect(screen.getByRole("button", { name: "ariaLabel.openDescription" })).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.openDescription" })
+            ).toBeInTheDocument();
         });
 
         it("Описание скрыто по умолчанию (имеет класс hide)", () => {
@@ -131,7 +149,9 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 preloadedState: { user: principalUser }
             });
 
-            await userEvent.click(screen.getByRole("button", { name: "ariaLabel.openDescription" }));
+            await userEvent.click(
+                screen.getByRole("button", { name: "ariaLabel.openDescription" })
+            );
 
             expect(screen.getByText("Мое описание профиля")).not.toHaveClass("hide");
         });
@@ -141,15 +161,23 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 preloadedState: { user: principalUser }
             });
 
-            await userEvent.click(screen.getByRole("button", { name: "ariaLabel.openDescription" }));
+            await userEvent.click(
+                screen.getByRole("button", { name: "ariaLabel.openDescription" })
+            );
 
-            expect(screen.queryByRole("button", { name: "ariaLabel.openDescription" })).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("button", { name: "ariaLabel.openDescription" })
+            ).not.toBeInTheDocument();
         });
     });
 
     describe("Адаптация — десктопная версия (>= 1200px)", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1440 });
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Не показывает кнопку раскрытия описания", () => {
@@ -157,7 +185,9 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 preloadedState: { user: principalUser }
             });
 
-            expect(screen.queryByRole("button", { name: "ariaLabel.openDescription" })).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("button", { name: "ariaLabel.openDescription" })
+            ).not.toBeInTheDocument();
         });
 
         it("Описание видно без класса hide", () => {
@@ -171,7 +201,11 @@ describe("ProfileInfo - блок информации о профиле", () => 
 
     describe("Ссылки профиля (isPrincipalUser)", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1440 });
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Показывает ссылку на настройки для своего профиля", () => {
@@ -180,7 +214,9 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 { preloadedState: { user: { ...principalUser, UUID: "same-uuid" } } }
             );
 
-            expect(screen.getByRole("link", { name: "ariaLabel.goToSettings" })).toBeInTheDocument();
+            expect(
+                screen.getByRole("link", { name: "ariaLabel.goToSettings" })
+            ).toBeInTheDocument();
         });
 
         it("Показывает ссылку на чат для чужого профиля", () => {
@@ -189,13 +225,19 @@ describe("ProfileInfo - блок информации о профиле", () => 
                 { preloadedState: { user: { ...principalUser, UUID: "uuid-b" } } }
             );
 
-            expect(screen.queryByRole("link", { name: "ariaLabel.goToSettings" })).not.toBeInTheDocument();
+            expect(
+                screen.queryByRole("link", { name: "ariaLabel.goToSettings" })
+            ).not.toBeInTheDocument();
         });
     });
 
     describe("Статус онлайн", () => {
         beforeEach(() => {
-            Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 1440 });
+            Object.defineProperty(window, "innerWidth", {
+                writable: true,
+                configurable: true,
+                value: 1440
+            });
         });
 
         it("Обёртка аватара имеет класс online при onlineStatus='online'", () => {

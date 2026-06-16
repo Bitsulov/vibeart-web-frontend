@@ -1,7 +1,7 @@
 import c from "./burgerButton.module.scss";
 import clsx from "clsx";
-import {burgerButtonClickHandler} from "../model/burgerButtonClickHandler";
-import {useTranslation} from "react-i18next";
+import { burgerButtonClickHandler } from "../model/burgerButtonClickHandler";
+import { useTranslation } from "react-i18next";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 
 /**
@@ -34,17 +34,17 @@ interface BurgerButtonProps extends ComponentPropsWithoutRef<"button"> {
  * доступность для программ чтения с экрана.
  */
 export const BurgerButton = ({
-     imageUrl: _imageUrl,
-     name: _name,
-     userUUID: _userUUID,
-     isAuthenticated: _isAuthenticated,
-     isBurgerOpen,
-     setIsBurgerOpen,
-     ...props
+    imageUrl: _imageUrl,
+    name: _name,
+    userUUID: _userUUID,
+    isAuthenticated: _isAuthenticated,
+    isBurgerOpen,
+    setIsBurgerOpen,
+    ...props
 }: BurgerButtonProps) => {
     const { t } = useTranslation();
 
-	return (
+    return (
         <button
             className={clsx(c.button_burger, isBurgerOpen && c.open)}
             aria-expanded={isBurgerOpen}
@@ -57,5 +57,5 @@ export const BurgerButton = ({
             <span className={c.button_burger_line} aria-hidden="true"></span>
             <span className={c.button_burger_line} aria-hidden="true"></span>
         </button>
-	)
-}
+    );
+};

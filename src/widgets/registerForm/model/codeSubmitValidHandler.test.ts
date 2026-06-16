@@ -38,7 +38,13 @@ describe("codeSubmitValidHandler - обрабатывает отправку ф�
         const setErrorCode = vi.fn();
         const setIsEmailSent = vi.fn();
         const resetEmailForm = vi.fn();
-        const submit = vi.fn<(data: { email: string; verificationCode: string }) => Promise<AxiosResponse<AuthResponse>>>();
+        const submit =
+            vi.fn<
+                (data: {
+                    email: string;
+                    verificationCode: string;
+                }) => Promise<AxiosResponse<AuthResponse>>
+            >();
 
         codeSubmitValidHandler(
             { code: "123456" },
@@ -52,7 +58,10 @@ describe("codeSubmitValidHandler - обрабатывает отправку ф�
 
         expect(setErrorCode).toHaveBeenCalledWith(false);
         expect(setIsEmailSent).toHaveBeenCalledWith(false);
-        expect(submit).toHaveBeenCalledWith({ email: "test@example.com", verificationCode: "123456" });
+        expect(submit).toHaveBeenCalledWith({
+            email: "test@example.com",
+            verificationCode: "123456"
+        });
         expect(resetEmailForm).not.toHaveBeenCalled();
 
         vi.runAllTimers();

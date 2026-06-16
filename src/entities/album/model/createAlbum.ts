@@ -1,4 +1,4 @@
-import type {AlbumType} from "../lib/types";
+import type { AlbumType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта альбома.
@@ -31,5 +31,5 @@ export function createAlbum({
         postsList,
         imageUrl,
         createdAt
-    }
+    };
 }

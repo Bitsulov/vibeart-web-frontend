@@ -3,15 +3,17 @@
 
 .stat_wrapper {
     display: flex;
-    gap: .8rem;
+    gap: 0.8rem;
     background-color: transparent;
 
     .stat_icon {
         fill: transparent;
         transition: math.div(global.$transition-time, 2);
 
-        path, circle, rect {
-            stroke-width: .1rem;
+        path,
+        circle,
+        rect {
+            stroke-width: 0.1rem;
         }
     }
 
@@ -22,11 +24,13 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .stat_wrapper {
         .stat_icon {
-            path, circle, rect {
-                stroke-width: .2rem;
+            path,
+            circle,
+            rect {
+                stroke-width: 0.2rem;
             }
         }
     }

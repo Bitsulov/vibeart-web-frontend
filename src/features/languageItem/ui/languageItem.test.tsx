@@ -1,8 +1,8 @@
-import {describe, expect, it, vi} from "vitest";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {LanguageItem} from "./languageItem";
+import { describe, expect, it, vi } from "vitest";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { LanguageItem } from "./languageItem";
 import * as handler from "../model/changeLanguageClickHandler";
 
 const defaultProps = {
@@ -10,14 +10,14 @@ const defaultProps = {
     title: "English",
     ariaLabel: "ariaLabel.english",
     alt: "alt.englishFlag",
-    value: "en",
+    value: "en"
 };
 
 describe("LanguageItem - элемент списка выбора языка", () => {
     it("Существует на странице", () => {
         renderWithProviders(<LanguageItem {...defaultProps} />);
 
-        const button = screen.getByRole("button", {name: "ariaLabel.english"});
+        const button = screen.getByRole("button", { name: "ariaLabel.english" });
 
         expect(button).toBeInTheDocument();
     });
@@ -31,7 +31,7 @@ describe("LanguageItem - элемент списка выбора языка", (
     it("Отображает флаг с alt-текстом", () => {
         renderWithProviders(<LanguageItem {...defaultProps} />);
 
-        const img = screen.getByRole("img", {name: "alt.englishFlag"});
+        const img = screen.getByRole("img", { name: "alt.englishFlag" });
 
         expect(img).toBeInTheDocument();
     });
@@ -41,12 +41,8 @@ describe("LanguageItem - элемент списка выбора языка", (
 
         renderWithProviders(<LanguageItem {...defaultProps} />);
 
-        await userEvent.click(screen.getByRole("button", {name: "ariaLabel.english"}));
+        await userEvent.click(screen.getByRole("button", { name: "ariaLabel.english" }));
 
-        expect(spy).toHaveBeenCalledWith(
-            "en",
-            expect.any(Object),
-            expect.any(Function),
-        );
+        expect(spy).toHaveBeenCalledWith("en", expect.any(Object), expect.any(Function));
     });
 });

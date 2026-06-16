@@ -1,4 +1,4 @@
-import type {PostType} from "../lib/types";
+import type { PostType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта публикации.
@@ -44,6 +44,6 @@ export function createPost({
         checkStatus,
         AIStatus,
         imageUrl,
-        createdAt,
-    }
+        createdAt
+    };
 }

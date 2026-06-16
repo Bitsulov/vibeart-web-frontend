@@ -1,4 +1,4 @@
-import type {MasonryProps} from "react-masonry-css";
+import type { MasonryProps } from "react-masonry-css";
 
 /** Конфигурация точек останова для списка постов галереи. (Masonry) */
 export const masonryBreakpointsConfig: MasonryProps["breakpointCols"] = {
@@ -6,5 +6,5 @@ export const masonryBreakpointsConfig: MasonryProps["breakpointCols"] = {
     1830: 2,
     1200: 3,
     860: 2,
-    570: 1,
-}
+    570: 1
+};

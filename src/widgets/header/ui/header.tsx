@@ -1,18 +1,18 @@
 import c from "./header.module.scss";
-import {useTranslation} from "react-i18next";
-import {pagesTitleConfig} from "../config/pagesTitleConfig";
-import {useLocation} from "react-router-dom";
-import React, {useEffect, useMemo, useState} from "react";
-import {useSelector} from "react-redux";
-import {selectUserInfo} from "entities/user";
-import {HeaderLogo} from "features/headerLogo";
-import {HeaderLanguageButton} from "features/headerLanguageButton";
-import {BurgerButton} from "features/burgerButton";
-import {BurgerMenuUnAuth} from "features/burgerMenuUnAuth";
-import {BurgerMenuAuth} from "features/burgerMenuAuth";
+import { useTranslation } from "react-i18next";
+import { pagesTitleConfig } from "../config/pagesTitleConfig";
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectUserInfo } from "entities/user";
+import { HeaderLogo } from "features/headerLogo";
+import { HeaderLanguageButton } from "features/headerLanguageButton";
+import { BurgerButton } from "features/burgerButton";
+import { BurgerMenuUnAuth } from "features/burgerMenuUnAuth";
+import { BurgerMenuAuth } from "features/burgerMenuAuth";
 import clsx from "clsx";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {HeaderProfileButton} from "features/headerProfileButton";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { HeaderProfileButton } from "features/headerProfileButton";
 
 /** Свойства компонента {@link Header}. */
 interface HeaderProps {
@@ -61,18 +61,21 @@ export const Header = ({
         setIsBurgerOpen(false);
     }, [location.pathname]);
 
-	return (
-		<header className={c.header}>
-			<div className={c.header_left}>
+    return (
+        <header className={c.header}>
+            <div className={c.header_left}>
                 <HeaderLogo />
-                {t(mainLocation) &&
+                {t(mainLocation) && (
                     <h3 className={clsx(c.page_title, isSmallTitle && c.small)}>
-                        <span aria-hidden="true" className={c.arrow}>&gt; </span>{t(mainLocation)}
+                        <span aria-hidden="true" className={c.arrow}>
+                            &gt;{" "}
+                        </span>
+                        {t(mainLocation)}
                     </h3>
-                }
+                )}
             </div>
             <div className={c.header_right}>
-                {currentWindowWidth > 1200 &&
+                {currentWindowWidth > 1200 && (
                     <a
                         aria-label={t("ariaLabel.goToEmail")}
                         href={`mailto:${email}`}
@@ -80,7 +83,7 @@ export const Header = ({
                     >
                         {email}
                     </a>
-                }
+                )}
                 <HeaderLanguageButton
                     isBurgerOpen={isBurgerOpen}
                     languagesConfig={languagesConfig}
@@ -97,13 +100,19 @@ export const Header = ({
                 />
             </div>
             {currentWindowWidth < 1200 && (
-                <div className={clsx(c.menu_burger, isBurgerOpen && c.open)} id="burgerMenu">
+                <div
+                    className={clsx(c.menu_burger, isBurgerOpen && c.open)}
+                    id="burgerMenu"
+                >
                     <div className="container">
                         <BurgerNav />
                     </div>
                 </div>
             )}
-            <span className={clsx(c.line, isBurgerOpen && c.active)} aria-hidden="true"></span>
-		</header>
-	)
-}
+            <span
+                className={clsx(c.line, isBurgerOpen && c.active)}
+                aria-hidden="true"
+            ></span>
+        </header>
+    );
+};

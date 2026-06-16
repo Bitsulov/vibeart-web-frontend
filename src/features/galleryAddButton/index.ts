@@ -1,1 +1,1 @@
-export {GalleryAddButton} from "./ui/galleryAddButton";
+export { GalleryAddButton } from "./ui/galleryAddButton";

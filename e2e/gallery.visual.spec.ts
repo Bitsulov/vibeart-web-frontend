@@ -9,8 +9,11 @@ test.describe("Gallery - визуальная проверка блоков", ()
     });
 
     test("снимок блока GalleryPostList", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("gallery-post-list.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "gallery-post-list.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

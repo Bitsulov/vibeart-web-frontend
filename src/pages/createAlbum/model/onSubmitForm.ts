@@ -1,4 +1,4 @@
-import type {Dispatch, SetStateAction} from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Обрабатывает отправку формы: если файл загружен — сбрасывает ошибку и перенаправляет на другую страницу,
@@ -13,7 +13,7 @@ export function onSubmitForm(
     file: File | undefined,
     setIsErrorImg: Dispatch<SetStateAction<boolean>>
 ) {
-    if(!file) {
+    if (!file) {
         setIsErrorImg(true);
     } else {
         setIsErrorImg(false);

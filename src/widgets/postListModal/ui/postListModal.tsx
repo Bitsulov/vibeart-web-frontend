@@ -1,12 +1,12 @@
 import c from "./postListModal.module.scss";
-import {Post} from "features/post";
-import {PagesButtons} from "features/pagesButtons";
-import type {PostType} from "entities/post";
-import {useTranslation} from "react-i18next";
+import { Post } from "features/post";
+import { PagesButtons } from "features/pagesButtons";
+import type { PostType } from "entities/post";
+import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {postChooseHandler} from "../model/postChooseHandler";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { postChooseHandler } from "../model/postChooseHandler";
 import clsx from "clsx";
 
 /** Свойства компонента {@link PostListModal}. */
@@ -75,7 +75,7 @@ export const PostListModal = ({
 
     const isPostsExists = postList.length !== 0;
 
-	return (
+    return (
         <section className={`${c.post_list} ${className}`} {...props}>
             {isPostsExists ? (
                 <>
@@ -94,13 +94,17 @@ export const PostListModal = ({
                                     isShowAuthor={false}
                                     type="button"
                                     className={clsx(c.post, isChosenPost && c.active)}
-                                    onClick={() => postChooseHandler(isChosenPost, post.UUID, setSelectedPosts)}
+                                    onClick={() =>
+                                        postChooseHandler(
+                                            isChosenPost,
+                                            post.UUID,
+                                            setSelectedPosts
+                                        )
+                                    }
                                     target="_blank"
                                 />
-                            )
-                        }
-
-                        )}
+                            );
+                        })}
                     </div>
                     <PagesButtons
                         pagesDelta={pagesDelta}
@@ -110,9 +114,9 @@ export const PostListModal = ({
                         className={c.pages}
                     />
                 </>
-            ):
+            ) : (
                 <h1 className={`${c.title} ${c.empty}`}>{t("emptyPosts")}</h1>
-            }
+            )}
         </section>
-	)
-}
+    );
+};

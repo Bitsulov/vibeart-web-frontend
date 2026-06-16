@@ -1,4 +1,4 @@
-import type {MessageType} from "../lib/types";
+import type { MessageType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта сообщения.
@@ -26,6 +26,6 @@ export function createMessage({
         createdAt,
         isYour,
         isNew,
-        status,
-    }
+        status
+    };
 }

@@ -1,4 +1,4 @@
-import type {ChangeEvent, RefObject} from "react";
+import type { ChangeEvent, RefObject } from "react";
 
 /**
  * Переводит фокус на следующую ячейку после ввода символа.
@@ -7,8 +7,12 @@ import type {ChangeEvent, RefObject} from "react";
  * @param ref - Ref-массив всех ячеек кода.
  * @param currentRef - Индекс текущей ячейки.
  */
-export function changeInputHandler(e: ChangeEvent<HTMLInputElement>, ref: RefObject<(HTMLInputElement | null)[]>, currentRef: number) {
-    if(e.target) {
+export function changeInputHandler(
+    e: ChangeEvent<HTMLInputElement>,
+    ref: RefObject<(HTMLInputElement | null)[]>,
+    currentRef: number
+) {
+    if (e.target) {
         ref.current[currentRef + 1]?.focus();
     }
 }

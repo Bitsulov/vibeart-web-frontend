@@ -1,4 +1,4 @@
-import type {Dispatch, KeyboardEvent, RefObject, SetStateAction} from "react";
+import type { Dispatch, KeyboardEvent, RefObject, SetStateAction } from "react";
 
 /**
  * Обрабатывает нажатие Backspace: очищает текущую ячейку и переводит фокус на предыдущую.
@@ -12,7 +12,7 @@ export function keyDownHandler(
     e: KeyboardEvent,
     ref: RefObject<(HTMLInputElement | null)[]>,
     currentRef: number,
-    setValue: Dispatch<SetStateAction<string>>,
+    setValue: Dispatch<SetStateAction<string>>
 ) {
     if (e.key === "Backspace") {
         e.preventDefault();

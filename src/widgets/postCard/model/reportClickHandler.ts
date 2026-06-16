@@ -10,7 +10,7 @@ export function reportClickHandler(
     isReported: boolean,
     setIsReported: React.Dispatch<React.SetStateAction<boolean>>
 ) {
-    if(!isReported) {
+    if (!isReported) {
         setIsReported(true);
     }
 }

@@ -1,4 +1,4 @@
-import {createSlice, nanoid, type PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
 /** Одно уведомление в очереди. */
 export interface ToastItem {
@@ -23,7 +23,7 @@ interface ToastState {
 }
 
 const initialState: ToastState = {
-    queue: [],
+    queue: []
 };
 
 /**
@@ -39,22 +39,24 @@ export const ToastSlice = createSlice({
         showToast: {
             reducer(state, action: PayloadAction<ToastItem>) {
                 const isDuplicate = state.queue.some(
-                    t => t.message === action.payload.message && t.type === action.payload.type
+                    t =>
+                        t.message === action.payload.message &&
+                        t.type === action.payload.type
                 );
                 if (!isDuplicate) {
                     state.queue.push(action.payload);
                 }
             },
             prepare(payload: Omit<ToastItem, "id">) {
-                return {payload: {...payload, id: nanoid()}};
-            },
+                return { payload: { ...payload, id: nanoid() } };
+            }
         },
         hideToast(state) {
             state.queue.splice(0, 1);
-        },
-    },
+        }
+    }
 });
 
-export const {showToast, hideToast} = ToastSlice.actions;
+export const { showToast, hideToast } = ToastSlice.actions;
 
 export const ToastReducer = ToastSlice.reducer;

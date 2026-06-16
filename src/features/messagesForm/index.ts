@@ -1,1 +1,1 @@
-export {MessagesForm} from "./ui/messagesForm";
+export { MessagesForm } from "./ui/messagesForm";

@@ -1,4 +1,4 @@
-import type {RootState} from "app/store";
+import type { RootState } from "app/store";
 
 /** Возвращает текущий код языка интерфейса. */
 export const selectCurrentLanguage = (state: RootState) => state.app.currentLanguage;
@@ -10,4 +10,5 @@ export const selectServerStatus = (state: RootState) => state.app.serverStatus;
 export const selectUnreadChatsCount = (state: RootState) => state.app.unreadChatsCount;
 
 /** Возвращает количество непрочитанных уведомлений. */
-export const selectUnreadNotificationsCount = (state: RootState) => state.app.unreadNotificationsCount;
+export const selectUnreadNotificationsCount = (state: RootState) =>
+    state.app.unreadNotificationsCount;

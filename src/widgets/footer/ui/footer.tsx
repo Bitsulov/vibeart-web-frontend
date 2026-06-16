@@ -1,11 +1,11 @@
 import c from "./footer.module.scss";
-import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
-import {selectServerStatus} from "entities/appConfig";
-import {serverStatusesConfig} from "../config/serverStatusesConfig";
-import {FooterLinksList} from "features/footerLinksList";
-import {FooterEmailLink} from "features/footerEmailLink";
-import {FooterLogo} from "features/footerLogo";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { selectServerStatus } from "entities/appConfig";
+import { serverStatusesConfig } from "../config/serverStatusesConfig";
+import { FooterLinksList } from "features/footerLinksList";
+import { FooterEmailLink } from "features/footerEmailLink";
+import { FooterLogo } from "features/footerLogo";
 
 /**
  * Подвал сайта с информационными ссылками, контактным e-mail и статусом сервера.
@@ -19,8 +19,8 @@ export const Footer = () => {
     const serverStatus = useSelector(selectServerStatus);
     const currentYear = new Date().getFullYear();
 
-	return (
-		<footer className={c.footer}>
+    return (
+        <footer className={c.footer}>
             <div className="container">
                 <div className={c.footer_inner}>
                     <div className={c.info}>
@@ -34,7 +34,9 @@ export const Footer = () => {
                         </div>
                         <div className={c.status}>
                             <h3 className={c.title}>{t("Status")}</h3>
-                            <p className={c.server_status}>{t(serverStatusesConfig[serverStatus])}</p>
+                            <p className={c.server_status}>
+                                {t(serverStatusesConfig[serverStatus])}
+                            </p>
                         </div>
                     </div>
                     <div className={c.logo_wrapper}>
@@ -43,6 +45,6 @@ export const Footer = () => {
                     </div>
                 </div>
             </div>
-		</footer>
-	)
-}
+        </footer>
+    );
+};

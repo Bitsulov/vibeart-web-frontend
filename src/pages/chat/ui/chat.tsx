@@ -1,11 +1,11 @@
-import {Layout} from "widgets/layout";
-import {useTranslation} from "react-i18next";
-import {ChatWindow} from "widgets/chatWindow";
-import {profileUserMock} from "entities/user";
-import {messagesMock} from "entities/message";
+import { Layout } from "widgets/layout";
+import { useTranslation } from "react-i18next";
+import { ChatWindow } from "widgets/chatWindow";
+import { profileUserMock } from "entities/user";
+import { messagesMock } from "entities/message";
 import c from "./chat.module.scss";
-import {Navigation} from "widgets/navigation";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
+import { Navigation } from "widgets/navigation";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
 
 /** Страница чата с навигацией и окном переписки. */
 export const Chat = () => {
@@ -13,17 +13,20 @@ export const Chat = () => {
 
     const windowWidth = useWindowWidth();
 
-	return (
-		<Layout isShowFooter={false}>
+    return (
+        <Layout isShowFooter={false}>
             <title>{t("titles.chat")}</title>
             <meta name="description" content={t("description.chat")} />
             <meta property="og:title" content={t("titles.chat")} />
             <meta property="og:description" content={t("description.chat")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <ChatWindow
                         messages={messagesMock}
                         name={profileUserMock.name}
@@ -33,6 +36,6 @@ export const Chat = () => {
                     />
                 </div>
             </div>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

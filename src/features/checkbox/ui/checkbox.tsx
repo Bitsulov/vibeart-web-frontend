@@ -1,5 +1,5 @@
 import c from "./checkbox.module.scss";
-import type {ReactNode} from "react";
+import type { ReactNode } from "react";
 import clsx from "clsx";
 
 /** Свойства компонента {@link Checkbox}. */
@@ -28,8 +28,17 @@ interface CheckboxProps {
  * применять произвольные стили, сохраняя полную доступность через
  * атрибуты `aria-invalid` и `aria-describedby`.
  */
-export const Checkbox = ({ name, describedId, ariaLabel, id, className = "", children, isError, ...props }: CheckboxProps) => {
-	return (
+export const Checkbox = ({
+    name,
+    describedId,
+    ariaLabel,
+    id,
+    className = "",
+    children,
+    isError,
+    ...props
+}: CheckboxProps) => {
+    return (
         <label className={`${c.wrapper} ${className}`} htmlFor={id} {...props}>
             <input
                 aria-label={ariaLabel}
@@ -40,8 +49,11 @@ export const Checkbox = ({ name, describedId, ariaLabel, id, className = "", chi
                 type="checkbox"
                 name={name}
             />
-            <span className={clsx(c.custom_box, isError && c.error)} aria-hidden="true"></span>
+            <span
+                className={clsx(c.custom_box, isError && c.error)}
+                aria-hidden="true"
+            ></span>
             <span className={c.text}>{children}</span>
         </label>
-	)
-}
+    );
+};

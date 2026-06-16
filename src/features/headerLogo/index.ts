@@ -1,1 +1,1 @@
-export {HeaderLogo} from "./ui/headerLogo";
+export { HeaderLogo } from "./ui/headerLogo";

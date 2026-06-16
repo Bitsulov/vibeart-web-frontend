@@ -1,8 +1,8 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     text: ""
-}
+};
 
 /** Redux-слайс для управления текстом всплывающей подсказки мыши. */
 export const hintSlice = createSlice({
@@ -13,8 +13,8 @@ export const hintSlice = createSlice({
             state.text = action.payload;
         }
     }
-})
+});
 
-export const {setText} = hintSlice.actions;
+export const { setText } = hintSlice.actions;
 
 export const hintReducer = hintSlice.reducer;

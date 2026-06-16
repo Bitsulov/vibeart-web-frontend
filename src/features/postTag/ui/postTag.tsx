@@ -1,5 +1,5 @@
 import c from "./postTag.module.scss";
-import type {TagType} from "entities/tag";
+import type { TagType } from "entities/tag";
 import React from "react";
 
 /** Свойства компонента {@link PostTag}. */
@@ -36,10 +36,12 @@ export const PostTag = ({
 }: PostTagProps) => {
     return (
         <>
-            {type === "default" &&
-                <span className={`${c.tag} ${className}`} {...props}>#{tag.title}</span>
-            }
-            {type === "button" &&
+            {type === "default" && (
+                <span className={`${c.tag} ${className}`} {...props}>
+                    #{tag.title}
+                </span>
+            )}
+            {type === "button" && (
                 <button
                     aria-label={ariaLabel}
                     onClick={onClick}
@@ -49,7 +51,7 @@ export const PostTag = ({
                 >
                     #{tag.title}
                 </button>
-            }
+            )}
         </>
     );
 };

@@ -9,8 +9,11 @@ test.describe("Communities - визуальная проверка блоков"
     });
 
     test("снимок блока CommunitiesLists", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("communities-lists.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "communities-lists.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

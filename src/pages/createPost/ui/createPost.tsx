@@ -1,15 +1,15 @@
 import c from "./createPost.module.scss";
-import {Layout} from "widgets/layout";
-import {BackLink} from "features/backLink";
-import {useState} from "react";
-import type {PostType} from "entities/post";
-import {CreatePostWidget} from "widgets/createPostWidget";
-import {Post} from "features/post";
-import {useSelector} from "react-redux";
-import {selectUser} from "entities/user";
-import {onSubmitForm} from "../model/onSubmitForm";
+import { Layout } from "widgets/layout";
+import { BackLink } from "features/backLink";
+import { useState } from "react";
+import type { PostType } from "entities/post";
+import { CreatePostWidget } from "widgets/createPostWidget";
+import { Post } from "features/post";
+import { useSelector } from "react-redux";
+import { selectUser } from "entities/user";
+import { onSubmitForm } from "../model/onSubmitForm";
 import clsx from "clsx";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 /**
  * Страница создания публикации.
@@ -32,8 +32,8 @@ export const CreatePost = () => {
     const [loadedFile, setLoadedFile] = useState<File>();
     const [isErrorImg, setIsErrorImg] = useState<boolean>(false);
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.postCreate")}</title>
             <meta name="description" content={t("description.postCreate")} />
             <meta property="og:title" content={t("titles.postCreate")} />
@@ -67,6 +67,6 @@ export const CreatePost = () => {
                     </div>
                 </div>
             </section>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

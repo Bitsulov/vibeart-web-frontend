@@ -1,1 +1,1 @@
-export {EditButton} from "./ui/editButton";
+export { EditButton } from "./ui/editButton";

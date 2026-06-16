@@ -1,1 +1,1 @@
-export {HeaderLanguageButton} from "./ui/headerLanguageButton";
+export { HeaderLanguageButton } from "./ui/headerLanguageButton";

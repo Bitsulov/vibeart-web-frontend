@@ -1,30 +1,32 @@
-import {describe, expect, it} from "vitest";
-import {createUser} from "./createUser";
+import { describe, expect, it } from "vitest";
+import { createUser } from "./createUser";
 
 describe("createTag - Возвращает объект типа TagType", () => {
     it("Создание экземпляра тега", () => {
-        expect(createUser({
-            UUID: "gfgfgf",
-            name: "",
-            email: "a",
-            username: "fgfgf",
-            description: "",
-            worksCount: 0,
-            subscribersCount: 0,
-            subscribesCount: 0,
-            albumList: [],
-            createdAt: "2026-03-29T17:25:15.940Z",
-            trustStatus: "trust",
-            isAuthenticated: false,
-            isBlocked: false,
-            onlineStatus: "offline",
-            role: "user",
-            avatarUrl: "",
-            accessToken: "",
-            refreshToken: "",
-            accessTokenExpiresIn: 0,
-            refreshTokenExpiresIn: 0
-        })).toEqual({
+        expect(
+            createUser({
+                UUID: "gfgfgf",
+                name: "",
+                email: "a",
+                username: "fgfgf",
+                description: "",
+                worksCount: 0,
+                subscribersCount: 0,
+                subscribesCount: 0,
+                albumList: [],
+                createdAt: "2026-03-29T17:25:15.940Z",
+                trustStatus: "trust",
+                isAuthenticated: false,
+                isBlocked: false,
+                onlineStatus: "offline",
+                role: "user",
+                avatarUrl: "",
+                accessToken: "",
+                refreshToken: "",
+                accessTokenExpiresIn: 0,
+                refreshTokenExpiresIn: 0
+            })
+        ).toEqual({
             UUID: "gfgfgf",
             name: "",
             email: "a",
@@ -48,17 +50,19 @@ describe("createTag - Возвращает объект типа TagType", () =>
         });
     });
     it("Создание экземпляра тега с неполными данными", () => {
-        // @ts-expect-error неполная информация
-        expect(createUser({
-            UUID: "gfgfgf",
-            email: "a",
-            username: "gfgf",
-            createdAt: "2026-03-29T17:25:15.940Z",
-            trustStatus: "trust",
-            isAuthenticated: false,
-            isBlocked: false,
-            onlineStatus: "offline",
-        })).toEqual({
+        expect(
+            // @ts-expect-error неполная информация
+            createUser({
+                UUID: "gfgfgf",
+                email: "a",
+                username: "gfgf",
+                createdAt: "2026-03-29T17:25:15.940Z",
+                trustStatus: "trust",
+                isAuthenticated: false,
+                isBlocked: false,
+                onlineStatus: "offline"
+            })
+        ).toEqual({
             UUID: "gfgfgf",
             name: "",
             email: "a",

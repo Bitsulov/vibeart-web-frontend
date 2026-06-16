@@ -1,5 +1,5 @@
-import {describe, expect, it, vi} from "vitest";
-import {burgerButtonClickHandler} from "./burgerButtonClickHandler";
+import { describe, expect, it, vi } from "vitest";
+import { burgerButtonClickHandler } from "./burgerButtonClickHandler";
 
 describe("burgerButtonClickHandler - клик обработчик burgerButton", () => {
     it("Вызов функции", () => {

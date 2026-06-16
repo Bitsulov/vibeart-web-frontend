@@ -1,19 +1,19 @@
 import c from "./albumSlider.module.scss";
-import type {AlbumType} from "entities/album";
-import {Swiper, SwiperSlide} from "swiper/react";
+import type { AlbumType } from "entities/album";
+import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
-import 'swiper/css/navigation';
-import {useTranslation} from "react-i18next";
-import {AlbumSlide} from "features/albumSlide";
-import {AlbumsSliderNavigationButton} from "features/albumsSliderNavigationButton";
-import {AlbumAdd} from "features/albumAdd";
+import "swiper/css/navigation";
+import { useTranslation } from "react-i18next";
+import { AlbumSlide } from "features/albumSlide";
+import { AlbumsSliderNavigationButton } from "features/albumsSliderNavigationButton";
+import { AlbumAdd } from "features/albumAdd";
 import { useRef, useState } from "react";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
-import {albumBreakpointsConfig} from "../config/albumBreakpointsConfig";
-import {initSliderHandler} from "../model/initSliderHandler";
-import {slideChangeHandler} from "../model/slideChangeHandler";
+import { albumBreakpointsConfig } from "../config/albumBreakpointsConfig";
+import { initSliderHandler } from "../model/initSliderHandler";
+import { slideChangeHandler } from "../model/slideChangeHandler";
 
 /** Свойства компонента {@link AlbumSlider}. */
 interface AlbumSliderProps extends ComponentPropsWithoutRef<"section"> {
@@ -45,8 +45,8 @@ export const AlbumSlider = ({
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState<boolean>(false);
 
-	return (
-		<section className={c.albums} {...props}>
+    return (
+        <section className={c.albums} {...props}>
             <h2 className={c.title}>{t("profile.albums")}</h2>
             <div className={c.slider_wrapper}>
                 <AlbumsSliderNavigationButton
@@ -62,14 +62,22 @@ export const AlbumSlider = ({
                     direction="right"
                 />
                 <Swiper
-                    onSwiper={(swiper) => initSliderHandler(swiper, swiperRef, setIsBeginning, setIsEnd)}
-                    onSlideChange={(swiper) => slideChangeHandler(swiper, setIsBeginning, setIsEnd)}
+                    onSwiper={swiper =>
+                        initSliderHandler(swiper, swiperRef, setIsBeginning, setIsEnd)
+                    }
+                    onSlideChange={swiper =>
+                        slideChangeHandler(swiper, setIsBeginning, setIsEnd)
+                    }
                     spaceBetween={20}
                     slidesPerView={1}
                     breakpoints={albumBreakpointsConfig}
                     className={c.slider}
                 >
-                    <SwiperSlide key="slide all" aria-label={t("ariaLabel.chooseAll")} className={c.slide}>
+                    <SwiperSlide
+                        key="slide all"
+                        aria-label={t("ariaLabel.chooseAll")}
+                        className={c.slide}
+                    >
                         <AlbumSlide
                             imageUrl=""
                             name={t("profile.albumAll")}
@@ -83,7 +91,7 @@ export const AlbumSlider = ({
                     {albumsList.map((album: AlbumType, i) => (
                         <SwiperSlide
                             key={`slide ${i}`}
-                            aria-label={t("ariaLabel.chooseAlbum", {name: album.name})}
+                            aria-label={t("ariaLabel.chooseAlbum", { name: album.name })}
                             className={c.slide}
                         >
                             <AlbumSlide
@@ -93,7 +101,9 @@ export const AlbumSlider = ({
                                 UUID={album.UUID}
                                 setSelectedAlbum={setSelectedAlbum}
                                 selectedAlbum={selectedAlbum}
-                                ariaLabel={t("ariaLabel.chooseAlbum", {name: album.name})}
+                                ariaLabel={t("ariaLabel.chooseAlbum", {
+                                    name: album.name
+                                })}
                             />
                         </SwiperSlide>
                     ))}
@@ -102,6 +112,6 @@ export const AlbumSlider = ({
                     </SwiperSlide>
                 </Swiper>
             </div>
-		</section>
-	)
-}
+        </section>
+    );
+};

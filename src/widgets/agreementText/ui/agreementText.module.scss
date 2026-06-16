@@ -3,7 +3,6 @@
 .agreement_text {
     margin: clamp(3rem, 5vw, 6rem) 0;
 
-
     .title {
         font-size: clamp(2rem, 4vw, 4rem);
         font-weight: 700;
@@ -34,12 +33,12 @@
             display: block;
             font-size: clamp(1.6rem, 4vw, 3rem);
             counter-increment: item;
-            margin-top: .3rem;
+            margin-top: 0.3rem;
 
-            &:before {
+            &::before {
                 content: counters(item, ".") ". ";
                 font-size: clamp(1.6rem, 4vw, 3rem);
-                margin-right: clamp(.5rem, 1vw, 1rem);
+                margin-right: clamp(0.5rem, 1vw, 1rem);
                 color: global.$active-color;
             }
         }
@@ -52,7 +51,7 @@
                 display: list-item;
                 counter-increment: none;
 
-                &:before {
+                &::before {
                     content: "";
                     margin-right: 0;
                 }
@@ -65,7 +64,7 @@
         }
 
         .text {
-            margin-top: clamp(.3rem, 2vw, 1rem);
+            margin-top: clamp(0.3rem, 2vw, 1rem);
             font-size: clamp(1.6rem, 4vw, 3rem);
         }
     }

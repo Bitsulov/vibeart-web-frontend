@@ -1,7 +1,7 @@
-import {describe, it, expect, vi} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {Toast} from "./toast";
+import { describe, it, expect, vi } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { Toast } from "./toast";
 
 describe("Toast - всплывающее уведомление", () => {
     it("Не рендерится, если очередь пустая", () => {
@@ -12,7 +12,7 @@ describe("Toast - всплывающее уведомление", () => {
     it("Отображает сообщение из первого уведомления в очереди", () => {
         renderWithProviders(<Toast />, {
             preloadedState: {
-                toast: {queue: [{id: "1", message: "toast.loadImg", type: "error"}]}
+                toast: { queue: [{ id: "1", message: "toast.loadImg", type: "error" }] }
             }
         });
 
@@ -23,8 +23,8 @@ describe("Toast - всплывающее уведомление", () => {
             preloadedState: {
                 toast: {
                     queue: [
-                        {id: "1", message: "first message", type: "error"},
-                        {id: "2", message: "second message", type: "success"},
+                        { id: "1", message: "first message", type: "error" },
+                        { id: "2", message: "second message", type: "success" }
                     ]
                 }
             }
@@ -39,7 +39,7 @@ describe("Toast - всплывающее уведомление", () => {
 
         const { store } = renderWithProviders(<Toast />, {
             preloadedState: {
-                toast: {queue: [{id: "1", message: "test.message", type: "error"}]}
+                toast: { queue: [{ id: "1", message: "test.message", type: "error" }] }
             }
         });
 

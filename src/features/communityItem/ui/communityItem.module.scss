@@ -23,7 +23,7 @@
 
             .subscribers {
                 margin-top: 1rem;
-                gap: clamp(.5rem, 2vw, .75rem);
+                gap: clamp(0.5rem, 2vw, 0.75rem);
 
                 svg {
                     width: clamp(2rem, 3vw, 2.25rem);
@@ -50,7 +50,7 @@
             }
 
             .description {
-                margin-top: clamp(.2rem, .5vw, .5rem);
+                margin-top: clamp(0.2rem, 0.5vw, 0.5rem);
                 font-size: clamp(1.4rem, 2vw, 1.6rem);
                 font-weight: 400;
                 display: -webkit-box;
@@ -65,7 +65,7 @@
         margin-top: 1rem;
         display: flex;
         justify-content: space-between;
-        gap: clamp(.7rem, 2vw, 1.4rem);
+        gap: clamp(0.7rem, 2vw, 1.4rem);
 
         .link {
             width: 50%;

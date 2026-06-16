@@ -1,11 +1,11 @@
-import type {ICodeForm} from "../lib/types";
-import type {Dispatch} from "@reduxjs/toolkit";
-import React, {type SetStateAction} from "react";
-import type {UseFormReset} from "react-hook-form";
-import {showToast} from "features/toast";
-import type {IRegisterForm} from "../lib/types";
-import type {AuthResponse, VerifyRequest} from "entities/user";
-import type {AxiosResponse} from "axios";
+import type { ICodeForm } from "../lib/types";
+import type { Dispatch } from "@reduxjs/toolkit";
+import React, { type SetStateAction } from "react";
+import type { UseFormReset } from "react-hook-form";
+import { showToast } from "features/toast";
+import type { IRegisterForm } from "../lib/types";
+import type { AuthResponse, VerifyRequest } from "entities/user";
+import type { AxiosResponse } from "axios";
 
 type SubmitFn = (data: VerifyRequest) => Promise<AxiosResponse<AuthResponse>>;
 
@@ -34,10 +34,10 @@ export function codeSubmitValidHandler(
     sentEmail: string,
     submit: SubmitFn
 ) {
-    if(data.code.length !== 6) {
-        dispatch(showToast({message: "toast.wrongCodeLength", type: "error"}));
+    if (data.code.length !== 6) {
+        dispatch(showToast({ message: "toast.wrongCodeLength", type: "error" }));
         setErrorCode(true);
-        return
+        return;
     }
 
     setErrorCode(false);
@@ -45,5 +45,5 @@ export function codeSubmitValidHandler(
         resetEmailForm();
     }, 0);
     setIsEmailSent(false);
-    submit({email: sentEmail, verificationCode: data.code});
+    submit({ email: sentEmail, verificationCode: data.code });
 }

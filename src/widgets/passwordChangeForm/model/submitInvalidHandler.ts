@@ -1,7 +1,7 @@
-import type {IPasswordChangeForm} from "../lib/types";
-import type {Dispatch} from "@reduxjs/toolkit";
-import type {FieldErrors} from "react-hook-form";
-import {showToast} from "features/toast";
+import type { IPasswordChangeForm } from "../lib/types";
+import type { Dispatch } from "@reduxjs/toolkit";
+import type { FieldErrors } from "react-hook-form";
+import { showToast } from "features/toast";
 
 /**
  * Показывает уведомление с первой ошибкой валидации формы смены пароля.
@@ -16,6 +16,6 @@ export function submitInvalidHandler(
     const error = errors.oldPassword || errors.newPassword || errors.confirmNewPassword;
 
     if (error?.message) {
-        dispatch(showToast({message: error.message, type: "error"}));
+        dispatch(showToast({ message: error.message, type: "error" }));
     }
 }

@@ -1,8 +1,8 @@
 import c from "./statItem.module.scss";
-import type {LucideIcon} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import React from "react";
-import {Link} from "react-router-dom";
-import {getShortNumber} from "shared/lib/getShortNumber";
+import { Link } from "react-router-dom";
+import { getShortNumber } from "shared/lib/getShortNumber";
 
 /** Свойства компонента {@link StatItem}. */
 interface StatItemProps {
@@ -59,7 +59,7 @@ export const StatItem = ({
     number = 0,
     ...props
 }: StatItemProps) => {
-	return (
+    return (
         <>
             {type === "default" && (
                 <div
@@ -68,7 +68,12 @@ export const StatItem = ({
                     className={`${c.stat_wrapper} ${className}`}
                     {...props}
                 >
-                    <Icon strokeWidth={strokeWidth} className={`${c.stat_icon} ${iconClassName}`} width="24" height="24" />
+                    <Icon
+                        strokeWidth={strokeWidth}
+                        className={`${c.stat_icon} ${iconClassName}`}
+                        width="24"
+                        height="24"
+                    />
                     <p className={c.number}>{getShortNumber(+number)}</p>
                 </div>
             )}
@@ -81,7 +86,12 @@ export const StatItem = ({
                     className={`${c.stat_wrapper} ${className}`}
                     {...props}
                 >
-                    <Icon strokeWidth={strokeWidth} className={`${c.stat_icon} ${iconClassName}`} width="24" height="24" />
+                    <Icon
+                        strokeWidth={strokeWidth}
+                        className={`${c.stat_icon} ${iconClassName}`}
+                        width="24"
+                        height="24"
+                    />
                     <p className={c.number}>{getShortNumber(+number)}</p>
                 </Link>
             )}
@@ -94,10 +104,15 @@ export const StatItem = ({
                     className={`${c.stat_wrapper} ${className}`}
                     {...props}
                 >
-                    <Icon strokeWidth={strokeWidth} className={`${c.stat_icon} ${iconClassName}`} width="24" height="24" />
+                    <Icon
+                        strokeWidth={strokeWidth}
+                        className={`${c.stat_icon} ${iconClassName}`}
+                        width="24"
+                        height="24"
+                    />
                     <p className={c.number}>{getShortNumber(+number)}</p>
                 </button>
             )}
         </>
-	)
-}
+    );
+};

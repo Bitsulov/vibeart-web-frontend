@@ -21,9 +21,14 @@ export const TransparentButton = ({
     ariaLabel,
     ...props
 }: TransparentButtonProps) => {
-	return (
-        <button onClick={onClick} className={`${c.button} ${className}`} aria-label={ariaLabel} {...props}>
+    return (
+        <button
+            onClick={onClick}
+            className={`${c.button} ${className}`}
+            aria-label={ariaLabel}
+            {...props}
+        >
             {children}
         </button>
-	)
-}
+    );
+};

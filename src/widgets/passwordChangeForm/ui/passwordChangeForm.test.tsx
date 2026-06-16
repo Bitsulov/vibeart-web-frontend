@@ -1,8 +1,8 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {PasswordChangeForm} from "./passwordChangeForm";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { PasswordChangeForm } from "./passwordChangeForm";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("PasswordChangeForm - форма изменения пароля", () => {
     describe("Рендер", () => {
@@ -15,15 +15,23 @@ describe("PasswordChangeForm - форма изменения пароля", () =
         it("Отображает поля старого, нового и подтверждения пароля", () => {
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            expect(screen.getByLabelText("passwordChange.oldPasswordPlaceholder")).toBeInTheDocument();
-            expect(screen.getByLabelText("passwordChange.newPasswordPlaceholder")).toBeInTheDocument();
-            expect(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder")).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder")
+            ).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder")
+            ).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder")
+            ).toBeInTheDocument();
         });
 
         it("Отображает кнопку продолжения", () => {
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            expect(screen.getByRole("button", {name: "ariaLabel.continue"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.continue" })
+            ).toBeInTheDocument();
         });
     });
 
@@ -32,33 +40,57 @@ describe("PasswordChangeForm - форма изменения пароля", () =
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByLabelText("passwordChange.oldPasswordPlaceholder")).toBeInvalid();
+            expect(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder")
+            ).toBeInvalid();
         });
 
         it("Помечает поле нового пароля как невалидное если он совпадает со старым", async () => {
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.type(screen.getByLabelText("passwordChange.oldPasswordPlaceholder"), "same123");
-            await user.type(screen.getByLabelText("passwordChange.newPasswordPlaceholder"), "same123");
-            await user.type(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"), "same123");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder"),
+                "same123"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder"),
+                "same123"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"),
+                "same123"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByLabelText("passwordChange.newPasswordPlaceholder")).toBeInvalid();
+            expect(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder")
+            ).toBeInvalid();
         });
 
         it("Помечает поле подтверждения как невалидное при несовпадении паролей", async () => {
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.type(screen.getByLabelText("passwordChange.oldPasswordPlaceholder"), "oldpass1");
-            await user.type(screen.getByLabelText("passwordChange.newPasswordPlaceholder"), "newpass1");
-            await user.type(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"), "different1");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder"),
+                "oldpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"),
+                "different1"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder")).toBeInvalid();
+            expect(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder")
+            ).toBeInvalid();
         });
     });
 
@@ -67,23 +99,45 @@ describe("PasswordChangeForm - форма изменения пароля", () =
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.type(screen.getByLabelText("passwordChange.oldPasswordPlaceholder"), "oldpass1");
-            await user.type(screen.getByLabelText("passwordChange.newPasswordPlaceholder"), "newpass1");
-            await user.type(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"), "newpass1");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder"),
+                "oldpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
-            expect(screen.getByRole("button", {name: "ariaLabel.backToChangePassword"})).toBeInTheDocument();
-            expect(screen.getByRole("button", {name: "ariaLabel.changePassword"})).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.backToChangePassword" })
+            ).toBeInTheDocument();
+            expect(
+                screen.getByRole("button", { name: "ariaLabel.changePassword" })
+            ).toBeInTheDocument();
         });
 
         it("Показывает email пользователя в тексте подтверждения", async () => {
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.type(screen.getByLabelText("passwordChange.oldPasswordPlaceholder"), "oldpass1");
-            await user.type(screen.getByLabelText("passwordChange.newPasswordPlaceholder"), "newpass1");
-            await user.type(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"), "newpass1");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
+            await user.type(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder"),
+                "oldpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
 
             expect(screen.getByText("passwordChange.sentCodeText")).toBeInTheDocument();
         });
@@ -92,13 +146,26 @@ describe("PasswordChangeForm - форма изменения пароля", () =
             const user = userEvent.setup();
             renderWithProviders(<PasswordChangeForm email="user@example.com" />);
 
-            await user.type(screen.getByLabelText("passwordChange.oldPasswordPlaceholder"), "oldpass1");
-            await user.type(screen.getByLabelText("passwordChange.newPasswordPlaceholder"), "newpass1");
-            await user.type(screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"), "newpass1");
-            await user.click(screen.getByRole("button", {name: "ariaLabel.continue"}));
-            await user.click(screen.getByRole("button", {name: "ariaLabel.backToChangePassword"}));
+            await user.type(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder"),
+                "oldpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.newPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.type(
+                screen.getByLabelText("passwordChange.confirmNewPasswordPlaceholder"),
+                "newpass1"
+            );
+            await user.click(screen.getByRole("button", { name: "ariaLabel.continue" }));
+            await user.click(
+                screen.getByRole("button", { name: "ariaLabel.backToChangePassword" })
+            );
 
-            expect(screen.getByLabelText("passwordChange.oldPasswordPlaceholder")).toBeInTheDocument();
+            expect(
+                screen.getByLabelText("passwordChange.oldPasswordPlaceholder")
+            ).toBeInTheDocument();
         });
     });
 });

@@ -1,1 +1,1 @@
-export {PagesButtons} from "./ui/pagesButtons";
+export { PagesButtons } from "./ui/pagesButtons";

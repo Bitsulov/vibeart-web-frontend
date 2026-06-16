@@ -7,8 +7,11 @@ test.describe("Error - визуальная проверка блоков", () =
     });
 
     test("снимок блока ErrorInfo", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("error-info.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "error-info.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

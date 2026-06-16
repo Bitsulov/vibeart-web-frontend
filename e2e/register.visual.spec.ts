@@ -9,8 +9,11 @@ test.describe("Register - визуальная проверка блоков", (
     });
 
     test("снимок блока RegisterForm", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("register-form.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "register-form.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

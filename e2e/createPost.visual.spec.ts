@@ -9,9 +9,12 @@ test.describe("CreatePost - визуальная проверка блоков",
     });
 
     test("снимок блока CreatePost", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("create-post.png", {
-            animations: "disabled",
-            mask: [page.locator("article")],
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "create-post.png",
+            {
+                animations: "disabled",
+                mask: [page.locator("article")]
+            }
+        );
     });
 });

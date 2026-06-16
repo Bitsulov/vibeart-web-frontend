@@ -1,13 +1,18 @@
 import c from "./addAdmins.module.scss";
-import {SearchInput} from "features/searchInput";
-import {communityAdminsMock, type UserType} from "entities/user";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction, useState} from "react";
-import {changeSearchHandler} from "../model/changeSearchHandler";
-import {CommunityUserItem} from "features/communityUserItem";
-import {userClickHandler} from "../model/userClickHandler";
-import {authorClickHandler} from "../model/authorClickHandler";
+import { SearchInput } from "features/searchInput";
+import { communityAdminsMock, type UserType } from "entities/user";
+import {
+    type ComponentPropsWithoutRef,
+    type Dispatch,
+    type SetStateAction,
+    useState
+} from "react";
+import { changeSearchHandler } from "../model/changeSearchHandler";
+import { CommunityUserItem } from "features/communityUserItem";
+import { userClickHandler } from "../model/userClickHandler";
+import { authorClickHandler } from "../model/authorClickHandler";
 import clsx from "clsx";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 /** Свойства компонента {@link AddAdmins}. */
 interface AddAdminsProps extends ComponentPropsWithoutRef<"div"> {
@@ -39,10 +44,10 @@ export const AddAdmins = ({
     const { t } = useTranslation();
     const [searchValue, setSearchValue] = useState<string>("");
 
-	return (
-		<div className={`${c.admins} ${className}`} {...props}>
+    return (
+        <div className={`${c.admins} ${className}`} {...props}>
             <h2 className={c.title}>{t("createCommunity.adminsTitle")}</h2>
-			<SearchInput
+            <SearchInput
                 className={c.search}
                 value={searchValue}
                 onChange={e => changeSearchHandler(e, setSearchValue)}
@@ -50,27 +55,42 @@ export const AddAdmins = ({
             <ul className={c.list}>
                 <li className={c.item}>
                     <CommunityUserItem
-                        onClick={(e) => authorClickHandler(e)}
+                        onClick={e => authorClickHandler(e)}
                         className={`${c.user} ${c.select}`}
                         imageUrl={author.avatarUrl}
                         name={`${author.name} ${t("You")}`}
                         UUID={author.UUID}
                     />
                 </li>
-                {communityAdminsMock.map(user =>
+                {communityAdminsMock.map(user => (
                     <li key={`add admin wrapper ${user.UUID}`} className={c.item}>
                         <CommunityUserItem
-                            onClick={(e) => userClickHandler(e, selectedAdmins, setSelectedAdmins, user)}
-                            aria-label={t(selectedAdmins?.includes(user) ? "ariaLabel.deleteAdmin" : "ariaLabel.addAdmin", {name: user.name})}
-                            className={clsx(c.user, selectedAdmins?.includes(user) && c.select)}
+                            onClick={e =>
+                                userClickHandler(
+                                    e,
+                                    selectedAdmins,
+                                    setSelectedAdmins,
+                                    user
+                                )
+                            }
+                            aria-label={t(
+                                selectedAdmins?.includes(user)
+                                    ? "ariaLabel.deleteAdmin"
+                                    : "ariaLabel.addAdmin",
+                                { name: user.name }
+                            )}
+                            className={clsx(
+                                c.user,
+                                selectedAdmins?.includes(user) && c.select
+                            )}
                             imageUrl={user.avatarUrl}
                             name={user.name}
                             key={`add admin ${user.UUID}`}
                             UUID={user.UUID}
                         />
                     </li>
-                )}
+                ))}
             </ul>
-		</div>
-	)
-}
+        </div>
+    );
+};

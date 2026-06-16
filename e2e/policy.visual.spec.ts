@@ -7,13 +7,20 @@ test.describe("Policy - визуальная проверка блоков", () 
     });
 
     test("снимок блока PolicyText", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("policy-text.png", {
-            animations: "disabled",
-            maxDiffPixelRatio: 0.02,
-            mask: [
-                page.locator("main section li, main section p").filter({ hasText: /https?:\/\// }),
-                page.locator("main section li, main section p").filter({ hasText: /[\w.+-]+@[\w-]+\.\w+/ }),
-            ],
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "policy-text.png",
+            {
+                animations: "disabled",
+                maxDiffPixelRatio: 0.02,
+                mask: [
+                    page
+                        .locator("main section li, main section p")
+                        .filter({ hasText: /https?:\/\// }),
+                    page
+                        .locator("main section li, main section p")
+                        .filter({ hasText: /[\w.+-]+@[\w-]+\.\w+/ })
+                ]
+            }
+        );
     });
 });

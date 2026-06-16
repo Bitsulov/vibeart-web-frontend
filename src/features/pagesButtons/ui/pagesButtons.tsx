@@ -1,9 +1,9 @@
 import c from "./pagesButtons.module.scss";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
-import {changePageHandler} from "../model/changePageHandler";
-import {useTranslation} from "react-i18next";
-import {getRangeNumbers} from "shared/lib/getRangeNumbers";
+import { changePageHandler } from "../model/changePageHandler";
+import { useTranslation } from "react-i18next";
+import { getRangeNumbers } from "shared/lib/getRangeNumbers";
 
 /** Свойства компонента {@link PagesButtons}. */
 interface PagesButtonsProps extends ComponentPropsWithoutRef<"div"> {
@@ -36,25 +36,25 @@ export const PagesButtons = ({
 }: PagesButtonsProps) => {
     const { t } = useTranslation();
 
-    const {start, end} = getRangeNumbers(currentPage, pagesCount, pagesDelta);
+    const { start, end } = getRangeNumbers(currentPage, pagesCount, pagesDelta);
 
-	return (
-		<div className={`${c.pages} ${className}`} {...props}>
-            {Array.from({length: end - start + 1}, (_, i) => {
+    return (
+        <div className={`${c.pages} ${className}`} {...props}>
+            {Array.from({ length: end - start + 1 }, (_, i) => {
                 const number = start + i;
 
                 return (
                     <button
                         onClick={() => changePageHandler(setCurrentPage, number)}
-                        aria-label={t("ariaLabel.changePage", {number})}
+                        aria-label={t("ariaLabel.changePage", { number })}
                         type="button"
                         key={`page ${number}`}
                         className={clsx(c.page, currentPage === number && c.active)}
                     >
                         {number}
                     </button>
-                )
+                );
             })}
-		</div>
-	)
-}
+        </div>
+    );
+};

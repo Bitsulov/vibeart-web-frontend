@@ -1,7 +1,7 @@
-import {describe, expect, it, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {screen} from "@testing-library/react";
-import {HeaderProfileButton} from "./headerProfileButton";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { screen } from "@testing-library/react";
+import { HeaderProfileButton } from "./headerProfileButton";
 import default_avatar from "shared/icons/icon-user.svg";
 
 describe("headerProfileButton - ссылка на профиль на десктопе", () => {
@@ -19,7 +19,7 @@ describe("headerProfileButton - ссылка на профиль на дескт
             />
         );
 
-        const link = screen.getByRole("link", {name: "ariaLabel.goToAuth"});
+        const link = screen.getByRole("link", { name: "ariaLabel.goToAuth" });
         const img = screen.getByAltText("user");
 
         expect(link).toHaveAttribute("href", "/auth");
@@ -37,7 +37,7 @@ describe("headerProfileButton - ссылка на профиль на дескт
             />
         );
 
-        const link = screen.getByRole("link", {name: "ariaLabel.goToProfile"});
+        const link = screen.getByRole("link", { name: "ariaLabel.goToProfile" });
         const img = screen.getByAltText("n");
 
         expect(link).toHaveAttribute("href", "/profile/123");

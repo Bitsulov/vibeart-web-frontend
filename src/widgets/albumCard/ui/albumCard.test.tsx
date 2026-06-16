@@ -1,8 +1,8 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {AlbumCard} from "./albumCard";
-import {screen} from "@testing-library/react";
-import {profileAlbum1PostsMock} from "entities/post";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { AlbumCard } from "./albumCard";
+import { screen } from "@testing-library/react";
+import { profileAlbum1PostsMock } from "entities/post";
 
 const baseProps = {
     UUID: "00000000-0000-4000-8000-00000000000b",
@@ -13,13 +13,15 @@ const baseProps = {
     worksCount: 5,
     date: "2026-03-24T18:48:16.175Z",
     postList: profileAlbum1PostsMock,
-    isOwner: false,
+    isOwner: false
 };
 
 describe("AlbumCard - карточка страницы альбома", () => {
     it("Отображает заголовок альбома", () => {
         renderWithProviders(<AlbumCard {...baseProps} />);
-        expect(screen.getByRole("heading", { level: 1, name: "Test Album" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("heading", { level: 1, name: "Test Album" })
+        ).toBeInTheDocument();
     });
 
     it("Отображает изображение альбома с корректным alt", () => {

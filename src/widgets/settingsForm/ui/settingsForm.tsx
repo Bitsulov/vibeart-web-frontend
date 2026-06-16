@@ -1,15 +1,20 @@
 import c from "./settingsForm.module.scss";
-import type {UserType} from "entities/user";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction, useState} from "react";
-import {useTranslation} from "react-i18next";
-import {useForm, useWatch} from "react-hook-form";
-import type {ISettingsForm} from "../lib/types";
-import {SettingsItem} from "features/settingsItem";
-import {submitValidHandler} from "../model/submitValidHandler";
-import {submitInvalidHandler} from "../model/submitInvalidHandler";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {StylizedButton} from "features/stylizedButton";
-import {useDispatch} from "react-redux";
+import type { UserType } from "entities/user";
+import {
+    type ComponentPropsWithoutRef,
+    type Dispatch,
+    type SetStateAction,
+    useState
+} from "react";
+import { useTranslation } from "react-i18next";
+import { useForm, useWatch } from "react-hook-form";
+import type { ISettingsForm } from "../lib/types";
+import { SettingsItem } from "features/settingsItem";
+import { submitValidHandler } from "../model/submitValidHandler";
+import { submitInvalidHandler } from "../model/submitInvalidHandler";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { StylizedButton } from "features/stylizedButton";
+import { useDispatch } from "react-redux";
 
 /** Свойства компонента {@link SettingsForm}. */
 interface SettingsFormProps extends ComponentPropsWithoutRef<"form"> {
@@ -27,27 +32,25 @@ interface SettingsFormProps extends ComponentPropsWithoutRef<"form"> {
  * Текст кнопки отправки адаптируется под ширину экрана.
  * При успехе вызывается {@link submitValidHandler}, при ошибке — {@link submitInvalidHandler}.
  */
-export const SettingsForm = ({
-    userInfo,
-    setUserInfo,
-    ...props
-}: SettingsFormProps) => {
+export const SettingsForm = ({ userInfo, setUserInfo, ...props }: SettingsFormProps) => {
     const { t } = useTranslation();
     const windowWidth = useWindowWidth();
     const dispatch = useDispatch();
 
-    const {register, setValue, handleSubmit, control, formState: {errors, isSubmitted}, /*setError*/} = useForm<ISettingsForm>(
-        {shouldFocusError: false}
-    );
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        formState: { errors, isSubmitted } /*setError*/
+    } = useForm<ISettingsForm>({ shouldFocusError: false });
 
     const isDesktop = windowWidth >= 1200;
     const descriptionText = isDesktop
         ? "settings.descriptionDesktop"
         : "settings.descriptionMobile";
 
-    const submitText = isDesktop
-        ? "settings.editDesktop"
-        : "settings.editMobile";
+    const submitText = isDesktop ? "settings.editDesktop" : "settings.editMobile";
 
     const nameValue = useWatch({ control, name: "title" });
     const idValue = useWatch({ control, name: "id" });
@@ -55,17 +58,17 @@ export const SettingsForm = ({
 
     const [_loadedFile, setLoadedFile] = useState<File | undefined>(undefined);
 
-	return (
-		<form
+    return (
+        <form
             onSubmit={handleSubmit(
                 () => submitValidHandler(setValue),
-                (errors) => submitInvalidHandler(errors, dispatch)
+                errors => submitInvalidHandler(errors, dispatch)
             )}
             className={c.form}
             {...props}
         >
             <h1 className={c.title}>{t("settings.title")}</h1>
-			<div className={c.settings}>
+            <div className={c.settings}>
                 <SettingsItem
                     title={t("settings.avatarTitle")}
                     description={t("settings.avatarDescription")}
@@ -123,7 +126,7 @@ export const SettingsForm = ({
                         maxLength: {
                             value: 10,
                             message: "toast.longId"
-                        },
+                        }
                     })}
                     isSubmitted={isSubmitted}
                     setEntityInfo={setUserInfo}
@@ -148,9 +151,13 @@ export const SettingsForm = ({
                     id="description"
                 />
             </div>
-            <StylizedButton type="submit" aria-label={t("ariaLabel.saveUser")} className={c.submit}>
+            <StylizedButton
+                type="submit"
+                aria-label={t("ariaLabel.saveUser")}
+                className={c.submit}
+            >
                 {t(submitText)}
             </StylizedButton>
-		</form>
-	)
-}
+        </form>
+    );
+};

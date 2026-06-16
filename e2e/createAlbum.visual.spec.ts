@@ -9,8 +9,11 @@ test.describe("CreateAlbum - визуальная проверка блоков"
     });
 
     test("снимок блока CreateAlbum", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("create-album.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "create-album.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

@@ -1,12 +1,12 @@
 import c from "./headerLanguageButton.module.scss";
-import {useTranslation} from "react-i18next";
-import {languageButtonClickHandler} from "../model/languageButtonClickHandler";
-import {useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
+import { useTranslation } from "react-i18next";
+import { languageButtonClickHandler } from "../model/languageButtonClickHandler";
+import { useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
 import { useEffect, useState } from "react";
 import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
-import {defaultTransitionTime} from "shared/const/const";
+import { defaultTransitionTime } from "shared/const/const";
 
 /** Свойства компонента {@link HeaderLanguageButton}. */
 interface HeaderLanguageButtonProps extends ComponentPropsWithoutRef<"button"> {
@@ -34,19 +34,21 @@ export const HeaderLanguageButton = ({
     isShowChangeLanguage,
     isBurgerOpen,
     languagesConfig,
-     ...props
+    ...props
 }: HeaderLanguageButtonProps) => {
     const { t } = useTranslation();
     const currentLanguage = useSelector(selectCurrentLanguage);
     const languageData = languagesConfig[currentLanguage] || languagesConfig["en"];
     const [isShowButton, setIsShowButton] = useState<boolean>(true);
-    const transitionTime = parseInt(
-        globalThis.getComputedStyle?.(globalThis.document?.documentElement)
-            ?.getPropertyValue("--transition-time")
-    ) || defaultTransitionTime;
+    const transitionTime =
+        parseInt(
+            globalThis
+                .getComputedStyle?.(globalThis.document?.documentElement)
+                ?.getPropertyValue("--transition-time")
+        ) || defaultTransitionTime;
 
     useEffect(() => {
-        if(isBurgerOpen) {
+        if (isBurgerOpen) {
             const timeout = setTimeout(() => {
                 setIsShowButton(false);
             }, transitionTime / 3);
@@ -57,12 +59,13 @@ export const HeaderLanguageButton = ({
         }
     }, [isBurgerOpen, transitionTime]);
 
-	return (
+    return (
         <>
-            {isShowButton &&
+            {isShowButton && (
                 <button
                     className={clsx(c.button_language, isBurgerOpen && c.hiding)}
-                    aria-expanded={isShowChangeLanguage} {...props}
+                    aria-expanded={isShowChangeLanguage}
+                    {...props}
                     aria-label={t("ariaLabel.showLanguageToggler")}
                     onClick={() => languageButtonClickHandler(setIsShowChangeLanguage)}
                 >
@@ -76,7 +79,7 @@ export const HeaderLanguageButton = ({
                         className={c.flag_img}
                     />
                 </button>
-            }
+            )}
         </>
-    )
-}
+    );
+};

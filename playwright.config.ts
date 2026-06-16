@@ -32,41 +32,43 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: 4,
     workers: process.env.CI ? 1 : 3,
-    reporter: "html",
+    reporter: [["html", { open: "never" }]],
     use: {
         baseURL: "http://localhost:5173",
         trace: "on-first-retry",
         storageState: {
-            cookies: [{
-                name: "acceptedCookie",
-                value: "1",
-                domain: "localhost",
-                path: "/",
-                expires: -1,
-                httpOnly: false,
-                secure: false,
-                sameSite: "Lax",
-            }],
-            origins: [],
-        },
+            cookies: [
+                {
+                    name: "acceptedCookie",
+                    value: "1",
+                    domain: "localhost",
+                    path: "/",
+                    expires: -1,
+                    httpOnly: false,
+                    secure: false,
+                    sameSite: "Lax"
+                }
+            ],
+            origins: []
+        }
     },
     projects: [
         { name: "setup", testMatch: "**/global.setup.ts" },
         {
             name: "Desktop Chromium",
             use: { ...devices["Desktop Chrome"] },
-            dependencies: ["setup"],
+            dependencies: ["setup"]
         },
         {
             name: "Mobile Chromium",
             use: { ...devices["Pixel 7"] },
-            dependencies: ["setup"],
+            dependencies: ["setup"]
         },
         {
             name: "Firefox",
             use: { ...devices["Desktop Firefox"] },
-            dependencies: ["setup"],
-        },
+            dependencies: ["setup"]
+        }
         // {
         //     name: 'Desktop Webkit',
         //     use: { ...devices['Desktop Safari'] },
@@ -82,6 +84,6 @@ export default defineConfig({
         command: "npm run dev",
         url: "http://localhost:5173",
         env: { PLAYWRIGHT: "1" },
-        reuseExistingServer: !process.env.CI,
-    },
+        reuseExistingServer: !process.env.CI
+    }
 });

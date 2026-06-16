@@ -1,7 +1,7 @@
 import c from "./communityUserItem.module.scss";
-import {Link, type LinkProps} from "react-router-dom";
+import { Link, type LinkProps } from "react-router-dom";
 import defaultAvatar from "shared/icons/icon-user.svg";
-import type {MouseEventHandler} from "react";
+import type { MouseEventHandler } from "react";
 
 /** Свойства компонента {@link CommunityUserItem}. */
 interface CommunityUserItemProps extends Omit<LinkProps, "to"> {
@@ -32,10 +32,22 @@ export const CommunityUserItem = ({
     onClick = () => {},
     ...props
 }: CommunityUserItemProps) => {
-	return (
-		<Link onClick={onClick} to={`/profile/${UUID}`} className={`${c.user} ${className}`} {...props}>
-            <img decoding="async" width="25" height="25" src={imageUrl || defaultAvatar} alt={name} className={c.img} />
+    return (
+        <Link
+            onClick={onClick}
+            to={`/profile/${UUID}`}
+            className={`${c.user} ${className}`}
+            {...props}
+        >
+            <img
+                decoding="async"
+                width="25"
+                height="25"
+                src={imageUrl || defaultAvatar}
+                alt={name}
+                className={c.img}
+            />
             <p className={c.name}>{name}</p>
-		</Link>
-	)
-}
+        </Link>
+    );
+};

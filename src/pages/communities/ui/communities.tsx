@@ -1,11 +1,11 @@
-import {Layout} from "widgets/layout";
+import { Layout } from "widgets/layout";
 import c from "./communities.module.scss";
-import {Navigation} from "widgets/navigation";
-import {profileUserMock} from "entities/user";
-import {useTranslation} from "react-i18next";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {CommunitiesLists} from "widgets/communitiesLists";
-import {communitiesAllMock, communitiesMyMock} from "entities/community";
+import { Navigation } from "widgets/navigation";
+import { profileUserMock } from "entities/user";
+import { useTranslation } from "react-i18next";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { CommunitiesLists } from "widgets/communitiesLists";
+import { communitiesAllMock, communitiesMyMock } from "entities/community";
 
 /** Страница списка сообществ */
 export const Communities = () => {
@@ -13,17 +13,20 @@ export const Communities = () => {
 
     const windowWidth = useWindowWidth();
 
-	return (
-		<Layout isSmallTitle={true}>
+    return (
+        <Layout isSmallTitle={true}>
             <title>{t("titles.communities")}</title>
             <meta name="description" content={t("description.communities")} />
             <meta property="og:title" content={t("titles.communities")} />
             <meta property="og:description" content={t("description.communities")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <div className={c.content}>
                         <CommunitiesLists
                             communitiesListMy={communitiesMyMock}
@@ -32,6 +35,6 @@ export const Communities = () => {
                     </div>
                 </div>
             </div>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

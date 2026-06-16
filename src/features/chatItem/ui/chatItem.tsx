@@ -1,9 +1,9 @@
 import c from "./chatItem.module.scss";
-import {Link, type LinkProps} from "react-router-dom";
-import {useTranslation} from "react-i18next";
-import {getChatDate} from "shared/lib/getChatDate";
-import {useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
+import { Link, type LinkProps } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { getChatDate } from "shared/lib/getChatDate";
+import { useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
 import defaultAvatar from "shared/icons/icon-user.svg";
 
 /** Свойства компонента {@link ChatItem}. */
@@ -42,14 +42,18 @@ export const ChatItem = ({
 
     const resultDate = getChatDate(t, currentLanguage, date);
 
-	return (
-		<Link
-            aria-label={t("ariaLabel.goToChat", {name: title})}
+    return (
+        <Link
+            aria-label={t("ariaLabel.goToChat", { name: title })}
             className={`${c.chat} ${className}`}
             to={`/chats/${UUID}`}
             {...props}
         >
-            <img src={imageUrl || defaultAvatar} alt={`${t("avatar")} ${title}`} className={c.img} />
+            <img
+                src={imageUrl || defaultAvatar}
+                alt={`${t("avatar")} ${title}`}
+                className={c.img}
+            />
             <div className={c.info}>
                 <h2 className={c.title}>{title}</h2>
                 <div className={c.bottom}>
@@ -57,6 +61,6 @@ export const ChatItem = ({
                     <p className={c.date}>{resultDate}</p>
                 </div>
             </div>
-		</Link>
-	)
-}
+        </Link>
+    );
+};

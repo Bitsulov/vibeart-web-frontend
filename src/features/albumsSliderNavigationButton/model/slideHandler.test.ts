@@ -1,6 +1,6 @@
-import {describe, expect, it, vi} from "vitest";
-import {slideHandler} from "./slideHandler";
-import type {RefObject} from "react";
+import { describe, expect, it, vi } from "vitest";
+import { slideHandler } from "./slideHandler";
+import type { RefObject } from "react";
 import type Swiper from "swiper";
 
 describe("slideHandler - клик обработчик albumsSliderNavigationButton", () => {
@@ -8,7 +8,7 @@ describe("slideHandler - клик обработчик albumsSliderNavigationBut
         const swiperRef = {
             current: {
                 slidePrev: vi.fn(),
-                slideNext: vi.fn(),
+                slideNext: vi.fn()
             }
         } as unknown as RefObject<Swiper>;
 
@@ -20,7 +20,7 @@ describe("slideHandler - клик обработчик albumsSliderNavigationBut
         const swiperRef = {
             current: {
                 slidePrev: vi.fn(),
-                slideNext: vi.fn(),
+                slideNext: vi.fn()
             }
         } as unknown as RefObject<Swiper>;
 

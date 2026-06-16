@@ -1,11 +1,14 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitInvalidHandler} from "./submitInvalidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitInvalidHandler } from "./submitInvalidHandler";
 
 describe("submitInvalidHandler - ошибка валидации формы смены пароля", () => {
     it("Вызывает dispatch с toast при ошибке oldPassword", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({oldPassword: {message: "toast.requiredPassword", type: "required"}}, dispatch);
+        submitInvalidHandler(
+            { oldPassword: { message: "toast.requiredPassword", type: "required" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         const action = dispatch.mock.calls[0][0];
@@ -16,7 +19,10 @@ describe("submitInvalidHandler - ошибка валидации формы см
     it("Вызывает dispatch при ошибке newPassword", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({newPassword: {message: "errors.shortPassword", type: "minLength"}}, dispatch);
+        submitInvalidHandler(
+            { newPassword: { message: "errors.shortPassword", type: "minLength" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         expect(dispatch.mock.calls[0][0].payload.message).toBe("errors.shortPassword");
@@ -25,7 +31,15 @@ describe("submitInvalidHandler - ошибка валидации формы см
     it("Вызывает dispatch при ошибке confirmNewPassword", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({confirmNewPassword: {message: "toast.notSamePasswords", type: "validate"}}, dispatch);
+        submitInvalidHandler(
+            {
+                confirmNewPassword: {
+                    message: "toast.notSamePasswords",
+                    type: "validate"
+                }
+            },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
     });

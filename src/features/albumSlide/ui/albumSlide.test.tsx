@@ -1,8 +1,8 @@
-import {describe, expect, it, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
-import {AlbumSlide} from "./albumSlide";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { AlbumSlide } from "./albumSlide";
 
 describe("albumSlide - кнопка для выбора текущего выбранного альбома", () => {
     it("Существует на странице", () => {
@@ -17,9 +17,9 @@ describe("albumSlide - кнопка для выбора текущего выб�
                 ariaLabel="button"
                 UUID="2"
             />
-        )
+        );
 
-        const button = screen.getByRole("button", {name: "button"});
+        const button = screen.getByRole("button", { name: "button" });
         expect(button).toBeInTheDocument();
     });
     it("Выбор альбома", async () => {
@@ -36,7 +36,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
             />
         );
 
-        const button = screen.getByRole("button", {name: "button"});
+        const button = screen.getByRole("button", { name: "button" });
 
         await userEvent.click(button);
         expect(setSelectedAlbum).toHaveBeenCalledWith("2");
@@ -68,7 +68,7 @@ describe("albumSlide - кнопка для выбора текущего выб�
             />
         );
 
-        expect(screen.getByRole("button", {name: "button"})).toHaveClass("active");
+        expect(screen.getByRole("button", { name: "button" })).toHaveClass("active");
     });
     it("animateName добавляет класс always_animate на ссылку", () => {
         renderWithProviders(

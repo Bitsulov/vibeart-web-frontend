@@ -1,11 +1,14 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitInvalidHandler} from "./submitInvalidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitInvalidHandler } from "./submitInvalidHandler";
 
 describe("submitInvalidHandler - обработчик некорректной отправки формы связи с администрацией", () => {
     it("Показывает уведомление, если у поля text есть сообщение об ошибке", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({text: {message: "toast.emptyReport", type: "required"}}, dispatch);
+        submitInvalidHandler(
+            { text: { message: "toast.emptyReport", type: "required" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
     });
@@ -13,7 +16,10 @@ describe("submitInvalidHandler - обработчик некорректной �
     it("Показывает уведомление об ошибке maxLength", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({text: {message: "toast.longReport", type: "maxLength"}}, dispatch);
+        submitInvalidHandler(
+            { text: { message: "toast.longReport", type: "maxLength" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
     });
@@ -21,7 +27,7 @@ describe("submitInvalidHandler - обработчик некорректной �
     it("Не показывает уведомление, если сообщение пустое", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({text: {message: "", type: "required"}}, dispatch);
+        submitInvalidHandler({ text: { message: "", type: "required" } }, dispatch);
 
         expect(dispatch).not.toHaveBeenCalled();
     });

@@ -1,8 +1,8 @@
 import c from "./communitiesSubscribeButton.module.scss";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import React, { type ComponentPropsWithoutRef } from "react";
 import clsx from "clsx";
-import {toggleSubscribeClickHandler} from "../model/toggleSubscribeClickHandler";
+import { toggleSubscribeClickHandler } from "../model/toggleSubscribeClickHandler";
 
 /** Свойства компонента {@link CommunitiesSubscribeButton}. */
 interface CommunitiesSubscribeButtonProps extends ComponentPropsWithoutRef<"button"> {
@@ -30,13 +30,13 @@ export const CommunitiesSubscribeButton = ({
 
     const text = isSubscribed ? "unscribe" : "subscribe";
 
-	return (
-		<button
+    return (
+        <button
             onClick={() => toggleSubscribeClickHandler(setIsSubscribed)}
             className={clsx(c.button, isSubscribed && c.subscribed, className)}
             {...props}
         >
             {t(text)}
-		</button>
-	)
-}
+        </button>
+    );
+};

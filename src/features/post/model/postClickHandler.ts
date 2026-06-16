@@ -1,4 +1,4 @@
-import type {NavigateFunction} from "react-router-dom";
+import type { NavigateFunction } from "react-router-dom";
 
 /**
  * Переходит на страницу детального просмотра поста.

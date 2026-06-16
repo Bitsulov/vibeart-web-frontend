@@ -1,6 +1,6 @@
 import c from "./codeElementInput.module.scss";
-import type {ChangeEventHandler, ComponentProps, Dispatch, SetStateAction} from "react";
-import {onChangeHandler} from "../model/onChangeHandler";
+import type { ChangeEventHandler, ComponentProps, Dispatch, SetStateAction } from "react";
+import { onChangeHandler } from "../model/onChangeHandler";
 import clsx from "clsx";
 
 /** Свойства компонента {@link CodeElementInput}. */
@@ -32,14 +32,14 @@ export const CodeElementInput = ({
     isError = false,
     ...props
 }: CodeElementInputProps) => {
-	return (
-		<input
+    return (
+        <input
             value={value}
             inputMode="numeric"
-            onChange={(e) => onChangeHandler(e, setValue, onChange)}
+            onChange={e => onChangeHandler(e, setValue, onChange)}
             maxLength={1}
             className={clsx(c.input, className, isError && !value && c.error)}
             {...props}
         />
-	)
-}
+    );
+};

@@ -1,1 +1,1 @@
-export {StylizedButton} from "./ui/stylizedButton";
+export { StylizedButton } from "./ui/stylizedButton";

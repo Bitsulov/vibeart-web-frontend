@@ -1,1 +1,1 @@
-export {FooterEmailLink} from "./ui/footerEmailLink";
+export { FooterEmailLink } from "./ui/footerEmailLink";

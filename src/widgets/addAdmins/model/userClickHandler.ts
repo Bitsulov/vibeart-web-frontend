@@ -1,5 +1,5 @@
-import type {Dispatch, MouseEvent, SetStateAction} from "react";
-import type {UserType} from "entities/user";
+import type { Dispatch, MouseEvent, SetStateAction } from "react";
+import type { UserType } from "entities/user";
 
 /**
  * Переключает выбор пользователя в списке администраторов.
@@ -20,8 +20,10 @@ export function userClickHandler(
     selectedUser: UserType
 ) {
     e.preventDefault();
-    if(selectedAdmins.includes(selectedUser)) {
-        setSelectedAdmins(admins => admins.filter(admin => admin.UUID !== selectedUser.UUID));
+    if (selectedAdmins.includes(selectedUser)) {
+        setSelectedAdmins(admins =>
+            admins.filter(admin => admin.UUID !== selectedUser.UUID)
+        );
     } else {
         setSelectedAdmins(admins => [...admins, selectedUser]);
     }

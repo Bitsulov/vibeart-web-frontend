@@ -1,4 +1,4 @@
-import {Bell, CircleUser, Images, MessageCircle, Users, UserStar} from "lucide-react";
+import { Bell, CircleUser, Images, MessageCircle, Users, UserStar } from "lucide-react";
 
 /** Конфигурация ссылок бокового навигационного меню. */
 export const navigationConfig = [
@@ -7,14 +7,14 @@ export const navigationConfig = [
         icon: CircleUser,
         title: "pages.profile",
         ariaLabel: "ariaLabel.goToProfile",
-        isAdmin: false,
+        isAdmin: false
     },
     {
         href: () => `/gallery`,
         icon: Images,
         title: "pages.gallery",
         ariaLabel: "ariaLabel.goToGallery",
-        isAdmin: false,
+        isAdmin: false
     },
     {
         href: () => `/chats`,
@@ -43,5 +43,5 @@ export const navigationConfig = [
         title: "pages.administrator",
         ariaLabel: "ariaLabel.goToBan",
         isAdmin: true
-    },
+    }
 ];

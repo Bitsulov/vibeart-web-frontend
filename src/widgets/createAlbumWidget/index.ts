@@ -1,1 +1,1 @@
-export {CreateAlbumWidget} from "./ui/createAlbumWidget";
+export { CreateAlbumWidget } from "./ui/createAlbumWidget";

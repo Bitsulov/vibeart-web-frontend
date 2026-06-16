@@ -9,9 +9,12 @@ test.describe("Chats - визуальная проверка блоков", () =
     });
 
     test("снимок блока ChatsList", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("chats-list.png", {
-            animations: "disabled",
-            mask: [page.locator("[class*='date']")],
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "chats-list.png",
+            {
+                animations: "disabled",
+                mask: [page.locator("[class*='date']")]
+            }
+        );
     });
 });

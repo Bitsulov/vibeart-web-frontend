@@ -1,5 +1,5 @@
 import c from "./deleteButton.module.scss";
-import {Trash2} from "lucide-react";
+import { Trash2 } from "lucide-react";
 import React from "react";
 
 /** Свойства компонента {@link DeleteButton}. */
@@ -23,7 +23,7 @@ export const DeleteButton = ({
     className = "",
     ...props
 }: DeleteButtonProps) => {
-	return (
+    return (
         <button
             className={`${c.button} ${className}`}
             onClick={onClick}
@@ -34,5 +34,5 @@ export const DeleteButton = ({
         >
             <Trash2 className={c.icon} />
         </button>
-	)
-}
+    );
+};

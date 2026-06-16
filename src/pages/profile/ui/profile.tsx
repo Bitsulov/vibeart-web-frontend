@@ -1,14 +1,14 @@
 import c from "./profile.module.scss";
-import {Layout} from "widgets/layout";
-import {ProfileInfo} from "widgets/profileInfo";
-import {useTranslation} from "react-i18next";
-import {principalUserMock, profileUserMock} from "entities/user";
-import {AlbumSlider} from "widgets/albumSlider";
-import {profileAlbumsMock} from "entities/album";
-import {Navigation} from "widgets/navigation";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {useMemo, useState} from "react";
-import {PostList} from "widgets/postList";
+import { Layout } from "widgets/layout";
+import { ProfileInfo } from "widgets/profileInfo";
+import { useTranslation } from "react-i18next";
+import { principalUserMock, profileUserMock } from "entities/user";
+import { AlbumSlider } from "widgets/albumSlider";
+import { profileAlbumsMock } from "entities/album";
+import { Navigation } from "widgets/navigation";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { useMemo, useState } from "react";
+import { PostList } from "widgets/postList";
 
 /**
  * Страница профиля пользователя с информационным блоком, слайдером альбомов и списком публикаций.
@@ -30,17 +30,20 @@ export const Profile = () => {
         [selectedAlbum]
     );
 
-	return (
-		<Layout>
+    return (
+        <Layout>
             <title>{t("titles.profile")}</title>
             <meta name="description" content={t("description.profile")} />
             <meta property="og:title" content={t("titles.profile")} />
             <meta property="og:description" content={t("description.profile")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <div className={c.content}>
                         <ProfileInfo userInfo={principalUserMock} />
                         <AlbumSlider
@@ -60,6 +63,6 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

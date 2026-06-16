@@ -16,4 +16,4 @@ export const pagesTitleConfig: Record<string, string> = {
     policy: "",
     agreement: "",
     admin: "pages.admin"
-}
+};

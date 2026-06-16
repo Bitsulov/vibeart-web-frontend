@@ -1,7 +1,7 @@
 import c from "./textareaForm.module.scss";
 import clsx from "clsx";
 import type { ComponentPropsWithoutRef } from "react";
-import {Check, CircleX} from "lucide-react";
+import { Check, CircleX } from "lucide-react";
 
 /** Свойства компонента {@link TextareaForm}. */
 interface TextareaFormProps extends ComponentPropsWithoutRef<"textarea"> {
@@ -53,12 +53,28 @@ export const TextareaForm = ({
                 aria-label={placeholder}
                 {...props}
             />
-            <label className={clsx(c.placeholder, value && c.lift, placeholderClassName)} htmlFor={id}>{placeholder}</label>
-            {isShowStatus && (
-                isError
-                    ? <CircleX aria-hidden="true" className={clsx(c.status_icon, isSubmitted && c.error_icon)} width="14" height="14" />
-                    : <Check aria-hidden="true" className={clsx(c.status_icon, c.correct_icon)} width="14" height="14" />
-            )}
+            <label
+                className={clsx(c.placeholder, value && c.lift, placeholderClassName)}
+                htmlFor={id}
+            >
+                {placeholder}
+            </label>
+            {isShowStatus &&
+                (isError ? (
+                    <CircleX
+                        aria-hidden="true"
+                        className={clsx(c.status_icon, isSubmitted && c.error_icon)}
+                        width="14"
+                        height="14"
+                    />
+                ) : (
+                    <Check
+                        aria-hidden="true"
+                        className={clsx(c.status_icon, c.correct_icon)}
+                        width="14"
+                        height="14"
+                    />
+                ))}
         </div>
-    )
-}
+    );
+};

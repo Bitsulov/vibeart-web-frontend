@@ -1,6 +1,6 @@
 import c from "./footerLogo.module.scss";
-import {useTranslation} from "react-i18next";
-import {Link, useLocation} from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
 import logoIcon from "shared/icons/icon-logo-white.svg";
 
 /** Логотип VibeArt в футере — ссылка на главную страницу. */
@@ -26,5 +26,5 @@ export const FooterLogo = ({ ...props }) => {
                 loading="lazy"
             />
         </Link>
-    )
-}
+    );
+};

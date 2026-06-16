@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {Dropdown} from "./dropdown";
-import {screen, fireEvent} from "@testing-library/react";
-import {Trash2} from "lucide-react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { Dropdown } from "./dropdown";
+import { screen, fireEvent } from "@testing-library/react";
+import { Trash2 } from "lucide-react";
 
 const defaultOptions = [
     {
@@ -10,14 +10,19 @@ const defaultOptions = [
         text: "Удалить",
         color: "#C40000",
         ariaLabel: "Удалить чат",
-        onClick: vi.fn(),
-    },
+        onClick: vi.fn()
+    }
 ];
 
 describe("Dropdown - выпадающее меню", () => {
     it("Не показывает пункты при isOpen=false", () => {
         renderWithProviders(
-            <Dropdown id="test" isOpen={false} setIsOpen={vi.fn()} options={defaultOptions} />
+            <Dropdown
+                id="test"
+                isOpen={false}
+                setIsOpen={vi.fn()}
+                options={defaultOptions}
+            />
         );
         expect(screen.getByRole("menu")).toBeInTheDocument();
         expect(screen.getByRole("menu")).toHaveAttribute("inert");
@@ -25,7 +30,12 @@ describe("Dropdown - выпадающее меню", () => {
 
     it("Показывает пункты при isOpen=true", () => {
         renderWithProviders(
-            <Dropdown id="test" isOpen={true} setIsOpen={vi.fn()} options={defaultOptions} />
+            <Dropdown
+                id="test"
+                isOpen={true}
+                setIsOpen={vi.fn()}
+                options={defaultOptions}
+            />
         );
         expect(screen.getByRole("menu")).not.toHaveAttribute("inert");
         expect(screen.getByText("Удалить")).toBeInTheDocument();

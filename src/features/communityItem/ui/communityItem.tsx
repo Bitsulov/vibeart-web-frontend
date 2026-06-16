@@ -1,14 +1,14 @@
 import c from "./communityItem.module.scss";
 import { useState } from "react";
 import type { ComponentPropsWithoutRef } from "react";
-import {StatItem} from "../../statItem";
-import {UsersRound} from "lucide-react";
-import {TransparentLink} from "../../transparentLink";
-import {CommunitiesSubscribeButton} from "../../communitiesSubscribeButton";
-import {showHint} from "../model/showHint";
-import {useDispatch} from "react-redux";
-import {useTranslation} from "react-i18next";
-import {hideHint} from "../model/hideHint";
+import { StatItem } from "../../statItem";
+import { UsersRound } from "lucide-react";
+import { TransparentLink } from "../../transparentLink";
+import { CommunitiesSubscribeButton } from "../../communitiesSubscribeButton";
+import { showHint } from "../model/showHint";
+import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { hideHint } from "../model/hideHint";
 import defaultAvatar from "shared/icons/icon-user.svg";
 
 /** Свойства компонента {@link CommunityItem}. */
@@ -46,10 +46,11 @@ export const CommunityItem = ({
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    const [isSubscribedCommunity, setIsSubscribedCommunity] = useState<boolean>(isSubscribed);
+    const [isSubscribedCommunity, setIsSubscribedCommunity] =
+        useState<boolean>(isSubscribed);
 
-	return (
-		<article className={c.community} {...props}>
+    return (
+        <article className={c.community} {...props}>
             <div className={c.info}>
                 <div className={c.left}>
                     <img src={imageUrl || defaultAvatar} alt={title} className={c.img} />
@@ -67,13 +68,15 @@ export const CommunityItem = ({
                 </div>
             </div>
             <div className={c.buttons}>
-                <TransparentLink className={c.link} href={`/communities/${UUID}`}>{t("goLink")}</TransparentLink>
+                <TransparentLink className={c.link} href={`/communities/${UUID}`}>
+                    {t("goLink")}
+                </TransparentLink>
                 <CommunitiesSubscribeButton
                     setIsSubscribed={setIsSubscribedCommunity}
                     className={c.subscribe}
                     isSubscribed={isSubscribedCommunity}
                 />
             </div>
-		</article>
-	)
-}
+        </article>
+    );
+};

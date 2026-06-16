@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {optionClickHandler} from "./optionClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { optionClickHandler } from "./optionClickHandler";
 
 describe("optionClickHandler - закрывает список и вызывает onClick", () => {
     it("Вызывает setIsOpen(false)", () => {

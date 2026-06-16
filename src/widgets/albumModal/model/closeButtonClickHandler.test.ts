@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {closeButtonClickHandler} from "./closeButtonClickHandler";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { closeButtonClickHandler } from "./closeButtonClickHandler";
 
 describe("closeButtonClickHandler - закрывает модальное окно и сбрасывает выбранные посты", () => {
     afterEach(() => {
@@ -12,7 +12,12 @@ describe("closeButtonClickHandler - закрывает модальное окн
         const setIsShowModal = vi.fn();
         const setSelectedPosts = vi.fn();
 
-        closeButtonClickHandler(setIsDisappearring, 300, setIsShowModal, setSelectedPosts);
+        closeButtonClickHandler(
+            setIsDisappearring,
+            300,
+            setIsShowModal,
+            setSelectedPosts
+        );
 
         expect(setIsDisappearring).toHaveBeenCalledWith(true);
         expect(setIsShowModal).not.toHaveBeenCalled();
@@ -25,7 +30,12 @@ describe("closeButtonClickHandler - закрывает модальное окн
         const setIsShowModal = vi.fn();
         const setSelectedPosts = vi.fn();
 
-        closeButtonClickHandler(setIsDisappearring, 300, setIsShowModal, setSelectedPosts);
+        closeButtonClickHandler(
+            setIsDisappearring,
+            300,
+            setIsShowModal,
+            setSelectedPosts
+        );
         vi.advanceTimersByTime(300);
 
         expect(setIsShowModal).toHaveBeenCalledWith(false);
@@ -38,7 +48,12 @@ describe("closeButtonClickHandler - закрывает модальное окн
         const setIsShowModal = vi.fn();
         const setSelectedPosts = vi.fn();
 
-        closeButtonClickHandler(setIsDisappearring, 300, setIsShowModal, setSelectedPosts);
+        closeButtonClickHandler(
+            setIsDisappearring,
+            300,
+            setIsShowModal,
+            setSelectedPosts
+        );
         vi.advanceTimersByTime(300);
 
         expect(setSelectedPosts).toHaveBeenCalledWith([]);
@@ -50,7 +65,12 @@ describe("closeButtonClickHandler - закрывает модальное окн
         const setIsShowModal = vi.fn();
         const setSelectedPosts = vi.fn();
 
-        closeButtonClickHandler(setIsDisappearring, 300, setIsShowModal, setSelectedPosts);
+        closeButtonClickHandler(
+            setIsDisappearring,
+            300,
+            setIsShowModal,
+            setSelectedPosts
+        );
         vi.advanceTimersByTime(299);
 
         expect(setIsShowModal).not.toHaveBeenCalled();

@@ -1,15 +1,15 @@
-import {Layout} from "widgets/layout";
+import { Layout } from "widgets/layout";
 import c from "./community.module.scss";
-import {Navigation} from "widgets/navigation";
-import {profileUserMock} from "entities/user";
-import {useTranslation} from "react-i18next";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {AlbumSlider} from "widgets/albumSlider";
-import {profileAlbumsMock} from "entities/album";
-import {PostList} from "widgets/postList";
-import {useMemo, useState} from "react";
-import {CommunityInfo} from "widgets/communityInfo";
-import {communityMock} from "entities/community";
+import { Navigation } from "widgets/navigation";
+import { profileUserMock } from "entities/user";
+import { useTranslation } from "react-i18next";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { AlbumSlider } from "widgets/albumSlider";
+import { profileAlbumsMock } from "entities/album";
+import { PostList } from "widgets/postList";
+import { useMemo, useState } from "react";
+import { CommunityInfo } from "widgets/communityInfo";
+import { communityMock } from "entities/community";
 
 /**
  * Страница сообщества с информационным блоком, слайдером альбомов и списком публикаций.
@@ -31,7 +31,7 @@ export const Community = () => {
         [selectedAlbum]
     );
 
-	return (
+    return (
         <Layout isSmallTitle={true}>
             <title>{t("titles.community")}</title>
             <meta name="description" content={t("description.community")} />
@@ -39,9 +39,12 @@ export const Community = () => {
             <meta property="og:description" content={t("description.community")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 &&
-                        <Navigation role={profileUserMock.role} UUID={profileUserMock.UUID} />
-                    }
+                    {windowWidth >= 1200 && (
+                        <Navigation
+                            role={profileUserMock.role}
+                            UUID={profileUserMock.UUID}
+                        />
+                    )}
                     <div className={c.content}>
                         <CommunityInfo communityInfo={communityMock} />
                         <AlbumSlider
@@ -62,5 +65,5 @@ export const Community = () => {
                 </div>
             </div>
         </Layout>
-	)
-}
+    );
+};

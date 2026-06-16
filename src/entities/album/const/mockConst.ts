@@ -5,15 +5,16 @@
  * Все моки исключены из анализа покрытия кода, так как не содержат
  * тестируемой логики.
  */
-import {createAlbum} from "../model/createAlbum";
-import {profileAlbum1PostsMock, profileAlbum2PostsMock} from "entities/post";
+import { createAlbum } from "../model/createAlbum";
+import { profileAlbum1PostsMock, profileAlbum2PostsMock } from "entities/post";
 import img from "shared/icons/img-CTA.jpg";
 
 export const profileAlbumsMock = [
     createAlbum({
         UUID: "00000000-0000-4000-8000-00000000000b",
         name: "test album",
-        description: "Description of album 1 Description of album 1 Description of album 1 Description of album 1 Description of album 1",
+        description:
+            "Description of album 1 Description of album 1 Description of album 1 Description of album 1 Description of album 1",
         postCount: 4,
         postsList: profileAlbum1PostsMock,
         imageUrl: img,
@@ -22,7 +23,8 @@ export const profileAlbumsMock = [
     createAlbum({
         UUID: "00000000-0000-4000-8000-000000000009",
         name: "test album 2",
-        description: "Description of album 2 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
+        description:
+            "Description of album 2 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 1,
         postsList: profileAlbum2PostsMock,
         imageUrl: img,
@@ -31,7 +33,8 @@ export const profileAlbumsMock = [
     createAlbum({
         UUID: "00000000-0000-4000-8000-000000000006",
         name: "test album 3",
-        description: "Description of album 3 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
+        description:
+            "Description of album 3 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 0,
         postsList: [],
         imageUrl: img,
@@ -40,7 +43,8 @@ export const profileAlbumsMock = [
     createAlbum({
         UUID: "00000000-0000-4000-8000-000000000008",
         name: "test album 4",
-        description: "Description of album 4 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
+        description:
+            "Description of album 4 Description of album 2 Description of album 2 Description of album 2 Description of album 2",
         postCount: 0,
         postsList: [],
         imageUrl: img,
@@ -51,7 +55,8 @@ export const profileAlbumsMock = [
 export const albumMock = createAlbum({
     UUID: "00000000-0000-4000-8000-00000000000b",
     name: "Album title",
-    description: "Description Description Description Description Description Description Description Description Description",
+    description:
+        "Description Description Description Description Description Description Description Description Description",
     postCount: 4,
     postsList: profileAlbum1PostsMock,
     imageUrl: img,

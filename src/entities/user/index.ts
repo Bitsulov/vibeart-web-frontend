@@ -8,9 +8,9 @@ export type {
     RefreshRequest,
     UserDetailResponse
 } from "./lib/types";
-export {userReducer, setUserInfo} from "./model/userSlice";
-export {selectUserInfo, selectIsAuthenticated, selectUser} from "./model/selectors";
-export {createUser} from "./model/createUser";
+export { userReducer, setUserInfo } from "./model/userSlice";
+export { selectUserInfo, selectIsAuthenticated, selectUser } from "./model/selectors";
+export { createUser } from "./model/createUser";
 export {
     principalUserMock,
     profileUserMock,
@@ -18,4 +18,4 @@ export {
     authResponseMock,
     userDetailResponseMock
 } from "./const/mockConst";
-export {register, verify} from "./api/userApi";
+export { register, verify } from "./api/userApi";

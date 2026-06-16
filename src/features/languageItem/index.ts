@@ -1,1 +1,1 @@
-export {LanguageItem} from "./ui/languageItem";
+export { LanguageItem } from "./ui/languageItem";

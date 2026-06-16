@@ -5,6 +5,8 @@ import React from "react";
  *
  * @param setIsBurgerOpen - Сеттер состояния открытия меню.
  */
-export function burgerButtonClickHandler(setIsBurgerOpen: React.Dispatch<React.SetStateAction<boolean>>) {
+export function burgerButtonClickHandler(
+    setIsBurgerOpen: React.Dispatch<React.SetStateAction<boolean>>
+) {
     setIsBurgerOpen(state => !state);
 }

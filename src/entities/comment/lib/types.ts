@@ -1,4 +1,4 @@
-import type {UserType} from "entities/user";
+import type { UserType } from "entities/user";
 
 /**
  * Описывает один комментарий, оставленный пользователем

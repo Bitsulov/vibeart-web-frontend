@@ -1,28 +1,28 @@
 import c from "./postCard.module.scss";
-import {ChevronDown, Flag, Heart} from "lucide-react";
-import {StatItem} from "features/statItem";
-import {PostTag} from "features/postTag";
+import { ChevronDown, Flag, Heart } from "lucide-react";
+import { StatItem } from "features/statItem";
+import { PostTag } from "features/postTag";
 import defaultAvatar from "shared/icons/icon-user.svg";
-import {useDispatch, useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
-import {getLocalTimeNumbers} from "shared/lib/getLocalTimeNumbers";
-import {useState} from "react";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
+import { getLocalTimeNumbers } from "shared/lib/getLocalTimeNumbers";
+import { useState } from "react";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
 import clsx from "clsx";
-import {openDescriptionHandler} from "../model/openDescriptionHandler";
-import {useTranslation} from "react-i18next";
-import {Link, useNavigate} from "react-router-dom";
-import type {TagType} from "entities/tag";
-import {DeleteButton} from "features/deleteButton";
-import {EditButton} from "features/editButton";
-import {BackLink} from "features/backLink";
-import {likeClickHandler} from "../model/likeClickHandler";
-import {reportClickHandler} from "../model/reportClickHandler";
-import {showHint} from "../model/showHint";
-import {hideHint} from "../model/hideHint";
-import {ConfirmModal} from "widgets/confirmModal";
-import {deleteButtonClickHandler} from "../model/deleteButtonClickHandler";
-import {confirmDeletePost} from "../model/confirmDeletePost";
+import { openDescriptionHandler } from "../model/openDescriptionHandler";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+import type { TagType } from "entities/tag";
+import { DeleteButton } from "features/deleteButton";
+import { EditButton } from "features/editButton";
+import { BackLink } from "features/backLink";
+import { likeClickHandler } from "../model/likeClickHandler";
+import { reportClickHandler } from "../model/reportClickHandler";
+import { showHint } from "../model/showHint";
+import { hideHint } from "../model/hideHint";
+import { ConfirmModal } from "widgets/confirmModal";
+import { deleteButtonClickHandler } from "../model/deleteButtonClickHandler";
+import { confirmDeletePost } from "../model/confirmDeletePost";
 
 /** Свойства компонента {@link PostCard}. */
 interface PostCardProps {
@@ -103,7 +103,7 @@ export const PostCard = ({
         <section className={c.post_card}>
             <ConfirmModal
                 confirmFn={() => confirmDeletePost(navigate, authorUUID)}
-                ariaLabelConfirm={t("ariaLabel.deletePostModal", {name: title})}
+                ariaLabelConfirm={t("ariaLabel.deletePostModal", { name: title })}
                 text={t("modal.deletePost")}
                 isShowModal={isShowConfirm}
                 setIsShowModal={setIsShowConfirm}
@@ -115,7 +115,9 @@ export const PostCard = ({
                         <div className={c.mobile_actions}>
                             <DeleteButton
                                 ariaLabel={t("ariaLabel.deletePost")}
-                                onMouseEnter={() => showHint(dispatch, t("hint.deletePost"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.deletePost"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 onClick={() => deleteButtonClickHandler(setIsShowConfirm)}
                                 className={c.delete}
@@ -124,7 +126,9 @@ export const PostCard = ({
                                 UUID={UUID}
                                 type="post"
                                 ariaLabel={t("ariaLabel.editPost")}
-                                onMouseEnter={() => showHint(dispatch, t("hint.editPost"))}
+                                onMouseEnter={() =>
+                                    showHint(dispatch, t("hint.editPost"))
+                                }
                                 onMouseLeave={() => hideHint(dispatch)}
                                 className={c.edit}
                             />
@@ -133,32 +137,55 @@ export const PostCard = ({
                 </div>
                 <div className={c.card_area}>
                     <article className={c.card}>
-                        <img decoding="async" width="268" height="268" src={imageUrl} alt={title} className={c.card_img} />
+                        <img
+                            decoding="async"
+                            width="268"
+                            height="268"
+                            src={imageUrl}
+                            alt={title}
+                            className={c.card_img}
+                        />
                         <div className={c.content}>
                             <div className={c.stats}>
                                 <StatItem
                                     type="button"
-                                    ariaLabel={isLiked ? t("ariaLabel.unlike") : t("ariaLabel.like")}
+                                    ariaLabel={
+                                        isLiked
+                                            ? t("ariaLabel.unlike")
+                                            : t("ariaLabel.like")
+                                    }
                                     iconClassName={c.stat_icon}
                                     className={clsx(c.stat, isLiked && c.active)}
-                                    onClick={() => likeClickHandler(setLikes, isLiked, setIsLiked)}
+                                    onClick={() =>
+                                        likeClickHandler(setLikes, isLiked, setIsLiked)
+                                    }
                                     Icon={Heart}
                                     number={likes}
                                 />
                                 <StatItem
                                     type="button"
                                     iconClassName={c.stat_icon}
-                                    ariaLabel={isReported ? t("ariaLabel.reported") : t("ariaLabel.report")}
+                                    ariaLabel={
+                                        isReported
+                                            ? t("ariaLabel.reported")
+                                            : t("ariaLabel.report")
+                                    }
                                     className={clsx(c.stat, isReported && c.active)}
-                                    onMouseEnter={() => showHint(dispatch, t("hint.report"))}
+                                    onMouseEnter={() =>
+                                        showHint(dispatch, t("hint.report"))
+                                    }
                                     onMouseLeave={() => hideHint(dispatch)}
-                                    onClick={() => reportClickHandler(isReported, setIsReported)}
+                                    onClick={() =>
+                                        reportClickHandler(isReported, setIsReported)
+                                    }
                                     Icon={Flag}
                                     number={reportsCount}
                                 />
                             </div>
                             <Link
-                                aria-label={t("ariaLabel.goToUserProfile", {name: authorName})}
+                                aria-label={t("ariaLabel.goToUserProfile", {
+                                    name: authorName
+                                })}
                                 to={`/profile/${authorUUID}`}
                                 className={c.author}
                             >
@@ -170,31 +197,40 @@ export const PostCard = ({
                                     width="32"
                                     height="32"
                                 />
-                                <p className={c.author_name}>
-                                    {authorName}
-                                </p>
+                                <p className={c.author_name}>{authorName}</p>
                             </Link>
-                            {albumName &&
+                            {albumName && (
                                 <p className={c.album}>
                                     {t("post.inAlbum")}{" "}
                                     <Link
-                                        aria-label={t("ariaLabel.goToAlbum", {name: albumName})}
+                                        aria-label={t("ariaLabel.goToAlbum", {
+                                            name: albumName
+                                        })}
                                         to={`/album/${albumUUID}`}
                                         className={c.album_name}
                                     >
                                         {albumName}
                                     </Link>
                                 </p>
-                            }
+                            )}
                             <h1 className={c.title}>{title}</h1>
                             <div className={c.description_wrapper}>
-                                <p className={clsx(c.description, !isDescriptionOpened && !isDesktop && c.description_collapsed)}>
+                                <p
+                                    className={clsx(
+                                        c.description,
+                                        !isDescriptionOpened &&
+                                            !isDesktop &&
+                                            c.description_collapsed
+                                    )}
+                                >
                                     {description}
                                 </p>
                                 {!isDescriptionOpened && !isDesktop && (
                                     <button
                                         className={c.expand_btn}
-                                        onClick={() => openDescriptionHandler(setIsDescriptionOpened)}
+                                        onClick={() =>
+                                            openDescriptionHandler(setIsDescriptionOpened)
+                                        }
                                         aria-label={t("ariaLabel.openDescription")}
                                     >
                                         <ChevronDown width="24" height="24" />
@@ -218,15 +254,21 @@ export const PostCard = ({
                                     UUID={UUID}
                                     type="post"
                                     ariaLabel={t("ariaLabel.editPost")}
-                                    onMouseEnter={() => showHint(dispatch, t("hint.editPost"))}
+                                    onMouseEnter={() =>
+                                        showHint(dispatch, t("hint.editPost"))
+                                    }
                                     onMouseLeave={() => hideHint(dispatch)}
                                     className={c.edit}
                                 />
                                 <DeleteButton
                                     ariaLabel={t("ariaLabel.deletePost")}
-                                    onMouseEnter={() => showHint(dispatch, t("hint.deletePost"))}
+                                    onMouseEnter={() =>
+                                        showHint(dispatch, t("hint.deletePost"))
+                                    }
                                     onMouseLeave={() => hideHint(dispatch)}
-                                    onClick={() => deleteButtonClickHandler(setIsShowConfirm)}
+                                    onClick={() =>
+                                        deleteButtonClickHandler(setIsShowConfirm)
+                                    }
                                     className={c.delete}
                                 />
                             </div>

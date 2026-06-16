@@ -1,1 +1,1 @@
-export {StatItem} from "./ui/statItem";
+export { StatItem } from "./ui/statItem";

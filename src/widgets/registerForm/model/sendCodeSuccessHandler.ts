@@ -1,7 +1,7 @@
-import type {AxiosResponse} from "axios";
-import type {SendCodeRequest} from "entities/user";
-import type {Dispatch} from "@reduxjs/toolkit";
-import {showToast} from "features/toast";
+import type { AxiosResponse } from "axios";
+import type { SendCodeRequest } from "entities/user";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { showToast } from "features/toast";
 
 /**
  * Обрабатывает успешную повторную отправку кода подтверждения:
@@ -14,11 +14,13 @@ import {showToast} from "features/toast";
 export function sendCodeSuccessHandler(
     _response: AxiosResponse<string>,
     request: SendCodeRequest,
-    dispatch: Dispatch,
+    dispatch: Dispatch
 ) {
-    dispatch(showToast({
-        message: "api.sendCodeAccess",
-        type: "success",
-        params: {email: request.email}
-    }));
+    dispatch(
+        showToast({
+            message: "api.sendCodeAccess",
+            type: "success",
+            params: { email: request.email }
+        })
+    );
 }

@@ -1,1 +1,1 @@
-export {ConfirmModal} from "./ui/confirmModal";
+export { ConfirmModal } from "./ui/confirmModal";

@@ -1,1 +1,1 @@
-export {CommunitiesList} from "./ui/communitiesList";
+export { CommunitiesList } from "./ui/communitiesList";

@@ -1,4 +1,4 @@
-import type {UserType} from "../lib/types";
+import type { UserType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта пользователя.

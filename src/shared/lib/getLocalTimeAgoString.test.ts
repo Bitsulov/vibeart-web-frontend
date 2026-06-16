@@ -1,8 +1,8 @@
-import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
-import {getLocalTimeAgoString} from "./getLocalTimeAgoString";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { getLocalTimeAgoString } from "./getLocalTimeAgoString";
 
 vi.mock("i18next", () => ({
-    default: { t: (key: string) => key },
+    default: { t: (key: string) => key }
 }));
 
 describe("getLocalTimeAgoString - Возвращает строку относительного времени в локальном виде", () => {

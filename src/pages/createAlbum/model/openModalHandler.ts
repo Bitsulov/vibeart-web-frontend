@@ -1,4 +1,4 @@
-import type {Dispatch, SetStateAction} from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Открывает модальное окно подтверждения создания альбома без обложки.

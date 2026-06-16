@@ -4,7 +4,7 @@
     position: relative;
     border-radius: 2rem;
     background-color: global.$bright-background;
-    padding: .5rem 0 1.5rem;
+    padding: 0.5rem 0 1.5rem;
     display: flex;
     flex-direction: column;
 
@@ -24,7 +24,7 @@
     }
 
     .info {
-        border-bottom: .1rem solid global.$active-color;
+        border-bottom: 0.1rem solid global.$active-color;
         padding: 0 1.5rem;
 
         .title {
@@ -36,7 +36,7 @@
         .description {
             font-size: clamp(1.6rem, 2.5vw, 2rem);
             font-weight: 400;
-            margin: .6rem 0 1rem;
+            margin: 0.6rem 0 1rem;
         }
     }
 
@@ -56,14 +56,15 @@
                 cursor: pointer;
 
                 &:hover {
-                    box-shadow: 0 0 clamp(2rem, 2vw, 3rem) .1rem rgba(global.$active-color, .5);
+                    box-shadow: 0 0 clamp(2rem, 2vw, 3rem) 0.1rem
+                        rgba(global.$active-color, 0.5);
                 }
             }
 
             .delete {
                 border-radius: 1.2rem;
                 background-color: global.$dark-background;
-                border: .1rem solid global.$negative-active;
+                border: 0.1rem solid global.$negative-active;
                 color: global.$negative-active;
                 width: 7rem;
                 height: 7rem;
@@ -99,19 +100,19 @@
             flex-direction: column;
             align-items: center;
 
-            @media (min-width: 1200px) {
+            @media (width >= 1200px) {
                 padding: 1rem 1.2rem 0;
             }
 
-            @media (min-width: 1370px) {
+            @media (width >= 1370px) {
                 padding: 1rem 5.6rem 0;
             }
 
-            @media (min-width: 1500px) {
+            @media (width >= 1500px) {
                 padding: 1rem 1.2rem 0;
             }
 
-            @media (min-width: 1670px) {
+            @media (width >= 1670px) {
                 padding: 1rem 5.6rem 0;
             }
 
@@ -119,7 +120,7 @@
                 display: inline-block;
                 width: 14rem;
                 height: 14rem;
-                border: .1rem solid global.$active-color;
+                border: 0.1rem solid global.$active-color;
                 border-radius: 50%;
             }
 
@@ -135,7 +136,7 @@
                     border-radius: 1.1rem;
                     font-size: clamp(2rem, 3vw, 2.4rem);
 
-                    @media (min-width: 1200px) {
+                    @media (width >= 1200px) {
                         padding-left: 4rem;
                         padding-right: 4rem;
                     }
@@ -146,7 +147,7 @@
                     border-radius: 1.1rem;
                     font-size: clamp(2rem, 3vw, 2.4rem);
                     background-color: transparent;
-                    border: .1rem solid global.$negative-active;
+                    border: 0.1rem solid global.$negative-active;
                     color: global.$negative-active;
                     cursor: pointer;
                     transition: global.$transition-time;
@@ -156,7 +157,7 @@
                         color: global.$active-color;
                     }
 
-                    @media (min-width: 1200px) {
+                    @media (width >= 1200px) {
                         padding-left: 4rem;
                         padding-right: 4rem;
                     }
@@ -172,7 +173,7 @@
                 display: flex;
                 align-items: center;
                 font-size: clamp(2rem, 4vw, 2.8rem);
-                margin-right: .5rem;
+                margin-right: 0.5rem;
                 font-weight: 400;
             }
 
@@ -183,7 +184,7 @@
     }
 }
 
-@media (min-width: 340px) {
+@media (width >= 340px) {
     .wrapper {
         .actions {
             .buttons {
@@ -193,25 +194,25 @@
     }
 }
 
-@media (min-width: 425px) {
+@media (width >= 425px) {
     .wrapper {
         .info {
-            padding: clamp(.5rem, .5vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
+            padding: clamp(0.5rem, 0.5vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
 
             .description {
-                margin-top: clamp(.4rem, 1.25vw, .8rem);
+                margin-top: clamp(0.4rem, 1.25vw, 0.8rem);
             }
         }
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .wrapper {
         padding: 0;
         flex-direction: row;
 
         .info {
-            border-right: .1rem solid global.$active-color;
+            border-right: 0.1rem solid global.$active-color;
             border-bottom: 0;
             flex: 1;
         }

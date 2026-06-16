@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {reportClickHandler} from "./reportClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { reportClickHandler } from "./reportClickHandler";
 
 describe("reportClickHandler - отправляет жалобу один раз", () => {
     it("Устанавливает isReported в true, если ещё не отправлено", () => {

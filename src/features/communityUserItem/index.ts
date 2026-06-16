@@ -1,1 +1,1 @@
-export {CommunityUserItem} from "./ui/communityUserItem";
+export { CommunityUserItem } from "./ui/communityUserItem";

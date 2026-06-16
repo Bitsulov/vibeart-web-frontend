@@ -1,8 +1,8 @@
 import c from "./dropdown.module.scss";
-import type {LucideIcon} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import React from "react";
 import clsx from "clsx";
-import {optionClickHandler} from "../model/optionClickHandler";
+import { optionClickHandler } from "../model/optionClickHandler";
 
 /** Свойства компонента {@link Dropdown}. */
 interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
@@ -44,8 +44,8 @@ export const Dropdown = ({
     className = "",
     ...props
 }: DropdownProps) => {
-	return (
-		<ul
+    return (
+        <ul
             id={id ? id : undefined}
             role="menu"
             className={clsx(c.drowdown, className, isOpen && c.open)}
@@ -61,14 +61,22 @@ export const Dropdown = ({
                             onClick={() => optionClickHandler(option.onClick, setIsOpen)}
                             aria-label={option.ariaLabel ? option.ariaLabel : undefined}
                             className={c.button}
-                            style={{"--option-color": option.color, color: option.color} as React.CSSProperties}
+                            style={
+                                {
+                                    "--option-color": option.color,
+                                    color: option.color
+                                } as React.CSSProperties
+                            }
                         >
-                            <Icon className={c.icon} color={option.color || "currentColor"} />
+                            <Icon
+                                className={c.icon}
+                                color={option.color || "currentColor"}
+                            />
                             {option.text}
                         </button>
                     </li>
-                )
+                );
             })}
-		</ul>
-	)
-}
+        </ul>
+    );
+};

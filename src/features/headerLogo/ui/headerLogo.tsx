@@ -1,14 +1,14 @@
 import c from "./headerLogo.module.scss";
 import logoIcon from "shared/icons/icon-logo-white.svg";
-import {Link, useLocation} from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 /** Логотип VibeArt в шапке — ссылка на главную страницу. */
 export const HeaderLogo = ({ ...props }) => {
     const { t } = useTranslation();
     const path = useLocation().pathname;
 
-	return (
+    return (
         <Link
             to="/"
             aria-current={path === "/" ? "page" : undefined}
@@ -26,5 +26,5 @@ export const HeaderLogo = ({ ...props }) => {
                 loading="lazy"
             />
         </Link>
-	)
-}
+    );
+};

@@ -1,1 +1,1 @@
-export {AlbumModal} from "./ui/albumModal";
+export { AlbumModal } from "./ui/albumModal";

@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {clickHandler} from "./clickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { clickHandler } from "./clickHandler";
 import type React from "react";
 
 describe("clickHandler - вызывает обработчики и скрывает подсказку", () => {

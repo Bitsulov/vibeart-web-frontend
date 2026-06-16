@@ -11,13 +11,13 @@
         flex-direction: column;
         align-items: center;
         background-color: global.$bright-background;
-        border: .1rem solid global.$active-color;
+        border: 0.1rem solid global.$active-color;
         border-radius: 2.5rem;
         width: 23rem;
         height: 30rem;
         cursor: pointer;
         animation: appearing 1s;
-        box-shadow: 0 0 1rem .5rem global.$block-shadow-color;
+        box-shadow: 0 0 1rem 0.5rem global.$block-shadow-color;
         transition: global.$transition-time;
 
         &:hover {
@@ -37,7 +37,7 @@
             top: 18%;
             width: 9rem;
             height: 9rem;
-            stroke-width: .1rem;
+            stroke-width: 0.1rem;
             transition: global.$transition-time;
         }
 
@@ -46,7 +46,7 @@
             top: 65%;
             font-size: 2.7rem;
             font-weight: 500;
-            letter-spacing: .2rem;
+            letter-spacing: 0.2rem;
             transition: global.$transition-time;
         }
     }
@@ -69,7 +69,7 @@
     .list_wrapper {
         display: grid;
         grid-template-rows: 0fr;
-        animation: show .8s forwards;
+        animation: show 0.8s forwards;
     }
 
     .list {
@@ -77,13 +77,15 @@
         gap: 2rem;
         column-gap: 4rem;
         display: grid;
-        justify-content: space-around;
-        align-content: start;
+        place-content: start space-around;
         grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
         overflow: hidden;
 
         &.grid_3 {
-            grid-template-columns: minmax(23rem, 1fr) minmax(23rem, 1fr) minmax(23rem, 1fr);
+            grid-template-columns: minmax(23rem, 1fr) minmax(23rem, 1fr) minmax(
+                    23rem,
+                    1fr
+                );
         }
 
         &.flexible {
@@ -102,7 +104,7 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .post_list {
         .list {
             row-gap: 3rem;

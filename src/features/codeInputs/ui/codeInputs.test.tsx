@@ -1,8 +1,8 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {CodeInputs} from "./codeInputs";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { CodeInputs } from "./codeInputs";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 describe("CodeInputs - 6-значное поле ввода кода", () => {
     it("Рендерит 6 ячеек для ввода", () => {

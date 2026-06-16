@@ -1,11 +1,11 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {SettingsForm} from "./settingsForm";
-import {screen} from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { SettingsForm } from "./settingsForm";
+import { screen } from "@testing-library/react";
 
 const defaultProps = {
-    userInfo: {name: "Test User", avatarUrl: ""},
-    setUserInfo: () => {},
+    userInfo: { name: "Test User", avatarUrl: "" },
+    setUserInfo: () => {}
 };
 
 describe("SettingsForm - форма настроек профиля", () => {
@@ -27,7 +27,9 @@ describe("SettingsForm - форма настроек профиля", () => {
     it("Отображает кнопку сохранения", () => {
         renderWithProviders(<SettingsForm {...defaultProps} />);
 
-        expect(screen.getByRole("button", {name: "ariaLabel.saveUser"})).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.saveUser" })
+        ).toBeInTheDocument();
     });
 
     it("Отображает поле ввода имени", () => {

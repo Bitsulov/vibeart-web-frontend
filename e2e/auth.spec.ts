@@ -5,7 +5,9 @@ test.describe("Auth - страница авторизации", () => {
         await page.goto("/en/auth");
 
         await expect(page.getByRole("main")).toBeVisible();
-        await expect(page.getByRole("heading", { level: 1, name: "An error occurred" })).not.toBeVisible();
+        await expect(
+            page.getByRole("heading", { level: 1, name: "An error occurred" })
+        ).not.toBeVisible();
     });
 
     test("Заголовок и описание страницы", async ({ page }) => {
@@ -25,11 +27,17 @@ test.describe("Auth - страница авторизации", () => {
         await expect(page.getByLabel("Enter password")).toBeVisible();
     });
 
-    test("Отображаются ссылки на регистрацию и восстановление пароля", async ({ page }) => {
+    test("Отображаются ссылки на регистрацию и восстановление пароля", async ({
+        page
+    }) => {
         await page.goto("/en/auth");
 
-        await expect(page.getByRole("link", { name: "Go to registration" })).toBeVisible();
-        await expect(page.getByRole("link", { name: "Go to password recovery" })).toBeVisible();
+        await expect(
+            page.getByRole("link", { name: "Go to registration" })
+        ).toBeVisible();
+        await expect(
+            page.getByRole("link", { name: "Go to password recovery" })
+        ).toBeVisible();
     });
 
     test("Пустая отправка формы показывает ошибку", async ({ page }) => {

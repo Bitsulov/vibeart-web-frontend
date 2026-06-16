@@ -1,1 +1,1 @@
-export {InputError} from "./ui/inputError";
+export { InputError } from "./ui/inputError";

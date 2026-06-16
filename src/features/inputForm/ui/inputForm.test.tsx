@@ -1,24 +1,35 @@
-import {describe, expect, it, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {screen} from "@testing-library/react";
-import {InputForm} from "./inputForm";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { screen } from "@testing-library/react";
+import { InputForm } from "./inputForm";
 import c from "./inputForm.module.scss";
-import {userEvent} from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 
 describe("inputForm - поле для ввода текста в форме", () => {
     it("Нет ошибки, форма не отправлена", async () => {
         const onChange = vi.fn();
 
         renderWithProviders(
-            <InputForm placeholder="p" onChange={onChange} type="text" isError={false} isSubmitted={false} id="id" />
+            <InputForm
+                placeholder="p"
+                onChange={onChange}
+                type="text"
+                isError={false}
+                isSubmitted={false}
+                id="id"
+            />
         );
 
         const user = userEvent.setup();
 
         const input = screen.getByRole("textbox", { name: "p" });
         const placeholder = screen.getByText("p");
-        const showPassword = screen.queryByRole("button", { name: "ariaLabel.showPassword" });
-        const hidePassword = screen.queryByRole("button", { name: "ariaLabel.hidePassword" });
+        const showPassword = screen.queryByRole("button", {
+            name: "ariaLabel.showPassword"
+        });
+        const hidePassword = screen.queryByRole("button", {
+            name: "ariaLabel.hidePassword"
+        });
         const errorIcon = input.querySelector(c.error_icon);
         const correctIcon = input.querySelector(c.correct_icon);
 
@@ -36,15 +47,26 @@ describe("inputForm - поле для ввода текста в форме", ()
         const onChange = vi.fn();
 
         renderWithProviders(
-            <InputForm placeholder="p" onChange={onChange} type="text" isError={true} isSubmitted={false} id="id" />
+            <InputForm
+                placeholder="p"
+                onChange={onChange}
+                type="text"
+                isError={true}
+                isSubmitted={false}
+                id="id"
+            />
         );
 
         const user = userEvent.setup();
 
         const input = screen.getByRole("textbox", { name: "p" });
         const placeholder = screen.getByText("p");
-        const showPassword = screen.queryByRole("button", { name: "ariaLabel.showPassword" });
-        const hidePassword = screen.queryByRole("button", { name: "ariaLabel.hidePassword" });
+        const showPassword = screen.queryByRole("button", {
+            name: "ariaLabel.showPassword"
+        });
+        const hidePassword = screen.queryByRole("button", {
+            name: "ariaLabel.hidePassword"
+        });
         const errorIcon = input.querySelector(c.error_icon);
         const correctIcon = input.querySelector(c.correct_icon);
 
@@ -62,15 +84,26 @@ describe("inputForm - поле для ввода текста в форме", ()
         const onChange = vi.fn();
 
         renderWithProviders(
-            <InputForm placeholder="p" onChange={onChange} type="password" isError={false} isSubmitted={false} id="id" />
+            <InputForm
+                placeholder="p"
+                onChange={onChange}
+                type="password"
+                isError={false}
+                isSubmitted={false}
+                id="id"
+            />
         );
 
         const user = userEvent.setup();
 
         const input = screen.getByLabelText("p");
         const placeholder = screen.getByText("p");
-        const showPassword = screen.queryByRole("button", { name: "ariaLabel.showPassword" });
-        const hidePassword = screen.queryByRole("button", { name: "ariaLabel.hidePassword" });
+        const showPassword = screen.queryByRole("button", {
+            name: "ariaLabel.showPassword"
+        });
+        const hidePassword = screen.queryByRole("button", {
+            name: "ariaLabel.hidePassword"
+        });
         const errorIcon = input.querySelector(c.error_icon);
         const correctIcon = input.querySelector(c.correct_icon);
 
@@ -88,22 +121,33 @@ describe("inputForm - поле для ввода текста в форме", ()
         const onChange = vi.fn();
 
         renderWithProviders(
-            <InputForm placeholder="p" onChange={onChange} type="password" isError={false} isSubmitted={false} id="id" />
+            <InputForm
+                placeholder="p"
+                onChange={onChange}
+                type="password"
+                isError={false}
+                isSubmitted={false}
+                id="id"
+            />
         );
 
         const user = userEvent.setup();
 
         const input = screen.getByLabelText("p");
         const placeholder = screen.getByText("p");
-        const showPassword = screen.queryByRole("button", { name: "ariaLabel.showPassword" });
+        const showPassword = screen.queryByRole("button", {
+            name: "ariaLabel.showPassword"
+        });
         const errorIcon = input.querySelector(c.error_icon);
         const correctIcon = input.querySelector(c.correct_icon);
         let hidePassword: unknown = "";
 
         await user.type(input, "a");
-        if(showPassword) {
+        if (showPassword) {
             await user.click(showPassword);
-            hidePassword = screen.queryByRole("button", { name: "ariaLabel.hidePassword" });
+            hidePassword = screen.queryByRole("button", {
+                name: "ariaLabel.hidePassword"
+            });
         }
 
         expect(placeholder).toBeInTheDocument();

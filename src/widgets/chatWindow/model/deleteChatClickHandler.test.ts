@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {deleteChatClickHandler} from "./deleteChatClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { deleteChatClickHandler } from "./deleteChatClickHandler";
 
 describe("deleteChatClickHandler - открывает модальное окно удаления чата", () => {
     it("Вызывает setIsShowModal(true)", () => {

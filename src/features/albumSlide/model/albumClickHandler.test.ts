@@ -1,5 +1,5 @@
-import {describe, expect, it, vi} from "vitest";
-import {albumClickHandler} from "./albumClickHandler";
+import { describe, expect, it, vi } from "vitest";
+import { albumClickHandler } from "./albumClickHandler";
 
 describe("albumClickHandler - клик обработчик albumSlide", () => {
     it("Вызов функции", () => {
@@ -8,5 +8,5 @@ describe("albumClickHandler - клик обработчик albumSlide", () => {
         albumClickHandler(setSelectedAlbum, "UUID");
 
         expect(setSelectedAlbum).toHaveBeenCalledWith("UUID");
-    })
+    });
 });

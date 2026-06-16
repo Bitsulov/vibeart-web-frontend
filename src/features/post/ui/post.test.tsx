@@ -1,9 +1,9 @@
-import {afterEach, describe, expect, it, vi} from "vitest";
-import {screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {Post} from "./post";
-import type {UserType} from "entities/user";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { Post } from "./post";
+import type { UserType } from "entities/user";
 import * as postClickHandlerModule from "../model/postClickHandler";
 import * as toggleLikeHandlerModule from "../model/toggleLikeHandler";
 
@@ -27,7 +27,7 @@ const mockAuthor: UserType = {
     accessToken: "",
     refreshToken: "",
     accessTokenExpiresIn: 0,
-    refreshTokenExpiresIn: 0,
+    refreshTokenExpiresIn: 0
 };
 
 const defaultProps = {
@@ -37,14 +37,16 @@ const defaultProps = {
     date: "2026-01-01T00:00:00.000Z",
     imageUrl: "/img/post.jpg",
     likesCount: 5,
-    commentsCount: 3,
+    commentsCount: 3
 };
 
 describe("Post - карточка поста", () => {
     afterEach(() => vi.restoreAllMocks());
 
     it("Клик по статье вызывает postClickHandler с нужным UUID", async () => {
-        const spy = vi.spyOn(postClickHandlerModule, "postClickHandler").mockImplementation(() => {});
+        const spy = vi
+            .spyOn(postClickHandlerModule, "postClickHandler")
+            .mockImplementation(() => {});
 
         renderWithProviders(<Post {...defaultProps} />);
 
@@ -54,7 +56,9 @@ describe("Post - карточка поста", () => {
     });
 
     it("Повторный клик по статье вызывает postClickHandler дважды", async () => {
-        const spy = vi.spyOn(postClickHandlerModule, "postClickHandler").mockImplementation(() => {});
+        const spy = vi
+            .spyOn(postClickHandlerModule, "postClickHandler")
+            .mockImplementation(() => {});
 
         renderWithProviders(<Post {...defaultProps} />);
 
@@ -70,7 +74,7 @@ describe("Post - карточка поста", () => {
 
         renderWithProviders(<Post {...defaultProps} />);
 
-        await userEvent.click(screen.getByRole("button", {name: "ariaLabel.like"}));
+        await userEvent.click(screen.getByRole("button", { name: "ariaLabel.like" }));
 
         expect(spy).toHaveBeenCalled();
     });
@@ -78,14 +82,18 @@ describe("Post - карточка поста", () => {
     it("Повторный клик по кнопке лайка снимает лайк (ariaLabel меняется)", async () => {
         renderWithProviders(<Post {...defaultProps} />);
 
-        const likeButton = screen.getByRole("button", {name: "ariaLabel.like"});
+        const likeButton = screen.getByRole("button", { name: "ariaLabel.like" });
         await userEvent.click(likeButton);
 
-        expect(screen.getByRole("button", {name: "ariaLabel.unlike"})).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.unlike" })
+        ).toBeInTheDocument();
     });
 
     it("При type=button клик вызывает переданный onClick, а не postClickHandler", async () => {
-        const spy = vi.spyOn(postClickHandlerModule, "postClickHandler").mockImplementation(() => {});
+        const spy = vi
+            .spyOn(postClickHandlerModule, "postClickHandler")
+            .mockImplementation(() => {});
         const onClick = vi.fn();
 
         renderWithProviders(<Post {...defaultProps} type="button" onClick={onClick} />);

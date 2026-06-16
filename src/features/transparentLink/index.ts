@@ -1,1 +1,1 @@
-export {TransparentLink} from "./ui/transparentLink";
+export { TransparentLink } from "./ui/transparentLink";

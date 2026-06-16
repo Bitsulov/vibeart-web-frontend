@@ -4,13 +4,14 @@
     margin-top: clamp(4.5rem, 10vw, 8rem);
 
     .authForm {
-        animation: fadeIn global.$transition-time ease;
+        animation: fade-in global.$transition-time ease;
         max-width: 57rem;
         margin: 0 auto;
         position: relative;
         background-color: global.$bright-background;
         border-radius: clamp(1.5rem, 4.5vw, 4.5rem);
-        padding: clamp(3.4rem, 6vw, 5.5rem) clamp(2.5rem, 6vw, 5.2rem) clamp(1.5rem, 4vw, 4rem);
+        padding: clamp(3.4rem, 6vw, 5.5rem) clamp(2.5rem, 6vw, 5.2rem)
+            clamp(1.5rem, 4vw, 4rem);
 
         .title {
             font-size: clamp(2rem, 6vw, 4.8rem);
@@ -53,24 +54,24 @@
                 padding-left: 0;
                 padding-right: 0;
                 font-size: clamp(1.2rem, 3.6vw, 2.4rem);
-                border-radius: clamp(.7rem, 2vw, 1.2rem);
+                border-radius: clamp(0.7rem, 2vw, 1.2rem);
             }
 
             .auth_button {
                 flex: 5;
-                padding: clamp(.5rem, 1.5vw, 1rem) 0;
+                padding: clamp(0.5rem, 1.5vw, 1rem) 0;
                 font-size: clamp(1.2rem, 3.6vw, 2.4rem);
-                border-radius: clamp(.7rem, 2vw, 1.2rem);
+                border-radius: clamp(0.7rem, 2vw, 1.2rem);
             }
         }
 
         .back {
             position: absolute;
-            padding: clamp(.5rem, 1vw, .8rem);
+            padding: clamp(0.5rem, 1vw, 0.8rem);
             background-color: global.$active-color;
             color: global.$bright-background;
-            border-radius: clamp(.6rem, 1vw, 1.2rem);
-            top: clamp(.6rem, 1vw, 1.2rem);
+            border-radius: clamp(0.6rem, 1vw, 1.2rem);
+            top: clamp(0.6rem, 1vw, 1.2rem);
             left: clamp(1.2rem, 2vw, 2.5rem);
             display: flex;
             align-items: center;
@@ -90,11 +91,11 @@
         .code {
             margin-top: 1rem;
 
-            @media (min-width: 380px) {
+            @media (width >= 380px) {
                 align-self: center;
             }
 
-            @media (min-width: 500px) {
+            @media (width >= 500px) {
                 align-self: start;
             }
         }
@@ -106,7 +107,7 @@
             margin-top: auto;
             align-self: center;
 
-            @media (min-width: 1200px) {
+            @media (width >= 1200px) {
                 position: absolute;
                 display: flex;
                 align-items: center;
@@ -124,17 +125,18 @@
     .codeForm {
         display: flex;
         flex-direction: column;
-        animation: fadeIn global.$transition-time ease;
+        animation: fade-in global.$transition-time ease;
         max-width: 57rem;
         min-height: clamp(30rem, 50vw, 40rem);
         margin: 0 auto;
         position: relative;
         background-color: global.$bright-background;
         border-radius: clamp(1.5rem, 4.5vw, 4.5rem);
-        padding: clamp(1.5rem, 3vw, 5.5rem) clamp(2.5rem, 6vw, 5.2rem) clamp(1.5rem, 4vw, 4rem);
+        padding: clamp(1.5rem, 3vw, 5.5rem) clamp(2.5rem, 6vw, 5.2rem)
+            clamp(1.5rem, 4vw, 4rem);
 
         .title {
-            margin: 0 .9rem;
+            margin: 0 0.9rem;
             font-size: clamp(1.8rem, 4vw, 3.2rem);
             font-weight: 800;
             text-align: center;
@@ -142,12 +144,12 @@
 
         .back {
             position: absolute;
-            padding: clamp(.5rem, 1vw, .8rem);
+            padding: clamp(0.5rem, 1vw, 0.8rem);
             background-color: global.$active-color;
             color: global.$bright-background;
-            border-radius: clamp(.6rem, 1vw, 1.2rem);
-            top: clamp(.6rem, 2vw, 1rem);
-            left: clamp(.6rem, 2vw, 2.5rem);
+            border-radius: clamp(0.6rem, 1vw, 1.2rem);
+            top: clamp(0.6rem, 2vw, 1rem);
+            left: clamp(0.6rem, 2vw, 2.5rem);
             display: flex;
             align-items: center;
             cursor: pointer;
@@ -166,11 +168,11 @@
         .code {
             margin-top: 1rem;
 
-            @media (min-width: 380px) {
+            @media (width >= 380px) {
                 align-self: center;
             }
 
-            @media (min-width: 500px) {
+            @media (width >= 500px) {
                 align-self: start;
             }
         }
@@ -188,7 +190,7 @@
             &.disabled {
                 color: global.$active-color;
                 text-decoration: none;
-                opacity: .5;
+                opacity: 0.5;
                 cursor: not-allowed;
             }
         }
@@ -200,7 +202,7 @@
             margin-top: auto;
             align-self: center;
 
-            @media (min-width: 1200px) {
+            @media (width >= 1200px) {
                 position: absolute;
                 display: flex;
                 align-items: center;
@@ -216,11 +218,12 @@
     }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     0% {
         opacity: 0;
         transform: translateY(8px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);

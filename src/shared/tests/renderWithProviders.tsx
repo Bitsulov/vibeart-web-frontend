@@ -13,16 +13,16 @@ import { I18nextProvider } from "react-i18next";
 import { configureStore } from "@reduxjs/toolkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { type RootState } from "app/store";
-import {rootReducer} from "app/store/rootReducer";
+import { rootReducer } from "app/store/rootReducer";
 import i18n from "../tests/i18n";
 
 /** Параметры рендера компонента в тестовом окружении. */
 interface Options extends RenderOptions {
     /** Начальное состояние Redux-хранилища. Используется для тестирования
      *  компонентов, зависящих от конкретных данных в хранилище. */
-    preloadedState?: Partial<RootState>
+    preloadedState?: Partial<RootState>;
     /** Начальный маршрут для `MemoryRouter`. По умолчанию `"/"`. */
-    route?: string
+    route?: string;
 }
 
 /**
@@ -47,26 +47,26 @@ interface Options extends RenderOptions {
  */
 export function renderWithProviders(
     ui: ReactElement,
-    { preloadedState, route = '/', ...options }: Options = {}
+    { preloadedState, route = "/", ...options }: Options = {}
 ) {
     const store = configureStore({
         reducer: rootReducer,
-        preloadedState,
-    })
+        preloadedState
+    });
 
-    const queryClient = new QueryClient({defaultOptions: {queries: {retry: false}}});
+    const queryClient = new QueryClient({
+        defaultOptions: { queries: { retry: false } }
+    });
 
     const Wrapper = ({ children }: { children: React.ReactNode }) => (
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <I18nextProvider i18n={i18n}>
-                        <MemoryRouter initialEntries={[route]}>
-                            {children}
-                        </MemoryRouter>
-                    </I18nextProvider>
-                </QueryClientProvider>
-            </Provider>
-    )
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <I18nextProvider i18n={i18n}>
+                    <MemoryRouter initialEntries={[route]}>{children}</MemoryRouter>
+                </I18nextProvider>
+            </QueryClientProvider>
+        </Provider>
+    );
 
-    return { store, ...render(ui, { wrapper: Wrapper, ...options }) }
+    return { store, ...render(ui, { wrapper: Wrapper, ...options }) };
 }

@@ -1,20 +1,25 @@
 import c from "./createCommunityWidget.module.scss";
-import {useForm, useWatch} from "react-hook-form";
-import {useTranslation} from "react-i18next";
-import type {ICreateCommunityForm} from "../lib/types";
-import {submitValidHandler} from "../model/submitValidHandler";
-import {submitInvalidHandler} from "../model/submitInvalidHandler";
-import type {UserType} from "entities/user";
-import {type ComponentPropsWithoutRef, type Dispatch, type SetStateAction, useState} from "react";
-import {useWindowWidth} from "shared/hooks/useWindowWidth";
-import {SettingsItem} from "features/settingsItem";
-import type {CommunityType} from "entities/community";
-import {StylizedButton} from "features/stylizedButton";
-import {useDispatch} from "react-redux";
-import {AddTags} from "widgets/addTags";
-import type {TagType} from "entities/tag";
-import {AddAdmins} from "widgets/addAdmins";
-import {BackLink} from "features/backLink";
+import { useForm, useWatch } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import type { ICreateCommunityForm } from "../lib/types";
+import { submitValidHandler } from "../model/submitValidHandler";
+import { submitInvalidHandler } from "../model/submitInvalidHandler";
+import type { UserType } from "entities/user";
+import {
+    type ComponentPropsWithoutRef,
+    type Dispatch,
+    type SetStateAction,
+    useState
+} from "react";
+import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { SettingsItem } from "features/settingsItem";
+import type { CommunityType } from "entities/community";
+import { StylizedButton } from "features/stylizedButton";
+import { useDispatch } from "react-redux";
+import { AddTags } from "widgets/addTags";
+import type { TagType } from "entities/tag";
+import { AddAdmins } from "widgets/addAdmins";
+import { BackLink } from "features/backLink";
 
 /** Свойства компонента {@link CreateCommunityWidget}. */
 interface CreateCommunityWidgetProps extends ComponentPropsWithoutRef<"form"> {
@@ -52,13 +57,22 @@ export const CreateCommunityWidget = ({
     const windowWidth = useWindowWidth();
     const isDesktop = windowWidth >= 1200;
 
-    const {register, setValue, handleSubmit, control, formState: {isSubmitted, errors} } = useForm<ICreateCommunityForm>({
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        formState: { isSubmitted, errors }
+    } = useForm<ICreateCommunityForm>({
         shouldFocusError: false
     });
 
-    const titleValue = useWatch<ICreateCommunityForm>({control, name: "title"});
-    const descriptionValue = useWatch<ICreateCommunityForm>({control, name: "description"});
-    const idValue = useWatch<ICreateCommunityForm>({control, name: "id"});
+    const titleValue = useWatch<ICreateCommunityForm>({ control, name: "title" });
+    const descriptionValue = useWatch<ICreateCommunityForm>({
+        control,
+        name: "description"
+    });
+    const idValue = useWatch<ICreateCommunityForm>({ control, name: "id" });
 
     const description = isDesktop
         ? "createCommunity.textDescriptionDesktop"
@@ -78,11 +92,11 @@ export const CreateCommunityWidget = ({
 
     const [selectedUsers, setSelectedUsers] = useState<UserType[]>([]);
 
-	return (
-		<form
+    return (
+        <form
             onSubmit={handleSubmit(
                 () => submitValidHandler(setValue),
-                (errors) => submitInvalidHandler(errors, dispatch),
+                errors => submitInvalidHandler(errors, dispatch)
             )}
             className={c.form}
             {...props}
@@ -90,7 +104,9 @@ export const CreateCommunityWidget = ({
             <div className="container">
                 <div className={c.form_inner}>
                     <BackLink className={c.back} />
-                    {isDesktop && <h1 className={c.title}>{t("createCommunity.title")}</h1>}
+                    {isDesktop && (
+                        <h1 className={c.title}>{t("createCommunity.title")}</h1>
+                    )}
                     <div className={c.settings}>
                         <SettingsItem
                             title={t("createCommunity.avatarTitle")}
@@ -167,7 +183,7 @@ export const CreateCommunityWidget = ({
                                 maxLength: {
                                     value: 10,
                                     message: "toast.longId"
-                                },
+                                }
                             })}
                             setEntityInfo={setCommunityInfo}
                             id="id"
@@ -189,11 +205,15 @@ export const CreateCommunityWidget = ({
                         setSelectedAdmins={setSelectedUsers}
                         author={userInfo}
                     />
-                    <StylizedButton type="submit" aria-label={t("ariaLabel.saveCommunity")} className={c.submit}>
+                    <StylizedButton
+                        type="submit"
+                        aria-label={t("ariaLabel.saveCommunity")}
+                        className={c.submit}
+                    >
                         {t(submitText)}
                     </StylizedButton>
                 </div>
             </div>
-		</form>
-	)
-}
+        </form>
+    );
+};

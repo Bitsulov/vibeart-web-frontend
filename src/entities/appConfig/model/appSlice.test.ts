@@ -1,13 +1,19 @@
-import {describe, expect, it} from "vitest";
-import {appReducer, setLanguage, setServerStatus, setUnreadChatsCount, setUnreadNotificationsCount} from "./appSlice";
-import type {AppConfigType} from "../lib/types";
+import { describe, expect, it } from "vitest";
+import {
+    appReducer,
+    setLanguage,
+    setServerStatus,
+    setUnreadChatsCount,
+    setUnreadNotificationsCount
+} from "./appSlice";
+import type { AppConfigType } from "../lib/types";
 
 const initialState: AppConfigType = {
     currentLanguage: "ru",
     serverStatus: "good",
     unreadChatsCount: 0,
     unreadNotificationsCount: 0
-}
+};
 
 describe("AppSlice - слайс с данными приложения", () => {
     it("Изменение языка приложения", () => {
@@ -15,7 +21,7 @@ describe("AppSlice - слайс с данными приложения", () => {
 
         expect(result).toEqual({
             ...initialState,
-            currentLanguage: "en",
+            currentLanguage: "en"
         });
     });
     it("Изменение статуса бекенда", () => {
@@ -23,7 +29,7 @@ describe("AppSlice - слайс с данными приложения", () => {
 
         expect(result).toEqual({
             ...initialState,
-            serverStatus: "problem",
+            serverStatus: "problem"
         });
     });
     it("Изменение количества чатов с непрочитанными сообщениями", () => {

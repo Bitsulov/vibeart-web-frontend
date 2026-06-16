@@ -5,7 +5,7 @@ import { setLanguage } from "entities/appConfig";
 describe("changeLanguageClickHandler - обработчик смены языка", () => {
     const makeMocks = () => ({
         i18n: { changeLanguage: vi.fn().mockResolvedValue(undefined) },
-        dispatch: vi.fn(),
+        dispatch: vi.fn()
     });
 
     it("Вызывает i18n.changeLanguage с переданным языком", () => {

@@ -7,7 +7,11 @@ import React from "react";
  * @param onMouseLeave - Обработчик ухода курсора, скрывающий подсказку.
  * @param e - Событие мыши, передаваемое в `onMouseLeave`.
  */
-export function clickHandler(onClick: () => void, onMouseLeave: React.MouseEventHandler, e: React.MouseEvent) {
+export function clickHandler(
+    onClick: () => void,
+    onMouseLeave: React.MouseEventHandler,
+    e: React.MouseEvent
+) {
     onMouseLeave(e);
     onClick();
 }

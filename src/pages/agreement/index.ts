@@ -1,1 +1,1 @@
-export {Agreement} from "./ui/agreement";
+export { Agreement } from "./ui/agreement";

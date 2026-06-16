@@ -26,7 +26,7 @@
 
             .status {
                 .server_status {
-                    margin-top: .3rem;
+                    margin-top: 0.3rem;
                     font-size: clamp(1.2rem, 1.8vw, 2.4rem);
                     letter-spacing: 0.12rem;
                     font-weight: 600;
@@ -50,7 +50,7 @@
     }
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
     .footer {
         .footer_inner {
             flex-direction: row;
@@ -71,8 +71,8 @@
                 order: 2;
                 padding-left: 1rem;
                 padding-right: 1rem;
-                border-left: .1rem solid global.$active-color;
-                border-right: .1rem solid global.$active-color;
+                border-left: 0.1rem solid global.$active-color;
+                border-right: 0.1rem solid global.$active-color;
             }
 
             .other {
@@ -89,7 +89,7 @@
     }
 }
 
-@media (min-width: 600px) and (max-width: 649px) {
+@media (width >= 600px) and (width <= 649px) {
     .footer {
         .footer_inner {
             .logo_wrapper {
@@ -101,13 +101,13 @@
     }
 }
 
-@media (min-width: 660px) {
+@media (width >= 660px) {
     .footer {
         .footer_inner {
             .info {
                 order: 2;
-                padding-left: clamp(.5rem, 2vw, 4rem);
-                padding-right: clamp(.5rem, 2vw, 4rem);
+                padding-left: clamp(0.5rem, 2vw, 4rem);
+                padding-right: clamp(0.5rem, 2vw, 4rem);
             }
 
             .logo_wrapper {
@@ -117,7 +117,7 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
     .footer {
         .footer_inner {
             gap: 1.5rem;
@@ -125,7 +125,7 @@
     }
 }
 
-@media (min-width: 1400px) and (max-width: 1500px) {
+@media (width >= 1400px) and (width <= 1500px) {
     .footer {
         .footer_inner {
             gap: clamp(1.5rem, 30vw, 3.5rem);
@@ -133,7 +133,7 @@
     }
 }
 
-@media (min-width: 1500px) and (max-width: 1699px) {
+@media (width >= 1500px) and (width <= 1699px) {
     .footer {
         .footer_inner {
             .title {
@@ -151,7 +151,7 @@
     }
 }
 
-@media (min-width: 1700px) {
+@media (width >= 1700px) {
     .footer {
         .footer_inner {
             gap: clamp(1.5rem, 30vw, 4.5rem);

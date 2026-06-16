@@ -27,7 +27,7 @@
             background: global.$active-color;
             background-size: cover;
 
-            &:after {
+            &::after {
                 opacity: 1;
             }
         }
@@ -38,13 +38,13 @@
         height: clamp(2rem, 4vw, 3rem);
         width: clamp(2rem, 4vw, 3rem);
         background-color: global.$dark-background;
-        border: .1rem solid global.$active-color;
-        border-radius: .4rem;
+        border: 0.1rem solid global.$active-color;
+        border-radius: 0.4rem;
         vertical-align: middle;
         position: relative;
         transition: global.$transition-time;
 
-        &:after {
+        &::after {
             content: "";
             display: block;
             position: absolute;

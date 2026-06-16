@@ -1,16 +1,18 @@
 @use "@/variables.scss" as global;
 
-.CTA {
+.cta {
     position: relative;
-    background: linear-gradient(
-                    rgba(global.$bright-background, 0.75),
-                    rgba(global.$bright-background, 0.75)
-    ), url("shared/icons/img-CTA.jpg") center center no-repeat;
+    background:
+        linear-gradient(
+            rgba(global.$bright-background, 0.75),
+            rgba(global.$bright-background, 0.75)
+        ),
+        url("shared/icons/img-CTA.jpg") center center no-repeat;
     background-size: cover;
     min-height: clamp(42rem, 50vw, 83rem);
     margin-top: clamp(5rem, 11vw, 20rem);
 
-    .CTA_inner {
+    .cta_inner {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -38,9 +40,9 @@
     }
 }
 
-@media (min-width: 700px) {
-    .CTA {
-        .CTA_inner {
+@media (width >= 700px) {
+    .cta {
+        .cta_inner {
             .title {
                 font-size: clamp(3.5rem, 3vw, 6.4rem);
             }
@@ -56,9 +58,9 @@
     }
 }
 
-@media (min-width: 1800px) {
-    .CTA {
-        .CTA_inner {
+@media (width >= 1800px) {
+    .cta {
+        .cta_inner {
             .description {
                 padding: 0 10rem;
             }

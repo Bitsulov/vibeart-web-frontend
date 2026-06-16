@@ -1,11 +1,14 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitInvalidHandler} from "./submitInvalidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitInvalidHandler } from "./submitInvalidHandler";
 
 describe("submitInvalidHandler - ошибка валидации формы изменения email", () => {
     it("Вызывает dispatch с toast при ошибке oldEmail", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({oldEmail: {message: "toast.requiredEmail", type: "required"}}, dispatch);
+        submitInvalidHandler(
+            { oldEmail: { message: "toast.requiredEmail", type: "required" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         const action = dispatch.mock.calls[0][0];
@@ -16,7 +19,10 @@ describe("submitInvalidHandler - ошибка валидации формы из
     it("Вызывает dispatch при ошибке newEmail", () => {
         const dispatch = vi.fn();
 
-        submitInvalidHandler({newEmail: {message: "toast.wrongEmail", type: "pattern"}}, dispatch);
+        submitInvalidHandler(
+            { newEmail: { message: "toast.wrongEmail", type: "pattern" } },
+            dispatch
+        );
 
         expect(dispatch).toHaveBeenCalled();
         const action = dispatch.mock.calls[0][0];

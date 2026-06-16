@@ -9,20 +9,29 @@ test.describe("Settings - визуальная проверка блоков", (
     });
 
     test("снимок блока SettingsForm", async ({ page }) => {
-        await expect(page.locator("main form").nth(0)).toHaveScreenshot("settings-form.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main form").nth(0)).toHaveScreenshot(
+            "settings-form.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 
     test("снимок блока EmailChangeForm", async ({ page }) => {
-        await expect(page.locator("main form").nth(1)).toHaveScreenshot("settings-email-form.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main form").nth(1)).toHaveScreenshot(
+            "settings-email-form.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 
     test("снимок блока PasswordChangeForm", async ({ page }) => {
-        await expect(page.locator("main form").nth(2)).toHaveScreenshot("settings-password-form.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main form").nth(2)).toHaveScreenshot(
+            "settings-password-form.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

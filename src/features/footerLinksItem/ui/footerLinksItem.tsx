@@ -1,5 +1,5 @@
 import c from "./footerLinksItem.module.scss";
-import {Link, type LinkProps, useLocation} from "react-router-dom";
+import { Link, type LinkProps, useLocation } from "react-router-dom";
 
 /** Свойства компонента {@link FooterLinksItem}. */
 interface FooterLinksItemProps extends LinkProps {
@@ -21,7 +21,7 @@ export const FooterLinksItem = ({
 }: FooterLinksItemProps) => {
     const path = useLocation().pathname;
 
-	return (
+    return (
         <Link
             aria-label={ariaLabel}
             to={to}
@@ -31,5 +31,5 @@ export const FooterLinksItem = ({
         >
             {children}
         </Link>
-	)
-}
+    );
+};

@@ -6,13 +6,10 @@
  */
 async function importKeyFromBase64(keyBase64: string): Promise<CryptoKey> {
     const keyBuffer = Uint8Array.from(atob(keyBase64), c => c.charCodeAt(0));
-    return crypto.subtle.importKey(
-        "raw",
-        keyBuffer,
-        { name: "AES-GCM" },
-        true,
-        ["encrypt", "decrypt"]
-    );
+    return crypto.subtle.importKey("raw", keyBuffer, { name: "AES-GCM" }, true, [
+        "encrypt",
+        "decrypt"
+    ]);
 }
 
 /**
@@ -47,10 +44,7 @@ export async function encryptToString(text: string, keyBase64: string): Promise<
 
     const base64 = btoa(String.fromCharCode(...combined));
 
-    return base64
-        .replace(/\+/g, "-")
-        .replace(/\//g, "_")
-        .replace(/=+$/, "");
+    return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 /**
@@ -67,9 +61,7 @@ export async function encryptToString(text: string, keyBase64: string): Promise<
 export async function decryptFromString(str: string, keyBase64: string): Promise<string> {
     const key = await importKeyFromBase64(keyBase64);
 
-    let base64 = str
-        .replace(/-/g, "+")
-        .replace(/_/g, "/");
+    let base64 = str.replace(/-/g, "+").replace(/_/g, "/");
 
     while (base64.length % 4) {
         base64 += "=";

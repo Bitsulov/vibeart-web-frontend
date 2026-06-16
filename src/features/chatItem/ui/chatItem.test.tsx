@@ -1,14 +1,14 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ChatItem} from "./chatItem";
-import {screen} from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ChatItem } from "./chatItem";
+import { screen } from "@testing-library/react";
 
 const defaultProps = {
     UUID: "00000000-0000-4000-8000-000000000001",
     title: "Иван",
     imageUrl: "https://example.com/avatar.jpg",
     lastMessage: "Привет! Как дела?",
-    date: "2026-04-11T12:00:00.000Z",
+    date: "2026-04-11T12:00:00.000Z"
 };
 
 describe("ChatItem - элемент списка чатов", () => {
@@ -16,7 +16,7 @@ describe("ChatItem - элемент списка чатов", () => {
         renderWithProviders(<ChatItem {...defaultProps} />);
 
         expect(
-            screen.getByRole("link", {name: "ariaLabel.goToChat"})
+            screen.getByRole("link", { name: "ariaLabel.goToChat" })
         ).toBeInTheDocument();
     });
 
@@ -32,7 +32,9 @@ describe("ChatItem - элемент списка чатов", () => {
     it("Отображает имя собеседника", () => {
         renderWithProviders(<ChatItem {...defaultProps} />);
 
-        expect(screen.getByRole("heading", {level: 2, name: "Иван"})).toBeInTheDocument();
+        expect(
+            screen.getByRole("heading", { level: 2, name: "Иван" })
+        ).toBeInTheDocument();
     });
 
     it("Отображает текст последнего сообщения", () => {

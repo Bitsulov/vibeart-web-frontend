@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {addAlbumsClickHandler} from "./addAlbumsClickHandler";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { addAlbumsClickHandler } from "./addAlbumsClickHandler";
 
 describe("addAlbumsClickHandler - закрывает модальное окно добавления постов в альбом", () => {
     afterEach(() => {

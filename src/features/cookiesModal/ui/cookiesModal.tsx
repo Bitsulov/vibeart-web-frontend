@@ -1,9 +1,9 @@
 import c from "./cookiesModal.module.scss";
-import type {ComponentPropsWithoutRef, Dispatch, SetStateAction} from "react";
-import {Trans, useTranslation} from "react-i18next";
-import {StylizedButton} from "features/stylizedButton";
-import {closeModalHandler} from "../model/closeModalHandler";
-import {Link} from "react-router-dom";
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { StylizedButton } from "features/stylizedButton";
+import { closeModalHandler } from "../model/closeModalHandler";
+import { Link } from "react-router-dom";
 
 /** Свойства компонента {@link CookiesModal}. */
 interface CookiesModalProps extends ComponentPropsWithoutRef<"dialog"> {
@@ -23,9 +23,9 @@ interface CookiesModalProps extends ComponentPropsWithoutRef<"dialog"> {
 export const CookiesModal = ({ isShow, setIsShow, ...props }: CookiesModalProps) => {
     const { t } = useTranslation();
 
-	return (
-		<>
-            {isShow &&
+    return (
+        <>
+            {isShow && (
                 <div className={c.background}>
                     <div className="container">
                         <dialog className={c.modal} open {...props}>
@@ -35,7 +35,9 @@ export const CookiesModal = ({ isShow, setIsShow, ...props }: CookiesModalProps)
                                     i18nKey="cookies.text"
                                     components={{
                                         policy: <Link to="/policy" className={c.link} />,
-                                        agreement: <Link to="/agreement" className={c.link} />
+                                        agreement: (
+                                            <Link to="/agreement" className={c.link} />
+                                        )
                                     }}
                                 />
                             </p>
@@ -49,7 +51,7 @@ export const CookiesModal = ({ isShow, setIsShow, ...props }: CookiesModalProps)
                         </dialog>
                     </div>
                 </div>
-            }
+            )}
         </>
-	)
-}
+    );
+};

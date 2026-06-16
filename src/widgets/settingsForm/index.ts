@@ -1,1 +1,1 @@
-export {SettingsForm} from "./ui/settingsForm";
+export { SettingsForm } from "./ui/settingsForm";

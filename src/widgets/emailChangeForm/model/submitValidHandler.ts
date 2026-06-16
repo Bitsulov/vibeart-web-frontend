@@ -1,6 +1,6 @@
-import type {UseFormSetValue} from "react-hook-form";
-import type {IEmailChangeForm} from "../lib/types";
-import type {Dispatch, SetStateAction} from "react";
+import type { UseFormSetValue } from "react-hook-form";
+import type { IEmailChangeForm } from "../lib/types";
+import type { Dispatch, SetStateAction } from "react";
 
 /**
  * Обрабатывает успешную отправку формы изменения email: сохраняет новый адрес,
@@ -15,7 +15,7 @@ export function submitValidHandler(
     setValue: UseFormSetValue<IEmailChangeForm>,
     setIsEmailSent: Dispatch<SetStateAction<boolean>>,
     setNewEmailResult: Dispatch<SetStateAction<string>>,
-    newEmailValue: string,
+    newEmailValue: string
 ) {
     setIsEmailSent(true);
     setNewEmailResult(newEmailValue);

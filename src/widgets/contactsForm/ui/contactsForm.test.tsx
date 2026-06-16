@@ -1,11 +1,11 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {ContactsForm} from "./contactsForm";
-import {screen} from "@testing-library/react";
-import type {UserType} from "entities/user";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { ContactsForm } from "./contactsForm";
+import { screen } from "@testing-library/react";
+import type { UserType } from "entities/user";
 
 const defaultProps = {
-    userInfo: {name: "Test User", avatarUrl: ""} as UserType,
+    userInfo: { name: "Test User", avatarUrl: "" } as UserType
 };
 
 describe("ContactsForm - форма связи с администрацией", () => {
@@ -30,7 +30,9 @@ describe("ContactsForm - форма связи с администрацией",
     it("Отображает кнопку отправки", () => {
         renderWithProviders(<ContactsForm {...defaultProps} />);
 
-        expect(screen.getByRole("button", {name: "ariaLabel.sendReport"})).toBeInTheDocument();
+        expect(
+            screen.getByRole("button", { name: "ariaLabel.sendReport" })
+        ).toBeInTheDocument();
     });
 
     it("Отображает счётчик символов", () => {

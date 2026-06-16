@@ -6,7 +6,7 @@ import type { AxiosResponse } from "axios";
 import type { AuthResponse } from "entities/user";
 
 vi.mock("shared/lib/crypto", () => ({
-    encryptToString: vi.fn(async (text: string) => `encrypted-${text}`),
+    encryptToString: vi.fn(async (text: string) => `encrypted-${text}`)
 }));
 
 const clearCookies = () => {
@@ -23,8 +23,8 @@ function createResponse(): AxiosResponse<AuthResponse> {
             accessToken: "access-token",
             refreshToken: "refresh-token",
             accessTokenExpiresIn: 60000,
-            refreshTokenExpiresIn: 120000,
-        },
+            refreshTokenExpiresIn: 120000
+        }
     } as AxiosResponse<AuthResponse>;
 }
 
@@ -38,7 +38,12 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
     });
 
     it("Сохраняет зашифрованные токены в куки-файлы", async () => {
-        await verifySuccessHandler(createResponse(), { email: "test@example.com", verificationCode: "123456" }, vi.fn(), vi.fn());
+        await verifySuccessHandler(
+            createResponse(),
+            { email: "test@example.com", verificationCode: "123456" },
+            vi.fn(),
+            vi.fn()
+        );
 
         expect(document.cookie).toContain("accessToken=encrypted-access-token");
         expect(document.cookie).toContain("refreshToken=encrypted-refresh-token");
@@ -49,33 +54,57 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
     it("Записывает данные авторизованного пользователя в Redux", async () => {
         const dispatch = vi.fn();
 
-        await verifySuccessHandler(createResponse(), { email: "test@example.com", verificationCode: "123456" }, dispatch, vi.fn());
+        await verifySuccessHandler(
+            createResponse(),
+            { email: "test@example.com", verificationCode: "123456" },
+            dispatch,
+            vi.fn()
+        );
 
-        expect(dispatch).toHaveBeenCalledWith(setUserInfo({
-            UUID: "00000000-0000-4000-8000-00000000000a",
-            email: "test@example.com",
-            accessToken: "encrypted-access-token",
-            refreshToken: "encrypted-refresh-token",
-            accessTokenExpiresIn: 60000,
-            refreshTokenExpiresIn: 120000,
-        }));
+        expect(dispatch).toHaveBeenCalledWith(
+            setUserInfo({
+                UUID: "00000000-0000-4000-8000-00000000000a",
+                email: "test@example.com",
+                accessToken: "encrypted-access-token",
+                refreshToken: "encrypted-refresh-token",
+                accessTokenExpiresIn: 60000,
+                refreshTokenExpiresIn: 120000
+            })
+        );
     });
 
     it("Показывает уведомление об успешной регистрации", async () => {
         const dispatch = vi.fn();
 
-        await verifySuccessHandler(createResponse(), { email: "test@example.com", verificationCode: "123456" }, dispatch, vi.fn());
+        await verifySuccessHandler(
+            createResponse(),
+            { email: "test@example.com", verificationCode: "123456" },
+            dispatch,
+            vi.fn()
+        );
 
-        expect(dispatch.mock.calls.some(call => call[0]?.type === showToast.type
-            && call[0]?.payload?.message === "api.verifyAccess"
-            && call[0]?.payload?.type === "success")).toBe(true);
+        expect(
+            dispatch.mock.calls.some(
+                call =>
+                    call[0]?.type === showToast.type &&
+                    call[0]?.payload?.message === "api.verifyAccess" &&
+                    call[0]?.payload?.type === "success"
+            )
+        ).toBe(true);
     });
 
     it("Перенаправляет на страницу профиля пользователя", async () => {
         const navigate = vi.fn();
 
-        await verifySuccessHandler(createResponse(), { email: "test@example.com", verificationCode: "123456" }, vi.fn(), navigate);
+        await verifySuccessHandler(
+            createResponse(),
+            { email: "test@example.com", verificationCode: "123456" },
+            vi.fn(),
+            navigate
+        );
 
-        expect(navigate).toHaveBeenCalledWith("/profile/00000000-0000-4000-8000-00000000000a");
+        expect(navigate).toHaveBeenCalledWith(
+            "/profile/00000000-0000-4000-8000-00000000000a"
+        );
     });
 });

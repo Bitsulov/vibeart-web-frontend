@@ -3,7 +3,7 @@
 .form {
     display: flex;
     gap: 1rem;
-    margin: clamp(.5rem, 2vw, 1rem) 0;
+    margin: clamp(0.5rem, 2vw, 1rem) 0;
 
     .submit {
         display: flex;
@@ -12,7 +12,7 @@
         width: clamp(3rem, 6vw, 4.5rem);
         height: clamp(3rem, 6vw, 4.5rem);
         flex-shrink: 0;
-        padding: clamp(.5rem, 1vw, 1rem);
+        padding: clamp(0.5rem, 1vw, 1rem);
         background-color: global.$active-color;
         color: global.$bright-background;
         cursor: pointer;
@@ -20,7 +20,7 @@
         transition: global.$transition-time;
 
         &:hover {
-            box-shadow: 0 0 clamp(1rem, 2vw, 2rem) .1rem rgba(global.$active-color, .5);
+            box-shadow: 0 0 clamp(1rem, 2vw, 2rem) 0.1rem rgba(global.$active-color, 0.5);
         }
 
         .submit_icon {

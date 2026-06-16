@@ -28,14 +28,14 @@
         /* Import shortcuts */
         "baseUrl": "src",
         "paths": {
-          "@/*": ["./*"],
-          "app/*": ["app/*"],
-          "pages/*": ["pages/*"],
-          "processes/*": ["processes/*"],
-          "widgets/*": ["widgets/*"],
-          "features/*": ["features/*"],
-          "entities/*": ["entities/*"],
-          "shared/*": ["shared/*"]
+            "@/*": ["./*"],
+            "app/*": ["app/*"],
+            "pages/*": ["pages/*"],
+            "processes/*": ["processes/*"],
+            "widgets/*": ["widgets/*"],
+            "features/*": ["features/*"],
+            "entities/*": ["entities/*"],
+            "shared/*": ["shared/*"]
         }
     },
     "include": ["src"]

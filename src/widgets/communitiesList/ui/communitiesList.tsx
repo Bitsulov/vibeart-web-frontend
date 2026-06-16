@@ -1,6 +1,6 @@
 import c from "./communitiesList.module.scss";
-import type {CommunityType} from "entities/community";
-import {CommunityItem} from "features/communityItem";
+import type { CommunityType } from "entities/community";
+import { CommunityItem } from "features/communityItem";
 import type { ComponentPropsWithoutRef } from "react";
 
 /** Свойства компонента {@link CommunitiesList}. */
@@ -30,11 +30,11 @@ export const CommunitiesList = ({
 }: CommunitiesListProps) => {
     const isExistsCommunities = communitiesList && communitiesList.length > 0;
 
-	return (
-		<div className={`${c.communities_list} ${className}`} {...props}>
+    return (
+        <div className={`${c.communities_list} ${className}`} {...props}>
             <h1 className={c.title}>{title}</h1>
             <div className={c.list}>
-                {isExistsCommunities ?
+                {isExistsCommunities ? (
                     communitiesList.map(community => (
                         <CommunityItem
                             key={community.UUID}
@@ -46,10 +46,10 @@ export const CommunitiesList = ({
                             isSubscribed={community.isSubscribed}
                         />
                     ))
-                :
+                ) : (
                     <h2 className={c.empty}>{emptyTitle}</h2>
-                }
+                )}
             </div>
-		</div>
-	)
-}
+        </div>
+    );
+};

@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
 
 describe("submitValidHandler - обработчик успешной отправки формы связи с администрацией", () => {
     it("Сбрасывает поле text после отправки", () => {

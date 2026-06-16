@@ -1,5 +1,5 @@
-import type {UserType} from "entities/user";
-import type {MessageType} from "entities/message";
+import type { UserType } from "entities/user";
+import type { MessageType } from "entities/message";
 
 /**
  * Описывает личный диалог между двумя пользователями сайта.

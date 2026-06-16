@@ -1,1 +1,1 @@
-export {CreatePostWidget} from "./ui/createPostWidget";
+export { CreatePostWidget } from "./ui/createPostWidget";

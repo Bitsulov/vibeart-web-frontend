@@ -9,8 +9,11 @@ test.describe("Auth - визуальная проверка блоков", () =>
     });
 
     test("снимок блока AuthForm", async ({ page }) => {
-        await expect(page.locator("main section").first()).toHaveScreenshot("auth-form.png", {
-            animations: "disabled",
-        });
+        await expect(page.locator("main section").first()).toHaveScreenshot(
+            "auth-form.png",
+            {
+                animations: "disabled"
+            }
+        );
     });
 });

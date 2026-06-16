@@ -1,1 +1,1 @@
-export {HeaderProfileButton} from "./ui/headerProfileButton";
+export { HeaderProfileButton } from "./ui/headerProfileButton";

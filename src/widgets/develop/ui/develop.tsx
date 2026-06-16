@@ -1,18 +1,18 @@
 import c from "./develop.module.scss";
-import {useTranslation} from "react-i18next";
-import {StylizedLink} from "features/stylizedLink";
-import {StylizedButton} from "features/stylizedButton";
-import {useNavigate} from "react-router-dom";
-import {returnBackHandler} from "../model/returnBackHandler";
+import { useTranslation } from "react-i18next";
+import { StylizedLink } from "features/stylizedLink";
+import { StylizedButton } from "features/stylizedButton";
+import { useNavigate } from "react-router-dom";
+import { returnBackHandler } from "../model/returnBackHandler";
 
 /** Заглушка для страниц в разработке с кнопкой «назад» и ссылкой на главную. */
 export const Develop = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-	return (
-		<section className={c.develop}>
-			<div className="container">
+    return (
+        <section className={c.develop}>
+            <div className="container">
                 <div className={c.develop_inner}>
                     <h1 className={c.title}>{t("develop.title")}</h1>
                     <div className={c.buttons}>
@@ -33,6 +33,6 @@ export const Develop = () => {
                     </div>
                 </div>
             </div>
-		</section>
-	)
-}
+        </section>
+    );
+};

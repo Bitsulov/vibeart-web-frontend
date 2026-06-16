@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {getShortNumber} from "./getShortNumber";
+import { getShortNumber } from "./getShortNumber";
 
 describe("getShortNumber - английская сокращенная версия числа", () => {
     it("Форматирование 10 в 10", () => {
@@ -15,9 +15,9 @@ describe("getShortNumber - английская сокращенная верс�
         expect(getShortNumber(1100, 0)).toBe("1K");
     });
     it("Форматирование 999000000 в 999M", () => {
-        expect(getShortNumber(999000000)).toBe("999M")
+        expect(getShortNumber(999000000)).toBe("999M");
     });
     it("Форматирование 9000000000 в 9B", () => {
-        expect(getShortNumber(9000000000)).toBe("9B")
+        expect(getShortNumber(9000000000)).toBe("9B");
     });
 });

@@ -1,10 +1,10 @@
 import c from "./profileLink.module.scss";
-import {Link} from "react-router-dom";
-import {MessageCircle, Settings} from "lucide-react";
-import {useTranslation} from "react-i18next";
-import {useDispatch} from "react-redux";
-import {showHint} from "../model/showHint";
-import {hideHint} from "../model/hideHint";
+import { Link } from "react-router-dom";
+import { MessageCircle, Settings } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { showHint } from "../model/showHint";
+import { hideHint } from "../model/hideHint";
 
 /** Свойства компонента {@link ProfileLink}. */
 interface ProfileLinkProps {
@@ -23,13 +23,18 @@ interface ProfileLinkProps {
  * для чужого — ссылку на личный диалог с этим пользователем.
  * При наведении показывает подсказку через Redux.
  */
-export const ProfileLink = ({ isPrincipalUser, name, UUID, ...props }: ProfileLinkProps) => {
+export const ProfileLink = ({
+    isPrincipalUser,
+    name,
+    UUID,
+    ...props
+}: ProfileLinkProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-	return (
-		<>
-            {isPrincipalUser ?
+    return (
+        <>
+            {isPrincipalUser ? (
                 <Link
                     aria-label={t("ariaLabel.goToSettings")}
                     to="/settings"
@@ -41,9 +46,9 @@ export const ProfileLink = ({ isPrincipalUser, name, UUID, ...props }: ProfileLi
                 >
                     <Settings className={c.settings} width="31" height="31" />
                 </Link>
-                :
+            ) : (
                 <Link
-                    aria-label={t("ariaLabel.writeUser", {name: name})}
+                    aria-label={t("ariaLabel.writeUser", { name: name })}
                     to={`/chats/${UUID}`}
                     className={c.messages_wrapper}
                     onMouseEnter={() => showHint(dispatch, t("hint.writeMessage"))}
@@ -53,7 +58,7 @@ export const ProfileLink = ({ isPrincipalUser, name, UUID, ...props }: ProfileLi
                 >
                     <MessageCircle className={c.message} width="31" height="31" />
                 </Link>
-            }
-		</>
-	)
-}
+            )}
+        </>
+    );
+};

@@ -1,8 +1,8 @@
 import c from "./codeInputs.module.scss";
-import {CodeElementInput} from "features/codeElementInput";
-import {type ComponentPropsWithoutRef, useEffect, useRef, useState} from "react";
-import {changeInputHandler} from "../model/changeInputHandler";
-import {keyDownHandler} from "../model/keyDownHandler";
+import { CodeElementInput } from "features/codeElementInput";
+import { type ComponentPropsWithoutRef, useEffect, useRef, useState } from "react";
+import { changeInputHandler } from "../model/changeInputHandler";
+import { keyDownHandler } from "../model/keyDownHandler";
 
 /** Свойства компонента {@link CodeInputs}. */
 interface CodeInputsProps extends ComponentPropsWithoutRef<"div"> {
@@ -35,37 +35,35 @@ export const CodeInputs = ({
         setCode(values.join(""));
     }, [values, setCode]);
 
-	return (
-		<div className={`${c.wrapper} ${className}`} {...props}>
-            {Array.from({ length: 6 }, (_, i) =>
+    return (
+        <div className={`${c.wrapper} ${className}`} {...props}>
+            {Array.from({ length: 6 }, (_, i) => (
                 <CodeElementInput
                     isError={isError}
                     key={i}
-                    onChange={(e) => changeInputHandler(e, inputsRef, i)}
+                    onChange={e => changeInputHandler(e, inputsRef, i)}
                     onKeyDown={e =>
-                        keyDownHandler(
-                            e,
-                            inputsRef,
-                            i,
-                            (val) => setValues(prev => {
+                        keyDownHandler(e, inputsRef, i, val =>
+                            setValues(prev => {
                                 const next = [...prev];
                                 next[i] = typeof val === "function" ? val(prev[i]) : val;
                                 return next;
                             })
-                        )}
+                        )
+                    }
                     value={values[i]}
-                    setValue={(val) =>
+                    setValue={val =>
                         setValues(prev => {
                             const next = [...prev];
                             next[i] = typeof val === "function" ? val(prev[i]) : val;
                             return next;
                         })
                     }
-                    ref={(el) => {
+                    ref={el => {
                         inputsRef.current[i] = el;
                     }}
                 />
-            )}
-		</div>
-	)
-}
+            ))}
+        </div>
+    );
+};

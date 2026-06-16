@@ -1,5 +1,5 @@
-import React, {type Dispatch, type SetStateAction} from "react";
-import type {PostType} from "entities/post";
+import React, { type Dispatch, type SetStateAction } from "react";
+import type { PostType } from "entities/post";
 
 /**
  * Обрабатывает выбор файла: создаёт ObjectURL для предпросмотра и сохраняет файл.
@@ -16,8 +16,8 @@ export function onChangeLoadHandler(
 ) {
     const file = e.target.files?.[0];
 
-    if(file) {
-        setEntityInfo(entity => ({...entity, imageUrl: URL.createObjectURL(file)}));
+    if (file) {
+        setEntityInfo(entity => ({ ...entity, imageUrl: URL.createObjectURL(file) }));
         setLoadedFile?.(file);
     }
 

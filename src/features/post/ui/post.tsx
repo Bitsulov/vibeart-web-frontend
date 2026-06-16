@@ -1,18 +1,18 @@
 import c from "./post.module.scss";
-import {getLocalTimeNumbers} from "shared/lib/getLocalTimeNumbers";
-import {useSelector} from "react-redux";
-import {selectCurrentLanguage} from "entities/appConfig";
-import {StatItem} from "features/statItem";
-import {Heart, MessageSquare} from "lucide-react";
-import {getShortNumber} from "shared/lib/getShortNumber";
-import {useTranslation} from "react-i18next";
-import {Link, useNavigate} from "react-router-dom";
-import {postClickHandler} from "../model/postClickHandler";
-import type {UserType} from "entities/user";
-import {toggleLikeHandler} from "../model/toggleLikeHandler";
-import {useState} from "react";
+import { getLocalTimeNumbers } from "shared/lib/getLocalTimeNumbers";
+import { useSelector } from "react-redux";
+import { selectCurrentLanguage } from "entities/appConfig";
+import { StatItem } from "features/statItem";
+import { Heart, MessageSquare } from "lucide-react";
+import { getShortNumber } from "shared/lib/getShortNumber";
+import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+import { postClickHandler } from "../model/postClickHandler";
+import type { UserType } from "entities/user";
+import { toggleLikeHandler } from "../model/toggleLikeHandler";
+import { useState } from "react";
 import clsx from "clsx";
-import {resetNavigate} from "../model/resetNavigate";
+import { resetNavigate } from "../model/resetNavigate";
 
 /** Свойства компонента {@link Post}. */
 interface PostProps {
@@ -73,7 +73,7 @@ export const Post = ({
     target = "_self",
     autoHeight = false,
     enable = true,
-     ...props
+    ...props
 }: PostProps) => {
     const language = useSelector(selectCurrentLanguage);
     const { t } = useTranslation();
@@ -84,73 +84,85 @@ export const Post = ({
     const [likesNumber, setLikesNumber] = useState<number>(likesCount);
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
-    const resultOnClickFn = type === "link"
-        ? () => postClickHandler(navigate, UUID)
-        : onClick;
+    const resultOnClickFn =
+        type === "link" ? () => postClickHandler(navigate, UUID) : onClick;
 
-	return (
-		<article
-            aria-label={t("ariaLabel.goToPost", {name: title})}
+    return (
+        <article
+            aria-label={t("ariaLabel.goToPost", { name: title })}
             onClick={resultOnClickFn}
-            className={clsx(c.post, className, autoHeight && c.autoHeight, !imageUrl && c.border)}
+            className={clsx(
+                c.post,
+                className,
+                autoHeight && c.autoHeight,
+                !imageUrl && c.border
+            )}
             {...props}
         >
-            {imageUrl &&
+            {imageUrl && (
                 <img
                     src={imageUrl}
                     alt={`${t("Post")} ${title}`}
                     className={c.post_img}
                 />
-            }
-			<div className={clsx(c.info, isShowAuthor && c.high)}>
+            )}
+            <div className={clsx(c.info, isShowAuthor && c.high)}>
                 <div onClick={e => resetNavigate(e)} className={c.bottom}>
                     {resultDate && <p className={c.date}>{resultDate}</p>}
-                    {isShowAuthor && (
-                        target === "_self" ? (
+                    {isShowAuthor &&
+                        (target === "_self" ? (
                             <Link
-                                aria-label={t("ariaLabel.goToUserProfile", {name: author.name})}
+                                aria-label={t("ariaLabel.goToUserProfile", {
+                                    name: author.name
+                                })}
                                 to={`/profile/${author.UUID}`}
                                 className={c.name}
                                 target="_self"
                             >
                                 {author.name}
                             </Link>
-                        ):
+                        ) : (
                             <a
                                 rel="nofollow noopener noreferrer"
-                                aria-label={t("ariaLabel.goToUserProfile", {name: author.name})}
+                                aria-label={t("ariaLabel.goToUserProfile", {
+                                    name: author.name
+                                })}
                                 href={`/profile/${author.UUID}`}
                                 className={c.name}
                                 target={target}
                             >
                                 {author.name}
                             </a>
-                    )}
+                        ))}
                     {target === "_self" ? (
                         <Link
-                            aria-label={t("ariaLabel.goToPost", {name: title})}
+                            aria-label={t("ariaLabel.goToPost", { name: title })}
                             to={`/post/${UUID}`}
                             className={clsx(c.title, !enable && c.disabled)}
                             target="_self"
                         >
                             {title}
                         </Link>
-                    ):
+                    ) : (
                         <a
                             rel="nofollow noopener noreferrer"
-                            aria-label={t("ariaLabel.goToPost", {name: title})}
+                            aria-label={t("ariaLabel.goToPost", { name: title })}
                             href={`/post/${UUID}`}
                             className={clsx(c.title, !enable && c.disabled)}
                             target={target}
                         >
                             {title}
                         </a>
-                    }
+                    )}
                     <div className={c.stats}>
                         <StatItem
                             type="button"
-                            onClick={() => toggleLikeHandler(setLikesNumber, isLiked, setIsLiked)}
-                            ariaLabel={isLiked ? t("ariaLabel.unlike") : t("ariaLabel.like")}
+                            onClick={() =>
+                                toggleLikeHandler(setLikesNumber, isLiked, setIsLiked)
+                            }
+                            ariaLabel={
+                                isLiked ? t("ariaLabel.unlike") : t("ariaLabel.like")
+                            }
                             className={clsx(c.stat, !enable && c.disabled)}
                             iconClassName={clsx(isLiked && c.active)}
                             Icon={Heart}
@@ -159,7 +171,7 @@ export const Post = ({
                         <StatItem
                             type="link"
                             href={`/post/${UUID}#comments`}
-                            ariaLabel={t("ariaLabel.goToPostComments", {name: title})}
+                            ariaLabel={t("ariaLabel.goToPostComments", { name: title })}
                             className={clsx(c.stat, !enable && c.disabled)}
                             Icon={MessageSquare}
                             number={getShortNumber(commentsCount, 1)}
@@ -167,6 +179,6 @@ export const Post = ({
                     </div>
                 </div>
             </div>
-		</article>
-	)
-}
+        </article>
+    );
+};

@@ -12,7 +12,7 @@ export function toggleLikeHandler(
     isLiked: boolean,
     setIsLiked: React.Dispatch<React.SetStateAction<boolean>>
 ) {
-    if(isLiked) {
+    if (isLiked) {
         setLikes(state => state - 1);
         setIsLiked(false);
     } else {

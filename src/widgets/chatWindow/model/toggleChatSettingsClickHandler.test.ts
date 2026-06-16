@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {toggleChatSettingsClickHandler} from "./toggleChatSettingsClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { toggleChatSettingsClickHandler } from "./toggleChatSettingsClickHandler";
 
 describe("toggleChatSettingsClickHandler - переключает видимость настроек чата", () => {
     it("Передаёт функцию-инвертор в setIsOpenOptions", () => {

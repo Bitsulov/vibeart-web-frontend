@@ -1,1 +1,1 @@
-export {PostComments} from "./ui/postComments";
+export { PostComments } from "./ui/postComments";

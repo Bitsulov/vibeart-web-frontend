@@ -1,4 +1,4 @@
-import type {TagType} from "../lib/types";
+import type { TagType } from "../lib/types";
 
 /**
  * Фабричная функция для создания нормализованного объекта тега.
@@ -13,12 +13,9 @@ import type {TagType} from "../lib/types";
  * const tag = createTag({ title: "природа" });
  * tag.createdAt // текущая дата в ISO 8601
  */
-export function createTag({
-    title = '',
-    createdAt = new Date().toISOString()
-}: TagType) {
+export function createTag({ title = "", createdAt = new Date().toISOString() }: TagType) {
     return {
         title,
         createdAt
-    }
+    };
 }

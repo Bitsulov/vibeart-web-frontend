@@ -1,11 +1,11 @@
-import {Layout} from "widgets/layout";
-import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
-import {selectUserInfo} from "entities/user";
-import {CreateCommunityWidget} from "widgets/createCommunityWidget";
-import {useState} from "react";
-import type {CommunityType} from "entities/community";
-import {communityTagsMock} from "entities/tag";
+import { Layout } from "widgets/layout";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { selectUserInfo } from "entities/user";
+import { CreateCommunityWidget } from "widgets/createCommunityWidget";
+import { useState } from "react";
+import type { CommunityType } from "entities/community";
+import { communityTagsMock } from "entities/tag";
 
 /**
  * Страница создания нового сообщества.
@@ -19,8 +19,8 @@ export const CreateCommunity = () => {
     const userInfo = useSelector(selectUserInfo);
     const [communityInfo, setCommunityInfo] = useState<Partial<CommunityType>>({});
 
-	return (
-		<Layout isSmallTitle={true}>
+    return (
+        <Layout isSmallTitle={true}>
             <title>{t("titles.communityCreate")}</title>
             <meta name="description" content={t("description.communityCreate")} />
             <meta property="og:title" content={t("titles.communityCreate")} />
@@ -31,6 +31,6 @@ export const CreateCommunity = () => {
                 setCommunityInfo={setCommunityInfo}
                 userInfo={userInfo}
             />
-		</Layout>
-	)
-}
+        </Layout>
+    );
+};

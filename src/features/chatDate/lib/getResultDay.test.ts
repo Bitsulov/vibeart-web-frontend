@@ -1,5 +1,5 @@
-import {describe, it, expect, vi, afterEach} from "vitest";
-import {getResultDay} from "./getResultDay";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { getResultDay } from "./getResultDay";
 import i18n from "shared/tests/i18n";
 
 const FIXED_NOW = new Date("2026-04-15T12:00:00.000Z");

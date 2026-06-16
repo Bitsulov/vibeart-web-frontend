@@ -21,50 +21,64 @@ describe("Navigation - боковая навигация", () => {
     it("Не отображает ссылку администратора для обычного пользователя", () => {
         renderWithProviders(<Navigation UUID={UUID} role="user" />);
 
-        expect(screen.queryByRole("link", { name: "ariaLabel.goToBan" })).not.toBeInTheDocument();
+        expect(
+            screen.queryByRole("link", { name: "ariaLabel.goToBan" })
+        ).not.toBeInTheDocument();
     });
 
     it("Отображает 6 ссылок для администратора (включая admin-ссылку)", () => {
         renderWithProviders(<Navigation UUID={UUID} role="admin" />);
 
         expect(screen.getAllByRole("link")).toHaveLength(6);
-        expect(screen.getByRole("link", { name: "ariaLabel.goToBan" })).toBeInTheDocument();
+        expect(
+            screen.getByRole("link", { name: "ariaLabel.goToBan" })
+        ).toBeInTheDocument();
     });
 
     it("Активная ссылка имеет aria-current='page'", () => {
-        renderWithProviders(
-            <Navigation UUID={UUID} role="user" />,
-            { route: "/gallery" }
-        );
+        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+            route: "/gallery"
+        });
 
         const activeLink = screen.getByRole("link", { name: "ariaLabel.goToGallery" });
         expect(activeLink).toHaveAttribute("aria-current", "page");
     });
 
     it("Неактивные ссылки не имеют aria-current", () => {
-        renderWithProviders(
-            <Navigation UUID={UUID} role="user" />,
-            { route: "/gallery" }
-        );
+        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+            route: "/gallery"
+        });
 
         const profileLink = screen.getByRole("link", { name: "ariaLabel.goToProfile" });
         expect(profileLink).not.toHaveAttribute("aria-current");
     });
 
     it("Отображает счётчик непрочитанных чатов", () => {
-        renderWithProviders(
-            <Navigation UUID={UUID} role="user" />,
-            { preloadedState: { app: { unreadChatsCount: 3, unreadNotificationsCount: 0, currentLanguage: "ru", serverStatus: "good" } } }
-        );
+        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+            preloadedState: {
+                app: {
+                    unreadChatsCount: 3,
+                    unreadNotificationsCount: 0,
+                    currentLanguage: "ru",
+                    serverStatus: "good"
+                }
+            }
+        });
 
         expect(screen.getByText("3")).toBeInTheDocument();
     });
 
     it("Не отображает счётчик чатов, если нет непрочитанных", () => {
-        renderWithProviders(
-            <Navigation UUID={UUID} role="user" />,
-            { preloadedState: { app: { unreadChatsCount: 0, unreadNotificationsCount: 0, currentLanguage: "ru", serverStatus: "good" } } }
-        );
+        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+            preloadedState: {
+                app: {
+                    unreadChatsCount: 0,
+                    unreadNotificationsCount: 0,
+                    currentLanguage: "ru",
+                    serverStatus: "good"
+                }
+            }
+        });
 
         expect(screen.queryByText("0")).not.toBeInTheDocument();
     });

@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {confirmDeletePost} from "./confirmDeletePost";
+import { describe, it, expect, vi } from "vitest";
+import { confirmDeletePost } from "./confirmDeletePost";
 
 describe("confirmDeletePost - навигация к профилю автора после удаления альбома", () => {
     it("Вызывает navigate с правильным URL профиля", () => {

@@ -1,11 +1,11 @@
-import type {AxiosResponse} from "axios";
-import type {SignUpRequest} from "entities/user";
-import type {Dispatch} from "@reduxjs/toolkit";
-import {showToast} from "features/toast";
-import React, {type SetStateAction} from "react";
-import type {UseFormSetValue} from "react-hook-form";
-import type {IRegisterForm} from "../lib/types";
-import type {QueryClient} from "@tanstack/react-query";
+import type { AxiosResponse } from "axios";
+import type { SignUpRequest } from "entities/user";
+import type { Dispatch } from "@reduxjs/toolkit";
+import { showToast } from "features/toast";
+import React, { type SetStateAction } from "react";
+import type { UseFormSetValue } from "react-hook-form";
+import type { IRegisterForm } from "../lib/types";
+import type { QueryClient } from "@tanstack/react-query";
 
 /**
  * Обрабатывает успешную регистрацию: показывает уведомление о том,
@@ -29,17 +29,19 @@ export function registerSuccessHandler(
     queryClient: QueryClient,
     setSentEmail: React.Dispatch<SetStateAction<string>>
 ) {
-    dispatch(showToast({
-        message: "api.registerAccess",
-        type: "success",
-        params: {email: request.email}
-    }));
+    dispatch(
+        showToast({
+            message: "api.registerAccess",
+            type: "success",
+            params: { email: request.email }
+        })
+    );
     setValue("email", "");
     setValue("password", "");
     setValue("confirmPassword", "");
     setValue("agreed", false);
     setValue("agreed2", false);
-    queryClient.invalidateQueries({queryKey: ["register"]});
+    queryClient.invalidateQueries({ queryKey: ["register"] });
     setIsEmailSent(true);
     setSentEmail(request.email);
 }

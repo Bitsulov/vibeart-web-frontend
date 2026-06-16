@@ -1,6 +1,6 @@
-import type {TagType} from "entities/tag";
-import type {CommentType} from "entities/comment";
-import type {UserType} from "entities/user";
+import type { TagType } from "entities/tag";
+import type { CommentType } from "entities/comment";
+import type { UserType } from "entities/user";
 
 /**
  * Описывает публикацию — основную единицу контента на сайте.
@@ -24,7 +24,7 @@ export interface PostType {
     /** Общее количество жалоб, поданных пользователями. */
     reports: number;
     /** Теги, прикреплённые к публикации для поиска и фильтрации. */
-    tagsList: TagType[],
+    tagsList: TagType[];
     /** Список комментариев, загруженных для данной публикации. */
     commentList: CommentType[];
     /**

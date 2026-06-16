@@ -1,5 +1,5 @@
-import type {Dispatch, RefObject, SetStateAction} from "react";
-import type {UserType} from "entities/user";
+import type { Dispatch, RefObject, SetStateAction } from "react";
+import type { UserType } from "entities/user";
 
 /**
  * Очищает input файла и сбрасывает imageUrl и загруженный файл.
@@ -15,9 +15,9 @@ export function deleteAlbumButtonClickHandler(
     setLoadedFile?: Dispatch<SetStateAction<File | undefined>>,
     fieldName: string = "avatarUrl"
 ) {
-    if(inputLoadRef.current) {
+    if (inputLoadRef.current) {
         inputLoadRef.current.value = "";
-        setEntityInfo(entity => ({...entity, [fieldName]: ""}))
+        setEntityInfo(entity => ({ ...entity, [fieldName]: "" }));
         setLoadedFile?.(undefined);
     }
 }

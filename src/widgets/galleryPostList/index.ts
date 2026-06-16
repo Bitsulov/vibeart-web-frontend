@@ -1,1 +1,1 @@
-export {GalleryPostList} from "./ui/galleryPostList";
+export { GalleryPostList } from "./ui/galleryPostList";

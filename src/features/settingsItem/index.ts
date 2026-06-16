@@ -1,1 +1,1 @@
-export {SettingsItem} from "./ui/settingsItem";
+export { SettingsItem } from "./ui/settingsItem";

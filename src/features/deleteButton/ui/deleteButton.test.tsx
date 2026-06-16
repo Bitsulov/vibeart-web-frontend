@@ -1,7 +1,7 @@
-import {describe, it, expect, vi} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {DeleteButton} from "./deleteButton";
-import {screen, fireEvent} from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { DeleteButton } from "./deleteButton";
+import { screen, fireEvent } from "@testing-library/react";
 
 describe("DeleteButton - кнопка удаления", () => {
     it("Рендерится на странице", () => {
@@ -18,14 +18,18 @@ describe("DeleteButton - кнопка удаления", () => {
 
     it("Вызывает onMouseEnter при наведении", () => {
         const onMouseEnter = vi.fn();
-        renderWithProviders(<DeleteButton ariaLabel="Удалить" onMouseEnter={onMouseEnter} />);
+        renderWithProviders(
+            <DeleteButton ariaLabel="Удалить" onMouseEnter={onMouseEnter} />
+        );
         fireEvent.mouseEnter(screen.getByRole("button", { name: "Удалить" }));
         expect(onMouseEnter).toHaveBeenCalledTimes(1);
     });
 
     it("Вызывает onMouseLeave при уходе курсора", () => {
         const onMouseLeave = vi.fn();
-        renderWithProviders(<DeleteButton ariaLabel="Удалить" onMouseLeave={onMouseLeave} />);
+        renderWithProviders(
+            <DeleteButton ariaLabel="Удалить" onMouseLeave={onMouseLeave} />
+        );
         fireEvent.mouseLeave(screen.getByRole("button", { name: "Удалить" }));
         expect(onMouseLeave).toHaveBeenCalledTimes(1);
     });

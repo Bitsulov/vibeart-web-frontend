@@ -1,5 +1,5 @@
-import {describe, it, expect, vi} from "vitest";
-import {submitValidHandler} from "./submitValidHandler";
+import { describe, it, expect, vi } from "vitest";
+import { submitValidHandler } from "./submitValidHandler";
 
 describe("submitValidHandler - успешная отправка формы изменения пароля", () => {
     it("Переключает форму в шаг ввода кода", () => {

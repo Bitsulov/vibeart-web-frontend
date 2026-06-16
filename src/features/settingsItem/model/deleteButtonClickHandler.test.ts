@@ -1,11 +1,11 @@
-import {describe, it, expect, vi} from "vitest";
-import {deleteButtonClickHandler} from "./deleteButtonClickHandler";
+import { describe, it, expect, vi } from "vitest";
+import { deleteButtonClickHandler } from "./deleteButtonClickHandler";
 
 describe("deleteButtonClickHandler - обработчик клика по кнопке удаления изображения", () => {
     it("Очищает input, вызывает setEntityInfo и setLoadedFile", () => {
         const input = document.createElement("input");
         input.value = "file.png";
-        const ref = {current: input};
+        const ref = { current: input };
         const setEntityInfo = vi.fn();
         const setLoadedFile = vi.fn();
 
@@ -15,10 +15,13 @@ describe("deleteButtonClickHandler - обработчик клика по кно
         expect(setLoadedFile).toHaveBeenCalledWith(undefined);
 
         const updater = setEntityInfo.mock.calls[0][0];
-        expect(updater({imageUrl: "blob:url", name: "test"})).toEqual({imageUrl: "", name: "test"});
+        expect(updater({ imageUrl: "blob:url", name: "test" })).toEqual({
+            imageUrl: "",
+            name: "test"
+        });
     });
     it("Не делает ничего если ref.current равен null", () => {
-        const ref = {current: null};
+        const ref = { current: null };
         const setEntityInfo = vi.fn();
         const setLoadedFile = vi.fn();
 

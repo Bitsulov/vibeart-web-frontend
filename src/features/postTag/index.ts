@@ -1,1 +1,1 @@
-export {PostTag} from "./ui/postTag";
+export { PostTag } from "./ui/postTag";

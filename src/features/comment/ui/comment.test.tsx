@@ -1,15 +1,15 @@
-import {describe, it, expect} from "vitest";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {Comment} from "./comment";
-import {screen} from "@testing-library/react";
-import {profileUserMock} from "entities/user";
+import { describe, it, expect } from "vitest";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { Comment } from "./comment";
+import { screen } from "@testing-library/react";
+import { profileUserMock } from "entities/user";
 
 const defaultProps = {
     authorUUID: profileUserMock.UUID,
     authorName: profileUserMock.name,
     authorAvatarUrl: "",
     text: "Текст комментария",
-    date: "2026-04-05T08:52:55.271Z",
+    date: "2026-04-05T08:52:55.271Z"
 };
 
 describe("Comment - отображение комментария", () => {
@@ -30,7 +30,9 @@ describe("Comment - отображение комментария", () => {
     });
 
     it("Отображает аватар автора", () => {
-        renderWithProviders(<Comment {...defaultProps} authorAvatarUrl="https://example.com/avatar.jpg" />);
+        renderWithProviders(
+            <Comment {...defaultProps} authorAvatarUrl="https://example.com/avatar.jpg" />
+        );
         const img = screen.getByRole("img", { name: profileUserMock.name });
         expect(img).toHaveAttribute("src", "https://example.com/avatar.jpg");
     });

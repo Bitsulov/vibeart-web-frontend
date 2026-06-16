@@ -1,12 +1,12 @@
-import {describe, it, expect, vi} from "vitest";
-import {screen} from "@testing-library/react";
-import {renderWithProviders} from "shared/tests/renderWithProviders";
-import {AddAdmins} from "./addAdmins";
-import {principalUserMock, communityAdminsMock} from "entities/user";
+import { describe, it, expect, vi } from "vitest";
+import { screen } from "@testing-library/react";
+import { renderWithProviders } from "shared/tests/renderWithProviders";
+import { AddAdmins } from "./addAdmins";
+import { principalUserMock, communityAdminsMock } from "entities/user";
 
 const defaultProps = {
     author: principalUserMock,
-    setSelectedAdmins: vi.fn(),
+    setSelectedAdmins: vi.fn()
 };
 
 describe("AddAdmins - виджет выбора администраторов", () => {
@@ -38,7 +38,9 @@ describe("AddAdmins - виджет выбора администраторов",
 
     it("Выбранные администраторы отображаются", () => {
         const [firstAdmin] = communityAdminsMock;
-        renderWithProviders(<AddAdmins {...defaultProps} selectedAdmins={[firstAdmin]} />);
+        renderWithProviders(
+            <AddAdmins {...defaultProps} selectedAdmins={[firstAdmin]} />
+        );
 
         expect(screen.getByText(firstAdmin.name)).toBeInTheDocument();
     });

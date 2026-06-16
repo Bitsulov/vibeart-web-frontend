@@ -1,1 +1,1 @@
-export {CommunityInfo} from "./ui/communityInfo";
+export { CommunityInfo } from "./ui/communityInfo";

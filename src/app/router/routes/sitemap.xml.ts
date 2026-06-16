@@ -21,7 +21,7 @@ const PUBLIC_PATHS = [
     "notifications",
     "agreement",
     "policy",
-    "contacts",
+    "contacts"
 ];
 
 /**
@@ -59,7 +59,10 @@ function buildUrlEntry(lang: string, path: string): string {
     const loc = buildUrl(lang, path);
 
     const alternates = supportedLangs
-        .map(l => `        <xhtml:link rel="alternate" hreflang="${l}" href="${buildUrl(l, path)}" />`)
+        .map(
+            l =>
+                `        <xhtml:link rel="alternate" hreflang="${l}" href="${buildUrl(l, path)}" />`
+        )
         .join("\n");
 
     const xDefault = `        <xhtml:link rel="alternate" hreflang="x-default" href="${buildUrl(defaultLang, path)}" />`;
@@ -83,7 +86,7 @@ ${xDefault}
  */
 export function loader() {
     const entries = PUBLIC_PATHS.flatMap(path =>
-        supportedLangs.map(lang => buildUrlEntry(lang, path)),
+        supportedLangs.map(lang => buildUrlEntry(lang, path))
     );
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -98,7 +101,7 @@ ${entries.join("\n\n")}
     return new Response(xml, {
         headers: {
             "Content-Type": "application/xml; charset=utf-8",
-            "Cache-Control": "public, max-age=3600",
-        },
+            "Cache-Control": "public, max-age=3600"
+        }
     });
 }

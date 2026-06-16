@@ -1,5 +1,5 @@
-import type {UserType} from "entities/user";
-import type {AlbumType} from "entities/album";
+import type { UserType } from "entities/user";
+import type { AlbumType } from "entities/album";
 
 /**
  * Описывает сообщество сайта — общее пространство,

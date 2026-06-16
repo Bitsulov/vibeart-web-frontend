@@ -7,9 +7,13 @@ import React from "react";
  * @param UUID - Уникальный идентификатор публикации.
  * @param setSelectedPosts - Сеттер списка выбранных публикаций.
  */
-export function postChooseHandler(isChosen: boolean, UUID: string, setSelectedPosts: React.Dispatch<React.SetStateAction<string[]>>) {
-    if(isChosen) {
-        setSelectedPosts(posts => posts.filter((post) => post !== UUID));
+export function postChooseHandler(
+    isChosen: boolean,
+    UUID: string,
+    setSelectedPosts: React.Dispatch<React.SetStateAction<string[]>>
+) {
+    if (isChosen) {
+        setSelectedPosts(posts => posts.filter(post => post !== UUID));
     } else {
         setSelectedPosts(posts => [...posts, UUID]);
     }
