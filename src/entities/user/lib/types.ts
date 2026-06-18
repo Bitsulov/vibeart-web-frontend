@@ -91,12 +91,30 @@ export interface AuthResponse {
     refreshTokenExpiresIn: number;
 }
 
-/** Профиль текущего авторизованного пользователя. */
+/** Профиль текущего авторизованного пользователя, возвращаемый сервером. */
 export interface UserDetailResponse {
     uuid: string;
     name: string;
     username: string;
+    avatarUrl: string;
     email: string;
-    photoUrl: string;
-    enabled: string;
+    role: Roles;
+    enabled: boolean;
+}
+
+/** Состояние текущего пользователя */
+export interface PrincipalUserState {
+    UUID: string;
+    name: string;
+    username: string;
+    avatarUrl: string;
+    email: string;
+    role: Roles;
+    trustStatus: "trust" | "untrust";
+    isAuthenticated: boolean;
+    isBlocked: boolean;
+    accessToken: string;
+    refreshToken: string;
+    accessTokenExpiresIn: number;
+    refreshTokenExpiresIn: number;
 }

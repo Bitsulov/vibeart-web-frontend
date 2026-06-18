@@ -6,7 +6,8 @@ export type {
     SendCodeRequest,
     SignInRequest,
     RefreshRequest,
-    UserDetailResponse
+    UserDetailResponse,
+    PrincipalUserState
 } from "./lib/types";
 export { userReducer, setUserInfo } from "./model/userSlice";
 export { selectUserInfo, selectIsAuthenticated, selectUser } from "./model/selectors";
