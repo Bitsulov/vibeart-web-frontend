@@ -4,6 +4,7 @@ test.describe("Policy - визуальная проверка блоков", () 
     test.beforeEach(async ({ page }) => {
         await page.goto("/en/policy");
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока PolicyText", async ({ page }) => {

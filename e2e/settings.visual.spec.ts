@@ -6,6 +6,7 @@ test.describe("Settings - визуальная проверка блоков", (
     test.beforeEach(async ({ page }) => {
         await page.goto(SETTINGS_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока SettingsForm", async ({ page }) => {

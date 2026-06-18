@@ -6,6 +6,7 @@ test.describe("Community - визуальная проверка блоков", 
     test.beforeEach(async ({ page }) => {
         await page.goto(COMMUNITY_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока CommunityInfo", async ({ page }) => {

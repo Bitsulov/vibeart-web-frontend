@@ -64,7 +64,7 @@ test.describe("Chat - страница чата", () => {
         await page.goto(CHAT_URL);
 
         await page.getByRole("button", { name: "Open chat settings" }).click();
-        await expect(page.getByRole("menu")).toBeVisible();
+        await expect(page.locator("#dropdown")).toBeVisible();
         await expect(page.getByRole("button", { name: "Delete chat" })).toBeVisible();
     });
 
