@@ -19,5 +19,14 @@
             font-weight: 800;
             border-right: 0.2rem solid global.$active-color;
         }
+
+        &.red {
+            margin-top: clamp(0.5rem, 1vw, 1rem);
+            color: global.$negative-active;
+            border-right: 0.1rem solid global.$negative-active;
+            cursor: pointer;
+            background-color: transparent;
+            transition: global.$transition-time;
+        }
     }
 }
