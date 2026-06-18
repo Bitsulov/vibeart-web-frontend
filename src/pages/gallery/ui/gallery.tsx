@@ -3,7 +3,7 @@ import c from "./gallery.module.scss";
 import { useTranslation } from "react-i18next";
 import { Navigation } from "widgets/navigation";
 import { profileUserMock } from "entities/user";
-import { useWindowWidth } from "shared/hooks/useWindowWidth";
+import { useMediaQuery } from "shared/hooks/useMediaQuery";
 import { GalleryPostList } from "widgets/galleryPostList";
 import { galleryPostsMock } from "entities/post";
 
@@ -11,7 +11,7 @@ import { galleryPostsMock } from "entities/post";
 export const Gallery = () => {
     const { t } = useTranslation();
 
-    const windowWidth = useWindowWidth();
+    const isDesktop = useMediaQuery("(width >= 1200px)");
 
     return (
         <Layout>
@@ -21,7 +21,7 @@ export const Gallery = () => {
             <meta property="og:description" content={t("description.gallery")} />
             <div className="container">
                 <div className={c.main}>
-                    {windowWidth >= 1200 && (
+                    {isDesktop && (
                         <Navigation
                             role={profileUserMock.role}
                             UUID={profileUserMock.UUID}

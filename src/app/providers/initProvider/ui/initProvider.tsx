@@ -3,9 +3,14 @@ import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage, selectCurrentLanguage } from "entities/appConfig";
-import { principalUserMock, setUserInfo } from "entities/user";
+import { setUserInfo } from "entities/user";
 import { useLocation, useNavigate, useMatches } from "react-router-dom";
 import { supportedLangs, defaultLang } from "shared/const/const";
+import { useQuery } from "@tanstack/react-query";
+import { getPrincipalUser } from "entities/user/api/userApi";
+import { showToast } from "features/toast";
+import axios from "axios";
+import type { AppError } from "shared/lib/types";
 
 /** Свойства компонента {@link InitProvider}. */
 interface InitProviderProps {
@@ -55,32 +60,45 @@ export const InitProvider = ({ children }: InitProviderProps) => {
         .map(m => m.params["lang"])
         .find(l => l !== undefined);
 
+    const { data, error } = useQuery({
+        queryKey: ["user"],
+        queryFn: getPrincipalUser
+    });
+
     useEffect(() => {
-        dispatch(
-            setUserInfo({
-                UUID: principalUserMock.UUID,
-                email: principalUserMock.email,
-                name: principalUserMock.name,
-                username: principalUserMock.username,
-                description: principalUserMock.description,
-                worksCount: principalUserMock.worksCount,
-                subscribersCount: principalUserMock.subscribersCount,
-                subscribesCount: principalUserMock.subscribesCount,
-                albumList: principalUserMock.albumList,
-                createdAt: principalUserMock.createdAt,
-                trustStatus: principalUserMock.trustStatus,
-                isAuthenticated: principalUserMock.isAuthenticated,
-                isBlocked: principalUserMock.isBlocked,
-                onlineStatus: principalUserMock.onlineStatus,
-                role: principalUserMock.role,
-                avatarUrl: principalUserMock.avatarUrl,
-                accessToken: principalUserMock.accessToken,
-                refreshToken: principalUserMock.refreshToken,
-                accessTokenExpiresIn: principalUserMock.accessTokenExpiresIn,
-                refreshTokenExpiresIn: principalUserMock.refreshTokenExpiresIn
-            })
-        );
-    }, [dispatch]);
+        if (data) {
+            const user = data.data;
+            dispatch(
+                setUserInfo({
+                    UUID: user.uuid,
+                    email: user.email,
+                    name: user.name,
+                    username: user.username,
+                    avatarUrl: user.avatarUrl,
+                    role: user.role,
+                    isBlocked: !user.enabled,
+                    isAuthenticated: true
+                })
+            );
+        }
+    }, [data, dispatch]);
+
+    useEffect(() => {
+        if (!error) return;
+
+        if (axios.isAxiosError<AppError>(error)) {
+            if (!error.response) {
+                dispatch(showToast({ message: "api.networkError", type: "error" }));
+                return;
+            }
+            if (error.response.status === 401 || error.response.status === 404) {
+                return;
+            }
+            dispatch(showToast({ message: "api.serverError", type: "error" }));
+        } else {
+            console.error(error);
+        }
+    }, [error, dispatch]);
 
     useEffect(() => {
         // Заход на сайт без определенного языка

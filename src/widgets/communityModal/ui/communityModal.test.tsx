@@ -19,7 +19,7 @@ const owner: UserType = {
     isAuthenticated: true,
     isBlocked: false,
     onlineStatus: "online",
-    role: "user",
+    role: "USER",
     avatarUrl: "",
     accessToken: "",
     refreshToken: "",

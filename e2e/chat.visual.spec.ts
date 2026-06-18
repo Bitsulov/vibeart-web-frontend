@@ -10,6 +10,7 @@ test.describe("Chat - визуальная проверка блоков", () =>
         await page.addStyleTag({
             content: "*::-webkit-scrollbar { display: none !important; }"
         });
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока ChatWindow", async ({ page }) => {

@@ -32,7 +32,7 @@ export function createUser({
     isAuthenticated,
     isBlocked,
     onlineStatus,
-    role = "user",
+    role = "USER",
     avatarUrl = "",
     accessToken = "",
     refreshToken = "",

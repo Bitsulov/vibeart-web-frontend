@@ -4,6 +4,7 @@ import { setUserInfo } from "entities/user";
 import { showToast } from "features/toast";
 import type { AxiosResponse } from "axios";
 import type { AuthResponse } from "entities/user";
+import type { QueryClient } from "@tanstack/react-query";
 
 vi.mock("shared/lib/crypto", () => ({
     encryptToString: vi.fn(async (text: string) => `encrypted-${text}`)
@@ -28,6 +29,8 @@ function createResponse(): AxiosResponse<AuthResponse> {
     } as AxiosResponse<AuthResponse>;
 }
 
+const mockQueryClient = { invalidateQueries: vi.fn() } as unknown as QueryClient;
+
 describe("verifySuccessHandler - обрабатывает успешную верификацию кода", () => {
     beforeEach(() => {
         clearCookies();
@@ -42,6 +45,7 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
             createResponse(),
             { email: "test@example.com", verificationCode: "123456" },
             vi.fn(),
+            mockQueryClient,
             vi.fn()
         );
 
@@ -58,6 +62,7 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
             createResponse(),
             { email: "test@example.com", verificationCode: "123456" },
             dispatch,
+            mockQueryClient,
             vi.fn()
         );
 
@@ -65,6 +70,7 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
             setUserInfo({
                 UUID: "00000000-0000-4000-8000-00000000000a",
                 email: "test@example.com",
+                isAuthenticated: true,
                 accessToken: "encrypted-access-token",
                 refreshToken: "encrypted-refresh-token",
                 accessTokenExpiresIn: 60000,
@@ -80,6 +86,7 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
             createResponse(),
             { email: "test@example.com", verificationCode: "123456" },
             dispatch,
+            mockQueryClient,
             vi.fn()
         );
 
@@ -100,6 +107,7 @@ describe("verifySuccessHandler - обрабатывает успешную ве�
             createResponse(),
             { email: "test@example.com", verificationCode: "123456" },
             vi.fn(),
+            mockQueryClient,
             navigate
         );
 

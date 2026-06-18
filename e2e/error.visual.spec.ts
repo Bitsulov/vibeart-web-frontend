@@ -4,6 +4,7 @@ test.describe("Error - визуальная проверка блоков", () =
     test.beforeEach(async ({ page }) => {
         await page.goto("/en/invalidUrl");
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока ErrorInfo", async ({ page }) => {

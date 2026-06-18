@@ -6,6 +6,7 @@ test.describe("Register - визуальная проверка блоков", (
     test.beforeEach(async ({ page }) => {
         await page.goto(REGISTER_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока RegisterForm", async ({ page }) => {

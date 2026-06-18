@@ -6,6 +6,7 @@ test.describe("Auth - визуальная проверка блоков", () =>
     test.beforeEach(async ({ page }) => {
         await page.goto(AUTH_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока AuthForm", async ({ page }) => {

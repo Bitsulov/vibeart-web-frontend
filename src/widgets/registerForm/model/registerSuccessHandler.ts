@@ -5,7 +5,6 @@ import { showToast } from "features/toast";
 import React, { type SetStateAction } from "react";
 import type { UseFormSetValue } from "react-hook-form";
 import type { IRegisterForm } from "../lib/types";
-import type { QueryClient } from "@tanstack/react-query";
 
 /**
  * Обрабатывает успешную регистрацию: показывает уведомление о том,
@@ -17,7 +16,6 @@ import type { QueryClient } from "@tanstack/react-query";
  * @param dispatch - Функция записи данных в Redux.
  * @param setIsEmailSent - Сеттер признака отправки письма с кодом.
  * @param setValue - Функция react-hook-form для сброса значений полей {@link IRegisterForm}.
- * @param queryClient - Клиент TanStack Query, используемый для пометки связанных запросов как устаревших.
  * @param setSentEmail - Сеттер адреса электронной почты, на который отправлен код.
  */
 export function registerSuccessHandler(
@@ -26,7 +24,6 @@ export function registerSuccessHandler(
     dispatch: Dispatch,
     setIsEmailSent: React.Dispatch<SetStateAction<boolean>>,
     setValue: UseFormSetValue<IRegisterForm>,
-    queryClient: QueryClient,
     setSentEmail: React.Dispatch<SetStateAction<string>>
 ) {
     dispatch(
@@ -41,7 +38,6 @@ export function registerSuccessHandler(
     setValue("confirmPassword", "");
     setValue("agreed", false);
     setValue("agreed2", false);
-    queryClient.invalidateQueries({ queryKey: ["register"] });
     setIsEmailSent(true);
     setSentEmail(request.email);
 }

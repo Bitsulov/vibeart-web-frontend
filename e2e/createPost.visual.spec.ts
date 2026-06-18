@@ -6,6 +6,7 @@ test.describe("CreatePost - визуальная проверка блоков",
     test.beforeEach(async ({ page }) => {
         await page.goto(CREATE_POST_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока CreatePost", async ({ page }) => {

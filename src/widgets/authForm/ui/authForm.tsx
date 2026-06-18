@@ -2,7 +2,7 @@ import c from "./authForm.module.scss";
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { AuthBackLink } from "features/authBackLink";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StylizedButton } from "features/stylizedButton";
 import { TransparentLink } from "features/transparentLink";
 import { InputForm } from "features/inputForm";
@@ -10,6 +10,13 @@ import { InputError } from "features/inputError";
 import { submitValidHandler } from "../model/submitValidHandler";
 import { submitInvalidHandler } from "../model/submitInvalidHandler";
 import type { IAuthForm } from "../lib/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { login } from "entities/user/api/userApi";
+import type { AxiosError } from "axios";
+import type { AppError } from "shared/lib/types";
+import { loginSuccessHandler } from "../model/loginSuccessHandler";
+import { useDispatch } from "react-redux";
+import { loginErrorHandler } from "../model/loginErrorHandler";
 
 /**
  * Форма авторизации с полями e-mail и пароля.
@@ -20,6 +27,9 @@ import type { IAuthForm } from "../lib/types";
  */
 export const AuthForm = ({ ...props }) => {
     const { t } = useTranslation();
+    const queryClient = useQueryClient();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -34,12 +44,26 @@ export const AuthForm = ({ ...props }) => {
 
     const showingError = errors.email || errors.password;
 
+    const loginMutation = useMutation({
+        mutationFn: login,
+        onSuccess: (response, request: IAuthForm) =>
+            loginSuccessHandler(
+                response,
+                request,
+                setValue,
+                dispatch,
+                queryClient,
+                navigate
+            ),
+        onError: (error: AxiosError<AppError>) => loginErrorHandler(error, dispatch)
+    });
+
     return (
         <section className={c.authWidget} {...props}>
             <div className="container">
                 <form
                     onSubmit={handleSubmit(
-                        data => submitValidHandler(data, setValue),
+                        data => submitValidHandler(data, loginMutation.mutateAsync),
                         error => submitInvalidHandler(error)
                     )}
                     className={c.authForm}

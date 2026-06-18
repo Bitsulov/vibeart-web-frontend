@@ -22,7 +22,7 @@ const mockAuthor: UserType = {
     isAuthenticated: false,
     isBlocked: false,
     onlineStatus: "offline",
-    role: "user",
+    role: "USER",
     avatarUrl: "",
     accessToken: "",
     refreshToken: "",

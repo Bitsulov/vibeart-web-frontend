@@ -6,6 +6,7 @@ test.describe("Home - визуальная проверка блоков", () =>
     test.beforeEach(async ({ page }) => {
         await page.goto(HOME_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока HomeIntro", async ({ page }) => {

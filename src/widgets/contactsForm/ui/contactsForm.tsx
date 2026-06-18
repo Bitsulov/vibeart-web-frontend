@@ -1,5 +1,5 @@
 import c from "./contactsForm.module.scss";
-import type { UserType } from "entities/user";
+import type { PrincipalUserState } from "entities/user";
 import { useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { TextareaForm } from "features/textareaForm";
@@ -14,7 +14,7 @@ import type { ComponentPropsWithoutRef } from "react";
 /** Свойства компонента {@link ContactsForm}. */
 interface ContactsFormProps extends ComponentPropsWithoutRef<"section"> {
     /** Данные текущего пользователя. */
-    userInfo: UserType;
+    userInfo: PrincipalUserState;
 }
 
 /**

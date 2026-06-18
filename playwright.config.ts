@@ -33,6 +33,9 @@ export default defineConfig({
     retries: 4,
     workers: process.env.CI ? 1 : 3,
     reporter: [["html", { open: "never" }]],
+    expect: {
+        toHaveScreenshot: { animations: "disabled" }
+    },
     use: {
         baseURL: "http://localhost:5173",
         trace: "on-first-retry",

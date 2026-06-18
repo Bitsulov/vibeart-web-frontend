@@ -6,6 +6,7 @@ test.describe("Profile - визуальная проверка блоков", ()
     test.beforeEach(async ({ page }) => {
         await page.goto(PROFILE_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока ProfileInfo", async ({ page }) => {

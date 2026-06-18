@@ -25,7 +25,7 @@ type SubmitFn = (data: VerifyRequest) => Promise<AxiosResponse<AuthResponse>>;
  * @param sentEmail - Адрес электронной почты, на который был отправлен код.
  * @param submit - Функция отправки кода подтверждения на сервер.
  */
-export function codeSubmitValidHandler(
+export async function codeSubmitValidHandler(
     data: ICodeForm,
     dispatch: Dispatch,
     setErrorCode: React.Dispatch<SetStateAction<boolean>>,
@@ -45,5 +45,5 @@ export function codeSubmitValidHandler(
         resetEmailForm();
     }, 0);
     setIsEmailSent(false);
-    submit({ email: sentEmail, verificationCode: data.code });
+    await submit({ email: sentEmail, verificationCode: data.code });
 }

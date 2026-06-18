@@ -1,23 +1,23 @@
 import type { Dispatch, RefObject, SetStateAction } from "react";
-import type { UserType } from "entities/user";
 
 /**
- * Очищает input файла и сбрасывает imageUrl и загруженный файл.
+ * Удаляет выбранное изображение: очищает скрытый `input[type=file]`,
+ * очищает поле `fieldName` в объекте состояния и сбрасывает загруженный файл.
  *
- * @param inputLoadRef - Ref скрытого input[type=file].
- * @param setEntityInfo - Сеттер состояния сущности для сброса avatarUrl.
+ * @param inputLoadRef - Ссылка на скрытый `input[type=file]`.
+ * @param setEntityInfo - Сеттер состояния объекта.
  * @param setLoadedFile - Сеттер загруженного файла.
  * @param fieldName - Имя поля сущности, которое нужно очистить. По умолчанию `"avatarUrl"`.
  */
-export function deleteAlbumButtonClickHandler(
+export function deleteAlbumButtonClickHandler<T extends object>(
     inputLoadRef: RefObject<HTMLInputElement | null>,
-    setEntityInfo: Dispatch<SetStateAction<Partial<UserType>>>,
+    setEntityInfo: Dispatch<SetStateAction<T>>,
     setLoadedFile?: Dispatch<SetStateAction<File | undefined>>,
     fieldName: string = "avatarUrl"
 ) {
     if (inputLoadRef.current) {
         inputLoadRef.current.value = "";
-        setEntityInfo(entity => ({ ...entity, [fieldName]: "" }));
+        setEntityInfo(entity => ({ ...entity, [fieldName]: "" }) as T);
         setLoadedFile?.(undefined);
     }
 }

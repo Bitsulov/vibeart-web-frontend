@@ -6,6 +6,7 @@ test.describe("Post - визуальная проверка блоков", () =>
     test.beforeEach(async ({ page }) => {
         await page.goto(POST_URL);
         await expect(page.getByRole("main")).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока PostCard", async ({ page }) => {

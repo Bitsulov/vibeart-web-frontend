@@ -5,6 +5,7 @@ import type { Dispatch } from "@reduxjs/toolkit";
 import type { NavigateFunction } from "react-router-dom";
 import type { AuthResponse } from "entities/user";
 import { encryptToString } from "shared/lib/crypto";
+import type { QueryClient } from "@tanstack/react-query";
 
 /**
  * Обрабатывает успешную верификацию кода подтверждения: шифрует и сохраняет
@@ -15,12 +16,14 @@ import { encryptToString } from "shared/lib/crypto";
  * @param response - Пара токенов авторизации и UUID пользователя, {@link AuthResponse}.
  * @param request - Адрес электронной почты, для которого выполнялась верификация, {@link VerifyRequest}.
  * @param dispatch - Функция записи данных в Redux.
+ * @param queryClient - Клиент TanStack Query для сброса кеша после авторизации.
  * @param navigate - Функция навигации React Router.
  */
 export async function verifySuccessHandler(
     response: AxiosResponse<AuthResponse>,
     request: VerifyRequest,
     dispatch: Dispatch,
+    queryClient: QueryClient,
     navigate: NavigateFunction
 ) {
     const data = response.data;
@@ -54,11 +57,13 @@ export async function verifySuccessHandler(
         setUserInfo({
             UUID: data.uuid,
             email: request.email,
+            isAuthenticated: true,
             accessToken: encryptedAccessToken,
             refreshToken: encryptedRefreshToken,
             accessTokenExpiresIn: response.data.accessTokenExpiresIn,
             refreshTokenExpiresIn: response.data.refreshTokenExpiresIn
         })
     );
+    queryClient.invalidateQueries({ queryKey: ["user"] });
     navigate(`/profile/${response.data.uuid}`);
 }

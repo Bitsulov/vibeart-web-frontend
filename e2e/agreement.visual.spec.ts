@@ -6,6 +6,7 @@ test.describe("Agreement - визуальная проверка блоков", 
         await expect(
             page.getByRole("heading", { level: 1, name: "USER AGREEMENT (PUBLIC OFFER)" })
         ).toBeVisible();
+        await page.evaluate(() => document.fonts.ready);
     });
 
     test("снимок блока AgreementText", async ({ page }) => {

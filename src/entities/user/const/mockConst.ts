@@ -22,7 +22,7 @@ export const principalUserMock = createUser({
     isAuthenticated: true,
     isBlocked: true,
     onlineStatus: "online",
-    role: "user",
+    role: "USER",
     avatarUrl: "",
     accessToken: "",
     refreshToken: "",
@@ -46,7 +46,7 @@ export const profileUserMock = createUser({
     isAuthenticated: true,
     isBlocked: false,
     onlineStatus: "online",
-    role: "user",
+    role: "USER",
     avatarUrl: avatar,
     accessToken: "",
     refreshToken: "",
@@ -66,9 +66,10 @@ export const userDetailResponseMock: UserDetailResponse = {
     uuid: "00000000-0000-4000-8000-00000000000a",
     name: "testUser",
     username: "testUser",
+    avatarUrl: "",
     email: "testEmail@test.com",
-    photoUrl: "",
-    enabled: "true"
+    role: "USER",
+    enabled: true
 };
 
 export const communityAdminsMock = [
@@ -87,7 +88,7 @@ export const communityAdminsMock = [
         isAuthenticated: true,
         isBlocked: false,
         onlineStatus: "online",
-        role: "user",
+        role: "USER",
         avatarUrl: avatar,
         accessToken: "",
         refreshToken: "",
@@ -109,7 +110,7 @@ export const communityAdminsMock = [
         isAuthenticated: true,
         isBlocked: false,
         onlineStatus: "offline",
-        role: "user",
+        role: "USER",
         avatarUrl: avatar,
         accessToken: "",
         refreshToken: "",

@@ -14,13 +14,12 @@ import clsx from "clsx";
 import { loadButtonClickHandler } from "../model/loadButtonClickHandler";
 import { onChangeLoadHandler } from "../model/onChangeLoadHandler";
 import { deleteButtonClickHandler } from "../model/deleteButtonClickHandler";
-import type { PostType } from "entities/post";
 import { StylizedButton } from "../../stylizedButton";
 import { onChangeAvatarLoadHandler } from "../model/onChangeAvatarLoadHandler";
 import { deleteAlbumButtonClickHandler } from "../model/deleteAlbumButtonClickHandler";
 
 /** Свойства компонента {@link SettingsItem}. */
-interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
+interface SettingsItemProps<T extends object> extends ComponentPropsWithoutRef<"div"> {
     /** Заголовок поля настроек, отображаемый над элементом управления. */
     title: string;
     /** Поясняющий текст под заголовком. */
@@ -49,7 +48,7 @@ interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
     /** Пропсы из `register()` библиотеки react-hook-form для привязки поля к форме. */
     registerProps?: UseFormRegisterReturn;
     /** Функция обновления частичного состояния сущности для предпросмотра изменений. */
-    setEntityInfo: Dispatch<SetStateAction<Partial<PostType>>>;
+    setEntityInfo: Dispatch<SetStateAction<T>>;
     /** Функция сохранения загруженного файла изображения для последующей отправки на сервер. */
     setLoadedFile?: Dispatch<SetStateAction<File | undefined>>;
     /** Дополнительный CSS-класс для плавающего плейсхолдера. */
@@ -73,7 +72,7 @@ interface SettingsItemProps extends ComponentPropsWithoutRef<"div"> {
  * определяемых через `type`. При наличии ограничений длины отображает
  * счётчик символов, который подсвечивается красным после отправки формы.
  */
-export const SettingsItem = ({
+export const SettingsItem = <T extends object>({
     title,
     description,
     value = "",
@@ -93,7 +92,7 @@ export const SettingsItem = ({
     required = false,
     id,
     ...props
-}: SettingsItemProps) => {
+}: SettingsItemProps<T>) => {
     const { t } = useTranslation();
 
     const isText = type === "input" || type === "textarea" || type === "id";

@@ -37,6 +37,7 @@
     "Send": "Send",
     "Accept": "Accept",
     "You": "(You)",
+    "Logout": "Log out",
     "develop": {
         "title": "This page is under construction.",
         "back": "Go back",
@@ -58,7 +59,9 @@
         "sendCodeAccess": "The verification code has been resent to {{email}}",
         "earlyCodeRequest": "A new verification code was requested too soon",
         "networkError": "Could not connect to the server. Please try reloading the page later",
-        "sessionExpired": "Your session has expired. Please sign in again"
+        "sessionExpired": "Your session has expired. Please sign in again",
+        "loginAccess": "You have successfully logged in!",
+        "invalidEmailPassword": "Invalid email address or password"
     },
     "ariaLabel": {
         "openBurgerMenu": "Open navigation menu",
@@ -143,7 +146,8 @@
         "acceptCookies": "Accept cookies",
         "backToRegister": "Return to registration",
         "confirmRegister": "Send code and confirm registration",
-        "sendCodeAgain": "Resend verification code"
+        "sendCodeAgain": "Resend verification code",
+        "logout": "Log out"
     },
     "hint": {
         "works": "Number of posts",
