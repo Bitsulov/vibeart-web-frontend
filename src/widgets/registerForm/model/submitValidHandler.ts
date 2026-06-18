@@ -13,5 +13,5 @@ type SubmitFn = (data: SignUpRequest) => Promise<AxiosResponse<string>>;
  * @param submit - Функция отправки данных регистрации на сервер.
  */
 export async function submitValidHandler(data: IRegisterForm, submit: SubmitFn) {
-    submit(data);
+    await submit(data);
 }

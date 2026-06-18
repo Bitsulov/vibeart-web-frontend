@@ -4,6 +4,10 @@ import { RegisterForm } from "./registerForm";
 import { screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
+vi.mock("shared/lib/crypto", () => ({
+    encryptToString: vi.fn(async (text: string) => `encrypted-${text}`)
+}));
+
 const mockNavigate = vi.fn();
 
 vi.mock("react-router-dom", async () => {

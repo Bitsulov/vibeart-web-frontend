@@ -105,7 +105,6 @@ export const RegisterForm = ({ ...props }) => {
                 dispatch,
                 setIsEmailSent,
                 setValue,
-                queryClient,
                 setSentEmail
             ),
         onError: (error: AxiosError<AppError>) => registerErrorHandler(error, setError)
@@ -114,7 +113,7 @@ export const RegisterForm = ({ ...props }) => {
     const verifyMutation = useMutation({
         mutationFn: verify,
         onSuccess: (response, request) =>
-            verifySuccessHandler(response, request, dispatch, navigate),
+            verifySuccessHandler(response, request, dispatch, queryClient, navigate),
         onError: (error: AxiosError<AppError>) => verifyErrorHandler(error, dispatch)
     });
 
