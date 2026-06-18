@@ -7,19 +7,19 @@ const UUID = "00000000-0000-4000-8000-00000000000b";
 
 describe("Navigation - боковая навигация", () => {
     it("Рендерит nav-элемент", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />);
 
         expect(screen.getByRole("navigation")).toBeInTheDocument();
     });
 
     it("Отображает 5 ссылок для обычного пользователя (без adminlink)", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />);
 
         expect(screen.getAllByRole("link")).toHaveLength(5);
     });
 
     it("Не отображает ссылку администратора для обычного пользователя", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />);
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />);
 
         expect(
             screen.queryByRole("link", { name: "ariaLabel.goToBan" })
@@ -27,7 +27,7 @@ describe("Navigation - боковая навигация", () => {
     });
 
     it("Отображает 6 ссылок для администратора (включая admin-ссылку)", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="admin" />);
+        renderWithProviders(<Navigation UUID={UUID} role="ADMIN" />);
 
         expect(screen.getAllByRole("link")).toHaveLength(6);
         expect(
@@ -36,7 +36,7 @@ describe("Navigation - боковая навигация", () => {
     });
 
     it("Активная ссылка имеет aria-current='page'", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />, {
             route: "/gallery"
         });
 
@@ -45,7 +45,7 @@ describe("Navigation - боковая навигация", () => {
     });
 
     it("Неактивные ссылки не имеют aria-current", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />, {
             route: "/gallery"
         });
 
@@ -54,7 +54,7 @@ describe("Navigation - боковая навигация", () => {
     });
 
     it("Отображает счётчик непрочитанных чатов", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />, {
             preloadedState: {
                 app: {
                     unreadChatsCount: 3,
@@ -69,7 +69,7 @@ describe("Navigation - боковая навигация", () => {
     });
 
     it("Не отображает счётчик чатов, если нет непрочитанных", () => {
-        renderWithProviders(<Navigation UUID={UUID} role="user" />, {
+        renderWithProviders(<Navigation UUID={UUID} role="USER" />, {
             preloadedState: {
                 app: {
                     unreadChatsCount: 0,

@@ -12,7 +12,7 @@ import { NavigationItem } from "features/navigationItem";
 interface NavigationProps {
     /** UUID текущего пользователя — передаётся в каждый {@link NavigationItem} для генерации URL. */
     UUID: string;
-    /** Роль текущего пользователя. Пункты с `isAdmin: true` отображаются только при значении `"admin"`. */
+    /** Роль текущего пользователя. Пункты с `isAdmin: true` отображаются только при значении `"ADMIN"`. */
     role: string;
 }
 
@@ -35,7 +35,7 @@ export const Navigation = ({ UUID, role, ...props }: NavigationProps) => {
                     const Icon = link.icon;
 
                     if (link.isAdmin) {
-                        if (role === "admin") {
+                        if (role === "ADMIN") {
                             return (
                                 <NavigationItem
                                     key={`link ${link.href(UUID)}`}

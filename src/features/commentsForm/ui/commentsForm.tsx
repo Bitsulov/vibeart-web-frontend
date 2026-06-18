@@ -5,7 +5,7 @@ import type { ICommentsForm } from "../lib/types";
 import type { CommentType } from "entities/comment";
 import React from "react";
 import { submitValidHandler } from "../model/submitValidHandler";
-import type { UserType } from "entities/user";
+import type { PrincipalUserState } from "entities/user";
 import { SendHorizontal } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +14,7 @@ interface CommentFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
     /** Функция обновления списка комментариев для оптимистичного добавления нового комментария без запроса на сервер. */
     setComments: React.Dispatch<React.SetStateAction<CommentType[]>>;
     /** Профиль текущего пользователя — используется для формирования объекта нового комментария. */
-    user: UserType;
+    user: PrincipalUserState;
 }
 
 /**

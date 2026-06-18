@@ -4,7 +4,7 @@ import { getShortNumber } from "shared/lib/getShortNumber";
 import type { CommentType } from "entities/comment";
 import { Comment } from "features/comment";
 import { useState } from "react";
-import type { UserType } from "entities/user";
+import type { PrincipalUserState } from "entities/user";
 import { CommentsForm } from "features/commentsForm";
 
 /** Свойства компонента {@link PostComments}. */
@@ -14,7 +14,7 @@ interface PostCommentsProps {
     /** Начальный список комментариев, загруженных с сервера. */
     commentsList: CommentType[];
     /** Профиль текущего пользователя — передаётся в форму добавления комментария. */
-    userInfo: UserType;
+    userInfo: PrincipalUserState;
 }
 
 /**

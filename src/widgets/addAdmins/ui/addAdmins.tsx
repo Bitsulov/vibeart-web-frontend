@@ -1,6 +1,10 @@
 import c from "./addAdmins.module.scss";
 import { SearchInput } from "features/searchInput";
-import { communityAdminsMock, type UserType } from "entities/user";
+import {
+    communityAdminsMock,
+    type UserType,
+    type PrincipalUserState
+} from "entities/user";
 import {
     type ComponentPropsWithoutRef,
     type Dispatch,
@@ -17,7 +21,7 @@ import { useTranslation } from "react-i18next";
 /** Свойства компонента {@link AddAdmins}. */
 interface AddAdminsProps extends ComponentPropsWithoutRef<"div"> {
     /** Объект пользователя — владельца сообщества. Всегда отображается первым и не может быть снят. */
-    author: UserType;
+    author: PrincipalUserState;
     /** Дополнительный CSS-класс для корневого элемента. */
     className?: string;
     /** Текущий список выбранных администраторов. */
