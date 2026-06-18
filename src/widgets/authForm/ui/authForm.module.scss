@@ -4,6 +4,7 @@
     margin-top: clamp(4.5rem, 10vw, 8rem);
 
     .authForm {
+        animation: fade-in global.$transition-time ease;
         max-width: 57rem;
         margin: 0 auto;
         position: relative;
@@ -64,5 +65,17 @@
                 border-radius: clamp(0.7rem, 2vw, 1.2rem);
             }
         }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
