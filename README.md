@@ -1,5 +1,5 @@
-VibeArt Web — веб-фронтенд социальной сети для творческих людей
-================================================================
+VibeArt Web
+===========
 
 [![Version](https://img.shields.io/github/package-json/v/Bitsulov/vibeart-web-frontend)](https://github.com/Bitsulov/vibeart-web-frontend/blob/main/package.json)
 [![License](https://img.shields.io/github/license/Bitsulov/vibeart-web-frontend)](https://github.com/Bitsulov/vibeart-web-frontend/blob/main/LICENSE)
